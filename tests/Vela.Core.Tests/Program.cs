@@ -102,6 +102,7 @@ foreach (var check in ImageBudgetChecks.All()) Test(check.Name, check.Check);
 foreach (var check in CommandQueryChecks.All()) Test(check.Name, check.Check);
 foreach (var check in VideoBudgetChecks.All()) Test(check.Name, check.Check);
 foreach (var check in DeveloperFeedChecks.All()) Test(check.Name, check.Check);
+foreach (var check in AudioBudgetChecks.All()) Test(check.Name, check.Check);
 InputChecks.Run(Test);
 ClipboardChecks.Run(Test);
 AlertChecks.Run(Test);

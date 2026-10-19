@@ -1,5 +1,10 @@
 # Verification status
 
+## Physical x64 M4A size-limit continuation — October 19
+
+Source `315d04be-d4d7-425e-9678-99668e317542` (126 compile inputs) passes 181 core and 19 Windows backend checks, plus native x64 XAML/OCR and ARM64 cross-publishing. A generated 12-second stereo video yields a 291,429-byte ordinary M4A and a 195,442-byte copy under a 218,571-byte limit; native PCM decode is non-silent, 48 kHz stereo and duration survive, source/earlier output bytes stay unchanged, and impossible/missing-audio/invalid inputs plus cancellation are handled without partial copies. M4A/GIF/MP4 field switching, committed values and empty-batch errors pass focused native form checks. Picker-based execution, multichannel/DRM/long-media cases and broader accessibility remain open. See [the audio checkpoint](windows-audio-budget-checkpoint.md) and [JSON evidence](../validation/windows-audio-budget-checkpoint.json). Settings, native exclusions, Mica and the accepted cue are preserved. No release was made.
+
+
 ## Physical x64 developer-feed continuation — October 19
 
 Source `e509026e-c631-411e-aa02-5a4827387f05` (123 compile inputs) passes 173 core and 18 Windows backend checks. Native x64 XAML/OCR and ARM64 cross-publishing pass; ARM64 execution is not claimed. Developer RSS/Atom headlines are an optional retained residual, with empty defaults and no automatic requests, installed-app scanning, updates or installers. Generated local HTTP feeds exercise native save/edit, invalid/empty validation, partial failures, date order, local filter/selection, active cancellation, the real 20-second source timeout and tool-close cancellation. See [the detailed feed checkpoint](windows-developer-feeds-checkpoint.md) and [machine-readable evidence](../validation/windows-developer-feeds-checkpoint.json). Normal settings/startup, Mica, the accepted cue and all 77 audit decisions are preserved. External feeds, Open browser activation, removal UI and broader accessibility remain unverified. No release was made.

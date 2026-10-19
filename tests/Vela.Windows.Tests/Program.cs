@@ -245,6 +245,7 @@ try
         Require((await music.Properties.GetMusicPropertiesAsync()).Duration>TimeSpan.Zero,"Empty audio output.");
     });
     await Check("MP4 byte budgets preserve decoded video/audio and originals, reject impossible caps and clean up failures/cancellation",()=>VideoBudgetChecks.Run(folder));
+    await Check("M4A byte budgets preserve decoded audio and originals, isolate failed inputs and clean up cancellation",()=>AudioBudgetChecks.Run(folder));
     await Check("Animated GIFs preserve changing frames, timing, loops and safe cancellation",async ()=>
     {
         var videos=await folder.CreateFolderAsync("gif-video"); var source=await videos.CreateFileAsync("animation.mp4");

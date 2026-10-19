@@ -25,7 +25,6 @@ internal static class VideoService
     public static async Task<VideoConversionResult> Convert(IReadOnlyList<StorageFile> files,StorageFolder folder,VideoEncodingQuality quality,bool audioOnly,Action<string> progress,CancellationToken cancellation,long maximumBytes=0)
     {
         if(maximumBytes is <0 or >VideoSizeBudget.MaximumBytes) throw new ArgumentOutOfRangeException(nameof(maximumBytes));
-        if(audioOnly && maximumBytes>0) throw new InvalidOperationException("File-size limits are available for MP4 output only.");
         int completed=0,index=0; var failures=new List<string>();
         foreach(var file in files)
         {
@@ -34,21 +33,37 @@ internal static class VideoService
             try
             {
                 var profile=audioOnly?MediaEncodingProfile.CreateM4a(AudioEncodingQuality.High):MediaEncodingProfile.CreateMp4(quality);
-                VideoBitrates? rates=null;
+                VideoBitrates? rates=null; uint? audioRate=null;
+                MediaEncodingProfile? sourceProfile=null;
+                if(audioOnly || maximumBytes>0) sourceProfile=await MediaEncodingProfile.CreateFromFileAsync(file).AsTask(cancellation);
+                if(audioOnly && sourceProfile!.Audio is null) throw new InvalidOperationException("This file has no audio stream to extract.");
                 if(maximumBytes>0)
                 {
-                    var sourceProfile=await MediaEncodingProfile.CreateFromFileAsync(file).AsTask(cancellation);
-                    if(sourceProfile.Audio is null) profile.Audio=null;
-                    var properties=await file.Properties.GetVideoPropertiesAsync().AsTask(cancellation);
-                    if(properties.Duration<=TimeSpan.Zero || profile.Video.Bitrate==0) throw new InvalidOperationException("Windows could not determine a duration and fixed video quality for this file.");
-                    rates=VideoSizeBudget.Plan(maximumBytes,properties.Duration,profile.Video.Bitrate,profile.Audio?.Bitrate??0);
-                    if(rates is null) throw TooLarge();
+                    if(audioOnly)
+                    {
+                        var properties=await file.Properties.GetMusicPropertiesAsync().AsTask(cancellation);
+                        var duration=properties.Duration;
+                        if(duration<=TimeSpan.Zero) duration=(await file.Properties.GetVideoPropertiesAsync().AsTask(cancellation)).Duration;
+                        if(profile.Audio is null || profile.Audio.ChannelCount is not (1 or 2)) throw new InvalidOperationException("Windows could not select a mono or stereo AAC profile for this size limit.");
+                        if(duration<=TimeSpan.Zero) throw new InvalidOperationException("Windows could not determine this file's audio duration.");
+                        audioRate=AudioSizeBudget.Plan(maximumBytes,duration,profile.Audio.Bitrate);
+                        if(audioRate is null) throw TooLarge(true);
+                    }
+                    else
+                    {
+                        if(sourceProfile!.Audio is null) profile.Audio=null;
+                        var properties=await file.Properties.GetVideoPropertiesAsync().AsTask(cancellation);
+                        if(properties.Duration<=TimeSpan.Zero || profile.Video.Bitrate==0) throw new InvalidOperationException("Windows could not determine a duration and fixed video quality for this file.");
+                        rates=VideoSizeBudget.Plan(maximumBytes,properties.Duration,profile.Video.Bitrate,profile.Audio?.Bitrate??0);
+                        if(rates is null) throw TooLarge(false);
+                    }
                 }
                 for(int attempt=1;;attempt++)
                 {
                     cancellation.ThrowIfCancellationRequested();
                     if(rates is {} chosen)
                     { profile.Video.Bitrate=chosen.Video; if(profile.Audio is not null) profile.Audio.Bitrate=chosen.Audio; }
+                    if(audioRate is {} chosenAudio) profile.Audio!.Bitrate=chosenAudio;
                     output=await folder.CreateFileAsync(Path.GetFileNameWithoutExtension(file.Name)+(audioOnly?".m4a":".mp4"),CreationCollisionOption.GenerateUniqueName);
                     var transcoder=new MediaTranscoder { AlwaysReencode=maximumBytes>0 };
                     var job=await transcoder.PrepareFileTranscodeAsync(file,output,profile).AsTask(cancellation);
@@ -59,10 +74,18 @@ internal static class VideoService
                     cancellation.ThrowIfCancellationRequested();
                     if(maximumBytes==0) break;
                     long bytes=checked((long)(await output.GetBasicPropertiesAsync().AsTask(cancellation)).Size);
-                    if(bytes<=0) throw new InvalidOperationException("Windows produced an empty video file.");
+                    if(bytes<=0) throw new InvalidOperationException("Windows produced an empty media file.");
                     if(bytes<=maximumBytes) break;
-                    rates=attempt<VideoSizeBudget.MaximumAttempts ? VideoSizeBudget.Lower(rates!.Value,maximumBytes,bytes) : null;
-                    if(rates is null) throw TooLarge();
+                    if(audioOnly)
+                    {
+                        audioRate=attempt<AudioSizeBudget.MaximumAttempts ? AudioSizeBudget.Lower(audioRate!.Value,maximumBytes,bytes) : null;
+                        if(audioRate is null) throw TooLarge(true);
+                    }
+                    else
+                    {
+                        rates=attempt<VideoSizeBudget.MaximumAttempts ? VideoSizeBudget.Lower(rates!.Value,maximumBytes,bytes) : null;
+                        if(rates is null) throw TooLarge(false);
+                    }
                     await output.DeleteAsync(); output=null;
                 }
                 cancellation.ThrowIfCancellationRequested();
@@ -74,5 +97,7 @@ internal static class VideoService
         }
         return new(completed,files.Count,failures.AsReadOnly());
     }
-    private static InvalidOperationException TooLarge()=>new("Windows could not fit this video within the MP4 size limit. Increase the limit or choose a smaller resolution. No oversized copy was kept.");
+    private static InvalidOperationException TooLarge(bool audioOnly)=>new(audioOnly
+        ? "Windows could not fit this audio within the M4A size limit. Increase the limit or use 0 for no limit. No oversized copy was kept."
+        : "Windows could not fit this video within the MP4 size limit. Increase the limit or choose a smaller resolution. No oversized copy was kept.");
 }

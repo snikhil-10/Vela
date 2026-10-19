@@ -1,5 +1,7 @@
 # Developer feeds — October 19, 2026
 
+This records developer-feed snapshot `e509026e`; the later [M4A continuation](windows-audio-budget-checkpoint.md) records the newer source while preserving this evidence.
+
 Vela remains an unreleased 0.2.2 preview. The retained `appUpdates` residual now has an on-demand **Developer feeds** tool. It reads release headlines from user-configured RSS 2.0 and Atom 1.0 sources. It does not scan installed applications, compare versions, download installers or replace Microsoft Store/winget updates. Sources default to empty; existing profiles do not enable the new tool automatically.
 
 Source snapshot **`e509026e-c631-411e-aa02-5a4827387f05`** has **123 compile inputs**, following MP4 snapshot `b627a158`. The physical x64 Dell passes **173 core checks** (16 new feed checks) and **18 Windows backend checks**. Native x64 XAML/OCR publishing and ARM64 cross-publishing pass with zero compiler warnings/errors. ARM64 execution is not tested on this laptop. The previous MP4, JPEG, command search and lifecycle evidence remains historical evidence for its named snapshots.

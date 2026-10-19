@@ -7,8 +7,6 @@ public static class VideoSizeBudget
     public const long MaximumBytes=2L*1024*1024*1024;
     public const int MaximumAttempts=3;
     private const uint MinimumVideo=64000,MinimumAudio=96000;
-    // The Windows AAC encoder documents these mono/stereo output rates.
-    private static readonly uint[] AudioRates=[96000,128000,160000,192000];
 
     // These are conservative starting rates, not a size guarantee. The caller
     // must measure the completed container and discard any oversized copy.
@@ -23,7 +21,7 @@ public static class VideoSizeBudget
         double total=Math.Floor(payload*8d/duration.TotalSeconds);
         uint minimumVideo=Math.Min(video,MinimumVideo),minimumAudio=Math.Min(audio,MinimumAudio);
         if(total<(double)minimumVideo+minimumAudio) return null;
-        uint plannedAudio=audio==0?0:AudioRate(audio,total/5);
+        uint plannedAudio=audio==0?0:AudioSizeBudget.SelectRate(audio,total/5);
         uint plannedVideo=(uint)Math.Min(video,total-plannedAudio);
         return new(plannedVideo,plannedAudio);
     }
@@ -35,11 +33,9 @@ public static class VideoSizeBudget
         if(current.Audio is >0 and <MinimumAudio) throw new ArgumentOutOfRangeException(nameof(current));
         double ratio=maximumBytes/(double)actualBytes*.85;
         uint video=(uint)Math.Min(current.Video,Math.Max(MinimumVideo,Math.Floor(current.Video*ratio)));
-        uint audio=current.Audio==0 ? 0 : AudioRate(current.Audio,current.Audio*ratio);
+        uint audio=current.Audio==0 ? 0 : AudioSizeBudget.SelectRate(current.Audio,current.Audio*ratio);
         return video==current.Video && audio==current.Audio ? null : new(video,audio);
     }
-
-    private static uint AudioRate(uint ceiling,double desired)=>AudioRates.Last(rate=>rate<=ceiling && rate<=Math.Max(MinimumAudio,desired));
 
     private static void Validate(long maximumBytes)
     {

@@ -1,6 +1,6 @@
 # MP4 size budgets — October 19, 2026
 
-This checkpoint records MP4 snapshot `b627a158`; the later [developer-feed continuation](windows-developer-feeds-checkpoint.md) preserves it and records the newer build.
+This checkpoint records MP4 snapshot `b627a158`; the later [M4A continuation](windows-audio-budget-checkpoint.md) and [developer-feed continuation](windows-developer-feeds-checkpoint.md) preserve this evidence. M4A limits are implemented in the later audio checkpoint; the disabled M4A field described below is historical.
 
 Vela remains an unreleased 0.2.2 preview. This continuation implements the retained batch-video size-limit workflow while preserving Windows-native exclusions, normal settings, WinUI/Mica and the accepted taskbar cue.
 

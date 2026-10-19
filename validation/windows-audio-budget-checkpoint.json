@@ -1,0 +1,178 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T13:09:10.2276560-07:00",
+  "sourceSnapshot": "315d04be-d4d7-425e-9678-99668e317542",
+  "parentSnapshot": "e509026e-c631-411e-aa02-5a4827387f05",
+  "parentGitCheckpoint": "cdbd197",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 126,
+  "manifestMismatches": 0,
+  "implementedToolCount": 31,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 181,
+    "newCoreChecks": 8,
+    "windowsBackendPassed": 19,
+    "newWindowsChecks": 1,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "91636323f27d5f3fefbc7a0e7b8252d9d07052cf66aa034dea2fe6fb516fb382",
+      "appDllSha256": "49a010ff1591fd9d9c92256f025db05b0d16b09cb5412b74824b52ccfdc2c724",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "b1cb931fdf3c7dcd8b398db54d2f538953679cd041cec16f1b8fca16b03119a7",
+      "appDllSha256": "bd029ba83fa4740598483c5adeb54f07b8708b8a17fef1329b517327032e7172",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "audioFixture": {
+    "generatedSource": "12-second stereo PCM tone/noise plus small video carrying that audio",
+    "userMediaUsed": false,
+    "recordingOrPlayback": false,
+    "uncappedM4aBytes": 291429,
+    "requestedCapBytes": 218571,
+    "retainedBytes": 195442,
+    "nativeEncodingPassesObserved": 1,
+    "retainedBitrate": 128000,
+    "retainedChannels": 2,
+    "retainedSampleRate": 48000,
+    "retainedDurationSeconds": 12.011,
+    "nativePcmDecode": "RIFF/WAVE with non-silent data",
+    "videoStreamPresent": false,
+    "pcmInputAlsoTested": true,
+    "impossibleCap": "one byte; zero retained output",
+    "missingAudio": "uncapped and capped extraction fail explicitly",
+    "mixedBatch": "one of three completed; broken input and no-audio input named",
+    "cancellation": "before work, after preparing and during native progress; no partial copies",
+    "sourceAndPriorOutputBytesUnchanged": true,
+    "nativeMultiPassAudioObserved": false,
+    "coreRetryRateSelection": "passed"
+  },
+  "rendered": {
+    "source": "315d04be-d4d7-425e-9678-99668e317542",
+    "profile": "fresh isolated profile with Quick panel and Batch video tools only",
+    "initialLimit": 0,
+    "m4aLimitEnabled": true,
+    "committedMiB": 2,
+    "gifLimitDisabledAndRetained": true,
+    "returnM4aEnabledAndRetained": true,
+    "returnMp4EnabledAndRetained": true,
+    "emptyM4aError": "red inline selection error",
+    "pickerOpened": false,
+    "fullPickerConversionTested": false,
+    "renderedMixedBatchFailureTested": false,
+    "scalingChanged": false,
+    "exit": "General Exit; zero Vela processes"
+  },
+  "preservation": {
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalSettingsUnchanged": true,
+    "startupUnchanged": true,
+    "acceptedCueFilesUnchanged": 5,
+    "micaUnchanged": true,
+    "catalogUnchanged": true,
+    "auditDecisionsUnchanged": 77,
+    "noUserClipboardChanges": true,
+    "noHardwareWrites": true,
+    "noOsSettingChanges": true,
+    "noVelaProcessLeft": true
+  },
+  "limits": [
+    "Picker-to-conversion and rendered mixed-batch error styling unverified",
+    "Large/long files, arbitrary codecs, DRM and multichannel source downmixing untested",
+    "Subjective audio quality, Narrator/high contrast, mixed DPI and hardware encoder variations untested",
+    "Native M4A fixture observed one pass; retry choices tested in core only",
+    "PNG/BMP byte budgets and other audit residuals remain open"
+  ],
+  "preliminary": "Initial native run passed 19 scenarios but reported nullable CS8602; final candidate annotation fixed and native build/backend logs have zero warnings",
+  "evidence": [
+    {
+      "path": "artifacts/audio-budgets-2026-10-19/core-initial.log",
+      "sha256": "8ed48f7dcaed5f6eba2c1bfb08dd4fa7aee508cff7bbe52151e45e6afd547d44"
+    },
+    {
+      "path": "artifacts/audio-budgets-2026-10-19/build-x64.log",
+      "sha256": "188a2ac9b08a5164ef80eca3bad559ad3ffd407a92a10b28c186d83860318a74"
+    },
+    {
+      "path": "artifacts/audio-budgets-2026-10-19/build-arm64.log",
+      "sha256": "122c88d54f89df69900968161434c26b84756afb8965967da3595d214654dee7"
+    },
+    {
+      "path": "artifacts/audio-budgets-2026-10-19/windows-final.log",
+      "sha256": "b97b80df06f6e4c355e860e07366b0cac30056c171c7ffb7951b9ab45ecc268e"
+    },
+    {
+      "path": "artifacts/audio-budgets-2026-10-19/ui.log",
+      "sha256": "883a2da1405c3dfd1a97dde66be12a06388639705f7774ef39aa063a43445b39"
+    }
+  ],
+  "evidenceDetails": "../docs/windows-audio-budget-checkpoint.md",
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteCreated": false,
+  "finishedPort": false
+}

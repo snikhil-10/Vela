@@ -2,7 +2,7 @@
 
 A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
 
-Version **0.2.2 is in development**. Current source `e509026e` passes **173 core and 18 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. The optional Developer feeds tool now reads user-configured RSS/Atom release headlines on demand, with bounded requests, named failures and verified cancellation. MP4/JPEG size limits, ranked command search and prior focused UI evidence are preserved. The full UI, input and hardware matrix remains open. Normal settings and the accepted taskbar cue remain intact. The last packaged release remains 0.2.1. See the [developer-feed checkpoint](docs/windows-developer-feeds-checkpoint.md), [MP4 checkpoint](docs/windows-video-budget-checkpoint.md), [command search checkpoint](docs/windows-command-search-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
+Version **0.2.2 is in development**. Current source `315d04be` passes **181 core and 19 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. M4A audio extraction now joins MP4/JPEG conversion in offering actual per-file byte limits, with decoded-audio and cancellation verification. On-demand developer feeds, ranked command search and prior focused UI evidence are preserved. The full UI, input and hardware matrix remains open. Normal settings and the accepted taskbar cue remain intact. The last packaged release remains 0.2.1. See the [M4A checkpoint](docs/windows-audio-budget-checkpoint.md), [developer-feed checkpoint](docs/windows-developer-feeds-checkpoint.md), [MP4 checkpoint](docs/windows-video-budget-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
 
 - [Windows feature audit and exclusions](docs/windows-feature-audit.md)
 - [Machine-readable inventory](docs/feature-audit.json)
@@ -30,7 +30,7 @@ The app has one system tray icon, a compact Mica flyout, native Settings navigat
 - Smooth wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, button shortcuts, duplicate click filtering, Caps Lock Super key, and per-app double-press close protection.
 - Per-display software dimming, on-demand external-monitor DDC/CI brightness, sustained resource alerts and supported NVIDIA temperature/power readings with thermal alerts.
 - All-microphone mute/unmute.
-- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion with optional per-file size limits, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
+- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion and M4A audio extraction with optional per-file size limits and trimmed animated GIF batches through Windows codecs.
 - On-demand developer RSS/Atom release headlines with saved sources and local title search.
 - On-demand HTTP latency, download and upload measurements with cancellation and bounded data use.
 - Review older files in a selected messaging-download folder before explicitly sending chosen files to the Recycle Bin.

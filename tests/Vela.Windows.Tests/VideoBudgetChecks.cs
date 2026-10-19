@@ -64,10 +64,6 @@ internal static class VideoBudgetChecks
         Require(sound.Completed==1 && !sound.HasFailures && (await (await audio.GetFilesAsync()).Single().Properties.GetMusicPropertiesAsync()).Duration.TotalSeconds>3.8,"Capped MP4 lost its audio.");
         var impossible=await VideoService.Convert([source],outputs,VideoEncodingQuality.HD720p,false,_=>{},default,1);
         Require(impossible.Completed==0 && impossible.HasFailures && (await outputs.GetFilesAsync()).Count==2,"Impossible video cap kept an incomplete copy.");
-        bool rejected=false;
-        try { await VideoService.Convert([source],outputs,VideoEncodingQuality.HD720p,true,_=>{},default,limit); }
-        catch(InvalidOperationException) { rejected=true; }
-        Require(rejected && (await outputs.GetFilesAsync()).Count==2,"Audio-only size cap was silently accepted.");
         var broken=await working.CreateFileAsync("broken.mp4"); await FileIO.WriteTextAsync(broken,"Not a video fixture");
         var mixed=await VideoService.Convert([broken,source],outputs,VideoEncodingQuality.HD720p,false,_=>{},default,limit);
         Require(mixed.Completed==1 && mixed.Total==2 && mixed.HasFailures && mixed.Failures.Count==1 && mixed.Message.Contains("broken.mp4") && (await outputs.GetFilesAsync()).Count==3,"A failed file stopped the remaining batch, hid a failure or overwrote a copy.");
