@@ -1,5 +1,7 @@
 # Command search continuation — October 19, 2026
 
+This checkpoint precedes [MP4 size budgets](windows-video-budget-checkpoint.md), which records the newer `b627a158` source. Evidence below retains its original source identity.
+
 Vela remains an unreleased 0.2.2 preview. This continuation works on the existing scoped Command bar while picker, drag-transport and hardware checks remain open. It needs no manual steps from the user and does not index the disk, collect clipboard history or change the Windows-native exclusions.
 
 ## Implementation

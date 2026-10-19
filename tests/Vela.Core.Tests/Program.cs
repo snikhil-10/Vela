@@ -100,6 +100,7 @@ foreach (var check in NetworkChecks.All()) Test(check.Name, check.Check);
 foreach (var check in LauncherChecks.All()) Test(check.Name, check.Check);
 foreach (var check in ImageBudgetChecks.All()) Test(check.Name, check.Check);
 foreach (var check in CommandQueryChecks.All()) Test(check.Name, check.Check);
+foreach (var check in VideoBudgetChecks.All()) Test(check.Name, check.Check);
 InputChecks.Run(Test);
 ClipboardChecks.Run(Test);
 AlertChecks.Run(Test);

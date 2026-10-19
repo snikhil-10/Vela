@@ -2,9 +2,13 @@
 
 Updated October 19, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
 
+## MP4 size limits — October 19
+
+Source `b627a158` passes **157 core / 18 native x64 backend checks**, native x64 XAML/OCR publishing and ARM64 cross-publishing with 120 verified inputs. See [the video budget checkpoint](windows-video-budget-checkpoint.md). Per-file MP4 byte limits use bounded re-encoding and actual size enforcement. The generated native fixture retains 3,278,934 bytes under a 3,489,845-byte cap, preserves video/audio and leaves source bytes unchanged. A 128 KiB limit fails cleanly after two passes. Silent inputs, mixed-file failures, unique outputs, early and active-encoding cancellation pass. Focused UI field/format/scroll/empty-input checks pass at 150%; picker-based conversion and rendered partial-completion styling remain unverified. Normal settings, accepted cue and native exclusions are preserved; no release was made.
+
 ## Scoped command search — October 19
 
-Current source `4af60249` passes **149 core / 17 x64 Windows backend checks**, native x64 XAML/OCR publishing and ARM64 cross-publishing with 117 verified inputs. See [the command search checkpoint](windows-command-search-checkpoint.md). Search adds literal AND words, quoted phrases, saved-path matching, stable ranking and readable category/count/empty states. A rendered keyboard test exposed selection clipped by the outer scroll viewport; adaptive list height fixes the focused final-row/query visibility case at 150%. Shortcut activation, empty-result Enter and selected-tool Enter also pass in an isolated profile. No clipboard or launcher execution was required. Narrator and the broader display/input matrix remain open; ARM64 runtime is untested here.
+Checkpoint source `4af60249` passes **149 core / 17 x64 Windows backend checks**, native x64 XAML/OCR publishing and ARM64 cross-publishing with 117 verified inputs. See [the command search checkpoint](windows-command-search-checkpoint.md). Search adds literal AND words, quoted phrases, saved-path matching, stable ranking and readable category/count/empty states. A rendered keyboard test exposed selection clipped by the outer scroll viewport; adaptive list height fixes the focused final-row/query visibility case at 150%. Shortcut activation, empty-result Enter and selected-tool Enter also pass in an isolated profile. No clipboard or launcher execution was required. Narrator and the broader display/input matrix remain open; ARM64 runtime is untested here.
 
 ## Resumed UI tests and JPEG size limits — October 19
 

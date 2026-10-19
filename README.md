@@ -2,7 +2,7 @@
 
 A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
 
-Version **0.2.2 is in development**. Current source `4af60249` passes **149 core and 17 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. Command search now supports multiple words, quoted phrases, saved paths and ranked results, with a verified keyboard viewport fix. Earlier JPEG size-limit/quality fixes and focused onboarding/settings/radial/cleaning evidence are preserved. The full UI, input and hardware matrix remains open. The accepted taskbar receiver and normal settings are preserved. The last packaged release remains 0.2.1. See the [command search checkpoint](docs/windows-command-search-checkpoint.md), [earlier October 19 UI checkpoint](docs/windows-ui-checkpoint-2026-10-19.md), [transfer checkpoint](docs/windows-laptop-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
+Version **0.2.2 is in development**. Current source `b627a158` passes **157 core and 18 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. MP4 conversion now offers per-file size limits with actual byte enforcement, bounded retries and verified cancellation cleanup. Ranked multi-word/phrase/path command search and its keyboard viewport fix are preserved. Earlier JPEG size-limit/quality fixes and focused onboarding/settings/radial/cleaning evidence are preserved. The full UI, input and hardware matrix remains open. The accepted taskbar receiver and normal settings are preserved. The last packaged release remains 0.2.1. See the [MP4 checkpoint](docs/windows-video-budget-checkpoint.md), [command search checkpoint](docs/windows-command-search-checkpoint.md), [earlier October 19 UI checkpoint](docs/windows-ui-checkpoint-2026-10-19.md), [transfer checkpoint](docs/windows-laptop-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
 
 - [Windows feature audit and exclusions](docs/windows-feature-audit.md)
 - [Machine-readable inventory](docs/feature-audit.json)
@@ -30,7 +30,7 @@ The app has one system tray icon, a compact Mica flyout, native Settings navigat
 - Smooth wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, button shortcuts, duplicate click filtering, Caps Lock Super key, and per-app double-press close protection.
 - Per-display software dimming, on-demand external-monitor DDC/CI brightness, sustained resource alerts and supported NVIDIA temperature/power readings with thermal alerts.
 - All-microphone mute/unmute.
-- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
+- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion with optional per-file size limits, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
 - On-demand HTTP latency, download and upload measurements with cancellation and bounded data use.
 - Review older files in a selected messaging-download folder before explicitly sending chosen files to the Recycle Bin.
 

@@ -236,14 +236,15 @@ try
         var render=await composition.RenderToFileAsync(video,MediaTrimmingPreference.Precise,MediaEncodingProfile.CreateMp4(VideoEncodingQuality.HD720p));
         Require(render==TranscodeFailureReason.None,"Fixture video encoder failed: "+render);
         var converted=await videoFolder.CreateFolderAsync("converted");
-        string result=await VideoService.Convert([video],converted,VideoEncodingQuality.HD720p,false,_=>{},CancellationToken.None);
-        Require(result.StartsWith("Converted 1 of 1"),result);
+        var result=await VideoService.Convert([video],converted,VideoEncodingQuality.HD720p,false,_=>{},CancellationToken.None);
+        Require(result.Completed==1 && result.Total==1 && !result.HasFailures,result.Message);
         Require((await converted.GetFilesAsync()).Single().SizeIsPositive(),"Empty video output.");
-        string audio=await VideoService.Convert([video],converted,VideoEncodingQuality.HD720p,true,_=>{},CancellationToken.None);
-        Require(audio.StartsWith("Converted 1 of 1"),audio);
+        var audio=await VideoService.Convert([video],converted,VideoEncodingQuality.HD720p,true,_=>{},CancellationToken.None);
+        Require(audio.Completed==1 && audio.Total==1 && !audio.HasFailures,audio.Message);
         var music=(await converted.GetFilesAsync()).First(f=>f.FileType==".m4a");
         Require((await music.Properties.GetMusicPropertiesAsync()).Duration>TimeSpan.Zero,"Empty audio output.");
     });
+    await Check("MP4 byte budgets preserve decoded video/audio and originals, reject impossible caps and clean up failures/cancellation",()=>VideoBudgetChecks.Run(folder));
     await Check("Animated GIFs preserve changing frames, timing, loops and safe cancellation",async ()=>
     {
         var videos=await folder.CreateFolderAsync("gif-video"); var source=await videos.CreateFileAsync("animation.mp4");

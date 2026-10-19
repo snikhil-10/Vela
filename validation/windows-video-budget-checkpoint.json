@@ -1,0 +1,227 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T11:33:16.9052032-07:00",
+  "sourceSnapshot": "b627a158-faf3-4be6-8a31-2cdc4f430db6",
+  "parentSnapshot": "4af60249-96ed-4a8d-81dd-22a462917045",
+  "parentGitCheckpoint": "5085d92",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 120,
+  "manifestMismatches": 0,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 157,
+    "newCoreChecks": 8,
+    "windowsBackendPassed": 18,
+    "newWindowsChecks": 1,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "b26921ad90ea4e5057f5685a43336c722c5cb0957c1a1ea97fdd615c8186a714",
+      "appDllSha256": "9625856289faa1ba1915ab23ad85d23284df9b6a4dd0e29273d77f374e546e9f",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "c0b2b1494bb24b8f24ac7bd7d0ab3879aa8396013c9edc734da1457073fc45fe",
+      "appDllSha256": "28ef6cab6d1dd1c7d4707ccb62df18efbb1406e25a28281045b2b720031c2b12",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "videoFixture": {
+    "generatedNoiseImages": 8,
+    "generatedToneSeconds": 4,
+    "audioRecorded": false,
+    "baselineBytes": 4653127,
+    "maximumBytes": 3489845,
+    "cappedBytes": 3278934,
+    "videoFrameDecoded": true,
+    "durationAndAudioRetained": true,
+    "strictCapBytes": 131072,
+    "strictCapPasses": 2,
+    "strictCapCopiesRetained": 0,
+    "silentCapBytes": 65536,
+    "silentSourceAndCopyHaveNoAudio": true,
+    "impossibleCapRejected": true,
+    "unsupportedAudioOnlyCapRejected": true,
+    "mixedBatchCompleted": 1,
+    "mixedBatchTotal": 2,
+    "namedFailureReported": true,
+    "uniqueOutputs": true,
+    "cancelAfterPreparationRemovedPartial": true,
+    "cancelDuringNativeProgressRemovedPartial": true,
+    "originalBytesUnchanged": true
+  },
+  "ui": {
+    "status": "focused form passes; picker conversion unverified",
+    "profile": "artifacts/video-budget-2026-10-19/profile",
+    "cases": [
+      "Isolated video-only panel and native form render at150 percent scaling",
+      "MP4 default0/no limit and native2MiB entry committed",
+      "M4A/GIF disable limit while retaining2MiB; returning MP4 re-enables2MiB",
+      "GIF trim/rate/loop and Convert/Cancel accessible by scrolling",
+      "Empty MP4 batch gives red inline selection error",
+      "General Exit closes isolated instance"
+    ],
+    "pickerOpened": false,
+    "pickerToConversionTested": false,
+    "partialCompletionStylingRendered": false,
+    "narratorTested": false,
+    "mixedDpiHighContrastTested": false,
+    "runningVelaProcesses": 0
+  },
+  "preservation": {
+    "normalSettingsByteIdentical": true,
+    "signInEntryUnchanged": true,
+    "settingsSchemaChanged": false,
+    "nativeAuditDecisionsUnchanged": true,
+    "upstreamAuditEntries": 77,
+    "acceptedCueFiles": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "unchanged": true
+      }
+    ],
+    "micaConfigurationUnchanged": true,
+    "runtimeCatalogUnchanged": true,
+    "privateFixturesIgnored": true,
+    "userMediaUsed": false,
+    "clipboardSeeded": false,
+    "systemSettingsChanged": false,
+    "hardwareWritesTested": false
+  },
+  "limits": [
+    "Picker-to-conversion and rendered partial-completion styling remain unverified",
+    "Narrator, mixed DPI/high contrast, long/4K media, arbitrary codecs/DRM and all hardware encoders remain untested",
+    "Small limits can fail; no automatic trim or resolution reduction",
+    "M4A/PNG/BMP target-size limits and advanced editing remain deferred",
+    "Other input/editor/shelf transport and target-desktop hardware limits remain open"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/video-budget-2026-10-19/core.log",
+      "sha256": "5b746843603bdafda38c0c651e4b4f221629977c55785bc9d9e00adbf38e5be6"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/core-before-aac-rates.log",
+      "sha256": "94940fca45b9d261465340c0dd483812f0b3bc1be28bafc248b0264c6dc254d4"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/windows-initial.log",
+      "sha256": "1296cb0def545a3f6dfdb3bd4db13bfa16cdcdd2c46c7615530d2c3f395ab19b"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/windows-edge-cases.log",
+      "sha256": "c23981eb0e85633a31c1a131ce7c5ef1a7c49198a2b5606b6a73eddcd9030eab"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/windows-strict-cap.log",
+      "sha256": "4483c94866dfc2e11e6c3a5b093fe0d66c6ad9317c3e7fa1737245986e7e00f8"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/windows-final.log",
+      "sha256": "4483c94866dfc2e11e6c3a5b093fe0d66c6ad9317c3e7fa1737245986e7e00f8"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/build-x64.log",
+      "sha256": "d92df6b0751e330e90569d25c29449c96d16f7e10dc4843117f8db4b43f76231"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/build-arm64.log",
+      "sha256": "b770036a5e2a0ca1d4486942d9b0d800203b6ee1e3817a77857bb16ff944e071"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/final-core.log",
+      "sha256": "5b746843603bdafda38c0c651e4b4f221629977c55785bc9d9e00adbf38e5be6"
+    },
+    {
+      "path": "artifacts/video-budget-2026-10-19/ui.log",
+      "sha256": "7f10d9a855445b5423c3f3f2457c5dbbab550d89607bc72d08cf152fb006c39c"
+    }
+  ],
+  "portComplete": false,
+  "allVerificationItemsComplete": false,
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteAdded": false
+}
