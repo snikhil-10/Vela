@@ -1,0 +1,41 @@
+<Window x:Class="Vela.Windows.UI.OnboardingWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Grid x:Name="Root" Padding="36,24,36,24" RowSpacing="20">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <Grid><TextBlock FontFamily="Segoe UI Variable" Text="VELA" Style="{StaticResource BodyStrongTextBlockStyle}" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/><TextBlock FontFamily="Segoe UI Variable" x:Name="StepLabel" HorizontalAlignment="Right" Style="{StaticResource VelaCaption}"/></Grid>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Spacing="22">
+                <StackPanel Spacing="8"><TextBlock FontFamily="Segoe UI Variable" x:Name="Heading" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap"/><TextBlock FontFamily="Segoe UI Variable" x:Name="Description" Style="{StaticResource VelaBody}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/></StackPanel>
+                <StackPanel x:Name="WelcomePage" Spacing="16">
+                    <Border Background="{ThemeResource AccentFillColorDefaultBrush}" CornerRadius="8" Height="140">
+                        <Viewbox Width="70" Height="70"><Path Data="M 4,4 L 28,52 L 52,4 M 28,52 L 46,52" Stroke="{ThemeResource TextOnAccentFillColorPrimaryBrush}" StrokeThickness="4"/></Viewbox>
+                    </Border>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="Small tools. A calmer workspace." Style="{StaticResource SubtitleTextBlockStyle}" TextWrapping="Wrap"/>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="A native Windows companion inspired by Vorssaint. Choose the extras you need; Windows keeps doing what it already does well." Style="{StaticResource VelaBody}"/>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="Local settings · No account · No telemetry" Style="{StaticResource VelaCaption}"/>
+                </StackPanel>
+                <StackPanel x:Name="FeaturesPage" Spacing="16" Visibility="Collapsed">
+                    <ComboBox x:Name="PresetBox" Header="Start with a collection" HorizontalAlignment="Stretch" SelectionChanged="PresetChanged"><x:String>Everyday</x:String><x:String>Focused work</x:String><x:String>Minimal</x:String><x:String>Custom</x:String></ComboBox>
+                    <StackPanel x:Name="FeatureChoices" Spacing="6"/>
+                </StackPanel>
+                <StackPanel x:Name="AccessPage" Spacing="12" Visibility="Collapsed">
+                    <InfoBar IsOpen="True" IsClosable="False" Severity="Informational" Message="Windows desktop apps do not use macOS Accessibility permissions. Review what your selected tools use below. No administrator access is requested."/>
+                    <StackPanel x:Name="AccessChoices" Spacing="8"/>
+                    <ToggleSwitch x:Name="StartupToggle" Header="Ready when you sign in" OffContent="Launch manually" OnContent="Start Vela at sign-in"/>
+                </StackPanel>
+                <StackPanel x:Name="DonePage" Spacing="16" Visibility="Collapsed">
+                    <FontIcon Glyph="&#xE73E;" FontSize="64" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" HorizontalAlignment="Left"/>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="Find Vela beside your clock. Click its icon to open your tools, or right-click for Settings and Exit." Style="{StaticResource VelaBody}"/>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="Windows may place a new icon in the tray overflow. Drag Vela's icon beside the clock to keep it visible." Style="{StaticResource VelaBody}"/>
+                    <TextBlock FontFamily="Segoe UI Variable" Text="You can change every choice later in Settings." Style="{StaticResource VelaCaption}"/>
+                </StackPanel>
+                <InfoBar x:Name="ErrorBar" IsOpen="False" Severity="Error"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="2" ColumnSpacing="12"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <ProgressBar x:Name="Progress" Maximum="4" Height="4" VerticalAlignment="Center" Margin="0,0,24,0"/>
+            <Button x:Name="BackButton" Grid.Column="1" Content="Back" Click="BackClick"/>
+            <Button x:Name="NextButton" Grid.Column="2" Style="{StaticResource AccentButtonStyle}" MinWidth="110" Click="NextClick"/>
+        </Grid>
+    </Grid>
+</Window>

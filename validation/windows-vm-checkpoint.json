@@ -1,0 +1,34 @@
+{
+  "sourceSnapshot": "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+  "date": "2026-10-18",
+  "compileInputs": 108,
+  "sourceMatchesNativeTestedInputs": true,
+  "nativeChecksPerArchitecture": {
+    "core": 130,
+    "windowsBackend": 12
+  },
+  "nativeClipboardFixture": "passed on ARM64 and x64",
+  "x64Environment": "ARM64 emulation in Fusion; physical x64 pending",
+  "arm64DesktopObservations": {
+    "mixedSnippets": "exact saved output PASS at150ms/key: immediate/Space/Tab/Return, longest suffix, Unicode, multiline and clipboard placeholder",
+    "rapidSnippets": "eight consecutive expansions PASS at75ms/key; every following x and Return retained",
+    "clipboardFormats": "original text and HTML preserved after snippets and plain paste",
+    "plainPaste": "configured shortcut PASS exact21-character output",
+    "shelfClipboardCopy": "two files imported, extended-selected and copied into Explorer; originals and targets byte-identical",
+    "cleaningClose": "closing active keyboard cleaning released input before timeout"
+  },
+  "acceptedTaskbarCue": "user accepted direct icon drop and two-way fade atedc0eb10; five receiver files still byte-identical",
+  "openChecks": [
+    "Actual outgoing multi-file drag, cancellation and remove-after-drop",
+    "Mouse pointer/scroll lock and remaining lifecycle cancellation",
+    "Broader editor/IME/elevated-app and clipboard-in-flight shutdown compatibility",
+    "Live dark shell, high contrast, mixed DPI and accessibility",
+    "Physical x64 and hardware; unfinished non-native residuals in audit",
+    "Collect latest native archives/logs and validate CRC/PE/embedded manifests on host"
+  ],
+  "nativeArchivesIncluded": false,
+  "latestNativeFullLogsIncluded": false,
+  "evidenceDetails": "../docs/verification.md",
+  "originalVmCheckpoint": "original preferences restored byte-for-byte; installed0.2.1 reopened",
+  "newReleaseAssembled": false
+}

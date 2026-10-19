@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- This checks C# APIs on macOS/Linux. It deliberately does NOT compile or run XAML. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <DefineConstants>$(DefineConstants);DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+    <NoWarn>$(NoWarn);CA1416;CS0169;CS0649;CS0414</NoWarn>
+  </PropertyGroup>
+  <Import Project="obj/WindowsReferences.props" Condition="Exists('obj/WindowsReferences.props')"/>
+  <ItemGroup>
+    <ProjectReference Include="../src/Vela.Core/Vela.Core.csproj"/>
+    <Compile Include="../src/Vela.Windows/**/*.cs" Exclude="../src/Vela.Windows/obj/**/*.cs;../src/Vela.Windows/bin/**/*.cs"/>
+    <Compile Include="obj/XamlTypeStubs.cs"/>
+  </ItemGroup>
+</Project>

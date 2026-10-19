@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0-windows10.0.26100.0</TargetFramework>
+    <TargetPlatformMinVersion>10.0.22621.0</TargetPlatformMinVersion>
+    <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <NoWarn>$(NoWarn);CS0649</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/Vela.Core/Vela.Core.csproj"/>
+    <Compile Include="../../src/Vela.Windows/Services/ClipboardSnapshot.cs" Link="ClipboardSnapshot.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/TextClipboardPublisher.cs" Link="TextClipboardPublisher.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/ShelfService.cs" Link="ShelfService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/MediaService.cs" Link="MediaService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/ImageWatermark.cs" Link="ImageWatermark.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/PinImageSource.cs" Link="PinImageSource.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/VideoService.cs" Link="VideoService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/GifService.cs" Link="GifService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/DownloadReview.cs" Link="DownloadReview.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/MonitorBrightness.cs" Link="MonitorBrightness.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/GpuSensors.cs" Link="GpuSensors.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/WindowWorkspace.cs" Link="WindowWorkspace.cs"/>
+    <Compile Include="../../src/Vela.Windows/Interop/Native.cs" Link="Native.cs"/>
+    <Content Include="Fixtures/*" CopyToOutputDirectory="PreserveNewest"/>
+  </ItemGroup>
+</Project>

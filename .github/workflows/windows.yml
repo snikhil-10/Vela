@@ -1,0 +1,40 @@
+name: Windows builds and core checks
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - run: dotnet run --project tests/Vela.Core.Tests -c Release
+  windows:
+    runs-on: windows-2025
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - architecture: x64
+          - architecture: arm64
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build and publish native WinUI app
+        shell: pwsh
+        run: ./tools/build.ps1 -Architecture ${{ matrix.architecture }}
+      - name: Check Windows media and capability services
+        if: matrix.architecture == 'x64'
+        shell: cmd
+        run: tools\check-windows.cmd x64
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Vela-${{ matrix.architecture }}
+          path: artifacts/Vela-${{ matrix.architecture }}

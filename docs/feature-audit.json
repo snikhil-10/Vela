@@ -1,0 +1,938 @@
+{
+  "schemaVersion": 1,
+  "reviewedOn": "2026-10-15",
+  "upstreamCommit": "794608a58d8a88608d3c3cb2e4f22373cf52bfdc",
+  "localAppVersion": "3.4.1 (101)",
+  "baseline": "Current public Windows 11 with updated in-box apps; optional hardware/app availability is called out. PowerToys is never counted.",
+  "sources": {
+    "upstream": "https://github.com/vorssaint/vorssaint-utils/tree/794608a58d8a88608d3c3cb2e4f22373cf52bfdc",
+    "audio": "https://support.microsoft.com/en-us/windows/hardware/audio/fix-app-audio-not-working-while-system-sounds-work-in-windows",
+    "snap": "https://support.microsoft.com/en-us/windows/experience/snap-your-windows",
+    "multitask": "https://support.microsoft.com/en-us/windows/how-to-multitask-in-windows-b4fa0333-98f8-ef43-e25c-06d4fb1d6960",
+    "desktops": "https://support.microsoft.com/en-us/windows/experience/configure-multiple-desktops-in-windows",
+    "clipboard": "https://support.microsoft.com/en-us/windows/apps/using-the-clipboard",
+    "mouse": "https://support.microsoft.com/en-us/windows/hardware/input-devices/change-mouse-settings",
+    "filterkeys": "https://support.microsoft.com/en-us/accessibility/windows/make-your-mouse-keyboard-and-other-input-devices-easier-to-use",
+    "focus": "https://devblogs.microsoft.com/oldnewthing/20110602-00/?p=10513",
+    "gestures": "https://support.microsoft.com/en-gb/windows/hardware/input-devices/touch-gestures-for-windows",
+    "shortcuts": "https://support.microsoft.com/en-us/accessibility/windows/keyboard-shortcuts-in-windows",
+    "capture": "https://support.microsoft.com/en-us/windows/apps/use-snipping-tool-to-capture-screenshots",
+    "notepad": "https://blogs.windows.com/windows-insider/2025/05/30/text-formatting-in-notepad-begin-rolling-out-to-windows-insiders/",
+    "storage": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/manage-drive-space-with-storage-sense",
+    "winget": "https://learn.microsoft.com/en-us/windows/package-manager/winget/",
+    "netstat": "https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/netstat",
+    "powercfg": "https://learn.microsoft.com/en-us/windows-hardware/design/device-experiences/powercfg-command-line-options",
+    "awake": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate",
+    "mica": "https://learn.microsoft.com/en-us/windows/apps/design/style/mica",
+    "fluent": "https://learn.microsoft.com/en-us/windows/apps/design/signature-experiences/design-principles",
+    "appsdk": "https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/downloads",
+    "camera": "https://support.microsoft.com/en-gb/windows/hardware/camera/how-to-use-the-windows-camera-app",
+    "taskmanager": "https://support.microsoft.com/en-au/accessibility/windows/use-a-screen-reader-to-navigate-windows-support-tools",
+    "hdr": "https://support.microsoft.com/en-us/windows/hardware/display-graphics/hdr-settings-in-windows",
+    "ddc": "https://learn.microsoft.com/en-us/windows/win32/api/highlevelmonitorconfigurationapi/nf-highlevelmonitorconfigurationapi-getmonitorbrightness",
+    "nvml": "https://docs.nvidia.com/deploy/nvml-api/latest/api/group__nvmlDeviceQueries.html",
+    "asusFans": "https://www.asus.com/support/faq/1034000/",
+    "noctuaFans": "https://www.noctua.at/en/support/faqs/how-do-i-optimise-my-fan-settings",
+    "mediaFoundation": "https://learn.microsoft.com/en-us/uwp/api/windows.media.transcoding.mediatranscoder",
+    "ocr": "https://github.com/charlesw/tesseract",
+    "snippingQR": "https://blogs.windows.com/windows-insider/2024/05/09/snipping-tool-and-paint-updates-begin-rolling-out-to-windows-insiders/",
+    "snippingUpdates": "https://blogs.windows.com/windowsexperience/2025/07/22/windows-11-is-the-home-for-ai-on-the-pc-with-even-more-experiences-available-today/",
+    "cloudflareSpeed": "https://github.com/cloudflare/speedtest#api-reference"
+  },
+  "features": [
+    {
+      "id": "switcher",
+      "decision": "split",
+      "nativeEquivalent": "Alt+Tab, Task View, thumbnails and closing windows.",
+      "portScope": "Exclude the switcher. Search and per-display filtering are residual enhancements, not native parity.",
+      "status": "Implemented as windowSearch: title/app search, display filter and activation; activation preserves maximized windows in the VM. No Alt+Tab replacement.",
+      "sources": [
+        "multitask",
+        "desktops"
+      ]
+    },
+    {
+      "id": "dockPreview",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior.",
+      "status": "Excluded. Some macOS-specific gestures have no direct translation.",
+      "sources": [
+        "snap",
+        "multitask",
+        "desktops",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "dockClick",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior.",
+      "status": "Excluded. Some macOS-specific gestures have no direct translation.",
+      "sources": [
+        "snap",
+        "multitask",
+        "desktops",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "windowMaximizer",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior.",
+      "status": "Excluded. Some macOS-specific gestures have no direct translation.",
+      "sources": [
+        "snap",
+        "multitask",
+        "desktops",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "windowLayout",
+      "decision": "split",
+      "nativeEquivalent": "Snap layouts/groups, edge snapping, Win+arrow, and moving windows between displays.",
+      "portScope": "Exclude the snapping engine. Custom gestures, arbitrary layouts and position history are residual enhancements.",
+      "status": "Implemented as savedLayouts: named custom positions, display-relative restore and one-step undo. Two-window save/restore/undo passed in the VM; multi-monitor and physical x64 checks remain open.",
+      "sources": [
+        "snap",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "autoQuit",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "Most conventional Windows apps exit with their last window; tray apps intentionally own their lifetime.",
+      "portScope": "Do not kill background processes based on a macOS app/window lifetime assumption.",
+      "status": "Mac-specific behavior omitted; Windows does not universally auto-quit every app.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "spacesOrder",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior.",
+      "status": "Excluded. Some macOS-specific gestures have no direct translation.",
+      "sources": [
+        "snap",
+        "multitask",
+        "desktops",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "scrollInverter",
+      "decision": "split",
+      "nativeEquivalent": "Windows Mouse settings has vertical direction; touchpad direction is separate.",
+      "portScope": "Retain horizontal-only mouse wheel inversion.",
+      "status": "Implemented as scrollInverter; Windows runtime check pending.",
+      "sources": [
+        "mouse"
+      ]
+    },
+    {
+      "id": "scrollHorizontal",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "focusFollowsMouse",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows active-window tracking supports hover activation and delay through SystemParametersInfo.",
+      "portScope": "No second hover-focus implementation.",
+      "status": "Excluded.",
+      "sources": [
+        "focus"
+      ]
+    },
+    {
+      "id": "smoothScroll",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "linearScroll",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls.",
+      "status": "Excluded.",
+      "sources": [
+        "mouse",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "mouseAcceleration",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls.",
+      "status": "Excluded.",
+      "sources": [
+        "mouse",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "mouseNavigation",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls.",
+      "status": "Excluded.",
+      "sources": [
+        "mouse",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "mouseButtonShortcuts",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "middleClick",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Precision touchpad gesture customization includes tap actions; availability depends on device/driver.",
+      "portScope": "No parallel touchpad gesture engine.",
+      "status": "Excluded for supported precision touchpads; no fallback for unsupported hardware.",
+      "sources": [
+        "gestures"
+      ]
+    },
+    {
+      "id": "mouseClickDebounce",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "keyboardDebounce",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Accessibility Filter Keys includes repeated-key filtering / BounceKeys.",
+      "portScope": "Use Windows keyboard accessibility settings.",
+      "status": "Excluded.",
+      "sources": [
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "textSnippets",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "0.2.2 source accepts arbitrary triggers and immediate/delimiter activation. Initial desktop testing exposed a Notepad injection defect. Clipboard-preserving delivery and buffered input replace it; final Windows validation is pending. See feedback-comparison.md and verification.md.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "superKey",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "quitWindowProtection",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks.",
+      "status": "Implemented; Windows input compatibility check pending.",
+      "sources": [
+        "upstream",
+        "mouse",
+        "filterkeys"
+      ]
+    },
+    {
+      "id": "clipboardHistory",
+      "decision": "split",
+      "nativeEquivalent": "Win+V provides history, pins, text and images.",
+      "portScope": "Exclude history collection. Search and file-history differences are recorded separately.",
+      "status": "Residual searchable/file clipboard history deferred.",
+      "sources": [
+        "clipboard"
+      ]
+    },
+    {
+      "id": "pastePlain",
+      "decision": "split",
+      "nativeEquivalent": "Ctrl+Shift+V is supported by many apps; Microsoft notes it is not universal. Windows clipboard UX varies by build.",
+      "portScope": "Do not claim universal native parity. A global clipboard-preserving plain-paste helper remains useful.",
+      "status": "Implemented: global plain-text paste, materialized clipboard-format preservation, modifier release and sequence-aware restoration. Text/HTML fixture passed in Notepad; broader app and race cases remain open.",
+      "sources": [
+        "shortcuts",
+        "clipboard"
+      ]
+    },
+    {
+      "id": "finderCutPaste",
+      "decision": "split",
+      "nativeEquivalent": "File Explorer supports Ctrl+X / Ctrl+V.",
+      "portScope": "Exclude cut/paste interception. Retain Save clipboard image as a separate on-demand tool.",
+      "status": "Implemented as pasteImage; folder picker rather than Explorer injection.",
+      "sources": [
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "finderRename",
+      "decision": "exclude-native",
+      "nativeEquivalent": "File Explorer uses F2 to rename.",
+      "portScope": "No keyboard interceptor for F2.",
+      "status": "Excluded.",
+      "sources": [
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "shelf",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows.",
+      "status": "0.2.2 source adds configurable taskbar/tray drop targets, multi-file selection and remove-after-success. Data-package backend checks passed in an earlier native revision; actual taskbar/tray hit testing and drag-out still need rendered validation.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "urlCleaner",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows.",
+      "status": "Implemented; a copied test URL removed utm_source and preserved keep=1 in the VM. Signed-link preservation is covered by core regression checks.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "diskImageInstaller",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics.",
+      "status": "Not applicable to Windows.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "mixer",
+      "decision": "split",
+      "nativeEquivalent": "Windows Volume Mixer provides per-app levels and output routing.",
+      "portScope": "Exclude mixing and app routing controls. Driverless boost above 100% needs a separate DSP/audio architecture.",
+      "status": "Residual amplification deferred; no pretend volume values above 100%.",
+      "sources": [
+        "audio"
+      ]
+    },
+    {
+      "id": "soundOutputSwitcher",
+      "decision": "split",
+      "nativeEquivalent": "Windows Quick Settings and Sound settings switch outputs.",
+      "portScope": "Exclude basic switching; shortcut cycling and disconnect-volume reduction are separate residuals.",
+      "status": "Residual automation deferred.",
+      "sources": [
+        "audio"
+      ]
+    },
+    {
+      "id": "audioPriority",
+      "decision": "retain",
+      "nativeEquivalent": "Windows remembers defaults but does not provide the same configurable preferred-device automation.",
+      "portScope": "A supported Windows device-policy implementation is needed.",
+      "status": "Deferred; absent from the app catalog.",
+      "sources": [
+        "audio",
+        "upstream"
+      ]
+    },
+    {
+      "id": "micMute",
+      "decision": "split",
+      "nativeEquivalent": "Windows provides recording-device selection/levels and call-app-specific mic mute shortcuts.",
+      "portScope": "Retain mute/unmute for all active capture endpoints together; omit duplicate level/device settings.",
+      "status": "Implemented on demand using Core Audio; Windows device check pending.",
+      "sources": [
+        "audio",
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "musicBlock",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics.",
+      "status": "Not applicable to Windows.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "keepAwake",
+      "decision": "split",
+      "nativeEquivalent": "Power settings/powercfg set normal sleep and lid behavior.",
+      "portScope": "Retain timed and app-conditioned transient wake requests; no power plan editor or lid override.",
+      "status": "Implemented timer, app, AC-only and external-display rules. A 15-minute request started/stopped in the VM; expiry and power/device transitions remain open.",
+      "sources": [
+        "powercfg",
+        "awake"
+      ]
+    },
+    {
+      "id": "brightness",
+      "decision": "split",
+      "nativeEquivalent": "Windows has built-in display brightness and HDR settings; external monitor control varies.",
+      "portScope": "Retain below-minimum per-display software dimming. DDC/CI hardware control needs separate support.",
+      "status": "Software dimming and capability-detected DDC/CI brightness implemented. Actual LG HDMI/DP hardware writes remain unverified.",
+      "sources": [
+        "hdr",
+        "upstream",
+        "ddc"
+      ]
+    },
+    {
+      "id": "extraBrightness",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics.",
+      "status": "Not applicable to Windows.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "bluetoothSleep",
+      "decision": "retain",
+      "nativeEquivalent": "Windows device power management is not a user-configurable radio disconnect/restore rule.",
+      "portScope": "Port only with a supported device/radio lifecycle and recovery design.",
+      "status": "Deferred; absent from app catalog.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "quickLauncher",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows.",
+      "status": "Implemented; the global shortcut, tray activation, second launch and restoration after Show desktop passed in the VM.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "quickToggles",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows personalization, desktop context menu, Safely Remove Hardware, Recycle Bin, and Win+L cover these actions.",
+      "portScope": "No duplicate Windows settings/toggles panel.",
+      "status": "Excluded.",
+      "sources": [
+        "shortcuts"
+      ]
+    },
+    {
+      "id": "colorPicker",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Updated Snipping Tool includes a screen color picker. Microsoft's July 2025 release announcement describes it for all Windows 11 PCs; the support page currently lists a Copilot+ caveat.",
+      "portScope": "Do not ship a duplicate color picker. Availability can vary with the in-box app version; a capability-specific fallback would need separate evidence.",
+      "status": "Excluded. The built-in HEX picker opened successfully in the non-Copilot+ Fusion VM; app-version availability still applies.",
+      "sources": [
+        "capture",
+        "snippingUpdates"
+      ]
+    },
+    {
+      "id": "screenOCR",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Snipping Tool Text actions extracts text locally and detects QR codes in snips.",
+      "portScope": "Exclude ordinary screen OCR and QR scanning. Batch extraction from selected image files is a separate workflow in Batch image tools.",
+      "status": "Excluded from the runtime catalog; no duplicate screen OCR or QR capture tool.",
+      "sources": [
+        "capture",
+        "snippingQR"
+      ]
+    },
+    {
+      "id": "cleaningMode",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows.",
+      "status": "0.2.2 source adds optional mouse locking and a monotonic cleaning-session model. Core deadline/Escape/mouse-choice checks pass. Earlier keyboard-only runtime recovery passed; new mouse-lock desktop validation is pending.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "mediaTools",
+      "decision": "split",
+      "nativeEquivalent": "Paint and Photos handle individual image edits; Clipchamp covers common video editing.",
+      "portScope": "Retain offline batch image/video conversion, resizing, text watermarks and image-file OCR. Do not recreate individual Paint/Photos edits or basic Snipping Tool recording.",
+      "status": "Implemented PNG/JPEG/BMP batches, proportional resizing, JPEG quality, text watermarks, offline English OCR, MP4 batches, M4A extraction and animated GIF batches with source trimming, size, frame rate and loop controls. Nine Windows integration checks pass per architecture, including changing GIF frames, timing, looping, trim, unique names, cancellation cleanup and unchanged originals. Target-file-size compression and more advanced editing remain deferred.",
+      "sources": [
+        "capture",
+        "upstream"
+      ]
+    },
+    {
+      "id": "cleaner",
+      "decision": "split",
+      "nativeEquivalent": "Storage Sense/Temporary files clean storage; Installed apps and winget uninstall applications.",
+      "portScope": "Exclude ordinary cleanup/uninstall. Per-app leftover review is an extra, not a native equivalent.",
+      "status": "Residual reviewed leftover detection/removal deferred. No cleanup/delete engine included.",
+      "sources": [
+        "storage",
+        "winget"
+      ]
+    },
+    {
+      "id": "uninstaller",
+      "decision": "split",
+      "nativeEquivalent": "Storage Sense/Temporary files clean storage; Installed apps and winget uninstall applications.",
+      "portScope": "Exclude ordinary cleanup/uninstall. Per-app leftover review is an extra, not a native equivalent.",
+      "status": "Residual reviewed leftover detection/removal deferred. No cleanup/delete engine included.",
+      "sources": [
+        "storage",
+        "winget"
+      ]
+    },
+    {
+      "id": "homebrew",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "Homebrew formulae/casks are macOS tooling. Windows App Installer/winget provides native package management.",
+      "portScope": "No Homebrew translation or duplicate winget frontend.",
+      "status": "Excluded.",
+      "sources": [
+        "winget"
+      ]
+    },
+    {
+      "id": "appUpdates",
+      "decision": "split",
+      "nativeEquivalent": "Microsoft Store updates its apps; winget upgrade handles catalog-matched packages.",
+      "portScope": "Exclude native package updates. Aggregating unsupported developer feeds is residual functionality.",
+      "status": "Residual developer-feed aggregation deferred.",
+      "sources": [
+        "winget"
+      ]
+    },
+    {
+      "id": "screenshot",
+      "decision": "split",
+      "nativeEquivalent": "Snipping Tool captures areas/windows/screens, annotates, crops, redacts, saves and shares. Edge supports full-page web captures.",
+      "portScope": "Exclude ordinary screenshot tools. Scrolling desktop captures, pinning, watermarking and expiring links are residuals.",
+      "status": "Implemented imagePins for copied screenshots and selected local images. Installed ARM64 file/clipboard selection, rendering, topmost toggle, resizing, Esc, close-all and feature-disable cleanup passed. Ordinary capture stays with Snipping Tool; scrolling capture and expiring links remain deferred.",
+      "sources": [
+        "capture"
+      ]
+    },
+    {
+      "id": "cameraPreview",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows Camera supplies a live camera preview; mirror handling varies by app/device.",
+      "portScope": "No duplicate camera-preview window.",
+      "status": "Excluded; no camera permission requested.",
+      "sources": [
+        "camera"
+      ]
+    },
+    {
+      "id": "radialMenu",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows.",
+      "status": "Implemented: up to eight items per menu, three levels and 64 items per profile, with up to 24 named profiles plus Default; command search finds nested leaves. Includes group editing/reordering, keyboard navigation and a small-viewport list fallback. Gesture extras remain deferred.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "scratchpad",
+      "decision": "split",
+      "nativeEquivalent": "Current Notepad has tabs, session restore and Markdown formatting; Sticky Notes supports quick notes.",
+      "portScope": "Exclude a second basic note editor. Retain keeping an existing Notepad or other window above work.",
+      "status": "Implemented on-demand pin/unpin in windowSearch; owned layers restore on feature disable and clean exit.",
+      "sources": [
+        "notepad"
+      ]
+    },
+    {
+      "id": "commandBar",
+      "decision": "split",
+      "nativeEquivalent": "Start/Search, Run, Calculator and Win+. already cover apps/files, commands, calculations and emoji separately.",
+      "portScope": "Retain a scoped search over enabled Vela tools, snippets and explicit launchers.",
+      "status": "Implemented scoped search, launcher profiles, snippets, enabled open-window search and saved-workspace actions. Profile creation, launcher save, isolated lists, switching and disposable-profile deletion passed in the VM. Disk/script/menu indexing is deferred.",
+      "sources": [
+        "shortcuts",
+        "upstream"
+      ]
+    },
+    {
+      "id": "screenRecorder",
+      "decision": "split",
+      "nativeEquivalent": "Snipping Tool records an area with supported audio and opens clips in Clipchamp for editing.",
+      "portScope": "Exclude basic recording. Separate audio tracks, auto-zoom and advanced redaction are residuals.",
+      "status": "Residual advanced recording editor deferred.",
+      "sources": [
+        "capture"
+      ]
+    },
+    {
+      "id": "wallpaper",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows Personalization manages static wallpaper, slideshows and themes.",
+      "portScope": "No duplicate wallpaper management.",
+      "status": "Excluded; live wallpaper is not claimed to be native.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "killProcess",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Task Manager ends processes; Resource Monitor and netstat expose port ownership.",
+      "portScope": "No duplicate process or listening-port manager.",
+      "status": "Excluded.",
+      "sources": [
+        "taskmanager"
+      ]
+    },
+    {
+      "id": "portManager",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Task Manager ends processes; Resource Monitor and netstat expose port ownership.",
+      "portScope": "No duplicate process or listening-port manager.",
+      "status": "Excluded.",
+      "sources": [
+        "netstat"
+      ]
+    },
+    {
+      "id": "notch",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchCalendar",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchNotifications",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchGestures",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchTimer",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchAccessories",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchLyrics",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchQueue",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchLiveEqualizer",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchDownloads",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchAgents",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchWatch",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "notchMascot",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime.",
+      "status": "Excluded by user scope.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "monitorCPU",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately.",
+      "status": "resourceAlerts implemented. Vendor temperatures and advanced sensor history deferred.",
+      "sources": [
+        "taskmanager"
+      ]
+    },
+    {
+      "id": "monitorGPU",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately.",
+      "status": "resourceAlerts plus sustained NVIDIA thermal alerts and on-demand temperature/board watts implemented. AMD/Intel thermal backends and sensor history deferred.",
+      "sources": [
+        "taskmanager",
+        "nvml"
+      ]
+    },
+    {
+      "id": "monitorMemory",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately.",
+      "status": "resourceAlerts implemented. Vendor temperatures and advanced sensor history deferred.",
+      "sources": [
+        "taskmanager"
+      ]
+    },
+    {
+      "id": "monitorNetwork",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager, Resource Monitor, Settings, ipconfig and Performance Monitor expose traffic and addresses.",
+      "portScope": "Exclude duplicate Windows network totals, process traffic and connection settings. Retain the on-demand internet speed test.",
+      "status": "Implemented as internetSpeed with bounded, on-demand Cloudflare HTTP measurements. Both native builds and 79 core checks pass. Installed ARM64 results and immediate cancellation passed; intermittent endpoint/connection errors are surfaced without publishing a false result.",
+      "sources": [
+        "taskmanager",
+        "netstat",
+        "cloudflareSpeed"
+      ]
+    },
+    {
+      "id": "monitorDisk",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately.",
+      "status": "resourceAlerts implemented. Vendor temperatures and advanced sensor history deferred.",
+      "sources": [
+        "taskmanager"
+      ]
+    },
+    {
+      "id": "monitorPower",
+      "decision": "split",
+      "nativeEquivalent": "Windows battery UI, Task Manager and powercfg /batteryreport expose power usage and battery health.",
+      "portScope": "Exclude basic battery/power displays. Vendor sensor readings are additional hardware-specific capabilities.",
+      "status": "On-demand NVIDIA board watts implemented through installed driver NVML. CPU/motherboard live power sensors deferred.",
+      "sources": [
+        "powercfg",
+        "nvml"
+      ]
+    },
+    {
+      "id": "connectedDevices",
+      "decision": "split",
+      "nativeEquivalent": "Bluetooth & devices, Device Manager and supported Bluetooth battery readings already exist.",
+      "portScope": "Exclude a duplicate device inventory. Unsupported device telemetry is hardware-specific.",
+      "status": "Residual device telemetry deferred.",
+      "sources": [
+        "upstream"
+      ]
+    },
+    {
+      "id": "fanControl",
+      "decision": "retain",
+      "nativeEquivalent": "No general built-in fan-curve editor. Windows has no universal safe fan-control API.",
+      "portScope": "Requires a vendor-supported backend with recovery to firmware control.",
+      "status": "Deferred: EVGA RTX 3080 NVML fan writes and ASUS Z590/Noctua motherboard PWM need a validated backend and recovery watchdog. Firmware fan control is untouched.",
+      "sources": [
+        "upstream",
+        "nvml",
+        "asusFans",
+        "noctuaFans"
+      ]
+    }
+  ],
+  "supplementalCapabilities": [
+    {
+      "id": "clipboardGuard",
+      "origin": "Clipboard history sub-capability",
+      "decision": "retain",
+      "status": "Implemented delay, session-lock and suspend clearing of the current clipboard; Windows history is not deleted."
+    },
+    {
+      "id": "resourceAlerts",
+      "origin": "Monitor alerts sub-capability",
+      "decision": "retain",
+      "status": "Implemented sustained CPU/memory and low disk alerts. Separate NVIDIA thermal alerts are implemented subject to driver capability."
+    },
+    {
+      "id": "pasteImage",
+      "origin": "Finder cut/paste sub-capability",
+      "decision": "retain",
+      "status": "Implemented PNG save picker; no Explorer extension."
+    },
+    {
+      "id": "displayDimmer",
+      "origin": "Brightness sub-capability",
+      "decision": "retain",
+      "status": "Per-monitor click-through dimming overlays implemented; monitorBrightness separately provides DDC/CI hardware brightness when the connection reports support."
+    },
+    {
+      "id": "messagingDownloads",
+      "origin": "README and cleanup settings",
+      "decision": "retain",
+      "status": "Implemented explicit folder selection, bounded metadata scan, age review, selected-file recycling and changed-file/reparse-point checks. No automatic deletion or message database access."
+    },
+    {
+      "id": "settingsBackup",
+      "origin": "General settings",
+      "decision": "retain",
+      "status": "Implemented schema-checked JSON import/export, ordering and preserved disabled-feature settings."
+    },
+    {
+      "id": "onboarding",
+      "origin": "Welcome, purpose/presets, selected access, done",
+      "decision": "retain",
+      "status": "Implemented four native WinUI steps; selections persist between launches."
+    },
+    {
+      "id": "languages",
+      "origin": "Upstream localization",
+      "decision": "retain",
+      "status": "English only in this initial port; other language resources deferred."
+    },
+    {
+      "id": "thermalAlerts",
+      "origin": "GPU sensor alert sub-capability",
+      "decision": "retain",
+      "status": "Implemented NVIDIA temperature threshold, sustained duration, cooldown and no-hardware behavior. Real RTX 3080 readings remain unverified."
+    },
+    {
+      "id": "savedLayouts",
+      "origin": "Window layout residual",
+      "decision": "retain",
+      "status": "Implemented as savedLayouts: named custom positions, display-relative restore and one-step undo; no Snap engine or custom snapping gestures."
+    },
+    {
+      "id": "windowSearch",
+      "origin": "Window switcher residual",
+      "decision": "retain",
+      "status": "Implemented as windowSearch: title/app search, display filter and activation; no Alt+Tab replacement."
+    },
+    {
+      "id": "imagePins",
+      "origin": "Screenshot pinning residual",
+      "decision": "retain",
+      "status": "Implemented clipboard/file image pins, six-preview limit, native Mica windows, topmost toggle and close-all. Nine backend integration checks pass per architecture. Installed ARM64 file/clipboard rendering, topmost/unpin, resizing, Esc, close-all and feature-disable cleanup passed; the six-pin UI limit and exit cleanup remain unchecked."
+    }
+  ]
+}

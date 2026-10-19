@@ -1,0 +1,54 @@
+<Window x:Class="Vela.Windows.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Vela.Windows">
+    <Grid x:Name="Root" Padding="20,20,20,12" RowSpacing="16">
+        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+        <Grid ColumnSpacing="12">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="36"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <Border Width="36" Height="36" CornerRadius="8" Background="{ThemeResource AccentFillColorDefaultBrush}">
+                <Path Data="M 9,10 L 18,27 L 27,10 M 18,27 L 25,27" Stroke="{ThemeResource TextOnAccentFillColorPrimaryBrush}" StrokeThickness="2.5" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Border>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center"><TextBlock FontFamily="Segoe UI Variable" Text="Vela" Style="{StaticResource SubtitleTextBlockStyle}"/><TextBlock FontFamily="Segoe UI Variable" Text="Your Windows extras" Style="{StaticResource VelaCaption}"/></StackPanel>
+            <StackPanel Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalAlignment="Center">
+                <ToggleButton x:Name="PinButton" ToolTipService.ToolTip="Keep this panel open" AutomationProperties.Name="Keep panel open" Click="PinClick"><FontIcon Glyph="&#xE718;" FontSize="14"/></ToggleButton>
+                <Button ToolTipService.ToolTip="Settings" AutomationProperties.Name="Open settings" Click="SettingsClick"><FontIcon Glyph="&#xE713;" FontSize="14"/></Button>
+            </StackPanel>
+        </Grid>
+        <StackPanel Grid.Row="1" Spacing="8">
+            <InfoBar x:Name="ErrorBar" IsOpen="False" Severity="Warning" IsClosable="True"/>
+            <Border x:Name="AwakeCard" Style="{StaticResource VelaCard}">
+                <StackPanel Spacing="12">
+                    <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Horizontal" Spacing="10"><FontIcon Glyph="&#xE708;" FontSize="18"/><StackPanel><TextBlock FontFamily="Segoe UI Variable" Text="Keep awake" Style="{StaticResource BodyStrongTextBlockStyle}"/><TextBlock FontFamily="Segoe UI Variable" x:Name="AwakeStatus" Text="Off" Style="{StaticResource VelaCaption}"/></StackPanel></StackPanel>
+                        <Button x:Name="StopAwake" Grid.Column="1" Content="Stop" Click="StopAwakeClick" VerticalAlignment="Center"/>
+                    </Grid>
+                    <Grid ColumnSpacing="8"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <Button Content="15 min" Tag="15" HorizontalAlignment="Stretch" Click="StartAwakeClick"/>
+                        <Button Grid.Column="1" Content="1 hour" Tag="60" HorizontalAlignment="Stretch" Click="StartAwakeClick"/>
+                        <Button Grid.Column="2" Content="2 hours" Tag="120" HorizontalAlignment="Stretch" Click="StartAwakeClick"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+            <StackPanel Spacing="12">
+                <Grid><TextBlock FontFamily="Segoe UI Variable" Text="YOUR TOOLS" Style="{StaticResource VelaCaption}"/><TextBlock FontFamily="Segoe UI Variable" x:Name="ToolCount" HorizontalAlignment="Right" Style="{StaticResource VelaCaption}"/></Grid>
+                <ItemsControl x:Name="ToolGrid">
+                    <ItemsControl.ItemsPanel><ItemsPanelTemplate><ItemsWrapGrid Orientation="Horizontal" MaximumRowsOrColumns="2"/></ItemsPanelTemplate></ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate><DataTemplate>
+                        <Button Width="164" Margin="0,0,8,8" Padding="14" HorizontalContentAlignment="Stretch" Click="ToolClick" Tag="{Binding Id}" Background="{ThemeResource CardBackgroundFillColorDefaultBrush}" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}">
+                            <StackPanel Spacing="10"><FontIcon Glyph="{Binding Glyph}" FontSize="22" HorizontalAlignment="Left" Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"/><TextBlock FontFamily="Segoe UI Variable" Text="{Binding Name}" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap"/></StackPanel>
+                        </Button>
+                    </DataTemplate></ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <TextBlock FontFamily="Segoe UI Variable" x:Name="EmptyMessage" Text="Choose your tools in Settings to make this space yours." Style="{StaticResource VelaBody}" Visibility="Collapsed"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Grid Grid.Row="3" BorderBrush="{ThemeResource DividerStrokeColorDefaultBrush}" BorderThickness="0,1,0,0" Padding="0,10,0,0">
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <TextBlock FontFamily="Segoe UI Variable" x:Name="ShortcutHint" Text="Ctrl + Alt + V" Style="{StaticResource VelaCaption}" VerticalAlignment="Center"/>
+            <Button Grid.Column="1" Content="Customize tools" Style="{StaticResource DefaultButtonStyle}" Click="SettingsClick"/>
+        </Grid>
+    </Grid>
+</Window>
