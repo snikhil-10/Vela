@@ -55,6 +55,7 @@ try
     });
     await Check("Shelf cancels delayed providers on disable or close and accepts a fresh session",ShelfChecks.Cancellation);
     await Check("Shelf late drag completion preserves identical new entries and accepts only Copy",ShelfChecks.DragIdentity);
+    await Check("JPEG byte budgets produce decodable capped copies and cleanly reject impossible or canceled work",()=>JpegBudgetChecks.Run(folder));
     await Check("Clipboard snapshots preserve formats and transfer intent and reject failed providers before editing",async ()=>
     {
         var data=new global::Windows.ApplicationModel.DataTransfer.DataPackage { RequestedOperation=global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move }; data.SetText("Mixed CASE ✓\r\nSecond line");

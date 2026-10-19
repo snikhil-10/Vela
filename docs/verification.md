@@ -1,6 +1,14 @@
 # Verification status
 
-Updated October 18, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
+Updated October 19, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
+
+## Resumed UI tests and JPEG size limits — October 19
+
+See [the dated UI checkpoint](windows-ui-checkpoint-2026-10-19.md). Current source `9deb6e55` passes 141 core and 17 native x64 backend checks, x64 native XAML/OCR publishing and ARM64 cross-publishing. ARM64 runtime remains untested here.
+
+Fresh isolated-profile UI observations pass all four onboarding pages, close/resume at step two with selected tools preserved, the saved panel, General settings, System/Dark/System app appearance and normal Exit. The eight-sector radial wheel passes North/East centre-drag entry, centre Back, outside-wheel cancellation, three-level number-key navigation, readable missing-target/list fallback and deactivation dismissal. Keyboard-only cleaning passes countdown/Stop. Follow-up timed tests establish keyboard recovery before the original deadline after window close and feature disable. Mouse-lock blocks an attempted Stop click while the countdown advances; automatic recovery is bracketed between the paused observation at 57.702 seconds and the available observation at 64.534 seconds. Scroll blocking and held Escape remain untested. These are bounded cases, not completion of the broader input/accessibility/cleaning matrix.
+
+The native JPEG regression found that the old quality setting was ineffective: quality 100 and 10 each produced 176,869 bytes. Passing quality at encoder creation corrects the probe to 389,399 versus 22,378 bytes. JPEG per-file byte limits now enforce actual output size and preserve originals. New controls render; picker-based conversion remains unverified because Computer Use cannot target PickerHost and the user is away. A two-file shelf transfer attempt is also limited by Computer Use rejecting endpoints outside the source window bounds; no transfer occurred. Detailed failure logs, source identities and limits are in the dated checkpoint. Normal user settings, accepted cue and native exclusions are preserved. No publication or installation was performed.
 
 ## Physical x64 laptop continuation — October 18
 

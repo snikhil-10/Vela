@@ -1,5 +1,7 @@
 # Windows laptop checkpoint — October 18, 2026
 
+Historical checkpoint. Continued UI observations, JPEG quality fixes and the newer source are recorded in [the October 19 checkpoint](windows-ui-checkpoint-2026-10-19.md).
+
 Vela remains an unreleased 0.2.2 preview. This continues the October 18 transfer, not the older 0.2.1 binary. Not every feature or Windows completion-checklist item is complete.
 
 ## Transfer and setup checklist

@@ -98,6 +98,7 @@ Test("Reserved launcher profile names cannot shadow Default",()=> { var s=new Ap
 Test("Duplicate workspace names and null titles normalize safely",()=> { var s=SettingsStore.Deserialize("{\"WindowLayouts\":[{\"Name\":\"Desk\",\"Windows\":[{\"Process\":\"editor\",\"Title\":null,\"Monitor\":null,\"Bounds\":{\"X\":0,\"Y\":0,\"Width\":0.5,\"Height\":0.5}}]},{\"Name\":\"desk\",\"Windows\":[]}]}"); Equal(1,s.WindowLayouts.Count); Equal("",s.WindowLayouts[0].Windows[0].Title); });
 foreach (var check in NetworkChecks.All()) Test(check.Name, check.Check);
 foreach (var check in LauncherChecks.All()) Test(check.Name, check.Check);
+foreach (var check in ImageBudgetChecks.All()) Test(check.Name, check.Check);
 InputChecks.Run(Test);
 ClipboardChecks.Run(Test);
 AlertChecks.Run(Test);

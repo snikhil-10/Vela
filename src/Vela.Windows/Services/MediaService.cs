@@ -6,6 +6,7 @@ using Windows.Storage;
 using Windows.Storage.Pickers;
 using Windows.ApplicationModel.DataTransfer;
 using WinRT.Interop;
+using Windows.Storage.Streams;
 
 namespace Vela.Windows.Services;
 
@@ -36,30 +37,57 @@ internal static class MediaService
         var picker=new FolderPicker(); picker.FileTypeFilter.Add("*"); InitializeWithWindow.Initialize(picker,hwnd);
         return await picker.PickSingleFolderAsync();
     }
-    public static async Task<int> Convert(IReadOnlyList<StorageFile> files,StorageFolder folder,string extension,Action<string> progress,CancellationToken cancellation,uint longestEdge=0,double quality=.9,ImageWatermark? watermark=null)
+    public static async Task<int> Convert(IReadOnlyList<StorageFile> files,StorageFolder folder,string extension,Action<string> progress,CancellationToken cancellation,uint longestEdge=0,double quality=.9,ImageWatermark? watermark=null,long maximumBytes=0)
     {
+        if(maximumBytes is <0 or >104857600) throw new ArgumentOutOfRangeException(nameof(maximumBytes));
+        if(maximumBytes>0 && extension!=".jpg") throw new InvalidOperationException("File-size limits are available for JPEG output only.");
+        if(!double.IsFinite(quality)) throw new ArgumentOutOfRangeException(nameof(quality));
         int completed=0;
         Guid format=extension switch { ".jpg"=>BitmapEncoder.JpegEncoderId,".bmp"=>BitmapEncoder.BmpEncoderId,_=>BitmapEncoder.PngEncoderId };
         foreach(var file in files)
         {
             cancellation.ThrowIfCancellationRequested(); progress($"Converting {file.Name}…");
-            using var source=await file.OpenReadAsync(); var decoder=await BitmapDecoder.CreateAsync(source);
+            using var source=await file.OpenReadAsync().AsTask(cancellation); var decoder=await BitmapDecoder.CreateAsync(source).AsTask(cancellation);
             if((long)decoder.PixelWidth*decoder.PixelHeight>100_000_000) throw new InvalidOperationException($"{file.Name} exceeds the 100-megapixel processing limit.");
             var size=ImageSizing.Fit(decoder.PixelWidth,decoder.PixelHeight,longestEdge);
             using var bitmap=await decoder.GetSoftwareBitmapAsync(BitmapPixelFormat.Bgra8,extension==".jpg"?BitmapAlphaMode.Ignore:BitmapAlphaMode.Premultiplied,
-                new BitmapTransform { ScaledWidth=size.Width,ScaledHeight=size.Height,InterpolationMode=BitmapInterpolationMode.Fant },ExifOrientationMode.RespectExifOrientation,ColorManagementMode.ColorManageToSRgb);
+                new BitmapTransform { ScaledWidth=size.Width,ScaledHeight=size.Height,InterpolationMode=BitmapInterpolationMode.Fant },ExifOrientationMode.RespectExifOrientation,ColorManagementMode.ColorManageToSRgb).AsTask(cancellation);
             if(watermark is not null) await Task.Run(()=>ImageWatermarks.Apply(bitmap,watermark,cancellation),cancellation);
+            double outputQuality=Math.Clamp(quality,.1,1);
+            if(maximumBytes>0)
+            {
+                progress($"Choosing JPEG quality for {file.Name}…");
+                var choice=await JpegSizeBudget.Choose(maximumBytes,(int)Math.Round(outputQuality*100),async (candidate,token)=>
+                {
+                    using var trial=new InMemoryRandomAccessStream();
+                    await Encode(bitmap,trial,format,candidate/100d,token);
+                    return checked((long)trial.Size);
+                },cancellation);
+                if(choice is null) throw new InvalidOperationException($"Vela could not fit {file.Name} within the JPEG size limit. Reduce its maximum edge or increase the size limit.");
+                outputQuality=choice.Value.Quality/100d;
+            }
+            cancellation.ThrowIfCancellationRequested();
             var result=await folder.CreateFileAsync(Path.GetFileNameWithoutExtension(file.Name)+extension,CreationCollisionOption.GenerateUniqueName);
             try
             {
                 using var output=await result.OpenAsync(FileAccessMode.ReadWrite);
-                var encoder=await BitmapEncoder.CreateAsync(format,output); encoder.SetSoftwareBitmap(bitmap);
-                if(extension==".jpg") await encoder.BitmapProperties.SetPropertiesAsync(new Dictionary<string,BitmapTypedValue> { ["ImageQuality"]=new((float)Math.Clamp(quality,.1,1),PropertyType.Single) });
-                cancellation.ThrowIfCancellationRequested(); await encoder.FlushAsync(); completed++;
+                await Encode(bitmap,output,format,outputQuality,cancellation);
+                if(maximumBytes>0 && output.Size>(ulong)maximumBytes) throw new InvalidOperationException($"{file.Name} could not be encoded within the JPEG size limit. No oversized copy was kept.");
+                cancellation.ThrowIfCancellationRequested(); completed++;
             }
             catch { await result.DeleteAsync(); throw; }
         }
         return completed;
+    }
+    private static async Task Encode(SoftwareBitmap bitmap,IRandomAccessStream output,Guid format,double quality,CancellationToken cancellation)
+    {
+        cancellation.ThrowIfCancellationRequested();
+        var encoder=format==BitmapEncoder.JpegEncoderId
+            ? await BitmapEncoder.CreateAsync(format,output,new BitmapPropertySet { ["ImageQuality"]=new((float)quality,PropertyType.Single) }).AsTask(cancellation)
+            : await BitmapEncoder.CreateAsync(format,output).AsTask(cancellation);
+        encoder.SetSoftwareBitmap(bitmap);
+        await encoder.FlushAsync().AsTask(cancellation);
+        cancellation.ThrowIfCancellationRequested();
     }
     public static async Task<int> Ocr(IReadOnlyList<StorageFile> files,StorageFolder folder,Action<string> progress,CancellationToken cancellation)
     {

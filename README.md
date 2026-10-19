@@ -2,7 +2,7 @@
 
 A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
 
-Version **0.2.2 is in development**. The October 18 source was verified and built on the physical x64 Dell laptop: the unchanged baseline passed 130 core and 12 Windows backend checks. Continued snapshot `7a0378fb` passes 135 core and 16 backend checks, with native XAML publishing and 112 verified build inputs. It adds radial centre-drag selection, shelf lifecycle fixes and isolated validation profiles. The accepted taskbar shelf receiver is unchanged. Rendered gesture, shelf, cleaning, accessibility and broader input checks remain open; Computer Use was stopped by a physical Escape event. The last packaged release remains 0.2.1. See the [laptop checkpoint](docs/windows-laptop-checkpoint.md), [verification notes](docs/verification.md) and [focused comparison](docs/feedback-comparison.md). This is an unfinished port, not a new release.
+Version **0.2.2 is in development**. Current source `9deb6e55` passes **141 core and 17 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. It adds JPEG file-size limits and corrects a verified JPEG quality bug. Fresh isolated-profile UI tests cover onboarding/resume, General appearance/Exit and focused radial gesture/navigation cases; the full UI, input and hardware matrix remains open. The accepted taskbar receiver and normal settings are preserved. The last packaged release remains 0.2.1. See the [October 19 UI checkpoint](docs/windows-ui-checkpoint-2026-10-19.md), [transfer checkpoint](docs/windows-laptop-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
 
 - [Windows feature audit and exclusions](docs/windows-feature-audit.md)
 - [Machine-readable inventory](docs/feature-audit.json)
@@ -24,13 +24,13 @@ The app has one system tray icon, a compact Mica flyout, native Settings navigat
 - Snippet library with arbitrary triggers, immediate or Space/Tab/Return activation, and date/time/clipboard variables.
 - Clipboard auto-clear on delay, lock or suspend, copied-image PNG saving, and shortcut-driven plain-text paste with clipboard restoration.
 - Cleaning mode with optional mouse lock, a 60-second deadline and hold-Escape recovery.
-- Quick panel, command search and named launcher profiles; radial submenus with keyboard navigation, centre-drag selection and a small-window list layout. Gesture rendering remains unverified.
+- Quick panel, command search and named launcher profiles; radial submenus with keyboard navigation, centre-drag selection and a small-window list layout. Focused laptop mouse cases pass; the broader gesture/accessibility matrix remains open.
 - Open-window search with display filtering and pin/unpin; named custom window workspaces with restore and undo.
 - Session-only image pins from the clipboard or selected files, with resizable Mica windows and a topmost toggle.
 - Smooth wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, button shortcuts, duplicate click filtering, Caps Lock Super key, and per-app double-press close protection.
 - Per-display software dimming, on-demand external-monitor DDC/CI brightness, sustained resource alerts and supported NVIDIA temperature/power readings with thermal alerts.
 - All-microphone mute/unmute.
-- Batch image conversion, proportional resizing, JPEG quality, configurable text watermarks and offline English OCR; MP4 conversion, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
+- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
 - On-demand HTTP latency, download and upload measurements with cancellation and bounded data use.
 - Review older files in a selected messaging-download folder before explicitly sending chosen files to the Recycle Bin.
 

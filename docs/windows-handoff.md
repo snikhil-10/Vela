@@ -2,7 +2,7 @@
 
 Refreshed October 18, 2026. This document carries the implementation context to a new Windows Codex session. It is not the full conversation history.
 
-**Laptop continuation:** the source now has a local Git baseline and development snapshot `7a0378fb` on the physical Dell x64 laptop. Native publishing passes 135 core and 16 backend checks. Read [windows-laptop-checkpoint.md](windows-laptop-checkpoint.md) first for the completed transfer steps, source changes and UI limits. Earlier Mac/VM environment details in this document remain historical. No release was made and not every port/checklist item is complete. The user requested no questions or prompts until they say otherwise.
+**Current continuation — October 19:** resumed Computer Use is authorized, but the user is now away for a long time and cannot perform manual steps. Continue independently without further prompts. Snapshot `9deb6e55` passes 141 core and 17 x64 backend checks plus native x64 and ARM64 cross-publishing. Read [the October 19 UI checkpoint](windows-ui-checkpoint-2026-10-19.md) first, then [the October 18 transfer checkpoint](windows-laptop-checkpoint.md). Onboarding/settings/radial checks have progressed; JPEG quality and byte limits are fixed/implemented. Remaining UI and feature work stays open. Preserve normal settings and the accepted five-file cue; do not publish anything. Earlier Mac/VM details remain historical.
 
 ## Product and requirements
 

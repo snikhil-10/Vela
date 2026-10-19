@@ -222,7 +222,12 @@ public sealed partial class ToolWindow : Window
         Body.Children.Add(folder);
         var format=new ComboBox { Header="Output format",ItemsSource=new[]{".png",".jpg",".bmp"},SelectedIndex=0,HorizontalAlignment=HorizontalAlignment.Stretch }; Body.Children.Add(format);
         var edge=new NumberBox { Header="Maximum long edge in pixels (0 keeps original size)",Minimum=0,Maximum=16384,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact }; Body.Children.Add(edge);
-        var quality=new Slider { Header="JPEG quality",Minimum=10,Maximum=100,Value=90,StepFrequency=1 }; Body.Children.Add(quality);
+        var quality=new Slider { Header="JPEG quality (maximum with a size limit)",Minimum=10,Maximum=100,Value=90,StepFrequency=1 }; Body.Children.Add(quality);
+        var sizeLimit=new NumberBox { Header="JPEG size limit in KiB (0 = no limit)",Minimum=0,Maximum=102400,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact,IsEnabled=false };
+        Body.Children.Add(sizeLimit);
+        Body.Children.Add(Ui.Text("The limit applies to each JPEG and can lower its quality. If an image cannot fit, reduce its maximum edge or increase the limit. Originals stay unchanged.","VelaCaption"));
+        format.SelectionChanged+=(_,_)=> { bool jpeg=(string)format.SelectedItem==".jpg"; quality.IsEnabled=jpeg; sizeLimit.IsEnabled=jpeg; };
+        quality.IsEnabled=false;
         var watermarkToggle=new CheckBox { Content="Add a text watermark" }; Body.Children.Add(watermarkToggle);
         var watermarkFields=Ui.Stack(8); watermarkFields.Visibility=Visibility.Collapsed; Body.Children.Add(watermarkFields);
         var watermarkText=new TextBox { Header="Watermark text",MaxLength=120,PlaceholderText="Your name or copyright notice" }; watermarkFields.Children.Add(watermarkText);
@@ -237,6 +242,10 @@ public sealed partial class ToolWindow : Window
         {
             if(conversion is not null) { Message("Wait for the current batch or cancel it first.",true); return; }
             if(selected.Count==0 || destination is null) { Message("Choose images and an output folder first.",true); return; }
+            bool jpeg=(string)format.SelectedItem==".jpg";
+            if(jpeg && (!double.IsFinite(sizeLimit.Value) || sizeLimit.Value<0 || sizeLimit.Value>102400 || sizeLimit.Value!=Math.Truncate(sizeLimit.Value)))
+            { Message("Use a whole-number JPEG size limit from 0 to 102400 KiB.",true); return; }
+            long maximumBytes=jpeg?checked((long)sizeLimit.Value*1024):0;
             ImageWatermark? watermark=null;
             if(watermarkToggle.IsChecked==true)
             {
@@ -244,7 +253,7 @@ public sealed partial class ToolWindow : Window
                 watermark=new(watermarkText.Text,watermarkOpacity.Value/100,watermarkSize.Value,(string)watermarkPosition.SelectedItem);
             }
             conversion=new(); progress.IsActive=true;
-            try { int count=await MediaService.Convert(selected,destination,(string)format.SelectedItem,t=>files.Text=t,conversion.Token,(uint)(double.IsFinite(edge.Value)?edge.Value:0),quality.Value/100,watermark); Message($"Converted {count} images. Originals were kept."); }
+            try { int count=await MediaService.Convert(selected,destination,(string)format.SelectedItem,t=>files.Text=t,conversion.Token,(uint)(double.IsFinite(edge.Value)?edge.Value:0),quality.Value/100,watermark,maximumBytes); Message($"Converted {count} images. Originals were kept."); }
             finally { progress.IsActive=false; conversion.Dispose(); conversion=null; }
         },waitOnExit:true));
         Body.Children.Add(AsyncButton("Extract text from images",async ()=>

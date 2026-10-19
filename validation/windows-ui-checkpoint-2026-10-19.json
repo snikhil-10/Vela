@@ -1,0 +1,229 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T08:44:06.1334697-07:00",
+  "sourceSnapshot": "9deb6e55-9cbc-42ee-ab39-1eea7c217fe0",
+  "parentSnapshot": "7a0378fb-773b-475e-b818-9a018478604d",
+  "parentGitCheckpoint": "d08bcd9",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 115,
+  "manifestMismatches": 0,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "environmentEvidence": "validation/windows-laptop-checkpoint.json (same physical laptop)",
+  "automated": {
+    "corePassed": 141,
+    "windowsBackendPassed": 17,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "nativeClipboardPublicationFixtureRun": false,
+    "jpegQualityBefore": {
+      "quality100Bytes": 176869,
+      "quality10Bytes": 176869
+    },
+    "jpegQualityAfter": {
+      "quality100Bytes": 389399,
+      "quality10Bytes": 22378
+    },
+    "jpegBudget": "decodable capped copy, unchanged dimensions and originals, collision, impossible cap, unsupported format and cancellation checks passed"
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "ac8418ba91d98115059c0408b6eb7e96c29265a050172d25f5c3e9d4a6027766",
+      "appDllSha256": "6ae45d74df9529356519815f19187882d5b80a58ab26a230421cf310532e82c2",
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": [],
+      "publishedManifestMatches": true
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "18a1d34870a3053b0738fee03b0fff1be558b520dbe8ccd486e9dc12bebd3de2",
+      "appDllSha256": "ff105c54994f073df7bae0053987718a06f3adfcdd03c313711ef8c27fcdd797",
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": [],
+      "publishedManifestMatches": true
+    }
+  ],
+  "ui": {
+    "status": "partial",
+    "firstGroupSnapshot": "7a0378fb-773b-475e-b818-9a018478604d",
+    "currentGroupSnapshot": "9deb6e55-9cbc-42ee-ab39-1eea7c217fe0",
+    "onboarding": "all four pages, shelf-only selection, close/resume and completed panel observed",
+    "appearance": "General and System/Dark/System observed at current 150 percent scaling",
+    "radial": "North/East centre drags, centre Back, outside-wheel cancel, three-level keys, missing-target list and deactivation observed",
+    "cleaning": {
+      "mouseLockStartUtc": "2026-10-19T15:34:09.568Z",
+      "stopClickBlockedAtSeconds": 7.977,
+      "lastPausedAtSeconds": 57.702,
+      "firstAvailableAtSeconds": 64.534,
+      "exactTimeoutLatencyMeasured": false,
+      "scrollBlockingTested": false,
+      "heldEscapeTested": false,
+      "closeTestStartUtc": "2026-10-19T15:35:28.953Z",
+      "closeAtSeconds": 8.343,
+      "closeRecoveryRenderedMarkerAtSeconds": 52.903,
+      "closeRecoveryBeforeOriginalDeadline": true,
+      "disableTestStartUtc": "2026-10-19T15:37:48.459Z",
+      "disabledAtSeconds": 20.861,
+      "disableRecoveryMarkerAtSeconds": 29.935,
+      "disableRecoveryBeforeOriginalDeadline": true
+    },
+    "media": "JPEG enables controls, PNG/BMP disable them, 100 KiB commits, scrolling reaches actions, empty batch error observed",
+    "pickerConversion": "unverified: PickerHost omitted from Computer Use inventory; user away and manual step unavailable",
+    "shelfDrag": "unverified: selected generated files, but cross-window endpoint rejected before input as outside source bounds",
+    "normalExit": "General Exit; no Vela processes remain",
+    "furtherManualPrompts": false,
+    "runningVelaProcesses": 0
+  },
+  "preservation": {
+    "normalSettingsByteIdentical": true,
+    "signInEntryUnchanged": true,
+    "nativeAuditDecisionsUnchanged": true,
+    "upstreamAuditEntries": 77,
+    "excludedNativeEntries": 18,
+    "acceptedCueFiles": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "unchanged": true
+      }
+    ],
+    "micaConfigurationUnchanged": true,
+    "runtimeCatalogUnchanged": true,
+    "privateBackupIgnored": true,
+    "userDocumentsUsed": false,
+    "clipboardSeeded": false,
+    "hardwareWritesTested": false,
+    "systemSettingsChanged": false
+  },
+  "handoff": {
+    "originalSourceIntegrity": "137 source hashes and 108 compile inputs matched before edits",
+    "localGitBaseline": "3475cc3",
+    "dependencies": "installed SDK/runtime verified; pinned dependencies restored",
+    "unchangedBaseline": "130 core / 12 Windows backend checks and x64 build passed",
+    "sourceAppLaunchedOnLaptop": true,
+    "older021BinaryExecuted": false,
+    "originalZipIntegrity": "147 entries passed (historical laptop checkpoint)",
+    "externalTransferHashSidecarPresent": false,
+    "newerVmArchivesCollected": false
+  },
+  "openChecks": [
+    "Picker-based image conversion; actual outgoing/incoming shelf drag, cancellation and remove-after-drop",
+    "Radial centre-return paths, held capture loss, Escape, touch/pen and Narrator",
+    "Cleaning scroll blocking and held Escape; additional lifecycle/clipboard-in-flight transitions",
+    "Broader editor/IME/elevated/password and clipboard-ownership scenarios",
+    "Mixed DPI, text scaling, high contrast, multi-monitor and power transitions",
+    "Physical microphone writes/hot-plug; supported DDC/GPU and intended desktop hardware",
+    "Original newer VM archives/logs collection and external transfer sidecar",
+    "Unimplemented non-native residuals in feature audit"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-core.log",
+      "sha256": "a38086c4d8e355ef51c55a5cf6c7cf85fd420bc750f694292482b9d0dc485771"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-fixed-build.log",
+      "sha256": "cfd4b35af1e79c72191adc819bb465fa954f0a30ff0c4159fc93f945717430ed"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-quality-fixed.log",
+      "sha256": "ded9a144a4935f7341e7de06ce69d14469af7a6e3cae751859bd6f1bee8aae05"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-arm64-build.log",
+      "sha256": "ecbb68d736e9cd49e2759ee8f8c69731346156deed376ece8a8d173c2f0a76b9"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-windows-checks.log",
+      "sha256": "40eb6d1cb064a3586cc419799c39b279af5377bb8cc1603b3874b62a24bdfc73"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/jpeg-quality-regression.log",
+      "sha256": "d218794d823f5cb65da3bdaf0bc99a5de19a81a88844bf230d2abf561d3afd3a"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/results.log",
+      "sha256": "f264260707878700e3a01d956d6e964caef4a81fd139ee80bedbd52afa397146"
+    },
+    {
+      "path": "artifacts/ui-validation-2026-10-19/final-core.log",
+      "sha256": "a38086c4d8e355ef51c55a5cf6c7cf85fd420bc750f694292482b9d0dc485771"
+    }
+  ],
+  "allVerificationItemsComplete": false,
+  "portComplete": false,
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteAdded": false
+}

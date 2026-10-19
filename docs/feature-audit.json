@@ -494,7 +494,7 @@
       "decision": "retain",
       "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
       "portScope": "Port to native compact windows.",
-      "status": "0.2.2 source adds optional mouse locking and a monotonic cleaning-session model. Core deadline/Escape/mouse-choice checks pass. Earlier keyboard-only runtime recovery passed; new mouse-lock desktop validation is pending.",
+      "status": "Optional mouse locking and a monotonic cleaning-session model are implemented. Core deadline/Escape/mouse-choice checks pass. Physical x64 tests establish countdown/Stop, keyboard recovery before timeout after close and feature disable, a blocked mouse Stop attempt and automatic mouse-lock recovery bracketed at 57.702-64.534 seconds. Scroll blocking and held Escape remain open.",
       "sources": [
         "upstream"
       ]
@@ -504,7 +504,7 @@
       "decision": "split",
       "nativeEquivalent": "Paint and Photos handle individual image edits; Clipchamp covers common video editing.",
       "portScope": "Retain offline batch image/video conversion, resizing, text watermarks and image-file OCR. Do not recreate individual Paint/Photos edits or basic Snipping Tool recording.",
-      "status": "Implemented PNG/JPEG/BMP batches, proportional resizing, JPEG quality, text watermarks, offline English OCR, MP4 batches, M4A extraction and animated GIF batches with source trimming, size, frame rate and loop controls. Nine Windows integration checks pass per architecture, including changing GIF frames, timing, looping, trim, unique names, cancellation cleanup and unchanged originals. Target-file-size compression and more advanced editing remain deferred.",
+      "status": "Implemented PNG/JPEG/BMP batches, proportional resize, quality, watermarks and offline English OCR; MP4/M4A and trimmed animated GIF batches. JPEG quality now uses encoder options after a native regression exposed an ineffective setting. Per-image JPEG byte limits pass capped-output, dimension, collision, cancellation and original-preservation tests. All 17 x64 backend checks pass; ARM64 cross-build passes without a runtime claim. JPEG controls enable/disable correctly for output format, accept a size budget and report an empty batch inline. Picker-based conversion remains unverified because PickerHost is not targetable and the user is away. PNG/BMP budgets, target-size video compression and advanced editing remain deferred.",
       "sources": [
         "capture",
         "upstream"
@@ -577,7 +577,7 @@
       "decision": "retain",
       "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
       "portScope": "Port to native compact windows.",
-      "status": "Implemented: eight siblings, three levels, 64 items per profile and 24 named profiles plus Default; nested search, editing, keyboard navigation and small-window list fallback. Centre-drag selection and cancellation now pass five core checks and native XAML compilation. Rendered gesture, accessibility and additional gesture workflows remain open.",
+      "status": "Implemented bounded submenu trees, editing, nested search, keyboard navigation and a small-window list. Physical x64 checks pass North/East centre drags, centre Back, outside-wheel cancellation, three-level number keys, missing-target list fallback and deactivation. Centre-return paths, held capture loss, touch/pen and accessibility remain open.",
       "sources": [
         "upstream"
       ]
