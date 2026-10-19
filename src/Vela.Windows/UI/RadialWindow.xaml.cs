@@ -15,6 +15,9 @@ public sealed partial class RadialWindow : Window
     private readonly AppController controller;
     private readonly LauncherNavigation menu;
     private readonly List<Button> wheelButtons = [], listButtons = [];
+    private readonly RadialGesture gesture = new();
+    private uint? gesturePointer;
+    private int highlighted = -1;
     private bool listMode, closed;
 
     internal RadialWindow(AppController controller)
@@ -28,18 +31,23 @@ public sealed partial class RadialWindow : Window
             if (e.WindowActivationState == WindowActivationState.Deactivated) { if (!closed) Close(); }
             else DispatcherQueue.TryEnqueue(FocusSelected);
         };
-        Closed += (_, _) => closed = true;
+        Closed += (_, _) => { closed = true; CancelGesture(); };
         BackButton.Click += (_, _) => Back();
         ManageButton.Click += (_, _) =>
         {
             Close(); controller.EditLaunchers();
         };
         Root.PreviewKeyDown += Keys;
+        Wheel.PointerMoved += GestureMoved;
+        Wheel.PointerReleased += GestureReleased;
+        Wheel.PointerCanceled += (_, e) => { if(e.Pointer.PointerId == gesturePointer) CancelGesture(); };
+        Wheel.PointerCaptureLost += (_, e) => { if(e.Pointer.PointerId == gesturePointer) CancelGesture(); };
         Root.Loaded += (_, _) => FocusSelected();
         MenuArea.SizeChanged += (_, _) =>
         {
             bool compact = MenuArea.ActualWidth < 408 || MenuArea.ActualHeight < 368;
             if (compact == listMode) return;
+            CancelGesture();
             listMode = compact; Wheel.Visibility = compact ? Visibility.Collapsed : Visibility.Visible;
             ListScroll.Visibility = compact ? Visibility.Visible : Visibility.Collapsed;
             DispatcherQueue.TryEnqueue(FocusSelected);
@@ -49,18 +57,22 @@ public sealed partial class RadialWindow : Window
 
     private void Render()
     {
+        CancelGesture();
         Wheel.Children.Clear(); MenuList.Children.Clear(); wheelButtons.Clear(); listButtons.Clear();
         BackButton.IsEnabled = menu.CanGoBack;
         Heading.Text = menu.Folders.LastOrDefault() ?? "Launchers";
         ToolTipService.SetToolTip(Heading, string.Join(" › ", menu.Folders.Prepend(Profile.Text)));
         Error.Visibility = Visibility.Collapsed;
-        var center = Ui.Button(menu.CanGoBack ? "Back" : "Open Vela", () =>
-        {
-            if (menu.CanGoBack) Back();
-            else { Close(); controller.ShowPanel(); }
-        }, true);
+        var center = Ui.Button(menu.CanGoBack ? "Back" : "Open Vela", CenterClick, true);
         center.Width = 120; center.Height = 64;
-        Canvas.SetLeft(center, 144); Canvas.SetTop(center, 152); Wheel.Children.Add(center);
+        // The native button retains keyboard/automation activation. Its host owns
+        // pointer input so a completed drag cannot also invoke the centre click.
+        AutomationProperties.SetHelpText(center, "Drag from here toward a launcher and release. Return to the centre or press Escape to cancel.");
+        var centerHost = new Grid { Width = 120, Height = 64 };
+        centerHost.Children.Add(center);
+        centerHost.Children.Add(new Border { Background = new Microsoft.UI.Xaml.Media.SolidColorBrush(Microsoft.UI.Colors.Transparent) });
+        centerHost.PointerPressed += GesturePressed;
+        Canvas.SetLeft(centerHost, 144); Canvas.SetTop(centerHost, 152); Wheel.Children.Add(centerHost);
         for (int i = 0; i < menu.Items.Count; i++)
         {
             int index = i;
@@ -101,6 +113,49 @@ public sealed partial class RadialWindow : Window
         DispatcherQueue.TryEnqueue(FocusSelected);
     }
 
+    private void CenterClick()
+    {
+        if (menu.CanGoBack) Back();
+        else { Close(); controller.ShowPanel(); }
+    }
+    private void GesturePressed(object sender, PointerRoutedEventArgs e)
+    {
+        if (closed || listMode || gesturePointer is not null || !e.GetCurrentPoint(Wheel).Properties.IsLeftButtonPressed) return;
+        if (!Wheel.CapturePointer(e.Pointer)) return;
+        gesture.Begin(menu.Items.Count); gesturePointer = e.Pointer.PointerId; e.Handled = true;
+    }
+    private void GestureMoved(object sender, PointerRoutedEventArgs e)
+    {
+        if (gesturePointer != e.Pointer.PointerId) return;
+        var point = e.GetCurrentPoint(Wheel);
+        if (!point.Properties.IsLeftButtonPressed) { CancelGesture(); return; }
+        gesture.Move(point.Position.X - 204, point.Position.Y - 184, InsideWheel(point.Position));
+        HighlightGesture(); e.Handled = true;
+    }
+    private static bool InsideWheel(global::Windows.Foundation.Point point) => point.X is >= 0 and <= 408 && point.Y is >= 0 and <= 368;
+    private void GestureReleased(object sender, PointerRoutedEventArgs e)
+    {
+        if (gesturePointer != e.Pointer.PointerId) return;
+        var point = e.GetCurrentPoint(Wheel);
+        var result = gesture.End(point.Position.X - 204, point.Position.Y - 184, InsideWheel(point.Position));
+        CancelGesture(); e.Handled = true;
+        if (closed || controller.Quitting || listMode) return;
+        if (result.Index >= 0) Activate(result.Index);
+        else if (result.CenterClick) CenterClick();
+    }
+    private void HighlightGesture()
+    {
+        int next = gesture.SelectedIndex;
+        if (next == highlighted) return;
+        if (highlighted >= 0 && highlighted < wheelButtons.Count) wheelButtons[highlighted].ClearValue(FrameworkElement.StyleProperty);
+        highlighted = next;
+        if (next >= 0 && next < wheelButtons.Count) wheelButtons[next].Style = Ui.Style("AccentButtonStyle");
+    }
+    private void CancelGesture()
+    {
+        gesturePointer = null; gesture.Cancel(); HighlightGesture(); Wheel.ReleasePointerCaptures();
+    }
+
     private void FocusSelected()
     {
         if (closed || !Root.IsLoaded) return;
@@ -128,6 +183,7 @@ public sealed partial class RadialWindow : Window
     }
     private void Keys(object sender, KeyRoutedEventArgs e)
     {
+        CancelGesture();
         if (e.Key == VirtualKey.Escape) { e.Handled = true; Close(); return; }
         bool Down(VirtualKey key) => (InputKeyboardSource.GetKeyStateForCurrentThread(key) & CoreVirtualKeyStates.Down) != 0;
         if (Down(VirtualKey.Control) || Down(VirtualKey.Menu) || Down(VirtualKey.LeftWindows) || Down(VirtualKey.RightWindows)) return;

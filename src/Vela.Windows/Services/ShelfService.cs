@@ -4,31 +4,44 @@ using Windows.Storage;
 
 namespace Vela.Windows.Services;
 
-internal sealed record ShelfItem(string Name,string? Text,IStorageItem? File)
-{ public string Detail=>File?.Path??Text??""; }
+internal sealed class ShelfItem(string name,string? text,IStorageItem? file)
+{
+    public string Name { get; }=name;
+    public string? Text { get; }=text;
+    public IStorageItem? File { get; }=file;
+    public string Detail=>File?.Path??Text??"";
+}
 
 internal sealed class ShelfService
 {
     internal const int Capacity=256;
+    private CancellationTokenSource additions=new();
     public ObservableCollection<ShelfItem> Items { get; }=[];
     public static bool Accepts(DataPackageView data) => data.Contains(StandardDataFormats.StorageItems)
         || data.Contains(StandardDataFormats.Text) || data.Contains(StandardDataFormats.WebLink);
-    public async Task<int> Add(DataPackageView data)
+    public async Task<int> Add(DataPackageView data,CancellationToken cancellationToken=default)
     {
+        using var pending=CancellationTokenSource.CreateLinkedTokenSource(additions.Token,cancellationToken);
+        var token=pending.Token; token.ThrowIfCancellationRequested();
         var incoming=new List<ShelfItem>();
         if(data.Contains(StandardDataFormats.StorageItems))
-            foreach(var item in await data.GetStorageItemsAsync()) incoming.Add(new(item.Name,null,item));
+            foreach(var item in await data.GetStorageItemsAsync().AsTask(token)) incoming.Add(new(item.Name,null,item));
         else
         {
-            string text=data.Contains(StandardDataFormats.WebLink) ? (await data.GetWebLinkAsync()).AbsoluteUri
-                : data.Contains(StandardDataFormats.Text) ? await data.GetTextAsync() : "";
+            string text=data.Contains(StandardDataFormats.WebLink) ? (await data.GetWebLinkAsync().AsTask(token)).AbsoluteUri
+                : data.Contains(StandardDataFormats.Text) ? await data.GetTextAsync().AsTask(token) : "";
             if(text.Length>262144) throw new InvalidOperationException("That text is too large for the shelf (256 KiB limit).");
             if(text.Length>0) incoming.Add(new(text.Length>80?text[..80]+"…":text,text,null));
         }
+        token.ThrowIfCancellationRequested();
         if(incoming.Count==0) throw new InvalidOperationException("The shelf accepts files, folders, links and text.");
         if(Items.Count+incoming.Count>Capacity) throw new InvalidOperationException("The shelf holds up to 256 items. Remove some before adding more.");
         foreach(var item in incoming) Items.Add(item);
         return incoming.Count;
+    }
+    public void CancelPendingAdds()
+    {
+        var previous=additions; additions=new(); previous.Cancel(); previous.Dispose();
     }
     public static bool Available(ShelfItem item) => item.File is null || string.IsNullOrEmpty(item.File.Path)
         || System.IO.File.Exists(item.File.Path) || Directory.Exists(item.File.Path);
@@ -47,5 +60,5 @@ internal sealed class ShelfService
         else throw new InvalidOperationException("Drag files together or text together. Mixed file and text selections need separate transfers.");
     }
     public void CompleteDrag(IEnumerable<ShelfItem> dragged,DataPackageOperation result,bool remove)
-    { if(remove && result!=DataPackageOperation.None) foreach(var item in dragged.ToArray()) Items.Remove(item); }
+    { if(remove && result==DataPackageOperation.Copy) foreach(var item in dragged.ToArray()) Items.Remove(item); }
 }

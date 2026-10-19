@@ -1,9 +1,27 @@
 # Verification status
 
-Updated October 18, 2026. This workspace is on macOS ARM64. .NET SDK 10.0.401 is available. The installed Vorssaint app is 3.4.1 (101); its bundle metadata was inspected, and no app data was modified.
+Updated October 18, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
+
+## Physical x64 laptop continuation — October 18
+
+See [windows-laptop-checkpoint.md](windows-laptop-checkpoint.md) and [the machine-readable checkpoint](../validation/windows-laptop-checkpoint.json) for the full transfer checklist, environment, evidence paths and open work.
+
+- All 137 transferred source hashes and all 108 original compile-input hashes matched before editing. Local Git checkpoint `3475cc3` preserves the transfer; no remote was added.
+- Windows 11 Pro build 26200, Dell Pro 14 Plus PB14250, Intel Core Ultra 7 265U, Intel Graphics and 31.5 GiB reported RAM. .NET SDK 10.0.402 and Visual C++ x64 runtime 14.50.35719 were already installed. The display reports 1920×1200 and AppliedDPI 144 (150% registry setting); no scaling was changed.
+- The unchanged x64 source passed **130 core / 12 Windows backend checks**, including offline OCR. The first publish failed because a pre-existing Vela instance locked its DLLs; after the user exited it, the ordered build/check commands passed.
+- Continued snapshot `7a0378fb-773b-475e-b818-9a018478604d` passes **135 core / 16 Windows backend checks**, native XAML publishing, OCR publishing and all **112** manifest hashes. The final build reports no warnings or errors. New tests cover gesture sectors/cancellation, canceled shelf providers, late drag identity, isolated validation data/startup guards and read-only microphone enumeration.
+- ARM64 native XAML/OCR cross-publishing also passed from this x64 host without warnings/errors. Its core suite ran on x64; no ARM64 runtime/backend test was attempted. The original transfer ZIP passed a read-only 147-entry integrity check; the unused older 0.2.1 archive still matches its transfer hash. The external transfer SHA-256 sidecar is absent.
+- Read-only discovery found **one** active microphone endpoint, **zero** supported NVIDIA sensors and **zero** DDC displays. No microphone mute, monitor brightness, fan, voltage or clock write was performed. No audio was recorded.
+- Source now has radial centre-drag/release selection with a cancellation zone and capture-loss handling. Its core geometry passes; rendered mouse/touch/pen and accessibility behavior is **unverified**. Shelf imports now cancel on disable, lock, suspend, tool close and shutdown; backend cancellation passes, while the corresponding desktop transitions remain open.
+- A baseline panel accessibility tree exposed the existing 28 enabled tools. The unpinned flyout disappeared before automated interaction; the capture did not establish a valid rendered pass. A fresh isolated onboarding profile was then launched, but Computer Use reported a physical Escape stop before inspection. UI automation stopped immediately and the task-owned test instance was terminated. No new onboarding/tray/settings/gesture UI pass or normal-Exit pass is claimed.
+- Normal settings and the sign-in Run entry were unchanged. The five accepted shelf receiver files are byte-identical to the transferred baseline. WinUI 3/Mica and native-feature exclusions remain in place. The older 0.2.1 archive was not used or modified. No new package, installation, remote, workflow dispatch or public release was made.
+
+The command-wrapper manifest check initially failed because nested Windows PowerShell did not discover `Get-FileHash`; the direct PowerShell check worked. The command scripts now explicitly load their bundled Windows PowerShell utility module. Manifest-gated rebuilding then passed. The packaging command has the analogous module fix but was **not run**; no ZIP/CRC or install/update result is inferred.
+
+The separate disposable native clipboard-publication fixture was not run on this laptop because it replaces the current clipboard. Its VM result remains historical. Standard backend tests use isolated data packages. Exact Notepad output, outgoing drag/cancellation, cleaning pointer/scroll locks, IME/elevated editors, mixed DPI, contrast, theme switching and real hardware writes still require their stated tests. The larger unimplemented non-native residuals remain open in the feature audit.
 
 
-## Current checkpoint — October 18, 18:53
+## Original VM handoff checkpoint — October 18, 18:53
 
 Snapshot `3b791fb4-ff70-4ab1-a947-0a94388639dd` is the latest source and native build. Each architecture passed 130 core and 12 Windows backend checks, plus the separate native Unicode clipboard publication/restoration fixture. x64 was tested under ARM64 emulation. Guest source verification covers all 108 compile inputs. Host archive validation is still pending because the new ZIPs remain inside the VM; the older incoming archives must not be treated as this snapshot.
 
@@ -78,7 +96,7 @@ The ARM64 preview is installed in `%LOCALAPPDATA%\Programs\Vela` using `tools/in
 - [x] Run the full ARM64 test/publish workflow in Windows, including the actual XAML compiler.
 - [x] Validate the corrected publish resource file and successful desktop launch.
 - [x] Publish x64 too and smoke-test startup under ARM64 emulation.
-- [ ] Validate x64 on a physical x64 Windows PC.
+- [ ] Complete physical x64 UI/hardware validation. Native build and core/backend checks now pass on the Dell laptop; see the laptop checkpoint for the remaining rendered cases.
 - [x] Complete all four onboarding steps; close midway and resume at the saved step.
 - [ ] Independently instrument listener availability before onboarding completion (lifecycle is gated in source and covered by core runtime tests).
 - [x] Verify tray left-click, context menu, Ctrl+Alt+V, close-to-tray, pin/unpin and clean exit.

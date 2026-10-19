@@ -2,7 +2,7 @@
 
 A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
 
-Version **0.2.2 is in development**. The accepted taskbar shelf cue is unchanged: direct icon drops and two-way fades passed the user’s physical check. Current snapshot `3b791fb4` passes 130 core and 12 Windows backend checks per architecture in native VM builds, plus a separate Unicode clipboard publication/restoration fixture. Both the mixed-trigger snippet sequence and eight rapid consecutive expansions pass exact saved output while preserving original text/HTML clipboard formats. Packages remain in the VM pending collection and host archive validation; the last packaged release remains 0.2.1. Remaining shelf/cleaning cases, editor/IME compatibility, live dark-shell switching and physical hardware testing remain open. This unfinished port audits all 77 upstream feature IDs. See [verification notes](docs/verification.md) and the [focused comparison](docs/feedback-comparison.md).
+Version **0.2.2 is in development**. The October 18 source was verified and built on the physical x64 Dell laptop: the unchanged baseline passed 130 core and 12 Windows backend checks. Continued snapshot `7a0378fb` passes 135 core and 16 backend checks, with native XAML publishing and 112 verified build inputs. It adds radial centre-drag selection, shelf lifecycle fixes and isolated validation profiles. The accepted taskbar shelf receiver is unchanged. Rendered gesture, shelf, cleaning, accessibility and broader input checks remain open; Computer Use was stopped by a physical Escape event. The last packaged release remains 0.2.1. See the [laptop checkpoint](docs/windows-laptop-checkpoint.md), [verification notes](docs/verification.md) and [focused comparison](docs/feedback-comparison.md). This is an unfinished port, not a new release.
 
 - [Windows feature audit and exclusions](docs/windows-feature-audit.md)
 - [Machine-readable inventory](docs/feature-audit.json)
@@ -24,7 +24,7 @@ The app has one system tray icon, a compact Mica flyout, native Settings navigat
 - Snippet library with arbitrary triggers, immediate or Space/Tab/Return activation, and date/time/clipboard variables.
 - Clipboard auto-clear on delay, lock or suspend, copied-image PNG saving, and shortcut-driven plain-text paste with clipboard restoration.
 - Cleaning mode with optional mouse lock, a 60-second deadline and hold-Escape recovery.
-- Quick panel, command search and named launcher profiles; radial submenus with keyboard navigation and a small-window list layout.
+- Quick panel, command search and named launcher profiles; radial submenus with keyboard navigation, centre-drag selection and a small-window list layout. Gesture rendering remains unverified.
 - Open-window search with display filtering and pin/unpin; named custom window workspaces with restore and undo.
 - Session-only image pins from the clipboard or selected files, with resizable Mica windows and a topmost toggle.
 - Smooth wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, button shortcuts, duplicate click filtering, Caps Lock Super key, and per-app double-press close protection.
@@ -42,6 +42,8 @@ Use Windows 11 and the **.NET 10 SDK**. The NuGet packages pin Windows App SDK 2
 
 From PowerShell in a Windows checkout:
 
+Exit any Vela instance running from the output folder before rebuilding. The scripts refuse to overwrite a running preview.
+
 ```powershell
 # ARM64 / VMware Fusion on Apple Silicon
 ./tools/build.ps1 -Architecture arm64 -Run
@@ -55,6 +57,8 @@ After building, `tools\package.cmd arm64` (or `x64`) creates a portable ZIP and 
 To install a published build into `%LOCALAPPDATA%\Programs\Vela`, exit Vela and run `artifacts\Vela-arm64\Install.cmd` (or the x64 folder's Install.cmd). This adds Desktop/Start menu shortcuts and Windows Installed apps registration, and preserves an existing sign-in startup choice.
 
 The build also publishes an isolated x64 OCR worker and its pinned English model. OCR requires the Microsoft Visual C++ x64 runtime; ARM64 uses Windows x64 emulation for that worker. The executable and its required files are written to `artifacts/Vela-arm64` or `artifacts/Vela-x64`. Keep the whole publish folder together. Builds are unsigned. A successful publish is not a runtime test. GitHub Actions contains both architectures, but no workflow has been dispatched or verified from this workspace.
+
+For local UI validation, exit Vela and launch the executable with `--data-directory "C:\absolute\local\fixture-folder"`. This creates separate settings and startup diagnostics and prevents sign-in registration changes. Do not point it at `%LOCALAPPDATA%\Vela`. `--settings` opens General settings directly after completed onboarding. The app retains one active instance; exit a validation instance before launching normally. See the laptop checkpoint for evidence and limits.
 
 If PowerShell's script policy blocks `.ps1` files, run `tools\build.cmd arm64` (or `tools\build.cmd x64`) from Command Prompt. It runs the same tests and publish commands without changing the machine's script policy.
 

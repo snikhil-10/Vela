@@ -8,6 +8,10 @@
   </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="../../src/Vela.Core/Vela.Core.csproj"/>
+    <Compile Include="../../src/Vela.Windows/AppDataPaths.cs" Link="AppDataPaths.cs"/>
+    <Compile Include="../../src/Vela.Windows/StartupDiagnostics.cs" Link="StartupDiagnostics.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/StartupService.cs" Link="StartupService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/MicrophoneService.cs" Link="MicrophoneService.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/ClipboardSnapshot.cs" Link="ClipboardSnapshot.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/TextClipboardPublisher.cs" Link="TextClipboardPublisher.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/ShelfService.cs" Link="ShelfService.cs"/>

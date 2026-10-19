@@ -8,8 +8,11 @@ namespace Vela.Windows.UI;
 public sealed partial class ToolWindow
 {
     private List<ShelfItem> draggedShelf=[];
+    private CancellationTokenSource? shelfAdds;
     private void Shelf()
     {
+        shelfAdds=new();
+        Closed+=(_,_)=> { shelfAdds.Cancel(); shelfAdds.Dispose(); };
         Body.Children.Add(Ui.Text("Park files, folders, text and links here, then drag them into another app. Originals stay where they are; the shelf lasts for this Vela session.","VelaCaption"));
         string[] modes=["manual","taskbar","velaIcon","tray"];
         var target=new ComboBox { Header="Show a drop target over",ItemsSource=new[]{"Only this shelf window","The entire taskbar","Vela's taskbar icon","Vela's tray icon"},SelectedIndex=Array.IndexOf(modes,controller.Settings.ShelfDropTarget),HorizontalAlignment=HorizontalAlignment.Stretch };
@@ -37,15 +40,16 @@ public sealed partial class ToolWindow
             try
             {
                 if(draggedShelf.Count>0 || !controller.ShelfEnabled) { e.AcceptedOperation=DataPackageOperation.None; return; }
-                int count=await controller.ShelfData.Add(e.DataView); e.AcceptedOperation=DataPackageOperation.Copy;
+                int count=await controller.ShelfData.Add(e.DataView,shelfAdds.Token); e.AcceptedOperation=DataPackageOperation.Copy;
                 Message($"Added {count} {(count==1?"item":"items")}. Originals were kept.");
             }
+            catch(OperationCanceledException) { e.AcceptedOperation=DataPackageOperation.None; }
             catch(Exception ex) { e.AcceptedOperation=DataPackageOperation.None; Message(ex.Message,true); }
             finally { deferral.Complete(); }
         };
-        Body.Children.Add(AsyncButton("Add clipboard",async ()=>Message($"Added {await controller.ShelfData.Add(Clipboard.GetContent())} items.")));
+        Body.Children.Add(AsyncButton("Add clipboard",async ()=>Message($"Added {await controller.ShelfData.Add(Clipboard.GetContent(),shelfAdds.Token)} items.")));
         Body.Children.Add(Ui.Button("Copy selected",()=>
-        { Clipboard.SetContent(ShelfService.Package(list.SelectedItems.OfType<ShelfItem>().ToArray())); Message("Selection copied. Shelf entries and originals were kept."); }));
+        { ClipboardService.WritePackage(ShelfService.Package(list.SelectedItems.OfType<ShelfItem>().ToArray())); Message("Selection copied. Shelf entries and originals were kept."); }));
         Body.Children.Add(Ui.Button("Remove selected",()=>
         { foreach(var item in list.SelectedItems.OfType<ShelfItem>().ToArray()) controller.Shelf.Remove(item); }));
         Body.Children.Add(Ui.Text("Control-click or Shift-click to select several files. Drag files together or text together; use separate transfers for a mixed selection. A moved or missing original cannot be dragged out.","VelaCaption"));

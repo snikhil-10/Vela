@@ -44,6 +44,17 @@ try
     var folder=await StorageFolder.GetFolderFromPathAsync(root);
     var fixture=await StorageFile.GetFileFromPathAsync(Path.Combine(AppContext.BaseDirectory,"Fixtures","ocr-english.png"));
     var images=await folder.CreateFolderAsync("images");
+    await Check("Validation profiles isolate diagnostics, reject invalid paths and cannot change sign-in startup",()=>
+    { AppDataPathsChecks.Run(root); return Task.CompletedTask; });
+    await Check("Physical microphone enumeration reads mute state without recording or writes",()=>
+    {
+        var microphones=MicrophoneService.List();
+        Require(microphones.All(device=>!string.IsNullOrWhiteSpace(device.Name)),"An endpoint returned an empty name.");
+        Console.WriteLine($"INFO Read-only Core Audio probe: {microphones.Count} active capture endpoints. Mute writes and hot-plug were not tested.");
+        return Task.CompletedTask;
+    });
+    await Check("Shelf cancels delayed providers on disable or close and accepts a fresh session",ShelfChecks.Cancellation);
+    await Check("Shelf late drag completion preserves identical new entries and accepts only Copy",ShelfChecks.DragIdentity);
     await Check("Clipboard snapshots preserve formats and transfer intent and reject failed providers before editing",async ()=>
     {
         var data=new global::Windows.ApplicationModel.DataTransfer.DataPackage { RequestedOperation=global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move }; data.SetText("Mixed CASE ✓\r\nSecond line");

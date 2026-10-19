@@ -57,7 +57,7 @@ public sealed partial class ToolWindow : Window
         button.Click+=async (_,_)=> { if(controller.Quitting) return; if(waitOnExit) await controller.RunOperation(Perform); else await Perform(); };
         return button;
     }
-    internal void CancelWork()=>conversion?.Cancel();
+    internal void CancelWork() { conversion?.Cancel(); shelfAdds?.Cancel(); }
     private void Add(string title,string detail,UIElement? control=null)=>Body.Children.Add(Ui.Card(title,detail,control));
     private void Awake()
     {

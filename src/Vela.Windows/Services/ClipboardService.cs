@@ -63,6 +63,10 @@ internal sealed class ClipboardService(nint hwnd, WindowMessages messages, Func<
     public static void WriteText(string text)
     {
         var package=new DataPackage(); package.SetText(text);
+        WritePackage(package);
+    }
+    public static void WritePackage(DataPackage package)
+    {
         if(!Clipboard.SetContentWithOptions(package, new ClipboardContentOptions { IsAllowedInHistory=false, IsRoamable=false }))
             throw new InvalidOperationException("The clipboard is busy. Try copying again.");
         Clipboard.Flush();

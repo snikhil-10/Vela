@@ -7,7 +7,7 @@ internal static class StartupDiagnostics
     {
         try
         {
-            string directory=Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Vela");
+            string directory=AppDataPaths.DirectoryPath;
             Directory.CreateDirectory(directory);
             string path=Path.Combine(directory,"startup-error.log");
             if(File.Exists(path) && new FileInfo(path).Length>1_048_576) File.WriteAllText(path,"");

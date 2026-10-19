@@ -14,7 +14,8 @@ public sealed partial class OnboardingWindow : Window
     internal OnboardingWindow(AppController controller)
     {
         this.controller=controller; InitializeComponent(); WindowStyle.Configure(this,680,760);
-        step=controller.Settings.OnboardingStep; StartupToggle.IsOn=StartupService.Enabled; Render();
+        step=controller.Settings.OnboardingStep; StartupToggle.IsOn=StartupService.Enabled;
+        StartupToggle.IsEnabled=!AppDataPaths.IsValidationProfile; Render();
     }
     private void Render()
     {
@@ -63,7 +64,7 @@ public sealed partial class OnboardingWindow : Window
     {
         try
         {
-            if(step==2) StartupService.Enabled=StartupToggle.IsOn;
+            if(step==2 && !AppDataPaths.IsValidationProfile) StartupService.Enabled=StartupToggle.IsOn;
             if(step==3) { controller.CompleteOnboarding(); Close(); return; }
             step++; Persist(); Render();
         }

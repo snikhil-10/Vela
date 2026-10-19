@@ -6,6 +6,54 @@ internal static class LauncherChecks
     private static void Require(bool condition) { if (!condition) throw new Exception("Launcher assertion failed."); }
     public static IEnumerable<(string Name, Action Check)> All()
     {
+        yield return ("Radial gestures select every sector clockwise from the top for one through eight entries", () =>
+        {
+            for (int count = 1; count <= 8; count++)
+                for (int index = 0; index < count; index++)
+                {
+                    double angle = -Math.PI / 2 + index * Math.Tau / count;
+                    var gesture = new RadialGesture(); gesture.Begin(count);
+                    Require(gesture.End(Math.Cos(angle) * 150, Math.Sin(angle) * 150) == (index, false));
+                }
+        });
+        yield return ("Radial centre clicks and return-to-centre cancellation do not launch a sector", () =>
+        {
+            var gesture = new RadialGesture(); gesture.Begin(8);
+            Require(gesture.Move(0, -RadialGesture.DeadZone) == -1);
+            Require(gesture.End(0, 0) == (-1, true));
+            gesture.Begin(8); Require(gesture.Move(0, -150) == 0);
+            Require(gesture.End(0, 0) == (-1, false));
+        });
+        yield return ("Radial release uses its final sector and rejects outside or invalid coordinates", () =>
+        {
+            var gesture = new RadialGesture(); gesture.Begin(4); gesture.Move(0, -150);
+            Require(gesture.End(150, 0) == (1, false));
+            foreach (var point in new[] { (0d, -209d, true), (150d, 0d, false), (double.NaN, 0d, true), (double.PositiveInfinity, 0d, true) })
+            {
+                gesture.Begin(4); gesture.Move(0, -150);
+                Require(gesture.End(point.Item1, point.Item2, point.Item3) == (-1, false));
+            }
+        });
+        yield return ("Canceled radial capture cannot launch on a later release or leak into the next drag", () =>
+        {
+            var gesture = new RadialGesture(); gesture.Begin(8); gesture.Move(150, 0); gesture.Cancel();
+            Require(!gesture.Active && gesture.End(150, 0) == (-1, false));
+            gesture.Begin(8); Require(gesture.End(0, 0) == (-1, true));
+            gesture.Begin(0); Require(gesture.End(150, 0) == (-1, false));
+        });
+        yield return ("Radial sector boundaries select the adjacent item without swallowing the top wrap", () =>
+        {
+            var gesture = new RadialGesture();
+            foreach(int count in new[]{3,5,8})
+            {
+                double half = Math.PI / count;
+                foreach(var (angle, expected) in new[]{(-Math.PI/2+half-.001,0),(-Math.PI/2+half+.001,1),(-Math.PI/2-half-.001,count-1),(-Math.PI/2-half+.001,0)})
+                {
+                    gesture.Begin(count);
+                    Require(gesture.End(Math.Cos(angle)*150,Math.Sin(angle)*150).Index == expected);
+                }
+            }
+        });
         yield return ("Legacy flat launchers remain runnable after a settings round trip", () =>
         {
             var settings = SettingsStore.Deserialize("""{"Launchers":[{"Name":"Old app","Target":"https://example.com"}]}""");

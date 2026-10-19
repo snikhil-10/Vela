@@ -250,7 +250,7 @@
       "decision": "retain",
       "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
       "portScope": "Port the enhancement, with per-app exclusions for hooks.",
-      "status": "0.2.2 source accepts arbitrary triggers and immediate/delimiter activation. Initial desktop testing exposed a Notepad injection defect. Clipboard-preserving delivery and buffered input replace it; final Windows validation is pending. See feedback-comparison.md and verification.md.",
+      "status": "Implemented arbitrary triggers and immediate/delimiter activation with clipboard-preserving buffered delivery. Exact mixed and rapid Notepad output passed at VM snapshot 3b791fb4. The physical x64 source build/backend checks pass; laptop editor, IME and elevated-app tests remain open.",
       "sources": [
         "upstream",
         "mouse",
@@ -327,7 +327,7 @@
       "decision": "retain",
       "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
       "portScope": "Port to native compact windows.",
-      "status": "0.2.2 source adds configurable taskbar/tray drop targets, multi-file selection and remove-after-success. Data-package backend checks passed in an earlier native revision; actual taskbar/tray hit testing and drag-out still need rendered validation.",
+      "status": "Implemented taskbar/tray targets, multi-file selection and remove-after-success. The accepted five-file taskbar receiver is unchanged. Physical x64 backend checks now cover canceled providers and late drag identity; outgoing drag and rendered lifecycle checks remain open.",
       "sources": [
         "upstream"
       ]
@@ -388,7 +388,7 @@
       "decision": "split",
       "nativeEquivalent": "Windows provides recording-device selection/levels and call-app-specific mic mute shortcuts.",
       "portScope": "Retain mute/unmute for all active capture endpoints together; omit duplicate level/device settings.",
-      "status": "Implemented on demand using Core Audio; Windows device check pending.",
+      "status": "Implemented on demand using Core Audio. Read-only enumeration found one capture endpoint on the physical Dell x64 laptop. Mute writes, device changes and broader device validation remain open.",
       "sources": [
         "audio",
         "shortcuts"
@@ -577,7 +577,7 @@
       "decision": "retain",
       "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
       "portScope": "Port to native compact windows.",
-      "status": "Implemented: up to eight items per menu, three levels and 64 items per profile, with up to 24 named profiles plus Default; command search finds nested leaves. Includes group editing/reordering, keyboard navigation and a small-viewport list fallback. Gesture extras remain deferred.",
+      "status": "Implemented: eight siblings, three levels, 64 items per profile and 24 named profiles plus Default; nested search, editing, keyboard navigation and small-window list fallback. Centre-drag selection and cancellation now pass five core checks and native XAML compilation. Rendered gesture, accessibility and additional gesture workflows remain open.",
       "sources": [
         "upstream"
       ]

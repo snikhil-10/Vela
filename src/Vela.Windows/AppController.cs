@@ -9,7 +9,7 @@ namespace Vela.Windows;
 
 internal sealed class AppController : IDisposable
 {
-    private readonly SettingsStore store = new(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData),"Vela","settings.json"));
+    private readonly SettingsStore store = new(Path.Combine(AppDataPaths.DirectoryPath,"settings.json"));
     private readonly FeatureRuntime runtime=new();
     private readonly List<Window> auxiliary=[];
     private readonly HashSet<Task> operations=[];
@@ -76,7 +76,7 @@ internal sealed class AppController : IDisposable
         {
             if(msg==0x7E) Dimmer.Stop();
             if(msg==Native.WM_WTSSESSION_CHANGE && wp==7 || msg==Native.WM_POWERBROADCAST && wp==4)
-            { clipboard.CancelPaste(); Input.SuspendInput(); thermalAlerts?.ResetObservations(); resourceAlerts?.ResetObservations(); }
+            { ShelfData.CancelPendingAdds(); clipboard.CancelPaste(); Input.SuspendInput(); thermalAlerts?.ResetObservations(); resourceAlerts?.ResetObservations(); }
             if(!Quitting && (msg==Native.WM_WTSSESSION_CHANGE && wp==8 || msg==Native.WM_POWERBROADCAST && wp is 7 or 18))
             { thermalAlerts?.ResetObservations(); resourceAlerts?.ResetObservations(); Input.ResumeInput(); }
         };
@@ -98,6 +98,7 @@ internal sealed class AppController : IDisposable
     }
     private void Apply()
     {
+        if(!Settings.OnboardingComplete || !Settings.EnabledFeatures.Contains("shelf")) ShelfData.CancelPendingAdds();
         runtime.Apply(Settings.OnboardingComplete?Settings.EnabledFeatures:[]);
         shortcuts.Update(Settings.OnboardingComplete);
         if(!Settings.EnabledFeatures.Contains("keepAwake")) Awake.Release();
@@ -208,6 +209,7 @@ internal sealed class AppController : IDisposable
     }
     internal async Task FinishOperations()
     {
+        ShelfData.CancelPendingAdds();
         Quitting=true; clipboard.CancelPaste(); Input.SuspendInput();
         foreach(var window in auxiliary.ToArray())
         {
@@ -224,6 +226,7 @@ internal sealed class AppController : IDisposable
     { int i=Settings.FeatureOrder.IndexOf(f.Id); return i<0?1000+FeatureCatalog.All.ToList().IndexOf(f):i; });
     public void Dispose()
     {
+        ShelfData.CancelPendingAdds();
         Quitting=true; runtime.Dispose(); Workspaces.Dispose(); Input.Dispose(); clipboard.Dispose(); Dimmer.Dispose(); shortcuts.Dispose(); tray.Dispose(); messages.Dispose();
         foreach(var window in auxiliary.ToArray()) window.Close(); Panel.Close();
     }

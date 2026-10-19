@@ -2,6 +2,8 @@
 
 Refreshed October 18, 2026. This document carries the implementation context to a new Windows Codex session. It is not the full conversation history.
 
+**Laptop continuation:** the source now has a local Git baseline and development snapshot `7a0378fb` on the physical Dell x64 laptop. Native publishing passes 135 core and 16 backend checks. Read [windows-laptop-checkpoint.md](windows-laptop-checkpoint.md) first for the completed transfer steps, source changes and UI limits. Earlier Mac/VM environment details in this document remain historical. No release was made and not every port/checklist item is complete. The user requested no questions or prompts until they say otherwise.
+
 ## Product and requirements
 
 Vela is an independent Windows port of [Vorssaint](https://github.com/vorssaint/vorssaint-utils). The working name follows upstream's trademark policy; keep LICENSE and NOTICE.md. Source is GPL-3.0-or-later.

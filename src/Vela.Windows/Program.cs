@@ -15,6 +15,7 @@ internal static class Program
     }
     private static void Run(string[] args)
     {
+        AppDataPaths.Configure(args);
         WinRT.ComWrappersSupport.InitializeComWrappers();
         using var mutex = new Mutex(true, "Local\\Vela.Utilities.Desktop.Instance", out bool created);
         using var activation = new EventWaitHandle(false, EventResetMode.AutoReset, "Local\\Vela.Utilities.Desktop.Activate");
@@ -22,6 +23,8 @@ internal static class Program
         using var identityView = identity.CreateViewAccessor();
         if (!created)
         {
+            if (AppDataPaths.IsValidationProfile)
+                throw new InvalidOperationException("Exit Vela before starting a separate validation profile.");
             // The process launched by Explorer can transfer its foreground activation
             // permission specifically to the resident process before signaling it.
             int processId=identityView.ReadInt32(0);
@@ -33,7 +36,7 @@ internal static class Program
         {
             var queue = DispatcherQueue.GetForCurrentThread();
             SynchronizationContext.SetSynchronizationContext(new DispatcherQueueSynchronizationContext(queue));
-            var app = new App(args.Contains("--startup"));
+            var app = new App(args.Contains("--startup"), args.Contains("--settings"));
             app.ActivationWait = ThreadPool.RegisterWaitForSingleObject(activation,
                 (_, _) => queue.TryEnqueue(() => app.Controller?.ShowPanel()), null, Timeout.Infinite, false);
         });

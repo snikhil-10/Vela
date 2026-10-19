@@ -10,11 +10,13 @@ exit /b 2
 set "velaPlatform=%velaArch%"
 if /i "%velaArch%"=="arm64" set "velaPlatform=ARM64"
 pushd "%~dp0.." || exit /b 1
+powershell -NoProfile -Command "$ErrorActionPreference='Stop'; $velaOutput=[IO.Path]::GetFullPath('artifacts\Vela-%velaArch%\Vela.Windows.exe'); if(Get-Process -Name Vela.Windows -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $velaOutput }){throw 'Exit Vela through Settings / General / Exit before rebuilding this output folder. No files were changed.'}"
+if errorlevel 1 goto failed
 if exist "artifacts\Vela-%velaArch%\compiled-source-manifest.json" (
     del "artifacts\Vela-%velaArch%\compiled-source-manifest.json" || goto failed
 )
 if exist build-source-manifest.json (
-    powershell -NoProfile -Command "$ErrorActionPreference='Stop'; $m=Get-Content build-source-manifest.json -Raw|ConvertFrom-Json; foreach($f in $m.files.PSObject.Properties){if((Get-FileHash $f.Name -Algorithm SHA256).Hash.ToLowerInvariant() -ne $f.Value){throw ('Source mismatch '+$f.Name)}}; Write-Host ('Verified build snapshot '+$m.snapshotId)"
+    powershell -NoProfile -Command "$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1') -Force; $m=Get-Content build-source-manifest.json -Raw|ConvertFrom-Json; foreach($f in $m.files.PSObject.Properties){if((Get-FileHash $f.Name -Algorithm SHA256).Hash.ToLowerInvariant() -ne $f.Value){throw ('Source mismatch '+$f.Name)}}; Write-Host ('Verified build snapshot '+$m.snapshotId)"
     if errorlevel 1 goto failed
 )
 dotnet run --project tests/Vela.Core.Tests -c Release

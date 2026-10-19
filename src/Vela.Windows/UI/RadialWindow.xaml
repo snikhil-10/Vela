@@ -30,7 +30,7 @@
         <StackPanel Grid.Row="2" Spacing="4">
             <TextBlock x:Name="Error" Visibility="Collapsed" Style="{StaticResource BodyTextBlockStyle}" TextWrapping="Wrap" AutomationProperties.LiveSetting="Polite"/>
             <TextBlock Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="Wrap"
-                Text="1–8 choose · ↑/↓ move · Enter open&#xA;Backspace back · Esc close"/>
+                Text="Drag from the centre, release to open · Return to cancel&#xA;1–8 choose · ↑/↓ move · Enter open&#xA;Backspace back · Esc close"/>
         </StackPanel>
     </Grid>
 </Window>

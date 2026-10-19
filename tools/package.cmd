@@ -12,10 +12,10 @@ if not exist "artifacts\Vela-%velaArch%\Vela.Windows.exe" goto missing
 if not exist "artifacts\Vela-%velaArch%\Vela.Windows.dll" goto missing
 if not exist "artifacts\Vela-%velaArch%\Vela.Windows.pri" goto missing
 if exist build-source-manifest.json (
-    powershell -NoProfile -Command "$ErrorActionPreference='Stop'; $expected=(Get-FileHash 'build-source-manifest.json' -Algorithm SHA256).Hash; $actual=(Get-FileHash 'artifacts\Vela-%velaArch%\compiled-source-manifest.json' -Algorithm SHA256).Hash; if($actual -ne $expected){throw 'Published output belongs to another source snapshot. Rebuild before packaging.'}; $m=Get-Content build-source-manifest.json -Raw|ConvertFrom-Json; foreach($f in $m.files.PSObject.Properties){if((Get-FileHash $f.Name -Algorithm SHA256).Hash.ToLowerInvariant() -ne $f.Value){throw ('Source changed since build snapshot: '+$f.Name)}}"
+    powershell -NoProfile -Command "$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1') -Force; $expected=(Get-FileHash 'build-source-manifest.json' -Algorithm SHA256).Hash; $actual=(Get-FileHash 'artifacts\Vela-%velaArch%\compiled-source-manifest.json' -Algorithm SHA256).Hash; if($actual -ne $expected){throw 'Published output belongs to another source snapshot. Rebuild before packaging.'}; $m=Get-Content build-source-manifest.json -Raw|ConvertFrom-Json; foreach($f in $m.files.PSObject.Properties){if((Get-FileHash $f.Name -Algorithm SHA256).Hash.ToLowerInvariant() -ne $f.Value){throw ('Source changed since build snapshot: '+$f.Name)}}"
     if errorlevel 1 goto failed
 )
-powershell -NoProfile -Command "$ErrorActionPreference='Stop'; Compress-Archive -Path 'artifacts\Vela-%velaArch%' -DestinationPath 'artifacts\Vela-%velaArch%.zip' -Force; Get-FileHash 'artifacts\Vela-%velaArch%.zip' -Algorithm SHA256 | Format-List"
+powershell -NoProfile -Command "$ErrorActionPreference='Stop'; Import-Module (Join-Path $PSHOME 'Modules\Microsoft.PowerShell.Utility\Microsoft.PowerShell.Utility.psd1') -Force; Import-Module (Join-Path $PSHOME 'Modules\Microsoft.PowerShell.Archive\Microsoft.PowerShell.Archive.psd1') -Force; Compress-Archive -Path 'artifacts\Vela-%velaArch%' -DestinationPath 'artifacts\Vela-%velaArch%.zip' -Force; Get-FileHash 'artifacts\Vela-%velaArch%.zip' -Algorithm SHA256 | Format-List"
 set "velaResult=%ERRORLEVEL%"
 popd
 exit /b %velaResult%

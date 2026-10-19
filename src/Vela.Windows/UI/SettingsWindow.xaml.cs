@@ -33,8 +33,10 @@ public sealed partial class SettingsWindow : Window
         var theme=new ComboBox { ItemsSource=new[]{"System","Light","Dark"},SelectedItem=controller.Settings.Theme,Width=140 };
         theme.SelectionChanged+=(_,_)=> { controller.Settings.Theme=(string)theme.SelectedItem; controller.Save(); };
         Add("Appearance","Follow Windows or choose your preferred appearance.",theme);
-        Add("Start at sign-in","Open quietly in the system tray when you sign in.",Ui.Toggle(StartupService.Enabled,on=>
-        { try { StartupService.Enabled=on; } catch(Exception ex) { Message(ex.Message,true); } }));
+        var startup=Ui.Toggle(StartupService.Enabled,on=>
+        { try { StartupService.Enabled=on; } catch(Exception ex) { Message(ex.Message,true); } });
+        startup.IsEnabled=!AppDataPaths.IsValidationProfile;
+        Add("Start at sign-in",AppDataPaths.IsValidationProfile ? "Validation profiles do not change sign-in startup." : "Open quietly in the system tray when you sign in.",startup);
         Add("Compact panel","Use a shorter panel with a scrollable tool grid.",Ui.Toggle(controller.Settings.CompactLayout,on=> { controller.Settings.CompactLayout=on; controller.Save(false); }));
         Add("Keep panel open","Keep your tools visible when you click another window.",Ui.Toggle(controller.Settings.PinFlyout,on=> { controller.Settings.PinFlyout=on; controller.Save(false); }));
         Add("Make it yours","Features can be added and removed at any time.",Ui.Button("Choose features",()=>Navigate("Features")));

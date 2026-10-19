@@ -1,0 +1,145 @@
+{
+  "date": "2026-10-18",
+  "recordedAt": "2026-10-18T23:28:08.5943267-07:00",
+  "sourceSnapshot": "7a0378fb-773b-475e-b818-9a018478604d",
+  "parentSnapshot": "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+  "baselineGitCommit": "3475cc3",
+  "previewVersion": "0.2.2-development",
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "transfer": {
+    "initialSourceHashesMatched": 137,
+    "originalCompileInputsMatched": 108,
+    "originalZipIntegrity": "7-Zip tested all 147 entries; exit 0",
+    "externalSha256SidecarPresent": false,
+    "older021ArchiveHashMatches": true,
+    "olderBinaryExecuted": false
+  },
+  "baseline": {
+    "buildX64": "passed after user exited running preview",
+    "corePassed": 130,
+    "windowsBackendPassed": 12,
+    "failed": 0,
+    "earlierBuildFailure": "DLLs locked by pre-existing Vela instance",
+    "desktop": "Panel accessibility tree observed with 28 enabled tools; no complete rendered interaction pass"
+  },
+  "continued": {
+    "compileInputs": 112,
+    "manifestMismatches": 0,
+    "x64Build": "passed; native XAML and isolated x64 OCR publish",
+    "x64Warnings": 0,
+    "x64Errors": 0,
+    "corePassed": 135,
+    "windowsBackendPassed": 16,
+    "failed": 0,
+    "arm64CrossBuild": "passed from physical x64 host; native XAML and x64 OCR publish",
+    "arm64RuntimeTested": false,
+    "arm64CoreExecution": "Core checks ran on the x64 build host",
+    "arm64Warnings": 0,
+    "arm64Errors": 0,
+    "nativeClipboardPublicationFixtureRun": false,
+    "physicalMicrophoneEndpointsRead": 1,
+    "nvidiaSensorCount": 0,
+    "ddcDisplayCount": 0,
+    "hardwareWritesTested": false
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "missingRequiredFiles": [],
+      "publishedManifestMatches": true
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "missingRequiredFiles": [],
+      "publishedManifestMatches": true
+    }
+  ],
+  "preservation": {
+    "normalSettingsByteIdentical": true,
+    "signInEntryUnchanged": true,
+    "nativeAuditDecisionsUnchanged": true,
+    "acceptedCueFiles": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "unchanged": true
+      }
+    ],
+    "micaConfigurationUnchanged": true,
+    "runtimeCatalogUnchanged": true,
+    "privateBackupIgnored": true
+  },
+  "ui": {
+    "status": "incomplete",
+    "stoppedBecause": "Computer Use reported physical Escape stop; no further UI automation",
+    "isolatedOnboarding": "launched with no enabled tools; not inspected",
+    "taskOwnedTestInstancesTerminated": true,
+    "runningVelaProcesses": 0
+  },
+  "openChecks": [
+    "Rendered onboarding/resume/listener gate, tray/settings/themes/accessibility and normal exit on this laptop",
+    "Radial pointer capture, centre click, submenus, cancellation and keyboard/automation interaction",
+    "Actual outgoing shelf multi-file drag, cancellation, remove-after-drop, missing originals and all target modes",
+    "Rendered shelf enable/disable/session/close and clipboard-in-flight shutdown",
+    "Notepad exact output, broader editors, IME, password/elevated destinations and clipboard ownership cases",
+    "Mouse pointer/scroll lock, input compatibility, cleaning timeout/Escape/close/disable",
+    "DPI/text scaling/high contrast, mixed monitors, dimming and wake/power transitions",
+    "Physical microphone writes/hot-plug and supported DDC/GPU/desktop hardware",
+    "Original VM archive/log collection and archive CRC/PE/manifest checks",
+    "Other unimplemented non-native residuals in the audit"
+  ],
+  "newReleaseAssembled": false,
+  "newInstallationPerformed": false,
+  "published": false,
+  "remoteConfigured": false,
+  "evidence": [
+    "artifacts/laptop-validation/baseline-build.log",
+    "artifacts/laptop-validation/baseline-build-after-exit.log",
+    "artifacts/laptop-validation/baseline-windows-checks.log",
+    "artifacts/laptop-validation/manifest-build.log",
+    "artifacts/laptop-validation/manifest-build-fixed.log",
+    "artifacts/laptop-validation/manifest-windows-checks.log",
+    "artifacts/laptop-validation/arm64-cross-build.log",
+    "artifacts/laptop-validation/transfer-archive-check.log"
+  ],
+  "details": "../docs/windows-laptop-checkpoint.md"
+}

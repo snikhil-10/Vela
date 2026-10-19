@@ -9,6 +9,10 @@ $platform = if ($Architecture -eq 'arm64') { 'ARM64' } else { 'x64' }
 $output = Join-Path $repo "artifacts/Vela-$Architecture"
 Push-Location $repo
 try {
+    $executable = Join-Path $output 'Vela.Windows.exe'
+    if (Get-Process -Name Vela.Windows -ErrorAction SilentlyContinue | Where-Object { $_.Path -eq $executable }) {
+        throw 'Exit Vela through Settings / General / Exit before rebuilding this output folder. No files were changed.'
+    }
     $sourceManifest = Join-Path $repo 'build-source-manifest.json'
     $publishedManifest = Join-Path $output 'compiled-source-manifest.json'
     if (Test-Path $publishedManifest) { Remove-Item $publishedManifest }
