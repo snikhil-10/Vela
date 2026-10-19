@@ -47,6 +47,7 @@ public sealed partial class ToolWindow : Window
             case "windowSearch": WindowSearch(); break;
             case "savedLayouts": SavedLayouts(); break;
             case "internetSpeed": InternetSpeed(); break;
+            case "developerFeeds": DeveloperFeedReader(); break;
             case "imagePins": PinImages(); break;
         }
         Closed+=(_,_)=> { conversion?.Cancel(); if(featureId=="cleaningMode") { controller.Input.CleaningChanged-=CleaningStatus; controller.Input.EndCleaning(); } };

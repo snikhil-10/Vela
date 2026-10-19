@@ -1,0 +1,183 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T11:47:04.4011433-07:00",
+  "sourceSnapshot": "e509026e-c631-411e-aa02-5a4827387f05",
+  "parentSnapshot": "b627a158-faf3-4be6-8a31-2cdc4f430db6",
+  "parentGitCheckpoint": "a8da438",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 123,
+  "manifestMismatches": 0,
+  "implementedToolCount": 31,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 173,
+    "newCoreChecks": 16,
+    "windowsBackendPassed": 18,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "87328adfa64ffa095eac1cbb9093e0e3eea41a85aad8621e7b4509b529a2e327",
+      "appDllSha256": "e7e3fea166a321951da40acc2bfe016973869b5d625bee30bb837f2ceaaf1cf3",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "7bd5957eb293b730328a3c70fc81b56c07507b2b0dfea1fd51b744ab28297930",
+      "appDllSha256": "307024e9b65790bad722f6579d7d7d2a5cb129afa0054a842a7054199d71241f",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "feedBounds": {
+    "configuredSources": 16,
+    "simultaneousSources": 2,
+    "maximumResponseBytes": 1048576,
+    "sourceDeadlineSeconds": 20,
+    "redirectHops": 3,
+    "entriesPerSource": 100,
+    "combinedEntries": 200,
+    "maximumXmlDepth": 64,
+    "rss": "2.0",
+    "atom": "1.0",
+    "backgroundRequests": false,
+    "automaticUpdates": false
+  },
+  "rendered": {
+    "source": "e509026e-c631-411e-aa02-5a4827387f05",
+    "profile": "fresh isolated validation directory",
+    "fixture": "generated RSS/Atom on 127.0.0.1 only",
+    "emptyRefreshValidation": "passed with zero requests",
+    "invalidFileScheme": "rejected at Save with zero requests",
+    "saveWithoutFetch": "passed",
+    "rssRefresh": "two headlines, one source",
+    "rssAtomFailure": "three ordered headlines; 2/3 feeds; named HTTP 503 error",
+    "filterAndSelect": "one matching row, explicit article URL; no request on selection",
+    "sourceEdit": "updated existing source without duplicate or fetch",
+    "cancel": "active delayed response canceled; controls restored and previous headlines kept",
+    "actualDeadline": "slow response timed out; named timeout and HTTP 503 errors; successful Atom headline retained",
+    "closeCancellation": "active delayed response canceled; tool closed; resident panel reactivated",
+    "exit": "General Exit; zero Vela processes",
+    "scalingChanged": false,
+    "articleOpened": false,
+    "removeFeedUiTested": false,
+    "externalDeveloperFeedsTested": false,
+    "localRequests": 13,
+    "articleRequests": 0,
+    "fixtureServerStopped": true
+  },
+  "preservation": {
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalSettingsUnchanged": true,
+    "startupUnchanged": true,
+    "acceptedCueFilesUnchanged": 5,
+    "micaUnchanged": true,
+    "auditDecisionsUnchanged": 77,
+    "nativeUpdateExclusionsPreserved": true,
+    "noUserClipboardChanges": true,
+    "noHardwareWrites": true,
+    "noOsSettingChanges": true,
+    "noVelaProcessLeft": true
+  },
+  "limits": [
+    "External developer endpoints/authentication and broader feed compatibility untested",
+    "Article browser launch and feed removal UI untested",
+    "RSS 1.0/RDF and JSON Feed unsupported",
+    "Installed-version matching, notifications and installers absent",
+    "Narrator/high contrast, mixed DPI and large real-world source collections untested",
+    "Previous picker, outgoing-drag, editor/IME, input and hardware limits remain"
+  ],
+  "exploratoryFailures": [
+    "Initial core: 169 passed, two failure-handling tests failed; fixed before final tests",
+    "Initial x64 candidate f24325b1: unsupported StackPanel.IsEnabled; corrected in final e509026e"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/build-x64-fixed.log",
+      "sha256": "82706651e2c1295dcdaa85c54d929bfe9ba5393a92530fa35154b00b9c82dc47"
+    },
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/build-arm64.log",
+      "sha256": "2fec9abc8595b4826a7041eeb225ff27844a69f04c5a16c52dda4bfc5a3ace1b"
+    },
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/windows-backend.log",
+      "sha256": "4483c94866dfc2e11e6c3a5b093fe0d66c6ad9317c3e7fa1737245986e7e00f8"
+    },
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/core-final.log",
+      "sha256": "737982471b8e05b451e709f1181273bb68a7473acb74818a08b78ec9941b2036"
+    },
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/ui.log",
+      "sha256": "85e7d69dd97b3883a828ad771397ee1a7336c7f1f9d274c726d10f11d9e12f5c"
+    },
+    {
+      "path": "artifacts/developer-feeds-2026-10-19/local-http-requests.json",
+      "sha256": "68869aacfae48737bb3c3357b3accb6dce9b4b92d98f3ebe3b4a264875f17b7c"
+    }
+  ],
+  "evidenceDetails": "../docs/windows-developer-feeds-checkpoint.md",
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteCreated": false,
+  "finishedPort": false
+}

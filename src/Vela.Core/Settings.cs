@@ -43,11 +43,13 @@ public sealed class AppSettings
     public List<LauncherProfile> LauncherProfiles { get; set; } = [];
     public string ActiveLauncherProfile { get; set; } = "Default";
     public List<WindowLayout> WindowLayouts { get; set; } = [];
+    public List<DeveloperFeed> DeveloperFeeds { get; set; } = [];
 
     public void Normalize()
     {
         EnabledFeatures = (EnabledFeatures ?? []).Where(FeatureCatalog.Contains).ToHashSet();
         FeatureOrder = (FeatureOrder ?? []).Where(FeatureCatalog.Contains).Distinct().ToList();
+        DeveloperFeeds = DeveloperFeed.Normalize(DeveloperFeeds);
         Theme = Theme is "Light" or "Dark" ? Theme : "System";
         ShelfDropTarget = ShelfDropTarget is "taskbar" or "velaIcon" or "tray" ? ShelfDropTarget : "manual";
         OnboardingStep = Math.Clamp(OnboardingStep, 0, 3);

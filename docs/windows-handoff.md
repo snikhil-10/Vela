@@ -2,7 +2,7 @@
 
 Refreshed October 18, 2026. This document carries the implementation context to a new Windows Codex session. It is not the full conversation history.
 
-**Current continuation — October 19:** resumed Computer Use is authorized, but the user is now away for a long time and cannot perform manual steps. Continue independently without further prompts. Snapshot `b627a158` passes 157 core and 18 x64 backend checks plus native x64 and ARM64 cross-publishing. Read [the MP4 checkpoint](windows-video-budget-checkpoint.md) and [the command search checkpoint](windows-command-search-checkpoint.md) first, then [the earlier October 19 UI checkpoint](windows-ui-checkpoint-2026-10-19.md) and [the October 18 transfer checkpoint](windows-laptop-checkpoint.md). Onboarding/settings/radial checks have progressed; JPEG quality and byte limits are fixed/implemented. Command search now supports multi-word/phrase/path matching, ranked results and a verified keyboard viewport fix. MP4 per-file size limits, silent-video handling and encoder cancellation pass focused native tests; picker-based conversion stays unverified. Remaining UI and feature work stays open. Preserve normal settings and the accepted five-file cue; do not publish anything. Earlier Mac/VM details remain historical.
+**Current continuation — October 19:** resumed Computer Use is authorized, but the user is now away for a long time and cannot perform manual steps. Continue independently without further prompts. Snapshot `e509026e` passes 173 core and 18 x64 backend checks plus native x64 and ARM64 cross-publishing. Read [the developer-feed checkpoint](windows-developer-feeds-checkpoint.md), [the MP4 checkpoint](windows-video-budget-checkpoint.md) and [the command search checkpoint](windows-command-search-checkpoint.md) first, then [the earlier October 19 UI checkpoint](windows-ui-checkpoint-2026-10-19.md) and [the October 18 transfer checkpoint](windows-laptop-checkpoint.md). Onboarding/settings/radial checks have progressed; JPEG quality and byte limits are fixed/implemented. Command search now supports multi-word/phrase/path matching, ranked results and a verified keyboard viewport fix. MP4 per-file size limits, silent-video handling and encoder cancellation pass focused native tests; picker-based conversion stays unverified. Remaining UI and feature work stays open. Preserve normal settings and the accepted five-file cue; do not publish anything. Earlier Mac/VM details remain historical.
 
 ## Product and requirements
 
@@ -25,13 +25,14 @@ The user wants the complete useful non-native port, not only a UI prototype:
 
 ## Current implementation
 
-Version **0.2.2 is in development**. The last packaged release is 0.2.1. Thirty tools have implementations. The latest source passes the focused Windows checks below; broader validation remains open:
+Version **0.2.2 is in development**. The last packaged release is 0.2.1. Thirty-one tools have implementations. The latest source passes the focused Windows checks below; broader validation remains open:
 
 - Timed/rule-based keep-awake; link cleanup; session file/text/link shelf with configurable taskbar/tray targets; arbitrary snippet triggers with immediate/delimiter timing.
 - Clipboard auto-clear; save copied images; plain-text paste with clipboard restoration; cleaning with optional mouse lock and timed/Escape recovery.
 - Quick panel; command bar; nested radial launchers with keyboard navigation and a small-window list fallback; named launcher profiles; open-window search/pinning; saved custom window workspaces with restore and undo.
 - Session-only image pins; smooth/horizontal/inverted wheel input; mouse button shortcuts; duplicate-click filtering; Caps Lock Super key; double-press close protection.
 - Extra software dimming; external-monitor DDC/CI brightness; sustained resource alerts; NVIDIA temperature/power readings and thermal alerts; all-microphone mute.
+- On-demand user-configured RSS/Atom developer release feeds with local search, request bounds and cancellation; Windows package updates remain excluded.
 - Image conversion/resize/JPEG quality/text watermarks/offline English OCR; MP4/M4A/trimmed animated-GIF batches; explicit messaging-download review; on-demand bounded internet speed tests.
 
 The catalog rejects native and deferred features rather than exposing inert toggles. Closing the panel hides it; Exit releases resident services. Preferences live in %LOCALAPPDATA%\Vela\settings.json. Sign-in startup is optional. Review actual source and verification notes before extending behavior.

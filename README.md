@@ -2,7 +2,7 @@
 
 A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
 
-Version **0.2.2 is in development**. Current source `b627a158` passes **157 core and 18 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. MP4 conversion now offers per-file size limits with actual byte enforcement, bounded retries and verified cancellation cleanup. Ranked multi-word/phrase/path command search and its keyboard viewport fix are preserved. Earlier JPEG size-limit/quality fixes and focused onboarding/settings/radial/cleaning evidence are preserved. The full UI, input and hardware matrix remains open. The accepted taskbar receiver and normal settings are preserved. The last packaged release remains 0.2.1. See the [MP4 checkpoint](docs/windows-video-budget-checkpoint.md), [command search checkpoint](docs/windows-command-search-checkpoint.md), [earlier October 19 UI checkpoint](docs/windows-ui-checkpoint-2026-10-19.md), [transfer checkpoint](docs/windows-laptop-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
+Version **0.2.2 is in development**. Current source `e509026e` passes **173 core and 18 Windows backend checks** on the physical x64 Dell, plus x64 native XAML/OCR publishing and ARM64 cross-publishing. The optional Developer feeds tool now reads user-configured RSS/Atom release headlines on demand, with bounded requests, named failures and verified cancellation. MP4/JPEG size limits, ranked command search and prior focused UI evidence are preserved. The full UI, input and hardware matrix remains open. Normal settings and the accepted taskbar cue remain intact. The last packaged release remains 0.2.1. See the [developer-feed checkpoint](docs/windows-developer-feeds-checkpoint.md), [MP4 checkpoint](docs/windows-video-budget-checkpoint.md), [command search checkpoint](docs/windows-command-search-checkpoint.md) and [verification notes](docs/verification.md). This is an unfinished port, not a new release.
 
 - [Windows feature audit and exclusions](docs/windows-feature-audit.md)
 - [Machine-readable inventory](docs/feature-audit.json)
@@ -31,10 +31,11 @@ The app has one system tray icon, a compact Mica flyout, native Settings navigat
 - Per-display software dimming, on-demand external-monitor DDC/CI brightness, sustained resource alerts and supported NVIDIA temperature/power readings with thermal alerts.
 - All-microphone mute/unmute.
 - Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion with optional per-file size limits, M4A audio extraction and trimmed animated GIF batches through Windows codecs.
+- On-demand developer RSS/Atom release headlines with saved sources and local title search.
 - On-demand HTTP latency, download and upload measurements with cancellation and bounded data use.
 - Review older files in a selected messaging-download folder before explicitly sending chosen files to the Recycle Bin.
 
-These 30 tools describe the source implementation. Device support is discovered at runtime; monitor brand alone does not establish DDC/CI support. CPU/case/GPU fan control and additional CPU/AMD/Intel thermal backends are unfinished. Input compatibility, clipboard ownership, Core Audio, accessibility and rendered layouts remain subject to the Windows checklist. Remaining non-native work is listed in the audit; the app exposes no placeholder toggles for it.
+These 31 tools describe the source implementation. Device support is discovered at runtime; monitor brand alone does not establish DDC/CI support. CPU/case/GPU fan control and additional CPU/AMD/Intel thermal backends are unfinished. Input compatibility, clipboard ownership, Core Audio, accessibility and rendered layouts remain subject to the Windows checklist. Remaining non-native work is listed in the audit; the app exposes no placeholder toggles for it.
 
 ## Build on Windows
 
@@ -77,7 +78,7 @@ The API check compiles C# against the actual WinUI/Windows SDK reference assembl
 
 ## Local data and lifecycle
 
-Settings, snippets, launcher paths and saved window titles/positions live in `%LOCALAPPDATA%\Vela\settings.json`. The shelf exists only for the current session and stores references to explicitly dropped files. Vela does not index the disk, collect clipboard history or record audio. The optional Internet speed test contacts Cloudflare only when started, uses up to 80 MB plus overhead, and uploads generated zero bytes. Cloudflare receives the public IP and test traffic; Vela sends no user content or results report. Exported settings include snippet contents and file paths.
+Settings, snippets, launcher paths and saved window titles/positions live in `%LOCALAPPDATA%\Vela\settings.json`. The shelf exists only for the current session and stores references to explicitly dropped files. Vela does not index the disk, collect clipboard history or record audio. The optional Internet speed test contacts Cloudflare only when started, uses up to 80 MB plus overhead, and uploads generated zero bytes. Cloudflare receives the public IP and test traffic; Vela sends no user content or results report. Developer feeds contact only your chosen feed URLs on Refresh; URLs are saved/exported, while headlines stay in memory. Exported settings include snippet contents, file paths and feed URLs.
 
 Start-at-sign-in is opt-in and uses the current user's Run entry. It can also be disabled through Windows Startup apps. Closing the panel hides it; **Exit Vela** removes the tray icon and releases resident services, wake requests, input hooks, window pins and dimming overlays. Microphone mute state is a user-selected Windows device setting and remains as chosen.
 

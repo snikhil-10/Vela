@@ -1,5 +1,10 @@
 # Verification status
 
+## Physical x64 developer-feed continuation — October 19
+
+Source `e509026e-c631-411e-aa02-5a4827387f05` (123 compile inputs) passes 173 core and 18 Windows backend checks. Native x64 XAML/OCR and ARM64 cross-publishing pass; ARM64 execution is not claimed. Developer RSS/Atom headlines are an optional retained residual, with empty defaults and no automatic requests, installed-app scanning, updates or installers. Generated local HTTP feeds exercise native save/edit, invalid/empty validation, partial failures, date order, local filter/selection, active cancellation, the real 20-second source timeout and tool-close cancellation. See [the detailed feed checkpoint](windows-developer-feeds-checkpoint.md) and [machine-readable evidence](../validation/windows-developer-feeds-checkpoint.json). Normal settings/startup, Mica, the accepted cue and all 77 audit decisions are preserved. External feeds, Open browser activation, removal UI and broader accessibility remain unverified. No release was made.
+
+
 Updated October 19, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
 
 ## MP4 size limits — October 19

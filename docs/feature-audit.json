@@ -547,7 +547,7 @@
       "decision": "split",
       "nativeEquivalent": "Microsoft Store updates its apps; winget upgrade handles catalog-matched packages.",
       "portScope": "Exclude native package updates. Aggregating unsupported developer feeds is residual functionality.",
-      "status": "Residual developer-feed aggregation deferred.",
+      "status": "Implemented as optional developerFeeds: on-demand RSS 2.0/Atom 1.0 headline aggregation from up to 16 user-configured feeds, local search, named failures, bounded redirects/bytes/XML/concurrency, cancellation and explicit article links. 173 core and 18 x64 backend checks plus both native builds pass. Generated local-feed UI checks cover save/edit, partial failure, filtering, timeout, Cancel and close cancellation; external developer feeds and browser launch remain unverified. Installed-version matching, notifications and installers are absent; Microsoft Store/winget updates remain excluded.",
       "sources": [
         "winget"
       ]
