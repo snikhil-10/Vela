@@ -1,5 +1,7 @@
 # Windows UI and JPEG continuation — October 19, 2026
 
+This is the earlier October 19 checkpoint. [Command search continuation](windows-command-search-checkpoint.md) records the newer `4af60249` source and focused results; the evidence below retains its original source identity.
+
 Vela remains an unreleased 0.2.2 preview. The user authorized resumed Computer Use, asked to preserve normal settings and the accepted taskbar cue, and prohibited publication. The latest instruction says the user is away for a long time and cannot perform manual steps. Work continues without further prompts. The October 18 checkpoints remain historical evidence.
 
 ## Source and automated checks

@@ -15,9 +15,12 @@ public sealed partial class ToolWindow : Window
     internal string FeatureId { get; }
     private CancellationTokenSource? conversion;
     private Action? refreshCommands;
+    private Action? resizeCommands;
     internal ToolWindow(AppController controller,string featureId)
     {
-        this.controller=controller; FeatureId=featureId; InitializeComponent(); WindowStyle.Configure(this,640,740);
+        this.controller=controller; FeatureId=featureId; InitializeComponent();
+        BodyScroll.SizeChanged+=(_,_)=>resizeCommands?.Invoke();
+        WindowStyle.Configure(this,640,740);
         var feature=FeatureCatalog.Get(featureId); Heading.Text=feature.Name; Description.Text=feature.Description;
         switch(featureId)
         {
@@ -141,9 +144,23 @@ public sealed partial class ToolWindow : Window
     }
     private void Commands()
     {
-        var search=new TextBox { PlaceholderText="Find a tool, snippet, or launcher" };
-        var list=new ListView { MaxHeight=460,IsItemClickEnabled=true,DisplayMemberPath="Name" };
-        Body.Children.Add(search); Body.Children.Add(list);
+        var search=new TextBox { Header="Search Vela",PlaceholderText="Find a tool, snippet, or launcher",MaxLength=256 };
+        var list=new ListView { MaxHeight=460,IsItemClickEnabled=true,DisplayMemberPath="Display" };
+        Microsoft.UI.Xaml.Automation.AutomationProperties.SetName(list,"Command search results");
+        var summary=Ui.Text("","VelaCaption");
+        var help=Ui.Text("Words can appear in any order. Use quotes for a phrase. Searches Vela commands and the active launcher profile, including saved paths.","VelaCaption");
+        Body.Children.Add(search);
+        Body.Children.Add(help);
+        Body.Children.Add(summary); Body.Children.Add(list);
+        void SizeResults()
+        {
+            // The list's own viewport must fit inside the outer tool scroll area,
+            // or ScrollIntoView can still leave the selected row clipped by it.
+            double available=BodyScroll.ActualHeight-search.ActualHeight-help.ActualHeight-summary.ActualHeight-3*Body.Spacing;
+            if(available>0) list.MaxHeight=Math.Clamp(available,96,460);
+        }
+        resizeCommands=SizeResults;
+        search.SizeChanged+=(_,_)=>SizeResults(); help.SizeChanged+=(_,_)=>SizeResults(); summary.SizeChanged+=(_,_)=>SizeResults();
         void Invoke(CommandResult result)
         {
             if(controller.Quitting) return;
@@ -154,14 +171,19 @@ public sealed partial class ToolWindow : Window
         void Refresh()
         {
             var results=new List<CommandResult>();
-            results.AddRange(controller.OrderedFeatures.Where(f=>f.Id!="commandBar" && controller.Settings.EnabledFeatures.Contains(f.Id)).Select(f=>new CommandResult(f.Name,()=> { controller.OpenTool(f.Id); })));
-            if(controller.Settings.EnabledFeatures.Contains("textSnippets")) results.AddRange(controller.Settings.Snippets.Select(s=>new CommandResult(s.Name+" · "+s.Trigger,()=> { ClipboardService.WriteText(SnippetExpander.Expand(s.Text,DateTimeOffset.Now)); Message("Snippet copied."); })));
-            results.AddRange(LauncherTree.Leaves(controller.Settings.CurrentLaunchers).Select(l=>new CommandResult(l.Path,()=>Launch(l.Item))));
+            results.AddRange(controller.OrderedFeatures.Where(f=>f.Id!="commandBar" && controller.Settings.EnabledFeatures.Contains(f.Id)).Select(f=>new CommandResult(f.Name,"Tool",()=> { controller.OpenTool(f.Id); },f.Description)));
+            if(controller.Settings.EnabledFeatures.Contains("textSnippets")) results.AddRange(controller.Settings.Snippets.Select(s=>new CommandResult(s.Name+" · "+s.Trigger,"Snippet",()=> { ClipboardService.WriteText(SnippetExpander.Expand(s.Text,DateTimeOffset.Now)); Message("Snippet copied."); })));
+            results.AddRange(LauncherTree.Leaves(controller.Settings.CurrentLaunchers).Select(l=>new CommandResult(l.Path,"Launcher",()=>Launch(l.Item),l.Item.Target)));
             if(controller.Settings.EnabledFeatures.Contains("windowSearch"))
-                results.AddRange(controller.Workspaces.Windows().Select(w=>new CommandResult(w.Display,()=> { WindowWorkspace.Focus(w); Close(); })));
+                results.AddRange(controller.Workspaces.Windows().Select(w=>new CommandResult(w.Display,"Window",()=> { WindowWorkspace.Focus(w); Close(); })));
             if(controller.Settings.EnabledFeatures.Contains("savedLayouts"))
-                results.AddRange(controller.Settings.WindowLayouts.Select(l=>new CommandResult("Workspace · "+l.Name,()=>Message(controller.Workspaces.Restore(l)))));
-            list.ItemsSource=results.Where(r=>r.Name.Contains(search.Text,StringComparison.OrdinalIgnoreCase)).ToList();
+                results.AddRange(controller.Settings.WindowLayouts.Select(l=>new CommandResult(l.Name,"Workspace",()=>Message(controller.Workspaces.Restore(l)))));
+            var query=new CommandQuery(search.Text);
+            var matches=results.Select(result=>(Result:result,Rank:query.Rank(result.Name,result.Kind,result.Keywords)))
+                .Where(match=>match.Rank.HasValue).OrderBy(match=>match.Rank).Select(match=>match.Result).ToList();
+            list.ItemsSource=matches;
+            summary.Text=matches.Count==0 ? "No matching commands. Try fewer words or a different phrase."
+                : $"{matches.Count} {(matches.Count==1?"command":"commands")}";
             if(list.Items.Count>0) list.SelectedIndex=0;
         }
         search.TextChanged+=(_,_)=>Refresh();
@@ -171,6 +193,7 @@ public sealed partial class ToolWindow : Window
             if(e.Key==global::Windows.System.VirtualKey.Enter && list.SelectedItem is CommandResult r) { e.Handled=true; Invoke(r); }
             if(e.Key==global::Windows.System.VirtualKey.Down && list.Items.Count>0) { e.Handled=true; list.SelectedIndex=Math.Min(list.Items.Count-1,list.SelectedIndex+1); }
             if(e.Key==global::Windows.System.VirtualKey.Up && list.Items.Count>0) { e.Handled=true; list.SelectedIndex=Math.Max(0,list.SelectedIndex-1); }
+            if((e.Key is global::Windows.System.VirtualKey.Down or global::Windows.System.VirtualKey.Up) && list.SelectedItem is not null) list.ScrollIntoView(list.SelectedItem);
         };
         refreshCommands=Refresh; Refresh(); search.Loaded+=(_,_)=>search.Focus(FocusState.Programmatic);
         Launchers();
@@ -268,5 +291,9 @@ public sealed partial class ToolWindow : Window
         Body.Children.Add(new HyperlinkButton { Content="Microsoft Visual C++ x64 runtime for text extraction",NavigateUri=new("https://aka.ms/vc14/vc_redist.x64.exe") });
         Body.Children.Add(Ui.Text("New files receive unique names. PNG preserves transparency. JPEG and BMP use an opaque background. Some image formats require a Windows codec.","VelaCaption"));
     }
-    private sealed record CommandResult(string Name,Action Action);
+    private sealed record CommandResult(string Name,string Kind,Action Action,string Keywords="")
+    {
+        public string Display=>$"{Name} · {Kind}";
+        public override string ToString()=>Display;
+    }
 }

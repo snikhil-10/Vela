@@ -2,9 +2,13 @@
 
 Updated October 19, 2026. Development has continued on the physical Windows x64 Dell laptop. The earlier Mac/Fusion observations below are historical evidence, not laptop results. The original upstream audit used Vorssaint 3.4.1 (101).
 
+## Scoped command search — October 19
+
+Current source `4af60249` passes **149 core / 17 x64 Windows backend checks**, native x64 XAML/OCR publishing and ARM64 cross-publishing with 117 verified inputs. See [the command search checkpoint](windows-command-search-checkpoint.md). Search adds literal AND words, quoted phrases, saved-path matching, stable ranking and readable category/count/empty states. A rendered keyboard test exposed selection clipped by the outer scroll viewport; adaptive list height fixes the focused final-row/query visibility case at 150%. Shortcut activation, empty-result Enter and selected-tool Enter also pass in an isolated profile. No clipboard or launcher execution was required. Narrator and the broader display/input matrix remain open; ARM64 runtime is untested here.
+
 ## Resumed UI tests and JPEG size limits — October 19
 
-See [the dated UI checkpoint](windows-ui-checkpoint-2026-10-19.md). Current source `9deb6e55` passes 141 core and 17 native x64 backend checks, x64 native XAML/OCR publishing and ARM64 cross-publishing. ARM64 runtime remains untested here.
+See [the dated UI checkpoint](windows-ui-checkpoint-2026-10-19.md). That checkpoint's source `9deb6e55` passes 141 core and 17 native x64 backend checks, x64 native XAML/OCR publishing and ARM64 cross-publishing. ARM64 runtime remains untested here.
 
 Fresh isolated-profile UI observations pass all four onboarding pages, close/resume at step two with selected tools preserved, the saved panel, General settings, System/Dark/System app appearance and normal Exit. The eight-sector radial wheel passes North/East centre-drag entry, centre Back, outside-wheel cancellation, three-level number-key navigation, readable missing-target/list fallback and deactivation dismissal. Keyboard-only cleaning passes countdown/Stop. Follow-up timed tests establish keyboard recovery before the original deadline after window close and feature disable. Mouse-lock blocks an attempted Stop click while the countdown advances; automatic recovery is bracketed between the paused observation at 57.702 seconds and the available observation at 64.534 seconds. Scroll blocking and held Escape remain untested. These are bounded cases, not completion of the broader input/accessibility/cleaning matrix.
 

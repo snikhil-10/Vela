@@ -4,6 +4,6 @@
         <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/><RowDefinition Height="*"/></Grid.RowDefinitions>
         <StackPanel Spacing="6"><TextBlock FontFamily="Segoe UI Variable" x:Name="Heading" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap"/><TextBlock FontFamily="Segoe UI Variable" x:Name="Description" Style="{StaticResource VelaBody}" Foreground="{ThemeResource TextFillColorSecondaryBrush}"/></StackPanel>
         <InfoBar x:Name="Status" Grid.Row="1" IsOpen="False" IsClosable="True" Severity="Success"/>
-        <ScrollViewer Grid.Row="2" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" HorizontalContentAlignment="Stretch"><StackPanel x:Name="Body" Spacing="12"/></ScrollViewer>
+        <ScrollViewer x:Name="BodyScroll" Grid.Row="2" HorizontalScrollBarVisibility="Disabled" HorizontalScrollMode="Disabled" HorizontalContentAlignment="Stretch"><StackPanel x:Name="Body" Spacing="12"/></ScrollViewer>
     </Grid>
 </Window>

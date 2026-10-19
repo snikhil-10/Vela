@@ -1,0 +1,217 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T09:20:44.8415337-07:00",
+  "sourceSnapshot": "4af60249-96ed-4a8d-81dd-22a462917045",
+  "parentSnapshot": "9deb6e55-9cbc-42ee-ab39-1eea7c217fe0",
+  "supersededUiCandidate": "e7bbd42b-da8d-4455-9346-646ee5b98b36",
+  "parentGitCheckpoint": "b4b2efc",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 117,
+  "manifestMismatches": 0,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 149,
+    "newCoreChecks": 8,
+    "windowsBackendPassed": 17,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed on x64 host",
+    "arm64RuntimeTested": false,
+    "initialCoreRun": "148 passed / 1 failed: null keyword-array edge; corrected before native candidate",
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "971f6771053c7c57b80892fd02c971e2fbc48cd6c04300f31d667b3bdd65e41b",
+      "appDllSha256": "0809489e388214adbbc49a753731334a079fd9e932d5f5345675083e33e34596",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "ff246cb1139d6137a1550a74231ba5a28cae541ac7c5a83b5f521e599a4b15a3",
+      "appDllSha256": "62bf6498873973cdd86ad019ce0d5e7df6365512e2b71ac4f28768ee1d8a6ef0",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets\\Vela.ico",
+        "Ocr\\Vela.OcrWorker.exe",
+        "Ocr\\Vela.OcrWorker.dll",
+        "Ocr\\tessdata\\eng.traineddata",
+        "Ocr\\x64\\tesseract50.dll",
+        "Ocr\\x64\\leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "ui": {
+    "status": "focused passes; broader matrix open",
+    "profile": "artifacts/command-search-2026-10-19/profile",
+    "firstCandidate": "e7bbd42b-da8d-4455-9346-646ee5b98b36",
+    "firstCandidateCases": [
+      "23 blank-query commands",
+      "editor work finds Work > Editor",
+      "editor.exe personal matches saved target metadata",
+      "quoted work notes matches one launcher",
+      "notes gives18; exact/prefix lead and metadata-only Other is last",
+      "fixed-height selection clipping found and corrected"
+    ],
+    "finalCases": [
+      "Ctrl+Alt+Space opens Command bar from Vela panel",
+      "23 blank-query and18 notes results; exact/prefix order retained",
+      "Fallback/accessibility labels contain names/categories rather than action/record metadata",
+      "Native Tab/End reaches last result; Shift+Tab returns to complete visible query",
+      "Query-focused Up/Down select My notes/Other; final row stays fully visible at150 percent scaling",
+      "Focused empty-result Enter leaves command bar unchanged",
+      "keep awake exact query and Enter open the selected tool; panel reports Off",
+      "Normal General Exit closes validation process"
+    ],
+    "runningVelaProcesses": 0,
+    "launcherExecutionTested": false,
+    "clipboardPublicationTested": false,
+    "realNarratorTested": false,
+    "touchPenTested": false,
+    "mixedDpiHighContrastTested": false
+  },
+  "preservation": {
+    "normalSettingsByteIdentical": true,
+    "signInEntryUnchanged": true,
+    "settingsSchemaChanged": false,
+    "upstreamAuditDecisionsUnchanged": true,
+    "upstreamAuditEntries": 77,
+    "acceptedCueFiles": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "unchanged": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "unchanged": true
+      }
+    ],
+    "micaConfigurationUnchanged": true,
+    "runtimeCatalogUnchanged": true,
+    "privateFixturesIgnored": true,
+    "diskIndexingAdded": false,
+    "clipboardHistoryCollectionAdded": false,
+    "userDocumentsUsed": false,
+    "clipboardSeeded": false,
+    "awakeRequestStarted": false,
+    "systemSettingsChanged": false,
+    "hardwareWritesTested": false
+  },
+  "limits": [
+    "Narrator, touch/pen, mixed DPI/high contrast and every enabled command kind remain untested",
+    "Saved-target metadata is matched literally; no disk/script/menu indexing or fuzzy/regex matching",
+    "Real launcher execution is outside these missing-file fixture tests",
+    "Earlier picker, shelf drag transport, broader input/editor/clipboard and hardware limits remain open"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/command-search-2026-10-19/core-first-failure.log",
+      "sha256": "e5033dcd01e0df145727c96e5caca7f8cae0c629ebb04727a2b81cb762bfa638"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/core.log",
+      "sha256": "6be2d8c7958b8bf632c0edeed3dea080c5d5840328c76ac1bff01f2e700377a0"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/build-x64.log",
+      "sha256": "830159407b8b81be77f250fb2dc156cdd4c4965c083a599f56065cae916bce00"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/windows-checks.log",
+      "sha256": "ded9a144a4935f7341e7de06ce69d14469af7a6e3cae751859bd6f1bee8aae05"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/build-arm64.log",
+      "sha256": "c10c86011584db799b3376730a3a709eaa9446b40fb11db8681363a5fa63d2e2"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/fixed-build-x64.log",
+      "sha256": "b06861fba358cfb5da88bc3125e22c2ab264f1fde006b3462b57082eac4bd8d6"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/fixed-windows-checks.log",
+      "sha256": "ded9a144a4935f7341e7de06ce69d14469af7a6e3cae751859bd6f1bee8aae05"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/fixed-build-arm64.log",
+      "sha256": "8025d413627d8229a489fd423aa2df0b9de99e06bdf910be6b7e35c9bd8a023f"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/final-core.log",
+      "sha256": "6be2d8c7958b8bf632c0edeed3dea080c5d5840328c76ac1bff01f2e700377a0"
+    },
+    {
+      "path": "artifacts/command-search-2026-10-19/ui.log",
+      "sha256": "4113474bf566ffdaa845c7187956e0452bcaf131b9d98e75a27cd11aa98fdf32"
+    }
+  ],
+  "portComplete": false,
+  "allVerificationItemsComplete": false,
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteAdded": false
+}

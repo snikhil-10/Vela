@@ -597,7 +597,7 @@
       "decision": "split",
       "nativeEquivalent": "Start/Search, Run, Calculator and Win+. already cover apps/files, commands, calculations and emoji separately.",
       "portScope": "Retain a scoped search over enabled Vela tools, snippets and explicit launchers.",
-      "status": "Implemented scoped search, launcher profiles, snippets, enabled open-window search and saved-workspace actions. Profile creation, launcher save, isolated lists, switching and disposable-profile deletion passed in the VM. Disk/script/menu indexing is deferred.",
+      "status": "Implemented scoped multi-word and quoted-phrase search with active launcher target paths, stable relevance ordering, category/count/empty states and adaptive keyboard result visibility. 149 core and 17 x64 backend checks pass; focused physical x64 shortcut, ranking, empty-result Enter, tool activation and final-row visibility pass at 150% scaling. Profile creation/switching evidence remains historical VM evidence. Disk/script/menu indexing and broader accessibility validation remain deferred.",
       "sources": [
         "shortcuts",
         "upstream"
