@@ -1,5 +1,7 @@
 # M4A size limits — October 19, 2026
 
+This records M4A snapshot `315d04be`; the later [image-batch continuation](windows-image-batch-checkpoint.md) preserves it and records the newer source.
+
 Vela remains an unreleased 0.2.2 preview. Batch video tools now applies the optional per-file size limit to **M4A audio extraction as well as MP4 conversion**. Zero keeps the existing high-quality audio preset; positive whole-number limits accept 1–2048 MiB. GIF retains its separate fixed safeguards. The catalog remains at 31 implemented tools, and native Windows exclusions are unchanged.
 
 Source **`315d04be-d4d7-425e-9678-99668e317542`** follows developer-feed snapshot `e509026e` and covers **126 compile inputs**. The physical x64 Dell passes **181 core checks** (eight new audio checks) and **19 Windows backend checks** (one new native audio scenario). Native x64 XAML/OCR publishing and ARM64 cross-publishing pass with zero compiler warnings/errors. ARM64 execution is untested on this laptop.

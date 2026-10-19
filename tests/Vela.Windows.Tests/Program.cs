@@ -56,6 +56,7 @@ try
     await Check("Shelf cancels delayed providers on disable or close and accepts a fresh session",ShelfChecks.Cancellation);
     await Check("Shelf late drag completion preserves identical new entries and accepts only Copy",ShelfChecks.DragIdentity);
     await Check("JPEG byte budgets produce decodable capped copies and cleanly reject impossible or canceled work",()=>JpegBudgetChecks.Run(folder));
+    await Check("Image batches isolate unreadable inputs, retain unique alpha-preserving copies and clean up canceled work",()=>ImageBatchChecks.Run(folder));
     await Check("Clipboard snapshots preserve formats and transfer intent and reject failed providers before editing",async ()=>
     {
         var data=new global::Windows.ApplicationModel.DataTransfer.DataPackage { RequestedOperation=global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move }; data.SetText("Mixed CASE ✓\r\nSecond line");
@@ -120,10 +121,10 @@ try
 
     await Check("Image conversion resizes, preserves originals and uses unique names",async ()=>
     {
-        int count=await MediaService.Convert([fixture],images,".png",_=>{},CancellationToken.None,500);
-        Require(count==1,"One conversion expected.");
-        int again=await MediaService.Convert([fixture],images,".png",_=>{},CancellationToken.None,500);
-        var outputs=await images.GetFilesAsync(); Require(again==1 && outputs.Count==2,"Name collision overwrote output.");
+        var count=await MediaService.Convert([fixture],images,".png",_=>{},CancellationToken.None,500);
+        Require(count.Completed==1 && !count.HasFailures,"One conversion expected.");
+        var again=await MediaService.Convert([fixture],images,".png",_=>{},CancellationToken.None,500);
+        var outputs=await images.GetFilesAsync(); Require(again.Completed==1 && !again.HasFailures && outputs.Count==2,"Name collision overwrote output.");
         using var input=await outputs[0].OpenReadAsync(); var decoded=await BitmapDecoder.CreateAsync(input);
         Require(decoded.PixelWidth==500 && decoded.PixelHeight==80,"Resize did not preserve aspect ratio.");
         Require(File.Exists(fixture.Path),"Original was removed.");
@@ -176,7 +177,8 @@ try
         foreach(string position in new[]{"Bottom right","Bottom left","Top right","Top left"})
         {
             var existing=(await watermarks.GetFilesAsync()).Select(f=>f.Path).ToHashSet();
-            Require(await MediaService.Convert([sourceFile],watermarks,".png",_=>{},CancellationToken.None,256,.9,new("Vela",.65,3,position))==1,"Watermark conversion failed.");
+            var watermarked=await MediaService.Convert([sourceFile],watermarks,".png",_=>{},CancellationToken.None,256,.9,new("Vela",.65,3,position));
+            Require(watermarked.Completed==1 && !watermarked.HasFailures,"Watermark conversion failed.");
             var output=(await watermarks.GetFilesAsync()).Single(f=>!existing.Contains(f.Path));
             using var stream=await output.OpenReadAsync(); var decoder=await BitmapDecoder.CreateAsync(stream);
             Require(decoder.PixelWidth==256 && decoder.PixelHeight==128,"Watermarked output resize differs.");

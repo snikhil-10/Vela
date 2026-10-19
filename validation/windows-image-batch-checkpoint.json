@@ -1,0 +1,170 @@
+{
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T13:17:33.3112952-07:00",
+  "sourceSnapshot": "25fcb15c-e9df-4f6b-bf98-e3c3d6ee3056",
+  "parentSnapshot": "315d04be-d4d7-425e-9678-99668e317542",
+  "parentGitCheckpoint": "5d3fc72",
+  "previewVersion": "0.2.2-development",
+  "compileInputs": 127,
+  "manifestMismatches": 0,
+  "implementedToolCount": 31,
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 181,
+    "newCoreChecks": 0,
+    "windowsBackendPassed": 20,
+    "newWindowsChecks": 1,
+    "failed": 0,
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "a701a5a81dad52f20bf4298c32a11198bb47be0ec2f9c7cc6d1618671c44b45d",
+      "appDllSha256": "4fb6ac90d99dd06ed09083b3e0de518b951a9d4bfb841f2854d891fdce4a16bc",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "8d7bc6e534e25d49608b1699a9327e48caeb94ac52b8c39efd7ba76532904c99",
+      "appDllSha256": "6ac644e82b3e7ba7d270e4b0a4058f3966820207dfea79b38f87c7a593e67780",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "imageFixture": {
+    "generatedInputs": "two 320x160 semi-transparent PNGs with same basename in distinct folders; corrupt PNG; empty JPEG",
+    "userMediaUsed": false,
+    "mixedCompleted": 2,
+    "mixedTotal": 4,
+    "namedFailures": 2,
+    "uniqueDecodableOutputsIncludingPrior": 3,
+    "retainedDimensions": "200x100",
+    "retainedAlpha": "127..129 of 255",
+    "sourceBytesUnchanged": true,
+    "earlierOutputBytesUnchanged": true,
+    "exclusiveSourceReopen": "passed",
+    "jpegBudgetCompleted": 1,
+    "jpegBudgetTotal": 2,
+    "jpegBudgetFailure": "unfit noisy image, followed by successful tiny image",
+    "jpegLimitBytes": 4096,
+    "jpegRetainedBytes": 631,
+    "cancellationAfterOutputCreation": "owned partial copy removed",
+    "cancellationBetweenInputs": "one earlier completed decodable copy retained; no next-file partial",
+    "preCanceled": "zero new files",
+    "unsupportedOutput": "GIF rejected before writing; no mislabeled PNG",
+    "failureRecords": "all retained in result; compact UI displays first eight details"
+  },
+  "rendered": {
+    "source": "25fcb15c-e9df-4f6b-bf98-e3c3d6ee3056",
+    "profile": "fresh isolated profile with Quick panel and Batch image tools only",
+    "form": "PNG default and disabled JPEG-only controls rendered",
+    "scrolling": "Convert / Extract text / Cancel reachable",
+    "emptyImageBatch": "red inline selection error",
+    "pickerOpened": false,
+    "fullPickerConversionTested": false,
+    "renderedMixedBatchFailureTested": false,
+    "errorSeverityBinding": "source review: Message(result.Message,result.HasFailures)",
+    "scalingChanged": false,
+    "exit": "General Exit; zero Vela/OCR processes"
+  },
+  "preservation": {
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalSettingsUnchanged": true,
+    "startupUnchanged": true,
+    "acceptedCueFilesUnchanged": 5,
+    "micaUnchanged": true,
+    "catalogUnchanged": true,
+    "auditDecisionsUnchanged": 77,
+    "noUserClipboardChanges": true,
+    "noHardwareWrites": true,
+    "noOsSettingChanges": true,
+    "noVelaProcessLeft": true
+  },
+  "limits": [
+    "Picker-based conversion and rendered completed mixed-batch error styling unverified",
+    "OCR partial-failure isolation and PNG/BMP byte budgets remain unfinished",
+    "Broader codecs, huge images, denied/full-disk writes and arbitrary cleanup failures untested",
+    "Narrator/high contrast, mixed DPI and hardware-specific behavior remain open",
+    "ARM64 cross-built; runtime untested on this laptop"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/image-batch-2026-10-19/build-x64.log",
+      "sha256": "cc70350982ac622978a3a6688366006d6d7020c6a6b5c7dd0ae600b047a2c71a"
+    },
+    {
+      "path": "artifacts/image-batch-2026-10-19/build-arm64.log",
+      "sha256": "953dd86b0db0282089e8f4ce6eb04f8df1a1f57c3503dbef4a8d71174ca5a131"
+    },
+    {
+      "path": "artifacts/image-batch-2026-10-19/windows-final.log",
+      "sha256": "11f5e048116a82a7f6db70e994e1e93679daba5ece4b3d58b95d4bed8d9a1d42"
+    },
+    {
+      "path": "artifacts/image-batch-2026-10-19/ui.log",
+      "sha256": "b067e18182e99280144f1f6cddd3ee522df0a0061cf6ab6c89f993fb89ea40cc"
+    }
+  ],
+  "evidenceDetails": "../docs/windows-image-batch-checkpoint.md",
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "published": false,
+  "remoteCreated": false,
+  "finishedPort": false
+}

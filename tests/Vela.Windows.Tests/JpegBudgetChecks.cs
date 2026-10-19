@@ -20,7 +20,8 @@ internal static class JpegBudgetChecks
         }
         byte[] original=File.ReadAllBytes(source.Path);
         var outputs=await root.CreateFolderAsync("jpeg-budgets");
-        Require(await MediaService.Convert([source],outputs,".jpg",_=>{},default,quality:1)==1,"Default conversion failed.");
+        var ordinary=await MediaService.Convert([source],outputs,".jpg",_=>{},default,quality:1);
+        Require(ordinary.Completed==1 && !ordinary.HasFailures,"Default conversion failed.");
         var first=(await outputs.GetFilesAsync()).Single();
         var lowFolder=await root.CreateFolderAsync("jpeg-quality-probe");
         await MediaService.Convert([source],lowFolder,".jpg",_=>{},default,quality:.1);
@@ -30,7 +31,8 @@ internal static class JpegBudgetChecks
         Require(lowBytes<highBytes,"JPEG quality did not change compression for a noise fixture.");
         long limit=new FileInfo(first.Path).Length/2;
         Require(limit>1024,"Noise fixture is too small to exercise the budget.");
-        Require(await MediaService.Convert([source],outputs,".jpg",_=>{},default,quality:1,maximumBytes:limit)==1,"Budget conversion failed.");
+        var budgeted=await MediaService.Convert([source],outputs,".jpg",_=>{},default,quality:1,maximumBytes:limit);
+        Require(budgeted.Completed==1 && !budgeted.HasFailures,"Budget conversion failed.");
         var capped=(await outputs.GetFilesAsync()).Single(file=>file.Path!=first.Path);
         Require(new FileInfo(capped.Path).Length is >0 && new FileInfo(capped.Path).Length<=limit,"Output exceeds its actual byte cap.");
         using(var stream=await capped.OpenReadAsync())
@@ -38,14 +40,22 @@ internal static class JpegBudgetChecks
             var decoder=await BitmapDecoder.CreateAsync(stream);
             Require(decoder.PixelWidth==512 && decoder.PixelHeight==384,"Budget changed dimensions rather than quality.");
         }
+        var impossible=await MediaService.Convert([source],outputs,".jpg",_=>{},default,maximumBytes:1);
+        Require(impossible.Completed==0 && impossible.HasFailures && (await outputs.GetFilesAsync()).Count==2,"An impossible budget left an output.");
         bool rejected=false;
-        try { await MediaService.Convert([source],outputs,".jpg",_=>{},default,maximumBytes:1); }
-        catch(InvalidOperationException) { rejected=true; }
-        Require(rejected && (await outputs.GetFilesAsync()).Count==2,"An impossible budget left an output.");
-        rejected=false;
         try { await MediaService.Convert([source],outputs,".png",_=>{},default,maximumBytes:limit); }
         catch(InvalidOperationException) { rejected=true; }
         Require(rejected && (await outputs.GetFilesAsync()).Count==2,"A PNG budget was silently accepted.");
+        var small=await root.CreateFileAsync("small.png");
+        using(var bitmap=new SoftwareBitmap(BitmapPixelFormat.Bgra8,16,16,BitmapAlphaMode.Ignore))
+        using(var stream=await small.OpenAsync(FileAccessMode.ReadWrite))
+        { var encoder=await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId,stream); encoder.SetSoftwareBitmap(bitmap); await encoder.FlushAsync(); }
+        var mixedOutputs=await root.CreateFolderAsync("jpeg-mixed-budgets");
+        var mixed=await MediaService.Convert([source,small],mixedOutputs,".jpg",_=>{},default,maximumBytes:4096);
+        Require(mixed.Completed==1 && mixed.Total==2 && mixed.Failures.Count==1 && mixed.Message.Contains(source.Name),"An unfit JPEG stopped a later image or hid its failure.");
+        var mixedCopy=(await mixedOutputs.GetFilesAsync()).Single();
+        Require(new FileInfo(mixedCopy.Path).Length is >0 and <=4096,"Mixed JPEG batch kept an oversized copy.");
+        Console.WriteLine($"INFO JPEG mixed budget: 1/2 completed; one named size failure; retained={new FileInfo(mixedCopy.Path).Length} bytes under 4096.");
         using(var canceled=new CancellationTokenSource())
         {
             bool stopped=false;

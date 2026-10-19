@@ -1,5 +1,10 @@
 # Verification status
 
+## Physical x64 image-batch continuation — October 19
+
+Source `25fcb15c-e9df-4f6b-bf98-e3c3d6ee3056` (127 compile inputs) passes 181 core and 20 Windows backend checks plus native x64 XAML/OCR and ARM64 cross-publishing. A corrupt/valid/empty/valid image batch completes 2/4 with named failures, unique 200x100 PNG outputs and retained alpha; prior/source bytes remain identical. An unfit JPEG followed by a small image completes 1/2 and retains a 631-byte copy under 4096 bytes. New cancellation cases remove the current partial output, retain earlier completed copies and release source handles. The final native form renders, scrolls and handles an empty batch; a completed mixed batch through PickerHost remains unverified. See [the image-batch checkpoint](windows-image-batch-checkpoint.md) and [JSON evidence](../validation/windows-image-batch-checkpoint.json). Normal settings/startup, Mica, native exclusions and the accepted taskbar cue are preserved; nothing released or uploaded.
+
+
 ## Physical x64 M4A size-limit continuation — October 19
 
 Source `315d04be-d4d7-425e-9678-99668e317542` (126 compile inputs) passes 181 core and 19 Windows backend checks, plus native x64 XAML/OCR and ARM64 cross-publishing. A generated 12-second stereo video yields a 291,429-byte ordinary M4A and a 195,442-byte copy under a 218,571-byte limit; native PCM decode is non-silent, 48 kHz stereo and duration survive, source/earlier output bytes stay unchanged, and impossible/missing-audio/invalid inputs plus cancellation are handled without partial copies. M4A/GIF/MP4 field switching, committed values and empty-batch errors pass focused native form checks. Picker-based execution, multichannel/DRM/long-media cases and broader accessibility remain open. See [the audio checkpoint](windows-audio-budget-checkpoint.md) and [JSON evidence](../validation/windows-audio-budget-checkpoint.json). Settings, native exclusions, Mica and the accepted cue are preserved. No release was made.

@@ -277,7 +277,7 @@ public sealed partial class ToolWindow : Window
                 watermark=new(watermarkText.Text,watermarkOpacity.Value/100,watermarkSize.Value,(string)watermarkPosition.SelectedItem);
             }
             conversion=new(); progress.IsActive=true;
-            try { int count=await MediaService.Convert(selected,destination,(string)format.SelectedItem,t=>files.Text=t,conversion.Token,(uint)(double.IsFinite(edge.Value)?edge.Value:0),quality.Value/100,watermark,maximumBytes); Message($"Converted {count} images. Originals were kept."); }
+            try { var result=await MediaService.Convert(selected,destination,(string)format.SelectedItem,t=>files.Text=t,conversion.Token,(uint)(double.IsFinite(edge.Value)?edge.Value:0),quality.Value/100,watermark,maximumBytes); Message(result.Message,result.HasFailures); }
             finally { progress.IsActive=false; conversion.Dispose(); conversion=null; }
         },waitOnExit:true));
         Body.Children.Add(AsyncButton("Extract text from images",async ()=>
