@@ -388,7 +388,7 @@
       "decision": "split",
       "nativeEquivalent": "Windows provides recording-device selection/levels and call-app-specific mic mute shortcuts.",
       "portScope": "Retain mute/unmute for all active capture endpoints together; omit duplicate level/device settings.",
-      "status": "Implemented on demand using Core Audio. Read-only enumeration found one capture endpoint on the physical Dell x64 laptop. Mute writes, device changes and broader device validation remain open.",
+      "status": "Implemented on demand using Core Audio. Physical Dell x64 enumeration found one endpoint. An explicit guarded mute-all/unmute-all round trip observed both states and restored the original exact endpoint; no audio recorded. Multi-device, hot-plug, driver failure and UI write-button validation remain open. See the October 19 functionality audit.",
       "sources": [
         "audio",
         "shortcuts"
@@ -409,7 +409,7 @@
       "decision": "split",
       "nativeEquivalent": "Power settings/powercfg set normal sleep and lid behavior.",
       "portScope": "Retain timed and app-conditioned transient wake requests; no power plan editor or lid override.",
-      "status": "Implemented timer, app, AC-only and external-display rules. A 15-minute request started/stopped in the VM; expiry and power/device transitions remain open.",
+      "status": "Implemented timer, app, AC-only and external-display rules. Physical x64 Start/Stop passed; a one-minute timer was still active at 54.219 seconds and Off by 80.764 seconds. Exact expiry instant, rule transitions and suspend/device behavior remain open. See the October 19 functionality audit.",
       "sources": [
         "powercfg",
         "awake"

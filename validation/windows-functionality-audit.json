@@ -1,0 +1,853 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T22:15:20.903Z",
+  "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+  "compileInputs": 129,
+  "manifestMismatches": 0,
+  "baseline": {
+    "sourceSnapshot": "25fcb15c-e9df-4f6b-bf98-e3c3d6ee3056",
+    "gitCheckpoint": "eaeb40b",
+    "corePassed": 181,
+    "windowsBackendPassed": 20
+  },
+  "uiTour": {
+    "sourceSnapshot": "999bd2e7-ef19-419e-afb3-78f4072d341c",
+    "finalProductInputsIdentical": true,
+    "productInputsCompared": 105,
+    "finalTestHarnessDifferences": [
+      "tests/Vela.Windows.Tests/Program.cs",
+      "tests/Vela.Windows.Tests/TextClipboardChecks.cs"
+    ],
+    "nativeToolSurfacesObserved": 24,
+    "physicalInputToolsSettingsReviewed": 7,
+    "observationCount": 32,
+    "observations": [
+      {
+        "id": "quickLauncher",
+        "time": "2026-10-19T21:45:20.749Z",
+        "observed": "Native panel renders 22 tool cards plus Keep awake widget; Off, pinned and no startup notice."
+      },
+      {
+        "id": "commandBar",
+        "time": "2026-10-19T21:46:02.410Z",
+        "observed": "Global Ctrl+Alt+Space opens command bar; 33 scoped commands. No-match search displays empty message; Enter retains command bar with no action."
+      },
+      {
+        "id": "keepAwake",
+        "time": "2026-10-19T21:47:22.329Z",
+        "observed": "Minutes commits to 1; Start returns Until time; Stop returns Keep-awake timer stopped."
+      },
+      {
+        "id": "commandBar",
+        "time": "2026-10-19T21:47:22.329Z",
+        "observed": "Reversed multiword awake keep returns one Keep awake tool; Enter activates it."
+      },
+      {
+        "id": "keepAwake",
+        "time": "2026-10-19T21:48:47.659Z",
+        "observed": "One-minute expiry bracket: panel active at 54.219 s; screenshot Off/disabled Stop at 80.764 s, then accessibility also confirms Off. Exact release instant was not observed.",
+        "elapsedMilliseconds": 80764
+      },
+      {
+        "id": "internetSpeed",
+        "time": "2026-10-19T21:50:47.479Z",
+        "observed": "Real Cloudflare test completed: 297.0 Mbps download, 33.4 Mbps upload, 57 ms HTTP latency; 64.0 MB down and 16.0 MB generated upload; Start re-enabled. Timing is observation time, not a calibrated bandwidth benchmark."
+      },
+      {
+        "id": "internetSpeed",
+        "time": "2026-10-19T21:54:07.705Z",
+        "observed": "Second live run canceled during latency; UI reports Test canceled and re-enables Start."
+      },
+      {
+        "id": "developerFeeds",
+        "time": "2026-10-19T21:56:59.910Z",
+        "observed": "Refresh returned 2 headlines from 2/3 sources, newest Atom first; named HTTP 503 retained good results. Filter stable left one RSS result. Only /rss,/atom,/broken requested; no article opened. Article row was below visible bounds, selection not claimed."
+      },
+      {
+        "id": "windowSearch",
+        "time": "2026-10-19T21:58:12.108Z",
+        "observed": "Title filter restricted list to generated Notepad; pin returned Kept above ordinary windows and unpin returned Restored the normal window layer. Switching could not be asserted because Notepad occluded click; UI reported wrong-target and no click was sent. No other app window acted on."
+      },
+      {
+        "id": "displayDimmer",
+        "time": "2026-10-19T21:58:45.736Z",
+        "observed": "Single 1920x1200 display: slider 0 -> 10 rendered a dark click-through overlay; Restore all displays returned slider to 0 and normal frame. Hardware brightness unchanged. HDR/multiple display/device transition not tested."
+      },
+      {
+        "id": "monitorBrightness",
+        "time": "2026-10-19T21:59:08.750Z",
+        "observed": "Discovery renders No monitor exposes DDC/CI brightness on this connection. No write controls or simulated values; native probe found 0. Brightness writes unavailable on this laptop."
+      },
+      {
+        "id": "thermalAlerts",
+        "time": "2026-10-19T21:59:41.090Z",
+        "observed": "Read available sensors returns No supported NVIDIA driver sensors were found and no supported hardware readings. Threshold 85 C renders. Native read-only probe 0. Real temperature and thermal alert delivery unavailable."
+      },
+      {
+        "id": "savedLayouts",
+        "time": "2026-10-19T22:00:26.029Z",
+        "observed": "Empty name rejected. Named capture saved 2 visible positions in private profile. Restore deferred until profile is reduced to generated Notepad alone; no full captured layout restored."
+      },
+      {
+        "id": "inputSettings",
+        "time": "2026-10-19T22:01:11.351Z",
+        "observed": "Input settings render speed 100 (25–300), debounce 40 (10–100), Back/Forward bindings, exclusions, close list, Super key and snippet notes; bare-key binding rejection observed."
+      },
+      {
+        "id": "settings",
+        "time": "2026-10-19T22:01:47.468Z",
+        "observed": "General renders native System appearance, validation sign-in disabled, panel options and Exit. Input page exposes speed/debounce ranges, empty button shortcuts/exclusions/close list and limitations. Bare V Back binding rejected Use a modifier and a key. Shortcuts shows five saved defaults; Features page renders allowlisted cards. No normal-profile or OS settings changed."
+      },
+      {
+        "id": "savedLayouts",
+        "time": "2026-10-19T22:03:05.388Z",
+        "observed": "After normal Exit, private saved layout reduced to one exact generated Notepad record with altered relative bounds. Restore returned 1 window/0 unavailable; Notepad snapshot 695x371 and text remains Unmodified. Undo returned 35 text Restored the previous positions of 1 windows. ID: Message. No other window restored."
+      },
+      {
+        "id": "cleaningMode",
+        "time": "2026-10-19T22:03:51.878Z",
+        "observed": "Keyboard-only Start showed 58s countdown and disabled mode toggle. Mouse Stop returned Keyboard and mouse are available, toggle enabled. Prior source-equivalent tests cover mouse-lock timed recovery and close/disable recovery; held Escape and wheel remain unverified."
+      },
+      {
+        "id": "textSnippets",
+        "time": "2026-10-19T22:04:21.932Z",
+        "observed": "Saved Audit snippet selects name, ;velaAudit trigger, Unicode Vela audit text checkmark and delimiter activation. No-match search empties list. Trigger/hook expansion not attempted because injected input is intentionally ignored; fresh matcher/expander/clipboard-package tests pass."
+      },
+      {
+        "id": "radialMenu",
+        "time": "2026-10-19T22:04:49.238Z",
+        "observed": "Ctrl+Alt+R renders 8 sectors; 1,1 enter two nested groups; third 1 reports missing executable inline and switches readable list. Backspace returns parent; Escape dismisses. No app/site launched. Earlier source-equivalent North/East drags remain separate evidence."
+      },
+      {
+        "id": "urlCleaner",
+        "time": "2026-10-19T22:05:27.713Z",
+        "observed": "Non-HTTP ftp fixture rejected Enter an HTTP or HTTPS link; automatic cleaner Off. No clipboard write; fresh core tracking/signature/query cases pass."
+      },
+      {
+        "id": "shelf",
+        "time": "2026-10-19T22:06:11.021Z",
+        "observed": "Separate native shelf renders empty session, manual target and remove-after-success Off. Add clipboard on empty clipboard rejects unsupported contents inline; remains empty. No cue option changed. Backend multi-file/text/link/cancel/provider/late-identity checks pass; outgoing drag remains transport-limited."
+      },
+      {
+        "id": "clipboardGuard",
+        "time": "2026-10-19T22:06:31.682Z",
+        "observed": "Read-only native form shows delay 86400 s, lock/sleep Off and Windows-history limitation. Global clipboard metadata empty/sequence36 at baseline. No timed/lock/suspend clear is claimed."
+      },
+      {
+        "id": "pasteImage",
+        "time": "2026-10-19T22:06:50.341Z",
+        "observed": "Save as PNG on empty clipboard returns Copy an image first, then try again; button re-enabled, no picker/file write. Saving actual clipboard bitmap through PickerHost remains unverified."
+      },
+      {
+        "id": "pastePlain",
+        "time": "2026-10-19T22:07:16.314Z",
+        "observed": "Native guidance renders configured Ctrl+Alt+Shift+V and ownership/elevated-app limits. Pressing while Vela focused retained guidance and sent no text; no visible inline failure assertion. Fresh backend clipboard-format snapshot tests pass; actual cross-app paste/restore remains historical VM evidence, not a fresh laptop pass."
+      },
+      {
+        "id": "imagePins",
+        "time": "2026-10-19T22:07:38.672Z",
+        "observed": "Native session/6-pin/2048-edge description renders. Pin clipboard image on empty clipboard returns Copy an image first, then try again. No pin created. Native alpha/size/cancellation decode tests pass; live pin move/resize/topmost/capacity remain unverified."
+      },
+      {
+        "id": "resourceAlerts",
+        "time": "2026-10-19T22:07:59.201Z",
+        "observed": "Native CPU90%, memory90%, disk10% form and cooldown/quiet-time explanation render. Feature resident during isolated tour without app error. Fresh sustained-alert gate regression covers hold/cooldown/gaps/missing values; real sampler-to-toast delivery not induced or claimed."
+      },
+      {
+        "id": "micMute",
+        "time": "2026-10-19T22:08:27.012Z",
+        "observed": "One physical SoundWire microphone renders Microphone available after guarded mute/unmute-all backend roundtrip and exact original endpoint restoration. Buttons/Refresh render. No recording/playback. Multi-device/hotplug not verified."
+      },
+      {
+        "id": "messagingDownloads",
+        "time": "2026-10-19T22:08:48.555Z",
+        "observed": "Review older downloads without folder returns Choose a folder first; no directory scanned. Fresh generated backend scan and changed/out-of-root/cancel guards pass, zero recycling. Picker selection and actual shell recycle/confirmation remain unverified."
+      },
+      {
+        "id": "videoTools",
+        "time": "2026-10-19T22:09:12.665Z",
+        "observed": "Current native MP4 default and 0..2048 MiB cap render; Convert batch with no inputs returns Choose videos and an output folder first and re-enables button. Fresh native MP4/M4A/GIF decode, size, missing-audio, partial failure and cancellation checks pass. Full picker execution remains unverified."
+      },
+      {
+        "id": "mediaTools",
+        "time": "2026-10-19T22:09:45.158Z",
+        "observed": "Current PNG default with JPEG quality/byte fields disabled renders. Scroll reaches Convert/OCR/Cancel at 150%. Empty Convert images returns Choose images and an output folder first. Native fresh conversion/resize/quality/caps/alpha/watermark/English OCR/mixed-batch/cancellation pass. Picker-driven complete batch remains unverified."
+      },
+      {
+        "id": "pastePlain",
+        "time": "2026-10-19T22:10:05.411Z",
+        "observed": "Later panel observation confirms native warning: Press the plain-paste shortcut while the destination app is focused. Self-destination guard passes with no clipboard/text change."
+      },
+      {
+        "id": "savedLayouts",
+        "time": "2026-10-19T22:10:48.851Z",
+        "observed": "Final Notepad observation after Undo is 951x540 versus moved 695x371; tab Unmodified with exact 54-character generated text. Vela process exited via General Exit."
+      }
+    ]
+  },
+  "previewVersion": "0.2.2-development",
+  "finishedPort": false,
+  "implementedToolCount": 31,
+  "allFeaturesFullyVerified": false,
+  "coverageCategories": {
+    "boundedPathsCovered": 22,
+    "physicalInputPending": 7,
+    "hardwareUnavailable": 2
+  },
+  "environment": {
+    "os": "Microsoft Windows 11 Pro",
+    "osBuild": "26200",
+    "model": "Dell Pro 14 Plus PB14250",
+    "architecture": "x64",
+    "cpu": [
+      "Intel(R) Core(TM) Ultra 7 265U"
+    ],
+    "gpu": [
+      {
+        "Name": "Intel(R) Graphics",
+        "DriverVersion": "32.0.101.8860"
+      }
+    ],
+    "memoryGiB": 31.5,
+    "dotnetSdk": "10.0.402",
+    "visualCppX64": "v14.50.35719.00",
+    "displayPixels": "1920x1200",
+    "registryAppliedDpi": 144,
+    "scalingChanged": false
+  },
+  "automated": {
+    "corePassed": 181,
+    "windowsBackendPassed": 21,
+    "failed": 0,
+    "newWindowsChecks": 1,
+    "explicitMicrophoneRoundTrip": "passed on one initially unmuted physical endpoint; mute and unmute observed; exact original endpoint restored; no audio recorded",
+    "globalClipboardPublicationFixture": "not run; global clipboard kept unchanged",
+    "x64NativeXamlOcrBuild": "passed",
+    "arm64NativeXamlOcrCrossBuild": "passed from x64 host",
+    "arm64RuntimeTested": false,
+    "compilerWarnings": 0,
+    "compilerErrors": 0
+  },
+  "features": [
+    {
+      "id": "keepAwake",
+      "name": "Keep awake",
+      "group": "Everyday",
+      "freshAutomated": "Native timer Start/Stop/expiry on the laptop; no dedicated AC/display-rule simulation.",
+      "freshUi": "One-minute timer active at 54.219s and Off by 80.764s; panel and explicit Stop pass.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Exact expiry instant; app/AC/external-display rules and suspend transitions."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 2
+    },
+    {
+      "id": "urlCleaner",
+      "name": "Clean links",
+      "group": "Everyday",
+      "freshAutomated": "Fresh core tracking removal, query order, fragments, duplicate parameters, encoded names and signed-link preservation pass.",
+      "freshUi": "Non-HTTP input rejected inline; automatic cleaning Off.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Actual copy/automatic clipboard rewrite on this laptop; busy-provider races in the live service."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "shelf",
+      "name": "File shelf",
+      "group": "Everyday",
+      "freshAutomated": "Fresh Windows multi-file/text/link, capacity, originals, canceled provider, late completion identity and Copy-only checks pass; core taskbar geometry/labels pass.",
+      "freshUi": "Empty session renders; empty clipboard import rejected without additions; closed normally.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Actual outgoing multi-file drag/cancel/remove-after-drop and cross-window lifecycle; transport rejects outside-window endpoints. Accepted cue unchanged."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "textSnippets",
+      "name": "Text snippets",
+      "group": "Everyday",
+      "freshAutomated": "Fresh matcher, delimiter, longest suffix, Unicode, replay, preparation and ownership/restoration tests pass; private native data packages retain formats.",
+      "freshUi": "Saved Unicode snippet fields and delimiter mode load; no-match filter empties list.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Physical trigger expansion and real editor/IME/elevated compatibility; exact live text/HTML restoration on this laptop. VM results are historical."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "clipboardGuard",
+      "name": "Clipboard auto-clear",
+      "group": "Everyday",
+      "freshAutomated": "Settings import delay bounds pass. No dedicated live timer/lock/suspend clear test.",
+      "freshUi": "Read-only delay 86400s, lock/sleep Off and history limitation render. Clipboard remains empty at sequence 36.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Actual expiry, reset-on-copy, transfer deferral, session lock/suspend and Windows-history behavior."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "pasteImage",
+      "name": "Save clipboard image",
+      "group": "Everyday",
+      "freshAutomated": "Shared native bitmap decoding/PNG encoding passes in media checks; SaveClipboardImage picker workflow itself not exercised.",
+      "freshUi": "Save as PNG on empty clipboard reports Copy an image first; no file written.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Real copied bitmap, save/cancel/overwrite via native picker."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "pastePlain",
+      "name": "Paste plain text",
+      "group": "Everyday",
+      "freshAutomated": "Fresh preparation/publication/restoration retry and sequence rules plus native private text/HTML/bitmap/transfer-intent snapshots pass. Separate global publication fixture not run.",
+      "freshUi": "Configured shortcut and guidance render; self-focused shortcut warning observed later in panel. Clipboard sequence unchanged.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Actual cross-app paste and global rich-format restoration, delayed providers, elevated editors, IME and in-flight Exit."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 2
+    },
+    {
+      "id": "cleaningMode",
+      "name": "Cleaning mode",
+      "group": "Everyday",
+      "freshAutomated": "Fresh CleaningSession 60s bound, continuous Escape hold, restart reset tests pass.",
+      "freshUi": "Keyboard-only countdown begins; Stop returns available state and enables mode toggle.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Fresh mouse/scroll lock, held physical Escape and session transitions. Earlier source-equivalent timed mouse-lock/close/disable results remain separate."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "quickLauncher",
+      "name": "Quick panel",
+      "group": "Workspace",
+      "freshAutomated": "Fresh shortcut parsing, native exclusions, settings and generic feature runtime lifecycle tests pass.",
+      "freshUi": "Saved Ctrl+Alt+V opens pinned panel with 22 cards plus awake widget for 24 enabled features; routes tools; Off shown at cleanup.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Tray/menu activation, unpinned foreground behavior, reordering/compact layout and broad display/accessibility matrix."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "commandBar",
+      "name": "Command bar",
+      "group": "Workspace",
+      "freshAutomated": "Fresh AND-word/phrase/path matching, ranking, limits and empty query tests pass.",
+      "freshUi": "Global shortcut, no-match Enter, reversed-word match and selected-tool Enter pass. Counts change 33 -> 34 after fixture window -> 35 after saved workspace.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Full launcher/snippet/window/workspace invocation categories; live Narrator and alternate DPI. Earlier final-row viewport result is separate."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 2
+    },
+    {
+      "id": "radialMenu",
+      "name": "Radial menu",
+      "group": "Workspace",
+      "freshAutomated": "Fresh launcher tree, depth/count, unsafe-target, radial sector/center/cancel geometry tests pass.",
+      "freshUi": "8 sectors; 1/1 nested groups; missing leaf fails inline with list fallback; Backspace and Escape work.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Successful app/file/site launch, center-return drag paths, held capture loss, touch/pen/Narrator. Earlier North/East drags are separate."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "windowSearch",
+      "name": "Find a window",
+      "group": "Workspace",
+      "freshAutomated": "Fresh relative-workspace geometry/settings checks pass. No direct dedicated native focus regression.",
+      "freshUi": "Fixture-only title filter, pin and unpin report success. Switch button was blocked by occlusion; no switch pass claimed.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Successful focus transfer, multi-display filtering, pinned teardown, elevated/fixed-size and closed-window races."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "savedLayouts",
+      "name": "Saved workspaces",
+      "group": "Workspace",
+      "freshAutomated": "Fresh coordinate adaptation, tiny work area and invalid/duplicate imported workspace tests pass.",
+      "freshUi": "Empty name rejected; save persists. Restricted one-Notepad layout restores 1/0; Undo restores one. Moved snapshot 695x371 -> 951x540; exact text remains Unmodified.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Multiple displays, missing/closed/maximized/elevated windows, duplicate-title matching and Undo after changes. Captured other-window entry was never restored."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 3
+    },
+    {
+      "id": "imagePins",
+      "name": "Image pins",
+      "group": "Workspace",
+      "freshAutomated": "Fresh native preview decode bounds, alpha and cancellation pass.",
+      "freshUi": "Session/6-pin/2048-edge guidance renders; empty clipboard pin reports Copy an image first.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Real pin creation, resize, topmost, six-pin capacity, disable/Exit cleanup and native picker."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "smoothScroll",
+      "name": "Smooth wheel scrolling",
+      "group": "Input",
+      "freshAutomated": "Settings/core lifecycle checks only; no dedicated wheel interpolation behavioral test.",
+      "freshUi": "Input settings render speed 100 with 25..300 range; feature kept disabled in test profile.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical notched wheel glide/speed/exclusions, precision touchpad pass-through and teardown. Injected events deliberately bypass hook."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "scrollHorizontal",
+      "name": "Scroll sideways",
+      "group": "Input",
+      "freshAutomated": "Settings/shortcut validation only; no dedicated native horizontal wheel behavior test.",
+      "freshUi": "Input/Shortcuts describe Alt+wheel; feature kept disabled in test profile.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical Alt+wheel dispatch, app-under-pointer, excluded apps and touchpad compatibility."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "scrollInverter",
+      "name": "Reverse horizontal scrolling",
+      "group": "Input",
+      "freshAutomated": "Catalog/settings validation only; no dedicated horizontal inversion behavior test.",
+      "freshUi": "Feature present in allowlist; shared Input surface reviewed; disabled for audit.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical horizontal wheel reversal, vertical unchanged, touchpad and per-app exclusions."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "mouseButtonShortcuts",
+      "name": "Mouse button shortcuts",
+      "group": "Input",
+      "freshAutomated": "Fresh shortcut parser rejects bare/unknown/duplicate modifier combinations; exclusions normalize. No live X-button event test.",
+      "freshUi": "Back/Forward empty settings render; bare V Save rejected Use a modifier and a key.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical Back/Forward, configured chord, native empty behavior, exclusions and teardown."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "mouseClickDebounce",
+      "name": "Extra click filter",
+      "group": "Input",
+      "freshAutomated": "Fresh import clamps ClickDebounceMs to 100. No dedicated physical debounce algorithm test.",
+      "freshUi": "Input shows 40ms and 10..100 range; feature kept disabled.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical worn-button duplicates, intentional double clicks, drag continuity and exclusions."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "superKey",
+      "name": "Super key",
+      "group": "Input",
+      "freshAutomated": "Catalog/settings and generic lifecycle only; no dedicated Caps Lock gesture test.",
+      "freshUi": "Shared Input explains hold modifiers/tap Escape; disabled in audit.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical Caps tap/hold/release and teardown; Computer Use forbids Windows-key shortcuts, including this chord."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "quitWindowProtection",
+      "name": "Close protection",
+      "group": "Input",
+      "freshAutomated": "Fresh CloseShortcutGuard first/held/second/expiry/isolation/third-press checks pass.",
+      "freshUi": "Input shows protected process list and double-press description; list empty and feature disabled.",
+      "functionalVerdict": "Partial: settings/core reviewed; physical behavior unverified.",
+      "limits": [
+        "Physical Alt+F4/Ctrl+W, process targeting, mouse close unchanged, elevated apps and teardown."
+      ],
+      "coverageCategory": "physical-input-pending",
+      "freshUiObservationCount": 0
+    },
+    {
+      "id": "monitorBrightness",
+      "name": "External monitor brightness",
+      "group": "Display",
+      "freshAutomated": "Fresh read-only native probe returns zero DDC displays without writes.",
+      "freshUi": "No monitor exposes DDC/CI brightness on this connection; no sample slider.",
+      "functionalVerdict": "Unavailable capability handled; supported-hardware behavior unverified.",
+      "limits": [
+        "Actual DDC read/write/restore, docks/HDR/cables/hotplug; target LG unavailable."
+      ],
+      "coverageCategory": "hardware-unavailable",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "thermalAlerts",
+      "name": "GPU thermal alerts",
+      "group": "System",
+      "freshAutomated": "Fresh missing-NVML probe and sustained-alert core gate tests pass.",
+      "freshUi": "Read sensors reports no supported NVIDIA sensors; threshold 85C; no sample readings.",
+      "functionalVerdict": "Unavailable capability handled; supported-hardware behavior unverified.",
+      "limits": [
+        "NVIDIA temperature/power, sustained toast delivery and device transitions; target RTX3080 unavailable."
+      ],
+      "coverageCategory": "hardware-unavailable",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "displayDimmer",
+      "name": "Extra dimming",
+      "group": "Display",
+      "freshAutomated": "Compiled native overlay path; no separate automated rendering test.",
+      "freshUi": "Single 1920x1200 slider 0 -> 10 visibly dims; Restore all displays -> 0 and normal frame.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Multiple displays, HDR/secure desktop, unplug/reconfigure and feature-disable reset. Exit completed."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "resourceAlerts",
+      "name": "Resource alerts",
+      "group": "System",
+      "freshAutomated": "Fresh sustained gate hold/cooldown/gap/threshold/missing/nonfinite/below-threshold cases pass. Real sampler-to-notification not forced.",
+      "freshUi": "CPU90/memory90/disk10 form and cooldown guidance render; resident enabled during tour.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Actual CPU/memory/disk sampling-to-toast, Windows quiet-time suppression and suspend/resume."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "micMute",
+      "name": "Mute all microphones",
+      "group": "Sound",
+      "freshAutomated": "Fresh read-only enumeration plus explicit guarded mute-all/unmute-all physical roundtrip pass; original single endpoint state restored by identity.",
+      "freshUi": "One SoundWire microphone shows available after restoration; native buttons render. No audio captured.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Multiple endpoints, initially-muted skip, hotplug, permissions/driver failure and UI write buttons."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "messagingDownloads",
+      "name": "Messaging download review",
+      "group": "Files",
+      "freshAutomated": "Fresh generated-tree age/recent-file scan; new changed-metadata, sibling-prefix/out-of-root and cancellation guards pass; zero recycled.",
+      "freshUi": "Empty review returns Choose a folder first; no user download folder scanned.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Native picker, actual selected shell recycle/Keep-files confirmation, links/reparse/inaccessible volumes and huge scan limits."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "developerFeeds",
+      "name": "Developer feeds",
+      "group": "System",
+      "freshAutomated": "Fresh generated HTTP/feed parser, bounds, redirects, timeout/cancellation, dedup/search and settings checks pass.",
+      "freshUi": "Refresh reads 2/3 local sources, newer Atom first; named HTTP503 retains good results; stable filter leaves one. Only three feed paths requested.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "External feeds, article browser opening, removal UI; previous native edit/cancel/timeout/tool-close checks are separate evidence."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "videoTools",
+      "name": "Batch video tools",
+      "group": "Files",
+      "freshAutomated": "Fresh native MP4/M4A/GIF decode, size limits, audio preservation, partial failures, uniqueness, impossible caps and active cancellation pass.",
+      "freshUi": "Default MP4/cap form renders; empty Convert batch reports required inputs.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Full native picker -> conversion -> rendered completion; long/DRM/multichannel/unusual codecs, huge batches."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "mediaTools",
+      "name": "Batch image tools",
+      "group": "Files",
+      "freshAutomated": "Fresh native PNG/JPEG/BMP resize, quality/caps, unique names, alpha/watermarks, English OCR, mixed failure and active cancel cleanup pass.",
+      "freshUi": "PNG default disables JPEG fields; scroll reaches all actions; empty Convert rejects missing inputs.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Full picker batch, actual OCR output presentation, mixed-result status styling, other OCR languages/huge/unusual codecs."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 1
+    },
+    {
+      "id": "internetSpeed",
+      "name": "Internet speed test",
+      "group": "System",
+      "freshAutomated": "Fresh generated transport/bounds/error/short-read/cancellation tests pass.",
+      "freshUi": "Live Cloudflare run 297.0 Mbps down,33.4 up,57ms HTTP latency;64MB down+16MB generated up. Second run canceled and Start restored.",
+      "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
+      "limits": [
+        "Network variability/proxies/offline captive portal and browser-independent benchmark accuracy; values are one observation."
+      ],
+      "coverageCategory": "bounded-paths-covered",
+      "freshUiObservationCount": 2
+    }
+  ],
+  "outputs": [
+    {
+      "architecture": "x64",
+      "appMachine": "0x8664",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "28a5031b5ea8ddb23f945c461749a90b8feb37f9f6dd2f94a5faf2a886616c2d",
+      "appDllSha256": "8da17b67a1f0684f95e4818ea03c6f0dd1040d5332ab027708d1af13198a927f",
+      "ocrExeSha256": "eb2828d1b47c89fcb43dbe2fe7b0c9fe6a0fb1b50532c2001f0017990c8707bf",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    },
+    {
+      "architecture": "arm64",
+      "appMachine": "0xaa64",
+      "ocrMachine": "0x8664",
+      "appExeSha256": "4792948d8242d804bee7eca272088e5cae2ebca3d3fab3cb2da7198aacc3310f",
+      "appDllSha256": "b9c3151099de5ed3a05294645a75a69f619b055e8240a24ca8508919aa1aa29a",
+      "ocrExeSha256": "eb2828d1b47c89fcb43dbe2fe7b0c9fe6a0fb1b50532c2001f0017990c8707bf",
+      "publishedManifestMatches": true,
+      "requiredFilesChecked": [
+        "Vela.Windows.exe",
+        "Vela.Windows.dll",
+        "Vela.Windows.runtimeconfig.json",
+        "Microsoft.UI.Xaml.dll",
+        "Vela.Windows.pri",
+        "Assets/Vela.ico",
+        "Ocr/Vela.OcrWorker.exe",
+        "Ocr/Vela.OcrWorker.dll",
+        "Ocr/tessdata/eng.traineddata",
+        "Ocr/x64/tesseract50.dll",
+        "Ocr/x64/leptonica-1.82.0.dll"
+      ],
+      "missingRequiredFiles": []
+    }
+  ],
+  "preservation": {
+    "normalSettingsBeforeSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalSettingsAfterSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalSettingsUnchanged": true,
+    "startupBefore": null,
+    "startupAfter": null,
+    "clipboardMetadataBefore": "READONLY clipboard metadata: formats=0; text=False; bitmap=False; files=False; sequence=36. Payload was not read or changed.",
+    "clipboardMetadataAfter": "READONLY clipboard metadata: formats=0; text=False; bitmap=False; files=False; sequence=36. Payload was not read or changed.",
+    "clipboardSequenceUnchanged": true,
+    "acceptedCueAndMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ],
+    "featureCatalogUnchanged": true,
+    "nativeScopeDecisionsUnchanged": 77
+  },
+  "cleanup": {
+    "recordedAt": "2026-10-19T15:14:28.9785382-07:00",
+    "processCount": 0,
+    "startupVela": null,
+    "fixtureListenerCount": 0,
+    "nativeScopeDecisionsChecked": 77,
+    "sdk": "10.0.402",
+    "localFeedServerStopped": true,
+    "notepadFixtureClosedUnmodified": true,
+    "notepadMovedSnapshot": "695x371",
+    "notepadAfterUndoSnapshot": "951x540",
+    "awakeStatusBeforeExit": "Off",
+    "dimmerValueBeforeExit": 0,
+    "normalExitObserved": true
+  },
+  "liveNetwork": {
+    "destination": "Cloudflare speed endpoint",
+    "downloadMbps": 297,
+    "uploadMbps": 33.4,
+    "httpLatencyMilliseconds": 57,
+    "downloadMB": 64,
+    "generatedUploadMB": 16,
+    "cancellation": "second run canceled during HTTP latency; Start re-enabled",
+    "calibratedBenchmark": false
+  },
+  "feedFixtureRequests": [
+    {
+      "path": "/rss",
+      "time": "2026-10-19T21:56:15.106Z"
+    },
+    {
+      "path": "/atom",
+      "time": "2026-10-19T21:56:15.107Z"
+    },
+    {
+      "path": "/broken",
+      "time": "2026-10-19T21:56:15.127Z"
+    }
+  ],
+  "limits": [
+    "Seven physical-input tools bypass injected events by design; no hook event spoofing.",
+    "Native PickerHost is not targetable by this Computer Use transport; no full picker-based operation claimed.",
+    "Cross-window outgoing drag endpoint rejected by transport; no false pass assigned.",
+    "No actual recycle/delete via UI, global clipboard publication, OS lock/suspend, hardware brightness or GPU temperature write.",
+    "Real resource/thermal toast delivery, multiple devices/displays, HDR, contrast, mixed DPI, Narrator, IME/elevated apps and long/DRM/large media need their stated checks.",
+    "ARM64 cross-build only on this x64 host; intended ASUS/RTX3080/LG desktop unavailable.",
+    "Earlier VM and dated UI results retain original identities; not silently counted as fresh results."
+  ],
+  "handoffAccounting": {
+    "sourceTransferAndDependencies": "October18 laptop checkpoint; latest source built here; SDK/runtime already installed, no reinstall needed",
+    "requestedDocumentationReviewed": true,
+    "currentBuildAndBackendOrder": "x64 build; ARM64 cross-build; x64 Windows checks",
+    "olderBinaryUsed": false,
+    "allOriginalMarkdownChecklistItemsComplete": false,
+    "openItems": [
+      "External transfer hash sidecar absent",
+      "Collect newer original VM archives/logs and validate them on host",
+      "Full physical/manual/hardware/accessibility matrix",
+      "Unimplemented non-native residuals remain in 77-feature audit"
+    ],
+    "packageAndInstaller": "not run; not requested"
+  },
+  "evidence": [
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/build-x64.log",
+      "sha256": "19ea57486650f1c45fad0a978f75841f858822e35a405fc096ba32f1665790fc"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/windows-baseline.log",
+      "sha256": "11f5e048116a82a7f6db70e994e1e93679daba5ece4b3d58b95d4bed8d9a1d42"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/build-final-x64.log",
+      "sha256": "c7132c91515df46086c51b5ac48f72c152721e1046176e28648d7c4484bdf456"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/build-final-arm64.log",
+      "sha256": "396d9f3bee28c9d772442e0893117ec70dab76d6568ce795fc95d1db7c181933"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/windows-final.log",
+      "sha256": "234bf6137be4e2eb35975954fd9000c1e53f4f097f38183f4a5571554c31d8b3"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/build-release-x64.log",
+      "sha256": "c6dc2f274559ac7f95962fddcd55c76c5a8976149edade46c7640777e6c70369"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/build-release-arm64.log",
+      "sha256": "23cb6e43220012d38d0562c4efa38afc2c191dd4beb34114894e0fb15041522c"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/windows-release.log",
+      "sha256": "9f8157afd231216b2c726c6785d302f702321f85990610034c011dc069ac5050"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/microphone-roundtrip.log",
+      "sha256": "d2b4825807f8b4d0f747644b6795d19838e10fe7e296c84294a409fc9b38f894"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/clipboard-metadata-before.log",
+      "sha256": "9768ae60a91a797d0fe19d9a723e630025eea0b450d5f7581ef89fb8e370a29a"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/clipboard-metadata-after.log",
+      "sha256": "9768ae60a91a797d0fe19d9a723e630025eea0b450d5f7581ef89fb8e370a29a"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/ui-observations.json",
+      "sha256": "2bc644e722257a5c84c45b4086ec5a52034bae7af2495c4ebbbebb68264203a7"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/feed-requests.json",
+      "sha256": "f61797488f696e3749f0bdeebcef3c0f7504e272bd0d307c4c08961b4605fc27"
+    },
+    {
+      "path": "artifacts/functionality-audit-2026-10-19/cleanup.json",
+      "sha256": "2261d3825a1500cf04d9f3bf0235e4e1838f942cf6012d14d6797b0481bed513"
+    }
+  ],
+  "newReleaseAssembled": false,
+  "installerRun": false,
+  "remoteCreated": false,
+  "published": false
+}

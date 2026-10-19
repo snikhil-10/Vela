@@ -4,15 +4,32 @@ namespace Vela.Windows.Services;
 
 internal static class MicrophoneService
 {
-    internal sealed record Device(string Name,bool Muted);
+    internal sealed record Device(string Name,bool Muted,string Id);
     private static readonly Guid EndpointVolume=new("5CDF2C82-841E-4546-9722-0CF74078229A");
     public static IReadOnlyList<Device> List()
     {
         var result=new List<Device>();
-        Visit((device,volume)=> { volume.GetMute(out bool muted); result.Add(new(Name(device),muted)); });
+        Visit((device,volume)=> { device.GetId(out string id); volume.GetMute(out bool muted); result.Add(new(Name(device),muted,id)); });
         return result;
     }
     public static void SetAll(bool muted)=>Visit((device,volume)=> { var context=Guid.Empty; volume.SetMute(muted,ref context); });
+    // Restore a captured endpoint by identity, without changing newly connected devices.
+    internal static void SetMute(string id,bool muted)
+    {
+        var enumerator=(IMMDeviceEnumerator)new MMDeviceEnumerator(); IMMDevice? device=null; object? endpoint=null;
+        try
+        {
+            enumerator.GetDevice(id,out device); var iid=EndpointVolume;
+            device.Activate(ref iid,23,0,out endpoint); var context=Guid.Empty;
+            ((IAudioEndpointVolume)endpoint).SetMute(muted,ref context);
+        }
+        finally
+        {
+            if(endpoint is not null) Marshal.ReleaseComObject(endpoint);
+            if(device is not null) Marshal.ReleaseComObject(device);
+            Marshal.ReleaseComObject(enumerator);
+        }
+    }
     private static void Visit(Action<IMMDevice,IAudioEndpointVolume> action)
     {
         var enumerator=(IMMDeviceEnumerator)new MMDeviceEnumerator(); IMMDeviceCollection? collection=null;

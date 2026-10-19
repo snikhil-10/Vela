@@ -12,6 +12,8 @@ internal static class Program
     public static int Main(string[] args)
     {
         WinRT.ComWrappersSupport.InitializeComWrappers();
+        if(args.Length==1 && args[0]=="--microphone-roundtrip") return MicrophoneChecks.RoundTrip();
+        if(args.Length==1 && args[0]=="--clipboard-metadata") return TextClipboardChecks.Metadata();
         if(args.Length==1 && args[0]=="--clipboard-publication-check") return TextClipboardChecks.Run();
         if(args.Length==1 && args[0]=="--clipboard-publication-restored-check") return TextClipboardChecks.CheckRestored();
         if(args.Length==1 && args[0] is "--clipboard-seed" or "--clipboard-check") return ClipboardFixture(args[0]);
@@ -217,6 +219,7 @@ try
         var result=DownloadReview.Scan(review,30,CancellationToken.None);
         Require(result.Files.Count==1 && result.Files[0].Path==stale,"Recent or unrelated file was included."); return Task.CompletedTask;
     });
+    await Check("Download review rejects changed and out-of-root selections without recycling",()=>DownloadSafetyChecks.Run(root));
     await Check("Missing GPU and DDC capabilities return cleanly without writes",async ()=>
     {
         using var sensors=new GpuSensors(); var readings=sensors.Read();

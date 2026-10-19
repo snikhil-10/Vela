@@ -8,6 +8,12 @@ using Windows.ApplicationModel.DataTransfer;
 // Explicit disposable-clipboard fixture, separate from the ordinary backend suite.
 internal static class TextClipboardChecks
 {
+    internal static int Metadata()
+    {
+        var view=Clipboard.GetContent();
+        Console.WriteLine($"READONLY clipboard metadata: formats={view.AvailableFormats.Count}; text={view.Contains(StandardDataFormats.Text)}; bitmap={view.Contains(StandardDataFormats.Bitmap)}; files={view.Contains(StandardDataFormats.StorageItems)}; sequence={Native.GetClipboardSequenceNumber()}. Payload was not read or changed.");
+        return 0;
+    }
     internal static int Run()
     {
         string phase="seed disposable clipboard";
