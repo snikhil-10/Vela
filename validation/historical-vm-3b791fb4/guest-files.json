@@ -1,0 +1,151 @@
+{
+    "expectedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+    "collectionPurpose":  "Copies of existing historical evidence only; no build, tests, install, source sync or preference changes",
+    "originalRoot":  "C:\\Users\\u\\source\\Vela",
+    "collectionFolder":  "C:\\Users\\u\\AppData\\Local\\Temp\\Vela-Historical-Evidence-3b791fb4-20261019",
+    "files":  [
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\Vela-arm64.zip",
+                      "collectedName":  "Vela-arm64.zip",
+                      "status":  "copied",
+                      "sha256":  "0899f4db2c87ceb1cdc7e57776da27b53cccf7bcfc950368be73064f2a1aafd5",
+                      "bytes":  133980626,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:33:06.4086381Z",
+                      "embeddedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+                      "sourceInputCount":  108,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\Vela-x64.zip",
+                      "collectedName":  "Vela-x64.zip",
+                      "status":  "copied",
+                      "sha256":  "e56d706e528b794dae5e1f9599c0fe6b9d6aaf4d3a74df94b011487fb4617ccd",
+                      "bytes":  136717879,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:34:11.3251434Z",
+                      "embeddedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+                      "sourceInputCount":  108,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\build-source-manifest.json",
+                      "collectedName":  "build-source-manifest.json",
+                      "status":  "copied",
+                      "sha256":  "ceebd293f7e35d93efb9f575b2484868ef2b6156636b4ba9412688d5b8673a9f",
+                      "bytes":  12315,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:20:14.0000000Z",
+                      "embeddedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+                      "sourceInputCount":  108,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\Vela-arm64\\compiled-source-manifest.json",
+                      "collectedName":  "arm64-compiled-source-manifest.json",
+                      "status":  "copied",
+                      "sha256":  "ceebd293f7e35d93efb9f575b2484868ef2b6156636b4ba9412688d5b8673a9f",
+                      "bytes":  12315,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:20:14.0000000Z",
+                      "embeddedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+                      "sourceInputCount":  108,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\Vela-x64\\compiled-source-manifest.json",
+                      "collectedName":  "x64-compiled-source-manifest.json",
+                      "status":  "copied",
+                      "sha256":  "ceebd293f7e35d93efb9f575b2484868ef2b6156636b4ba9412688d5b8673a9f",
+                      "bytes":  12315,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:20:14.0000000Z",
+                      "embeddedSnapshot":  "3b791fb4-ff70-4ab1-a947-0a94388639dd",
+                      "sourceInputCount":  108,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\offline-arm64-build.log",
+                      "collectedName":  "offline-arm64-build.log",
+                      "status":  "copied",
+                      "sha256":  "b66e9d05e7ea409aa9cde3b504d9301f55788958a741f402ff3fdce86263a667",
+                      "bytes":  9747,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:33:06.6952356Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\offline-x64-build.log",
+                      "collectedName":  "offline-x64-build.log",
+                      "status":  "copied",
+                      "sha256":  "1acd6a9cd2f9b6048070f3d80586695da119a1adb7628a9cbae13f16c7130875",
+                      "bytes":  9771,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:34:11.6287803Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\offline-arm64-checks.log",
+                      "collectedName":  "offline-arm64-checks.log",
+                      "status":  "copied",
+                      "sha256":  "46f4d8e5573adb80a3c7ca20b3141f2155375b7b4e1045b07e88de7aaa433a10",
+                      "bytes":  1436,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:32:42.5142407Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\offline-x64-checks.log",
+                      "collectedName":  "offline-x64-checks.log",
+                      "status":  "copied",
+                      "sha256":  "dab50255bbde485d1c9b7d5a976bb2ea79f17d8a16c16311627f2d85d034424b",
+                      "bytes":  1534,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:33:43.2257620Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\immediate-clipboard-probe.log",
+                      "collectedName":  "immediate-clipboard-probe.log",
+                      "status":  "copied",
+                      "sha256":  "a402d35d5711982dee4aa823451304de831ba9ed69d4e495c37b7732db9266f1",
+                      "bytes":  439,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:22:29.6582726Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\snippet-3b791fb4.log",
+                      "collectedName":  "snippet-3b791fb4.log",
+                      "status":  "copied",
+                      "sha256":  "ea6d444f823c64cf2fe33253d488df3808e4115c1bff4ffe2db950ee3733d82d",
+                      "bytes":  376,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:30:59.5980544Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\rapid-3b791fb4.log",
+                      "collectedName":  "rapid-3b791fb4.log",
+                      "status":  "copied",
+                      "sha256":  "1a0d2bab0f79eb706e08a2138cf7d414e2fb7acc3be294fa7fccc8c940042cc7",
+                      "bytes":  251,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:26:25.6115203Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  },
+                  {
+                      "originalLocation":  "C:\\Users\\u\\source\\Vela\\artifacts\\plain-3b791fb4.log",
+                      "collectedName":  "plain-3b791fb4.log",
+                      "status":  "copied",
+                      "sha256":  "f8f64beab32e426783b7b3e5dc56467f997b55ab6544b9b3374cd8d1477c917a",
+                      "bytes":  142,
+                      "originalLastWriteTimeUtc":  "2026-10-19T01:40:21.5780272Z",
+                      "embeddedSnapshot":  null,
+                      "sourceInputCount":  null,
+                      "originalPreserved":  true
+                  }
+              ]
+}

@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T21:47:52.6548053-07:00",
+  "sourceSnapshot": "bfaf9de5-0eaa-4d20-a0e8-053470bc7b15",
+  "parentSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+  "compileInputs": 134,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-shelf-native-drag-checkpoint.md",
+  "motivation": {
+    "source85d33a4a": "Cancellation retention and two-file copying passed; agent observed two retained entries after successful copy; trace had no EndOperation",
+    "copyPassDoesNotEstablishRemoval": true,
+    "ad9a5f89": "User-reported canceled duplicate dialog removed both entries; source/destination hashes unchanged"
+  },
+  "implementation": {
+    "standardOleCursors": true,
+    "escapeAndLifetimeCancellation": true,
+    "directOleDoDragDrop": true,
+    "onlyCopyOffered": true,
+    "scope": "Outgoing file drags when automatic removal is On",
+    "selfDropRejected": true,
+    "requiresNativeAsyncCompletion": true,
+    "incomingCueTextAndRemovalOffPathsUnchanged": true
+  },
+  "tests": {
+    "coreSourceHashesUnchanged": true,
+    "arm64Runtime": "not tested",
+    "coreRerunThisCheckpoint": false,
+    "x64Publish": "passed",
+    "nativeDragSourceRules": [
+      "Hold left button continues",
+      "Release drops",
+      "Escape cancels",
+      "Canceled feature/session cancels",
+      "Standard OLE cursors"
+    ],
+    "nativeAbi": {
+      "exactCandidateAppDllSha256": "9c205728a6f49520eb05be5ff8aa12dafbbc332ce080085294a8116da65c848c",
+      "fullPhysicalDragTest": false,
+      "hresults": [
+        "800704C7 rejected",
+        "80004005 rejected",
+        "00000001 rejected",
+        "00000000 Copy accepted"
+      ],
+      "nativeDropSourceQiAndPreserveSig": true,
+      "asyncBoolStartActiveEnd": true,
+      "fixtureCopyMatchesCandidate": true
+    },
+    "coreValidationHashesUnchanged": true,
+    "ocrWorker": "Copied unchanged validated x64 worker",
+    "windowsBackendFailed": 0,
+    "arm64Publish": "passed",
+    "coreFailed": 0,
+    "coreEvidenceSourceSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+    "windowsBackendPassed": 26,
+    "exifOrientations": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "compilerDiagnostics": 0,
+    "corePassed": 187,
+    "nativeMarshalling": {
+      "result": "passed",
+      "exactCandidateDllSha256": "9c205728a6f49520eb05be5ff8aa12dafbbc332ce080085294a8116da65c848c",
+      "sourceApartment": "STA",
+      "threadTargetApartment": "MTA",
+      "twoUnicodePathsAndOrder": true,
+      "nativeCfHdrop": true,
+      "crossThreadCallbacks": [
+        "800704C7 rejected, zero copies",
+        "80004005 rejected, zero copies",
+        "00000000 accepted, two identical copies"
+      ],
+      "separateLocalProcessCallbacks": [
+        "800704C7 rejected, zero copies",
+        "00000000 accepted, two identical copies"
+      ],
+      "originalBytesUnchanged": true,
+      "physicalExplorerTest": false,
+      "globalClipboardUsed": false,
+      "finalCompilerDiagnostics": 0,
+      "initialFixtureCompileFailure": "Variable-name collision; corrected; failed log preserved"
+    }
+  },
+  "manual": {
+    "successfulCopyAndRemoval": "FAIL user reports files cannot leave shelf; three native attempts returned effect None and fresh destination remained empty",
+    "pid": 19784,
+    "profile": "artifacts/manual-shelf-recheck-2026-10-19/profile-native",
+    "freshDestination": "artifacts/manual-shelf-recheck-2026-10-19/fresh-destination-native",
+    "removeAfterSuccess": true,
+    "sourceSnapshot": "bfaf9de5-0eaa-4d20-a0e8-053470bc7b15",
+    "partialSkip": "not tested",
+    "collisionCancellation": "not reached because positive outgoing drag failed",
+    "latestReadOnlyObservation": "User screenshot shows two retained selected entries and forbidden drag cursor; trace has three DoDragDrop returns with effect zero; destination has zero files"
+  },
+  "binaries": [
+    {
+      "output": "artifacts/Vela-shelf-native-drag-x64",
+      "architecture": "x64",
+      "ocrWorkerMatchesPrevious": true,
+      "appDllSha256": "9c205728a6f49520eb05be5ff8aa12dafbbc332ce080085294a8116da65c848c",
+      "peMachine": "8664",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "xamlPriBytes": 2203192,
+      "ocrWorkerMachine": "8664",
+      "manifestMatches": true
+    },
+    {
+      "output": "artifacts/Vela-shelf-native-drag-arm64",
+      "architecture": "arm64",
+      "ocrWorkerMatchesPrevious": true,
+      "appDllSha256": "841c9c465de569ad70c41f7aa264c390fe6c92926a5c7b6c88b35ab164750bd5",
+      "peMachine": "AA64",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "xamlPriBytes": 2203192,
+      "ocrWorkerMachine": "8664",
+      "manifestMatches": true
+    }
+  ],
+  "preservation": {
+    "normalProfileWrite": false,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "scopeTriplesUnchanged": true,
+    "cueAndMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ],
+    "catalogUnchanged": true,
+    "settingsSchemaUnchanged": true,
+    "scopeCount": 77,
+    "hardwareWrite": false,
+    "globalClipboardTest": false,
+    "signInRunValuePresent": false
+  },
+  "evidence": [
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/abi-build.log",
+      "sha256": "396ed56272c56727a208d3a2d8a106bc2b4d5292c80119cedb4ad683114e31f0",
+      "bytes": 517
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/abi.log",
+      "sha256": "370f8cec0bafe7c181866a34da536587938766c5545c9d4642961bbba351844c",
+      "bytes": 656
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/build-arm64.log",
+      "sha256": "9d0d9c356af9b5930871280323e7c53c811c506fe414fc02717c9e6c7fd2997a",
+      "bytes": 709
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/build-x64.log",
+      "sha256": "8c7586193553f7559ffce1b886a06ada82ce769394c2f178c157eb68630cd180",
+      "bytes": 701
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/check-build.log",
+      "sha256": "2cb765eaa8a1401f46a2238d9725bf884d6c4b8197378986b15de50035369706",
+      "bytes": 522
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/windows-checks.log",
+      "sha256": "80f81e5e8ce031dec9534b113f6678a4b8e529154f65ba392f27047f6fef92e9",
+      "bytes": 6225
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/manual-candidate.json",
+      "sha256": "40b748e47b80d3e0f8f271e55d09608c62d8066fb6060922f4ba3b9c89acd606",
+      "bytes": 536
+    },
+    {
+      "path": "artifacts/shelf-completion-2026-10-19/final-core.log",
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64",
+      "bytes": 12585
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-failed.json",
+      "sha256": "67ad3225dfccf715d4f28f7f96319dbbe9b56d9364f053593f8f2c4b4484d75f",
+      "bytes": 1704
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-retained.json",
+      "sha256": "b90997dacd1d9a533c00a6d39d0672b450d470318c38a7ee2384a19219f94f4f",
+      "bytes": 1589
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-trace.log",
+      "sha256": "fdfa25ad48f879a9402216e727a6a723f6c9fce9af8b1411c28e46c80551a3c9",
+      "bytes": 879
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy.json",
+      "sha256": "2cb1e7e9afdbd5a8f6f3eebcb827b7d924fce99d336728227796f3d5a6d2c79c",
+      "bytes": 1115
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy-trace.log",
+      "sha256": "b68cff95225c5dde5a95536066217379d95f942147d64917e61b1fbc8df1b848",
+      "bytes": 1172
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/success-shelf-tree.txt",
+      "sha256": "50e97e2d771a12038ee9bdbf6893ebaffb0a4023008f4a20bbb5d571172e7b17",
+      "bytes": 2877
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy-inspection.json",
+      "sha256": "c22be32cddf1aea1b4ea6e35456dc181025f609d235920a5534d2f6aebb824c1",
+      "bytes": 595
+    },
+    {
+      "path": "validation/fixtures/shelf-native-drag-abi/Program.cs",
+      "sha256": "d436d75c7ec60a92617535e24536a8bee2eeea1350c21c0ba5a615e9040617ad",
+      "bytes": 6124
+    },
+    {
+      "path": "validation/fixtures/shelf-native-drag-abi/ShelfNativeDragAbi.csproj",
+      "sha256": "e38ea5b27246f88c68f016f9c265287711565f25c0ffb6b1bdae1fcda2087b30",
+      "bytes": 984
+    },
+    {
+      "path": "validation/fixtures/shelf-marshalling/Program.cs",
+      "sha256": "8ee6ab9daf418b912173b8a9619a051a93dd9af828f05266a8a8e9c0e012ff23",
+      "bytes": 16671
+    },
+    {
+      "path": "validation/fixtures/shelf-marshalling/ShelfMarshalling.csproj",
+      "sha256": "e38ea5b27246f88c68f016f9c265287711565f25c0ffb6b1bdae1fcda2087b30",
+      "bytes": 984
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/marshalling-build.log",
+      "sha256": "ee60c21bd57b74c5ce6ebb156d8459e2e628f595ee28281f29ed8053892b6643",
+      "bytes": 499
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/marshalling.log",
+      "sha256": "af0bcd1cf3763a08d02c3d6559d1b76dc451a7de768e9866f4a672126849b96e",
+      "bytes": 570
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/marshalling-process-build.log",
+      "sha256": "369436b1419e09d930e935acebdfb96b0b134e5f2fdef743d6c256158876121d",
+      "bytes": 1098
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/marshalling-process-build-final.log",
+      "sha256": "a4801af98eb9d884e7420537bc5cc5bb0c43adb509d8b03e101c9e5805096368",
+      "bytes": 393
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/marshalling-process.log",
+      "sha256": "51a62a693bb61b551e03efc1c8034232d274c761ecaa5844207fe837dd20afe5",
+      "bytes": 946
+    },
+    {
+      "bytes": 629,
+      "sha256": "3b4d6d3a43b6d709c4fd69e5fdb0a325633a03be4100bfad874cdd3c97e62da7",
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/native-drag-failed.json"
+    },
+    {
+      "bytes": 447,
+      "sha256": "063d909898a7b642f09bd494e1c538dca703337bc70ac83f8c91225e2ee96cab",
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/native-drag-failed-trace.log"
+    },
+    {
+      "bytes": 2915,
+      "sha256": "a78e32d3590ef4f4e60bc8349ba83383f74c95f3f464fb2dc8c055754c3f920e",
+      "path": "validation/fixtures/shelf-drag-discovery/Program.cs"
+    },
+    {
+      "bytes": 931,
+      "sha256": "cf896d1305e6566ef288bde7cdcaf1318fea3a2bc084b070d8ecd44365cedeff",
+      "path": "validation/fixtures/shelf-drag-discovery/ShelfDragDiscovery.csproj"
+    },
+    {
+      "bytes": 515,
+      "sha256": "ee5f04d043a3d7aba2f825c3d5697c778eaa90b20dadfff15b212b532daa6e66",
+      "path": "artifacts/shelf-native-drag-2026-10-19/discovery-build.log"
+    },
+    {
+      "bytes": 1036,
+      "sha256": "467360da37d9c375e5f7f8b5bef0dd2c2409ff002ae8dc25ccd3d15eb79b7a3d",
+      "path": "artifacts/shelf-native-drag-2026-10-19/discovery.log"
+    }
+  ],
+  "runtime": {
+    "forcedTermination": false,
+    "previousCandidateExitedNormally": true,
+    "candidateLeftForManualTest": false,
+    "residentProcesses": [],
+    "ocrWorkersRemaining": 0,
+    "thisCandidateExitedNormally": true
+  },
+  "limits": [
+    "Physical outgoing drag FAIL; no accepted destination. Positive/negative behavior of child gesture candidate remains pending.",
+    "Partial/skip, mid-drag Escape, filtered transfer and loaded shelf lifecycle untested on this candidate",
+    "Touch/pen and drag-image presentation unverified; source uses standard OLE cursors",
+    "Receivers without async confirmation may retain entries",
+    "Full picker/media lifecycle, broader input/clipboard/accessibility/DPI/hardware and residuals remain",
+    "ARM64 cross-publish only"
+  ],
+  "release": {
+    "finishedPort": false,
+    "packaged": false,
+    "preview": true,
+    "installed": false,
+    "published": false
+  },
+  "updatedAt": "2026-10-19T22:06:16.1081712-07:00",
+  "nextCandidate": "28775fed-70f7-4f21-9e50-90a33910c8e9"
+}

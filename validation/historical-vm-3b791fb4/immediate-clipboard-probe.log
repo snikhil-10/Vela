@@ -1,0 +1,4 @@
+Publication probe before read: capturedSequence=1877; afterPublish=1877; ownerMatches=True; unicodeAvailable=True.
+Publication probe: textMatches=True; textLength=19; capturedSequence=1877; afterPublish=1877; afterRead=1877; ownerMatches=True.
+PASS Fresh consumer reads restored text and HTML.
+PASS Immediate Unicode clipboard publication, history/roaming exclusion, stable sequence, stale-write rejection and rich-format restoration.

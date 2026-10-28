@@ -1,6 +1,5 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Windows.Storage;
 using Windows.Storage.Pickers;
 using WinRT.Interop;
 using Vela.Core;
@@ -12,10 +11,14 @@ public sealed partial class SettingsWindow : Window
 {
     private readonly AppController controller;
     private Action? reflowFeatures;
+    private CancellationTokenSource? transfer;
+    private ContentDialog? importDialog;
+    private bool closed;
     internal SettingsWindow(AppController controller)
     {
         this.controller=controller; InitializeComponent(); WindowStyle.Configure(this,1060,800);
         Rows.SizeChanged+=(_,_)=>reflowFeatures?.Invoke();
+        Closed+=(_,_)=> { closed=true; CancelWork(); };
         Navigation.SelectedItem=Navigation.MenuItems[0];
     }
     public void Navigate(string name)
@@ -147,32 +150,51 @@ public sealed partial class SettingsWindow : Window
         Add("Optional connection test","Internet speed test contacts Cloudflare only when you start it. A run uses up to 80 MB plus overhead. Cloudflare receives your public IP and generated test traffic; Vela sends no user content or results report.");
         foreach(var feature in FeatureCatalog.All.Where(f=>controller.Settings.EnabledFeatures.Contains(f.Id))) Add(feature.Name,feature.Access);
         Add("Clipboard history","Auto-clear clears the current clipboard. Pinned and saved Windows clipboard history is owned by Windows; manage it in Windows Settings.");
-        Add("Export settings","Includes snippets and launcher paths. Keep the exported file somewhere private.",Ui.Button("Export",Export));
-        Add("Import settings","Review and apply a Vela settings file. Sign-in startup is managed separately.",Ui.Button("Import",Import));
+        Add("Export settings","Save a JSON backup up to 4 MB, including snippets, launcher paths and feed URLs. Keep it somewhere private.",Ui.Button("Export",Export));
+        Add("Import settings","Review a Vela backup up to 4 MB. Existing settings change only after the replacement is saved. Sign-in startup stays separate.",Ui.Button("Import",Import));
         if(controller.LastError is {} error) Add("Last notice",error);
     }
     private async void Export()
     {
-        try
+        await TransferSettings(async cancellation=>
         {
             var picker=new FileSavePicker { SuggestedFileName="Vela settings" }; picker.FileTypeChoices.Add("Vela settings",[".json"]);
-            InitializeWithWindow.Initialize(picker,WindowStyle.Handle(this)); var file=await picker.PickSaveFileAsync();
-            if(file is null) return; await FileIO.WriteTextAsync(file,SettingsStore.Serialize(controller.Settings)); Message("Settings exported.");
-        }
-        catch(Exception ex) { Message(ex.Message,true); }
+            InitializeWithWindow.Initialize(picker,WindowStyle.Handle(this)); var file=await picker.PickSaveFileAsync().AsTask(cancellation);
+            if(file is null) return;
+            await SettingsBackup.Write(file.Path,controller.Settings,cancellation);
+            cancellation.ThrowIfCancellationRequested();
+            Message("Settings exported.");
+        });
     }
     private async void Import()
     {
-        try
+        await TransferSettings(async cancellation=>
         {
             var picker=new FileOpenPicker(); picker.FileTypeFilter.Add(".json"); InitializeWithWindow.Initialize(picker,WindowStyle.Handle(this));
-            var file=await picker.PickSingleFileAsync(); if(file is null) return;
-            if((await file.GetBasicPropertiesAsync()).Size>4*1024*1024) { Message("That file is too large for a settings backup.",true); return; }
-            var imported=SettingsStore.Deserialize(await FileIO.ReadTextAsync(file));
+            var file=await picker.PickSingleFileAsync().AsTask(cancellation); if(file is null) return;
+            var imported=await SettingsBackup.Read(file.Path,cancellation);
+            cancellation.ThrowIfCancellationRequested();
             var dialog=new ContentDialog { XamlRoot=Root.XamlRoot,Title="Replace your Vela settings?",Content=$"This will enable {imported.EnabledFeatures.Count} tools and import {imported.Snippets.Count} snippets. Existing settings will be replaced.",PrimaryButtonText="Import",CloseButtonText="Cancel",DefaultButton=ContentDialogButton.Close };
-            if(await dialog.ShowAsync()==ContentDialogResult.Primary) { controller.Import(imported); Message("Settings imported."); }
-        }
-        catch(Exception ex) { Message(ex.Message,true); }
+            importDialog=dialog;
+            try
+            {
+                var result=await dialog.ShowAsync().AsTask(cancellation);
+                cancellation.ThrowIfCancellationRequested();
+                if(result==ContentDialogResult.Primary) { controller.Import(imported); Message("Settings imported."); }
+            }
+            finally { importDialog=null; }
+        });
+    }
+    internal void CancelWork() { transfer?.Cancel(); importDialog?.Hide(); }
+    private async Task TransferSettings(Func<CancellationToken,Task> action)
+    {
+        if(closed || controller.Quitting) return;
+        if(transfer is not null) { Message("A settings transfer is already in progress.",true); return; }
+        using var cancellation=new CancellationTokenSource(); transfer=cancellation;
+        try { await controller.RunOperation(()=>action(cancellation.Token)); }
+        catch(OperationCanceledException) { }
+        catch(Exception error) { if(!closed && !controller.Quitting) Message(error.Message,true); }
+        finally { transfer=null; }
     }
     private void About()
     {

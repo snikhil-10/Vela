@@ -57,8 +57,14 @@ try
     });
     await Check("Shelf cancels delayed providers on disable or close and accepts a fresh session",ShelfChecks.Cancellation);
     await Check("Shelf late drag completion preserves identical new entries and accepts only Copy",ShelfChecks.DragIdentity);
+    await Check("Accepted file drops retain entries until native post-transfer feedback confirms Copy",()=>ShelfChecks.FileCompletion(folder));
+    await Check("Actual Windows folder handler completes streamed Unicode/empty/read-only copies and confirms S_OK Copy",()=>ShellCopyChecks.Run(folder));
+    await Check("Shelf search preserves hidden entries, identity and selected-file transfer order",()=>ShelfChecks.Search(folder));
     await Check("JPEG byte budgets produce decodable capped copies and cleanly reject impossible or canceled work",()=>JpegBudgetChecks.Run(folder));
+    await Check("PNG/BMP byte budgets enforce capped dimensions, preserve alpha/originals and clean up failed or canceled work",()=>LosslessImageBudgetChecks.Run(folder));
+    await Check("All eight EXIF orientations survive conversion, byte caps, pin decoding and OCR preparation",()=>ImageOrientationChecks.Run(folder));
     await Check("Image batches isolate unreadable inputs, retain unique alpha-preserving copies and clean up canceled work",()=>ImageBatchChecks.Run(folder));
+    await Check("PNG saves preserve alpha and prior destination bytes on decode failure, cancellation or busy commit",()=>ClipboardImageChecks.Run(folder));
     await Check("Clipboard snapshots preserve formats and transfer intent and reject failed providers before editing",async ()=>
     {
         var data=new global::Windows.ApplicationModel.DataTransfer.DataPackage { RequestedOperation=global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Move }; data.SetText("Mixed CASE ✓\r\nSecond line");
@@ -100,7 +106,7 @@ try
         Require(shelf.Items.Count==2,"Canceled drag removed shelf entries.");
         shelf.CompleteDrag(dragged,global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy,false);
         Require(shelf.Items.Count==2,"Disabled remove-after-drop was ignored.");
-        shelf.CompleteDrag(dragged,global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy,true);
+        shelf.CompleteDrag(dragged,global::Windows.ApplicationModel.DataTransfer.DataPackageOperation.Copy,true,copyConfirmed:true);
         Require(shelf.Items.Count==0 && await FileIO.ReadTextAsync(one)=="first original" && await FileIO.ReadTextAsync(two)=="second original","Transfer modified originals.");
         await shelf.Add(data.GetView()); await one.DeleteAsync();
         try { ShelfService.Package(shelf.Items.ToArray()); throw new Exception("Missing original was not rejected."); }
@@ -206,10 +212,12 @@ try
     await Check("OCR worker extracts English text offline",async ()=>
     {
         var text=await folder.CreateFolderAsync("text");
-        Require(await MediaService.Ocr([fixture],text,_=>{},CancellationToken.None)==1,"OCR returned no output.");
+        var batch=await MediaService.Ocr([fixture],text,_=>{},CancellationToken.None);
+        Require(batch.Completed==1 && batch.Total==1 && !batch.HasFailures,"OCR returned no output.");
         string result=await FileIO.ReadTextAsync((await text.GetFilesAsync()).Single());
         Require(result.Contains("Vela local text extraction",StringComparison.OrdinalIgnoreCase),"Recognized text differs from fixture.");
     });
+    await Check("OCR batches isolate invalid images and worker failures, retain originals and stop owned workers on cancellation",()=>OcrBatchChecks.Run(folder,fixture));
     await Check("Review scan keeps recent copies and scans only the selected tree",()=>
     {
         string review=Path.Combine(root,"review"); Directory.CreateDirectory(review);

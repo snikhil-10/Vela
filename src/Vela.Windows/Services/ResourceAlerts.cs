@@ -8,16 +8,19 @@ internal sealed class ResourceAlerts(Func<AppSettings> settings, DispatcherQueue
 {
     private DispatcherQueueTimer? timer;
     private long lastIdle,lastKernel,lastUser;
-    private bool cpuBaseline;
+    private bool cpuBaseline,running;
     private readonly SustainedAlertGate cpu=new(), memory=new(), disk=new(holdMilliseconds:0,below:true);
     public string Id=>"resourceAlerts";
     public void Start()
     {
+        if(running) return;
+        running=true;
         cpuBaseline=Native.GetSystemTimes(out lastIdle,out lastKernel,out lastUser);
         timer=queue.CreateTimer(); timer.Interval=TimeSpan.FromSeconds(5); timer.Tick+=Tick; timer.Start();
     }
     private void Tick(DispatcherQueueTimer sender, object args)
     {
+        if(!running) return;
         var s=settings(); long now=Environment.TickCount64;
         if(Native.GetSystemTimes(out long idle,out long kernel,out long user))
         {
@@ -43,6 +46,6 @@ internal sealed class ResourceAlerts(Func<AppSettings> settings, DispatcherQueue
         catch(Exception ex) when(ex is IOException or UnauthorizedAccessException) { disk.ResetObservation(); }
     }
     internal void ResetObservations() { cpuBaseline=false; cpu.ResetObservation(); memory.ResetObservation(); disk.ResetObservation(); }
-    public void Stop() { timer?.Stop(); if(timer is not null) timer.Tick-=Tick; timer=null; ResetObservations(); }
+    public void Stop() { running=false; timer?.Stop(); if(timer is not null) timer.Tick-=Tick; timer=null; ResetObservations(); }
     public void Dispose()=>Stop();
 }

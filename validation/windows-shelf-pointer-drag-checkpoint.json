@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T22:09:45.6660424-07:00",
+  "sourceSnapshot": "28775fed-70f7-4f21-9e50-90a33910c8e9",
+  "parentSnapshot": "bfaf9de5-0eaa-4d20-a0e8-053470bc7b15",
+  "compileInputs": 134,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-shelf-pointer-drag-checkpoint.md",
+  "motivation": {
+    "parentPhysicalResult": "FAIL outgoing dragging blocked; three native attempts returned effect None; zero copies",
+    "explanation": "Competing WinUI/native gesture lifetimes are a working hypothesis",
+    "componentPassDoesNotEstablishPhysicalPass": true,
+    "nativeFormatDiscovery": "Original and tracked data advertise/query CF_HDROP successfully"
+  },
+  "implementation": {
+    "singleGestureOwnerAndSafeWinUiFallback": true,
+    "releasePointerCapturesBeforeOle": true,
+    "dpiAwareMovementThreshold": true,
+    "asyncCompletionRequiredForFileRemoval": true,
+    "stationaryClicksExcluded": true,
+    "validationProfileDiagnosticsOnly": true,
+    "mouseLeftFilesRemoveOnOnly": true,
+    "incomingCueUnchanged": true,
+    "startBeforeWinUiRecognition": true,
+    "selfDropRejected": true,
+    "snapshotSelectedFileReferences": true,
+    "copyOnly": true
+  },
+  "tests": {
+    "thresholdScales": [
+      1,
+      1.5,
+      2,
+      3,
+      "invalid fallback"
+    ],
+    "physicalPointerCoverage": false,
+    "corePassed": 187,
+    "windowsBackendPassed": 26,
+    "coreEvidenceSourceSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+    "windowsBackendRunUnchangedAfterFinalUiOnlyGuard": true,
+    "arm64Runtime": "not tested",
+    "initialCompileFailure": "Unqualified Windows.Foundation namespace with secondary XAML diagnostics; corrected; logs retained",
+    "coreFailed": 0,
+    "windowsBackendFailed": 0,
+    "arm64Publish": "passed",
+    "coreRerun": false,
+    "nativeMarshalling": {
+      "successCreatesTwoIdenticalCopies": true,
+      "exactCandidateDllSha256": "77513e653d3d502a05402c4d8625980aa957912f93978312a229a02335099e85",
+      "separateLocalProcess": true,
+      "physicalExplorerTest": false,
+      "nativeCfHdrop": true,
+      "result": "passed",
+      "unicodePathOrder": true,
+      "globalClipboardUsed": false,
+      "originalsUnchanged": true,
+      "cancelAndFailureRejected": true,
+      "staToMta": true
+    },
+    "coreSourceAndTwelveValidationHashesUnchanged": true,
+    "finalCompilerDiagnostics": 0,
+    "x64Publish": "passed"
+  },
+  "binaries": [
+    {
+      "architecture": "x64",
+      "output": "artifacts/Vela-shelf-pointer-drag-x64",
+      "peMachine": "8664",
+      "appDllSha256": "77513e653d3d502a05402c4d8625980aa957912f93978312a229a02335099e85",
+      "xamlPriBytes": 2203192,
+      "manifestMatches": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "ocrWorkerCopiedUnchanged": true
+    },
+    {
+      "architecture": "arm64",
+      "output": "artifacts/Vela-shelf-pointer-drag-arm64",
+      "peMachine": "AA64",
+      "appDllSha256": "6a51c718d696483e9fa5ebe19c92f10d4be2dd9e83410d6234156341e0ee70d9",
+      "xamlPriBytes": 2203192,
+      "manifestMatches": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "ocrWorkerCopiedUnchanged": true
+    }
+  ],
+  "additionalCoreTestInputs": [
+    {
+      "path": "tests/Vela.Core.Tests/AlertChecks.cs",
+      "sha256": "4dfe1daa56187b82fbbb79c8ed9242f69f03df1e52fe81a2ac913790ce53a45c"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/AudioBudgetChecks.cs",
+      "sha256": "2d36f6ccf57bd8a9da0c061a43f839e332318e31a80567077dba8cf121003cd7"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/ClipboardChecks.cs",
+      "sha256": "de5885a4716062e15c4c95570d43a5a9edf0970dd28b262b363f04667ac9d629"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/CommandQueryChecks.cs",
+      "sha256": "8f572b991e4fede6e3ffd31ba1a37060960e9c817f42db552b966793219b1bd6"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/DeveloperFeedChecks.cs",
+      "sha256": "15a6dcff77b424f5184eece387deee56772865cbbe1c37e18ef7989f36458765"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/ImageBudgetChecks.cs",
+      "sha256": "c0b57e77c1615b6f9d9aa461490d2cb23804440dbe603e03525b518f1aa8e396"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/InputChecks.cs",
+      "sha256": "24280cdbc1122943ea400ccc1defd4533c40032b82c32e3ab51f3077a7179571"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/LauncherChecks.cs",
+      "sha256": "d3c1e6f8902aa5f14efeeca1d5bff7fcba472ec8b3e55d24f8091294f6021fdf"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/NetworkChecks.cs",
+      "sha256": "21971816380a3dac88ba1c140954abbe95f6aea5aafd8c92968a842fb2628b64"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/Program.cs",
+      "sha256": "286c7ae80f6d8cd6b0cecf4c372eccec369d6b234a70b8858d7d65be6cc2831c"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/Vela.Core.Tests.csproj",
+      "sha256": "64505027df46e1e8cdb15cdac4091b9795cc43c40b19aec2e0e1967ebe032656"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/VideoBudgetChecks.cs",
+      "sha256": "61771e28ca3e3525e320b559975d4d31f3c58e97607a203cceacb3dd990ef9db"
+    }
+  ],
+  "preservation": {
+    "normalProfileWrite": false,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "scopeTriplesUnchanged": true,
+    "cueAndMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ],
+    "catalogUnchanged": true,
+    "settingsSchemaUnchanged": true,
+    "scopeCount": 77,
+    "hardwareWrite": false,
+    "globalClipboardTest": false,
+    "signInRunValuePresent": false
+  },
+  "manual": {
+    "requestSent": true,
+    "pid": 23752,
+    "partialSkip": "not tested",
+    "collisionCancellation": "not newly tested on this candidate",
+    "uiReadyObserved": true,
+    "profile": "artifacts/manual-shelf-recheck-2026-10-19/profile-pointer",
+    "twoFileSelectionCopyAndRemoval": "Copy PASS through WinUI fallback; automatic removal FAIL; two retained entries and user-reported awkwardness",
+    "freshDestination": "artifacts/manual-shelf-recheck-2026-10-19/fresh-destination-pointer",
+    "removeAfterSuccess": true,
+    "experimentalNativeMouse": "FAIL repeated effect None; one lingering loop canceled through automated Escape"
+  },
+  "evidence": [
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/native-drag-failed-trace.log",
+      "sha256": "063d909898a7b642f09bd494e1c538dca703337bc70ac83f8c91225e2ee96cab",
+      "bytes": 447
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/native-drag-failed.json",
+      "sha256": "3b4d6d3a43b6d709c4fd69e5fdb0a325633a03be4100bfad874cdd3c97e62da7",
+      "bytes": 629
+    },
+    {
+      "path": "artifacts/shelf-completion-2026-10-19/final-core.log",
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64",
+      "bytes": 12585
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/discovery-build.log",
+      "sha256": "ee5f04d043a3d7aba2f825c3d5697c778eaa90b20dadfff15b212b532daa6e66",
+      "bytes": 515
+    },
+    {
+      "path": "artifacts/shelf-native-drag-2026-10-19/discovery.log",
+      "sha256": "467360da37d9c375e5f7f8b5bef0dd2c2409ff002ae8dc25ccd3d15eb79b7a3d",
+      "bytes": 1036
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-arm64.log",
+      "sha256": "a4ad308f136340c6b7b1f4dfdbac9826a838cce1d47652fc08f9b89a59998cca",
+      "bytes": 710
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-final-arm64.log",
+      "sha256": "75d496749ca298352f3723d3c1d2b205624dc63b08ccc7637662ba7cabe5ad20",
+      "bytes": 710
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-final-x64.log",
+      "sha256": "933738cd3823bf978257a39303bd6257f9b61eb7b3169a9f1df1dd58a1a44c68",
+      "bytes": 702
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-initial.log",
+      "sha256": "9613f6bb10a141d4f1b21929d5a945d6d08b71fb3e4e88883a0c9fd5208f53bf",
+      "bytes": 1552
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-preliminary.log",
+      "sha256": "50c2e250ff016d288e42a6134c981ac5f4dffd530844a0db8264183acdc7943a",
+      "bytes": 502
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/build-x64.log",
+      "sha256": "50c2e250ff016d288e42a6134c981ac5f4dffd530844a0db8264183acdc7943a",
+      "bytes": 502
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/check-build.log",
+      "sha256": "55c2677529fd1f4986f99463ef81de9d8d38c5822a46ae062afe53df0e964845",
+      "bytes": 524
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/manual-candidate.json",
+      "sha256": "1fbdaefc252b5c747c46424f65e4965cc7c1f00c02f2ce8602ad46a1b3bb54c8",
+      "bytes": 627
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/marshalling-build.log",
+      "sha256": "2b4f52e39f96020a75488855db21e2f7f53da3ee35c009b076a867bba1535e85",
+      "bytes": 550
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/marshalling-final-build.log",
+      "sha256": "3db87e0ff1e85d887f03aede414adf32190952d65fcc59f5586ff5539627f88c",
+      "bytes": 429
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/marshalling-final.log",
+      "sha256": "12550050c1764db500cec0ed686a676b20f34e5786520e6fe23f4ba8fbaf7a2e",
+      "bytes": 946
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/marshalling.log",
+      "sha256": "34ed0ad9bab77a3afcf6d1bd2b636e8bc00d9fda01bc07d668c77e8441343304",
+      "bytes": 946
+    },
+    {
+      "path": "artifacts/shelf-pointer-drag-2026-10-19/windows-checks.log",
+      "sha256": "3e149222332f9580020d7d21f04ef224cf7eb87d50bddfbf744404bb9951f2f9",
+      "bytes": 6225
+    },
+    {
+      "path": "validation/fixtures/shelf-drag-discovery/Program.cs",
+      "sha256": "a78e32d3590ef4f4e60bc8349ba83383f74c95f3f464fb2dc8c055754c3f920e",
+      "bytes": 2915
+    },
+    {
+      "path": "validation/fixtures/shelf-drag-discovery/ShelfDragDiscovery.csproj",
+      "sha256": "cf896d1305e6566ef288bde7cdcaf1318fea3a2bc084b070d8ecd44365cedeff",
+      "bytes": 931
+    },
+    {
+      "path": "validation/fixtures/shelf-pointer-marshalling/Program.cs",
+      "sha256": "6aeccd0a1b08bdeae845ea94a39d2cb478cd197bb94e6d2e3a5f63dc0063bca8",
+      "bytes": 16673
+    },
+    {
+      "path": "validation/fixtures/shelf-pointer-marshalling/ShelfPointerMarshalling.csproj",
+      "sha256": "01235c06cd01e523b903c605a170ae8bba8d4ce944c24927dedb9c54229b90ab",
+      "bytes": 980
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/pointer-copy-unconfirmed.json",
+      "bytes": 901,
+      "sha256": "ea362a0dd39e1028c4171118e42baa42d5fd1010ded46deb8f18527e1f655551"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/pointer-copy-unconfirmed-trace.log",
+      "bytes": 5794102,
+      "sha256": "aa121e66494a1e2b47ebf8b756fd7a53a7d3d768ee73850f4d69524c7c7967f3"
+    }
+  ],
+  "runtime": {
+    "forcedTermination": false,
+    "candidateLeftForManualTest": false,
+    "residentProcesses": [],
+    "parentExitedNormally": true,
+    "ocrWorkersRemaining": 0,
+    "thisCandidateExitedNormally": true
+  },
+  "limits": [
+    "Physical copy succeeds through fallback; automatic removal and experimental mouse path fail; child streamed candidate has separate results",
+    "Duplicate dialog cancellation, partial/skip, filtered transfer and loaded lifecycle pending",
+    "Touch/pen and fallback retain entries without confirmation; compatibility unverified",
+    "Picker/media active lifecycle, broader input/clipboard/accessibility/DPI/hardware and unfinished residuals remain",
+    "ARM64 cross-publish only",
+    "Separate harness SVG resource staging discrepancy remains"
+  ],
+  "release": {
+    "packaged": false,
+    "installed": false,
+    "published": false,
+    "finishedPort": false,
+    "preview": true
+  },
+  "updatedAt": "2026-10-19T22:39:17.2133335-07:00",
+  "nextCandidate": "2a27b7d2-1d9e-4a77-9b7d-d98d68ce68f5"
+}

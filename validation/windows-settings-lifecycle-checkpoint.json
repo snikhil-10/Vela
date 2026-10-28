@@ -1,0 +1,359 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-21",
+  "recordedAt": "2026-10-21T01:13:28.3000251-07:00",
+  "sourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+  "parentSnapshot": "a1fb2d26-c977-4a41-8e4c-39cc902e52b8",
+  "compileInputs": 191,
+  "manifestSha256": "839545d2dade097a5d99cd0d4cfd863df3cb6a4679f9f4ad479bdde9d860f594",
+  "manifestMismatches": 0,
+  "report": "../docs/windows-settings-lifecycle-checkpoint.md",
+  "previewVersion": "0.2.2",
+  "implementedToolCount": 31,
+  "finishedPort": false,
+  "allFeaturesFullyVerified": false,
+  "corePassed": 222,
+  "windowsBackendPassed": 28,
+  "additionalWindowsCoreChecks": 14,
+  "tests": [
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/build-x64.log",
+      "sha256": "b4390d02fcce2726bf658a9c6115551afa1c7738c5e0de06a11f0fc9f00b8e33",
+      "failed": 0,
+      "name": "Windows core checks",
+      "passed": 222
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/backend.log",
+      "sha256": "b592976fb07dc38d9ce106c9613946ed598f6cf7a5381d6954dff1a7765f507b",
+      "failed": 0,
+      "name": "x64 Windows backend",
+      "passed": 28
+    },
+    {
+      "suites": [
+        "SessionTools",
+        "RuntimeLifecycle"
+      ],
+      "log": "artifacts/settings-lifecycle-2026-10-21/desktop.log",
+      "exitCode": 0,
+      "sha256": "84e0bc5402c70f5102a72feeb382f960ed1133ff620b3f6e1c96fa5b437e5e85",
+      "name": "Exact-DLL desktop components"
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/build-arm64.log",
+      "exitCode": 0,
+      "arm64Executed": false,
+      "name": "ARM64 cross-build, core executed on x64 host",
+      "sha256": "85f30fdeb8dbbb47a441aa5b53a8841472d2fd6fcce64bdbe80c2abb87849f43"
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/clean-final-build-x64.log",
+      "exitCode": 0,
+      "sha256": "1dadd5a660dc1f6ca4e613ae4e3ca95f10826c9dbc032e52dd63684f73113830",
+      "name": "Clean source x64 build"
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/clean-final-backend.log",
+      "sha256": "228a5d1d7fff607b73c7a23db67e072ac58d1ad706450130f1367449528d71a9",
+      "failed": 0,
+      "name": "Clean source x64 Windows backend",
+      "passed": 28
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/clean-final-desktop.log",
+      "exitCode": 0,
+      "sha256": "130bf143e58f6ef09c4743bd7208c4c9ec7517ac272bc0f8c2595807ffbb7eec",
+      "name": "Clean source exact-DLL desktop suites"
+    },
+    {
+      "log": "artifacts/settings-lifecycle-2026-10-21/clean-final-build-arm64.log",
+      "exitCode": 0,
+      "arm64Executed": false,
+      "name": "Clean source ARM64 cross-build",
+      "sha256": "ef666a0d65ea6867b53dbaec46f0506b13f2a0e3b0557ec4b021b6940f55a09a"
+    }
+  ],
+  "corrections": [
+    "Preserve the only unreadable settings original before replacement, including retry after a denied backup",
+    "Distinct complete recovery copies, reset stale warning and uniquely owned atomic settings staging",
+    "Transactional normalized independent import, retaining local onboarding and separate startup",
+    "Bounded 4 MB backups, strict BOM-aware encoding, malformed/future rejection and cancellation",
+    "Tracked Settings window close/Exit, pending ContentDialog dismissal and duplicate/late admission prevention",
+    "Expected canceled operation drain without failure diagnostics, genuine faults still recorded"
+  ],
+  "failures": {
+    "cancellationDelayedAttempt": "FAIL with deterministic 100 ms pending cleanup: ordinary cancellation logged as failure",
+    "oldCore": "208 passed; six new settings-store checks failed before the fix",
+    "finalResult": "All final suites pass; genuine owned fault remains logged by design",
+    "oldExactDllImport": "8e4bc35b988418fe961e8b3abc3a1bd4bdf0b2a87aae3dd8533325a15440aafc",
+    "cancellationInitialAttempt": "Immediate cancellation completed before the shutdown snapshot; it did not reproduce failure logging in that attempt",
+    "oldCoreLog": "core-recovery-repro.log",
+    "preliminaryDll": "3258f87e3411e0adb65589e9155abf2f1db0e57a44fdc513456c8da3e763d1af",
+    "oldImportResult": "FAIL: persistence failure still replaced live settings"
+  },
+  "nativeComponents": {
+    "existingWheelShelfPinAndOcrComponents": "passed",
+    "confirmationButtonsOperated": false,
+    "ocrShutdownRecognizer": "injected blocked recognizer; backend separately tests actual OCR worker cancellation",
+    "systemPickerOperated": false,
+    "keyboardMouseInputInjected": false,
+    "deliberateFaultRecorded": true,
+    "globalHooksInstalled": false,
+    "delayedCancellationAwaitedWithoutFailureLog": true,
+    "failedAndSuccessfulImportsChecked": true,
+    "sharedTrayAndSessionInfrastructure": "intentionally present; not a feature listener",
+    "all31PreOnboardingFeatureServicesInactive": true,
+    "saveReapplyAndToolAdmissionChecked": true,
+    "localOnboardingAndValidationStartupPreserved": true,
+    "globalClipboardPublished": false,
+    "exactOriginalX64DllSha256": "8c763970be8330962364bccb744e7b4d7b688fe63b574eca4a292108dbb53ae0",
+    "duplicateAndLateTransfersRejected": true,
+    "pendingNativeContentDialogCloseAndExit": true,
+    "exactCleanX64DllSha256": "9f9036f55c8259fdb36794d7ae926e99fd9b665e7476a90171ac6b7973c8003c"
+  },
+  "cleanCheckout": {
+    "sourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+    "checkoutPath": "C:\\Users\\Admin\\AppData\\Local\\Temp\\Vela-GitHub-Check-5c8a4dc86f26425eab4d6ecd7aaeeaf2",
+    "temporaryIndex": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\settings-lifecycle-2026-10-21\\index-final-53cdd6b8132d4760b5ebe5b95b300efe",
+    "treeBeforeFinalEvidenceDocs": "16d187c85532c0b460602a7d1a98996dca30ca35",
+    "originalIndexUnchanged": true,
+    "originalIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc",
+    "checkoutAutocrlf": true,
+    "remoteNames": [],
+    "recordedAt": "2026-10-21T01:09:09.4732504-07:00",
+    "steps": [
+      {
+        "command": "source-manifest",
+        "endedAt": "2026-10-21T01:09:12.7044757-07:00",
+        "startedAt": "2026-10-21T01:09:09.4933459-07:00",
+        "log": "clean-final-manifest.log",
+        "exitCode": 0,
+        "arguments": [
+          "Verify"
+        ]
+      },
+      {
+        "command": "build",
+        "endedAt": "2026-10-21T01:09:44.9588548-07:00",
+        "startedAt": "2026-10-21T01:09:12.7087173-07:00",
+        "log": "clean-final-build-x64.log",
+        "exitCode": 0,
+        "arguments": [
+          "x64"
+        ]
+      },
+      {
+        "command": "check-windows",
+        "endedAt": "2026-10-21T01:10:16.0950478-07:00",
+        "startedAt": "2026-10-21T01:09:44.9601738-07:00",
+        "log": "clean-final-backend.log",
+        "exitCode": 0,
+        "arguments": [
+          "x64"
+        ]
+      },
+      {
+        "command": "check-desktop",
+        "endedAt": "2026-10-21T01:10:55.1579225-07:00",
+        "startedAt": "2026-10-21T01:10:16.0971256-07:00",
+        "log": "clean-final-desktop.log",
+        "exitCode": 0,
+        "arguments": []
+      },
+      {
+        "command": "build",
+        "endedAt": "2026-10-21T01:11:23.3980659-07:00",
+        "startedAt": "2026-10-21T01:10:55.1601006-07:00",
+        "log": "clean-final-build-arm64.log",
+        "exitCode": 0,
+        "arguments": [
+          "arm64"
+        ]
+      }
+    ]
+  },
+  "cleanCheckoutLimit": "Separate source export on the same configured Dell, using existing SDK/runtime and NuGet cache. All 191 hashes pass with Git line-ending attributes; no .git/bin/obj/artifacts are copied in. Each build context has its own exact DLL hashes. Hosted CI and a fresh-machine install are not claimed.",
+  "outputs": [
+    {
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0x8664",
+      "provenance": {
+        "sourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+        "sourceInputs": 191,
+        "sdk": "10.0.402",
+        "architecture": "x64",
+        "builtAt": "2026-10-21T01:06:32.5748536-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "839545d2dade097a5d99cd0d4cfd863df3cb6a4679f9f4ad479bdde9d860f594",
+        "appDllSha256": "8c763970be8330962364bccb744e7b4d7b688fe63b574eca4a292108dbb53ae0",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "e1134aa0f5bfb24cd0cceaa25882ce40af4e70c704bb53a2ea2af339a9fb1447",
+      "architecture": "x64",
+      "path": "artifacts/Vela-x64"
+    },
+    {
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0xaa64",
+      "provenance": {
+        "sourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+        "sourceInputs": 191,
+        "sdk": "10.0.402",
+        "architecture": "arm64",
+        "builtAt": "2026-10-21T01:07:58.6302381-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "839545d2dade097a5d99cd0d4cfd863df3cb6a4679f9f4ad479bdde9d860f594",
+        "appDllSha256": "e366ba72cab447cf7b91ad05edcebb6788fb474698246b9312c191b412f8f727",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "49e100213597e8bedcc84899fa1c3f6695d18ba5185b99125d36547ba8917183",
+      "architecture": "arm64",
+      "path": "artifacts/Vela-arm64"
+    }
+  ],
+  "preservation": {
+    "catalogAndShelfSourcesByteIdenticalToParent": [
+      "src/Vela.Core/FeatureCatalog.cs",
+      "src/Vela.Windows/Services/ShelfService.cs",
+      "src/Vela.Windows/Services/ShellDropFeedback.cs",
+      "src/Vela.Windows/UI/ShelfTools.cs"
+    ],
+    "featureScopeUnchanged": true,
+    "featureScopeRecords": 77,
+    "originalGitIndexUnchanged": true,
+    "normalProfileLaunched": false,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "hardwareWritesPerformed": false,
+    "settingsModelPrefixUnchanged": true,
+    "settingsSchemaVersion": 1,
+    "protectedCueMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ],
+    "startupRegistrationChanged": false
+  },
+  "evidence": [
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/core-recovery-repro.log",
+      "sha256": "1409108b77dc4d289093008e0de2348bb9dcf5484be0dc0316d488516d51867b",
+      "bytes": 14972
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/core-recovery-fixed.log",
+      "sha256": "6fe080cf5170e8f4be66fad00ae605c1f1cb961fcf3dbd6bde05e599a92776f6",
+      "bytes": 14591
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/core-final.log",
+      "sha256": "2435d4684af233c39e15edc82bcfe8a18be241277463b0ee7b0a0fb98f43c840",
+      "bytes": 15245
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/import-repro.log",
+      "sha256": "c8575135bace1ca69bc37f898b26ef528fcb4c9afa9bf4eb68168fc08567ce65",
+      "bytes": 894
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/cancellation-diagnostic-initial-timing.log",
+      "sha256": "426672db43e474afcca0f74003b9fd505ad454f90fd6455e779e1ff28ddedb19",
+      "bytes": 1912
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/cancellation-diagnostic-repro.log",
+      "sha256": "9918cecb1675995a0eba0bd96e3f7fc62d0c30aa014ec6888adb72ba01fd902a",
+      "bytes": 1590
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/runtime-lifecycle.log",
+      "sha256": "f907bf6a3c8d0c249e3126bd63d85ed85d79fc018950a919b9a29d44f5e4615c",
+      "bytes": 2117
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/session-tools.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/clean-final-runtime-lifecycle.log",
+      "sha256": "9257640b9f3932ff8b79b5f96f16e629165678cb9ec6405260a26027a6c6e827",
+      "bytes": 2117
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/clean-final-session-tools.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/clean-final-manifest.log",
+      "sha256": "0502a5e5a19462e8dba9580e31da933a153d04e2f5f2ec8eb867814cd5394e86",
+      "bytes": 76
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/clean-checkout-final.json",
+      "sha256": "5005193b74003bf26fe9e5a4cf9e35eff7cde8cd1e1f79a681aa18b81c562e45",
+      "bytes": 1959
+    },
+    {
+      "path": "artifacts/settings-lifecycle-2026-10-21/settings-schema-preservation.json",
+      "sha256": "afdd67a0593a8e88253b09d9cd9f04e77a07699c2dc1f487521aa1658f16b5a9",
+      "bytes": 190
+    }
+  ],
+  "evidenceAvailability": "Detailed logs and generated fixtures are local ignored artifacts; checkpoint summaries and hashes travel with source.",
+  "limits": [
+    "System-picker/save/overwrite/confirmation-button interactions remain unverified; native component dismissal is a separate result.",
+    "Physical keyboard/mouse, editors/IME/elevated targets, full Explorer collisions/skip/folders/providers/long copies, actual lock/suspend, accessibility/mixed DPI and broader resident transitions remain open.",
+    "ARM64 execution, hosted CI and unavailable DDC/NVIDIA/other hardware, hot-plug and multi-device cases remain open.",
+    "Deferred non-native residuals remain: audio/Bluetooth automation, amplification, additional sensors/fans, advanced capture/editing, reviewed app leftovers, broader indexing/history and localization.",
+    "Normal settings recovery preserves complete copies but does not automatically repair or merge corrupt preferences; backup transfers have a 4 MB limit without imposing a new normal-profile size limit.",
+    "Concurrent external changes to a normal settings file are not a general merge/version-control facility."
+  ],
+  "cleanup": {
+    "residentsExitedNormally": true,
+    "generatedFailureDiagnostic": "Fixture deliberately records one owned IOException to verify genuine-fault reporting; it is not a product startup failure.",
+    "forceTerminationPerformed": false,
+    "remainingValidationProcesses": 0
+  },
+  "installerRun": false,
+  "newReleaseAssembled": false,
+  "binaryZipCreated": false,
+  "gitCommitCreated": false,
+  "remoteCreated": false,
+  "pushPerformed": false,
+  "published": false
+}

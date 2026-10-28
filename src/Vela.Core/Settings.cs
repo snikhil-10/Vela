@@ -116,15 +116,18 @@ public sealed class SettingsStore(string path)
     private static readonly JsonSerializerOptions JsonOptions = new() { WriteIndented = true, PropertyNameCaseInsensitive = true };
     public string Path { get; } = path;
     public string? LoadWarning { get; private set; }
+    private bool needsRecovery;
     public AppSettings Load()
     {
+        LoadWarning=null; needsRecovery=false;
         if (!File.Exists(Path)) return new();
         try { return Deserialize(File.ReadAllText(Path)); }
         catch (Exception ex) when (ex is JsonException or IOException or UnauthorizedAccessException or NotSupportedException)
         {
             LoadWarning = "Your settings could not be read. The original file has been preserved.";
             // Never silently replace the only copy of damaged settings.
-            try { File.Copy(Path, Path + ".unreadable-" + DateTime.UtcNow.ToString("yyyyMMddHHmmss"), false); }
+            needsRecovery=true;
+            try { PreserveOriginal(); }
             catch (Exception backupError) when(backupError is IOException or UnauthorizedAccessException) { }
             return new();
         }
@@ -140,9 +143,22 @@ public sealed class SettingsStore(string path)
     {
         settings.Normalize();
         Directory.CreateDirectory(System.IO.Path.GetDirectoryName(System.IO.Path.GetFullPath(Path))!);
-        var temp = Path + ".tmp";
-        File.WriteAllText(temp, Serialize(settings));
-        File.Move(temp, Path, true);
+        string json=Serialize(settings);
+        if(needsRecovery) PreserveOriginal();
+        AtomicFileOutput.Write(System.IO.Path.GetFullPath(Path),(temporary,_)=>
+        { File.WriteAllText(temporary,json); return Task.CompletedTask; }).GetAwaiter().GetResult();
+    }
+    private void PreserveOriginal()
+    {
+        if(File.Exists(Path))
+        {
+            string backup=System.IO.Path.GetFullPath(Path)+".unreadable-"+DateTime.UtcNow.ToString("yyyyMMddHHmmss")+"-"+Guid.NewGuid().ToString("N");
+            AtomicFileOutput.Write(backup,(temporary,_)=>
+            { File.Copy(Path,temporary,overwrite:true); return Task.CompletedTask; }).GetAwaiter().GetResult();
+        }
+        // A denied copy leaves this set, so Save retries preservation before it
+        // can replace the only original. Each recovery copy has its own name.
+        needsRecovery=false;
     }
     public static string Serialize(AppSettings settings) => JsonSerializer.Serialize(settings, JsonOptions);
 }

@@ -1,0 +1,1 @@
+Native Windows 11 productivity tools in a WinUI 3/Mica tray app: file shelf, image pins, snippets, launchers, keep-awake rules, batch media tools and offline OCR. Independent project inspired by Vorssaint. Unreleased development preview.

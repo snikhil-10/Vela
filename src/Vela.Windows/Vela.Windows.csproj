@@ -24,6 +24,7 @@
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.7705" />
     <ProjectReference Include="..\Vela.Core\Vela.Core.csproj" />
     <Content Include="Assets\Vela.ico" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Assets\Vela.svg" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
   </ItemGroup>
   <!-- Unpackaged MRT Core builds generate the PRI but do not publish it.
        https://github.com/microsoft/WindowsAppSDK/issues/6720 -->

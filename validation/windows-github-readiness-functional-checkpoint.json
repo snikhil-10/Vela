@@ -1,0 +1,465 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-20T00:49:04.1229907-07:00",
+  "date": "2026-10-20",
+  "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+  "parentSnapshot": "eb1c76e8-3ce4-4466-833c-57e59a93edf0",
+  "compileInputs": 188,
+  "manifestSha256": "1c161fda66d6ed3d931ab247e7f95ec613556865f5edad5af6de1218d8462664",
+  "manifestMismatches": 0,
+  "previewVersion": "0.2.2",
+  "implementedToolCount": 31,
+  "finishedPort": false,
+  "allFeaturesFullyVerified": false,
+  "readyForOwnerSourceReview": true,
+  "report": "../docs/windows-github-readiness-checkpoint.md",
+  "sourceGuide": "../docs/github-readiness.md",
+  "environment": {
+    "dependencies": "Existing .NET 10 SDK and Visual C++ x64 runtime; pinned packages restored. No new machine-wide installation.",
+    "model": "Dell Pro 14 Plus PB14250",
+    "manufacturer": "Dell Inc.",
+    "os": "Microsoft Windows 11 Pro",
+    "sdk": "10.0.402",
+    "hostArchitecture": "X64",
+    "build": "26200"
+  },
+  "corrections": [
+    "Smooth scroll target ownership, fractional distance and signed native delta bounds",
+    "Atomic PNG/settings export commit preserving existing destinations on failure",
+    "Save PNG lifecycle cancellation and partial-initialization/idempotent controller cleanup",
+    "Suspend clears stale input guards and Caps Lock tap/chord ownership",
+    "Published SVG asset and shared CMD/PowerShell build/source verification",
+    "Expanded discovered manifest, stable Git attributes, verified pinned CI actions and preview provenance"
+  ],
+  "tests": [
+    {
+      "failed": 0,
+      "log": "artifacts\\github-readiness-2026-10-19\\core-input-reset.log",
+      "passed": 208,
+      "sha256": "29ee066c5d6e4cfcc0bdb88dd5f4342e35f2b99c268caa1a6c4abac6080b6828",
+      "name": "Core Windows regressions"
+    },
+    {
+      "log": "artifacts\\github-readiness-2026-10-19\\build-input-reset-x64.log",
+      "sha256": "2ee34fa81a02aa94d45a6f251d571ef5b65f573480e5271c82ee1098a0677f72",
+      "architecture": "x64",
+      "exitCode": 0,
+      "name": "Normal x64 command build including core checks"
+    },
+    {
+      "failed": 0,
+      "log": "artifacts\\github-readiness-2026-10-19\\backend-input-reset.log",
+      "passed": 28,
+      "sha256": "56c5f3afe696a150332e9983819ebe89019af6cc1dc5560527469f1358adc182",
+      "name": "Normal x64 Windows backend"
+    },
+    {
+      "log": "artifacts\\github-readiness-2026-10-19\\desktop-input-reset.log",
+      "suites": [
+        "SessionTools",
+        "RuntimeLifecycle"
+      ],
+      "sha256": "2a1175c58b669615a8f77ddd9b20b3e6e284d2cada4b3182dab14abb81defac6",
+      "exitCode": 0,
+      "name": "Normal x64 desktop suites"
+    },
+    {
+      "exitCode": 0,
+      "sha256": "9a0ea181fe6ac990b99521341ca832fda5481b2de6dd9b8ac7dec16f56043632",
+      "architecture": "ARM64",
+      "log": "artifacts\\github-readiness-2026-10-19\\build-input-reset-arm64.log",
+      "name": "Normal ARM64 cross-build including x64-host core",
+      "runtimeExecuted": false
+    },
+    {
+      "failed": 0,
+      "log": "artifacts\\github-readiness-2026-10-19\\manifest-final-pwsh.log",
+      "passed": 8,
+      "sha256": "af24af06646176111dcd6715a3f4a9e20c784833824e28aa0d8ff1b13b518d24",
+      "name": "Source verifier PowerShell 7"
+    },
+    {
+      "failed": 0,
+      "log": "artifacts\\github-readiness-2026-10-19\\manifest-final-windows-powershell.log",
+      "passed": 8,
+      "sha256": "af24af06646176111dcd6715a3f4a9e20c784833824e28aa0d8ff1b13b518d24",
+      "name": "Source verifier Windows PowerShell"
+    },
+    {
+      "sha256": "c91ece65f46905575ddfb191a8e3459540f55975a98421758651c4cd7c83d9c3",
+      "exitCode": 0,
+      "name": "Clean source x64 build",
+      "log": "artifacts\\github-readiness-2026-10-19\\clean-final-build-x64.log"
+    },
+    {
+      "failed": 0,
+      "log": "artifacts\\github-readiness-2026-10-19\\clean-final-backend.log",
+      "passed": 28,
+      "sha256": "6518cf4ca3e1277eefb6eb39d4198a928da2e25ffe8f27a259e7074c302b33bb",
+      "name": "Clean source Windows backend"
+    },
+    {
+      "sha256": "682d37bd9e76ea8accb1a090ce736ce1a172988b0da6cb89a799bd53931a3900",
+      "exitCode": 0,
+      "name": "Clean source desktop suites",
+      "log": "artifacts\\github-readiness-2026-10-19\\clean-final-desktop.log"
+    },
+    {
+      "log": "artifacts\\github-readiness-2026-10-19\\clean-final-build-arm64.log",
+      "sha256": "1d237ee8a1e336b90561561c9681f2b90a576fc30455f2d63c2f49d12b869d61",
+      "exitCode": 0,
+      "runtimeExecuted": false,
+      "name": "Clean source ARM64 cross-build"
+    }
+  ],
+  "desktopComponents": {
+    "partialInitializationAndRepeatedDispose": "passed",
+    "wheelMessages": 340,
+    "staleKeyMouseFocusReset": "passed",
+    "exactOriginalX64DllSha256": "6acbeace014e9333faa79a83fd63fe5406edfa35f65d0a0006cb50a0d4db67a3",
+    "countsAreRepeatedSuitesNotAdditionalFeatures": true,
+    "exactCleanX64DllSha256": "7793830ce6acd041022fe5d8bb875d91366370c3665ec8808260692d5130ef71",
+    "ocrShutdownRecognizer": "deliberately blocked injected recognizer during actual production preprocessing",
+    "globalHooksInstalled": false,
+    "largeBurstTicks": 9830100,
+    "actualOcrWorkerCancellation": "separately covered by Windows backend",
+    "keyboardMouseInputInjected": false,
+    "globalClipboardPublished": false,
+    "loadedShelfPinDisableAndShutdown": "passed"
+  },
+  "idleUi": {
+    "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+    "profile": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\github-readiness-2026-10-19\\idle-ui-profile",
+    "pid": 23324,
+    "observedMain": true,
+    "observedGeneralSettings": true,
+    "startupDisabledForValidationProfile": true,
+    "exitViaSettingsGeneral": true,
+    "processExited": true,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "recordedAt": "2026-10-20T00:44:44.8998833-07:00"
+  },
+  "cleanCheckout": {
+    "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+    "checkoutPath": "C:\\Users\\Admin\\AppData\\Local\\Temp\\Vela-GitHub-Check-1233e8053251458b980666935f1ab14b",
+    "temporaryIndex": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\github-readiness-2026-10-19\\index-final-ffd8529e9ffc43efa5d89879f4463512",
+    "treeBeforeFinalEvidenceDocs": "8307033c40015f95c68e30d90421d4c0fd82c505",
+    "originalIndexUnchanged": true,
+    "originalIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc",
+    "checkoutAutocrlf": true,
+    "remoteNames": [],
+    "recordedAt": "2026-10-20T00:43:39.0876202-07:00",
+    "steps": [
+      {
+        "arguments": [
+          "Verify"
+        ],
+        "log": "clean-final-manifest.log",
+        "exitCode": 0,
+        "command": "source-manifest",
+        "startedAt": "2026-10-20T00:43:39.1205795-07:00",
+        "endedAt": "2026-10-20T00:43:42.019384-07:00"
+      },
+      {
+        "arguments": [
+          "x64"
+        ],
+        "log": "clean-final-build-x64.log",
+        "exitCode": 0,
+        "command": "build",
+        "startedAt": "2026-10-20T00:43:42.0262665-07:00",
+        "endedAt": "2026-10-20T00:44:17.642067-07:00"
+      },
+      {
+        "arguments": [
+          "x64"
+        ],
+        "log": "clean-final-backend.log",
+        "exitCode": 0,
+        "command": "check-windows",
+        "startedAt": "2026-10-20T00:44:17.6445262-07:00",
+        "endedAt": "2026-10-20T00:44:59.7440727-07:00"
+      },
+      {
+        "arguments": [],
+        "log": "clean-final-desktop.log",
+        "exitCode": 0,
+        "command": "check-desktop",
+        "startedAt": "2026-10-20T00:44:59.7460286-07:00",
+        "endedAt": "2026-10-20T00:45:43.1549777-07:00"
+      },
+      {
+        "arguments": [
+          "arm64"
+        ],
+        "log": "clean-final-build-arm64.log",
+        "exitCode": 0,
+        "command": "build",
+        "startedAt": "2026-10-20T00:45:43.1575082-07:00",
+        "endedAt": "2026-10-20T00:46:14.1856434-07:00"
+      }
+    ]
+  },
+  "cleanCheckoutLimit": "Separate checkout on this configured laptop, with existing SDK/runtime and NuGet cache. All 188 source hashes pass without .git/bin/obj/artifacts copied in. Export binaries have separately recorded hashes; no byte-identical binary claim.",
+  "outputs": [
+    {
+      "path": "artifacts/Vela-x64",
+      "architecture": "x64",
+      "workerDllSha256": "b57d276347e0194579af60914378556997c829acc9c0a055e410b6a0397cab81",
+      "requiredAssetsAndLicensesPresent": true,
+      "provenance": {
+        "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+        "sourceInputs": 188,
+        "sdk": "10.0.402",
+        "architecture": "x64",
+        "builtAt": "2026-10-20T00:40:05.2962089-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "1c161fda66d6ed3d931ab247e7f95ec613556865f5edad5af6de1218d8462664",
+        "appDllSha256": "6acbeace014e9333faa79a83fd63fe5406edfa35f65d0a0006cb50a0d4db67a3",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "bb3f74c90320637d4d61c6565164cf726a50428ae1829caff2660ea1f092fcc8",
+      "ocrHostPeMachine": "0x8664",
+      "compiledManifestSha256": "1c161fda66d6ed3d931ab247e7f95ec613556865f5edad5af6de1218d8462664",
+      "appExeSha256": "21e1a365d7a3d5c87d8a0498c8e1960bbd3a2867ba08f5092ed5dfc79352bf82",
+      "appHostPeMachine": "0x8664"
+    },
+    {
+      "path": "artifacts/Vela-arm64",
+      "architecture": "arm64",
+      "workerDllSha256": "b57d276347e0194579af60914378556997c829acc9c0a055e410b6a0397cab81",
+      "requiredAssetsAndLicensesPresent": true,
+      "provenance": {
+        "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+        "sourceInputs": 188,
+        "sdk": "10.0.402",
+        "architecture": "arm64",
+        "builtAt": "2026-10-20T00:41:46.7823747-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "1c161fda66d6ed3d931ab247e7f95ec613556865f5edad5af6de1218d8462664",
+        "appDllSha256": "5d1fcda7ed6eb837b0983c5d094b013524f9c693ee5461856116cb3748ae7a5c",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "a8ad752bdb593130c48250b11134af1b499897d1a2c644e1da38e1432ab247b6",
+      "ocrHostPeMachine": "0x8664",
+      "compiledManifestSha256": "1c161fda66d6ed3d931ab247e7f95ec613556865f5edad5af6de1218d8462664",
+      "appExeSha256": "05b1fb7786b967f6ac4da4c9a5245e99b7150da9a208d5403f1d5e1df4775aec",
+      "appHostPeMachine": "0xaa64"
+    }
+  ],
+  "preservation": {
+    "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+    "protectedCueMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "october18Match": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "october18Match": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "october18Match": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "october18Match": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "october18Match": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "october18Match": true
+      }
+    ],
+    "catalogSchemaAndShelf": [
+      {
+        "path": "src/Vela.Core/FeatureCatalog.cs",
+        "sha256": "ec9ec067fb97fdd3da7195551d96fa3f3d60bfcdc08e66384de29c34ecd974a9",
+        "lastPhysicalShelfSourceRawMatch": true,
+        "lineEndingNormalizationRecorded": false,
+        "matchesInitialReadinessSource": true,
+        "behaviorEditedInReadinessContinuation": false
+      },
+      {
+        "path": "src/Vela.Core/Settings.cs",
+        "sha256": "1414902b7c0fa127a32be7fa211ebcf76152f7435b1b60392170b5f13d04ca51",
+        "lastPhysicalShelfSourceRawMatch": true,
+        "lineEndingNormalizationRecorded": false,
+        "matchesInitialReadinessSource": true,
+        "behaviorEditedInReadinessContinuation": false
+      },
+      {
+        "path": "src/Vela.Windows/Services/ShelfService.cs",
+        "sha256": "d9de10690e3f34d67867f66b5c29da48bc340774fef9df08d659e20d9c1503e8",
+        "lastPhysicalShelfSourceRawMatch": true,
+        "lineEndingNormalizationRecorded": false,
+        "matchesInitialReadinessSource": true,
+        "behaviorEditedInReadinessContinuation": false
+      },
+      {
+        "path": "src/Vela.Windows/Services/ShellDropFeedback.cs",
+        "sha256": "88b26ddf7dad4a0c2d329deb2f4e42d0798577bde3433af5e8617893114267e8",
+        "lastPhysicalShelfSourceRawMatch": false,
+        "lineEndingNormalizationRecorded": true,
+        "matchesInitialReadinessSource": true,
+        "behaviorEditedInReadinessContinuation": false
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTools.cs",
+        "sha256": "dcc6598c19fe1b37e3231e0516ff131da318ccca2ee458fbe0906d36368bfe2b",
+        "lastPhysicalShelfSourceRawMatch": false,
+        "lineEndingNormalizationRecorded": true,
+        "matchesInitialReadinessSource": true,
+        "behaviorEditedInReadinessContinuation": false
+      }
+    ],
+    "featureScopeRecords": 77,
+    "featureScopeUnchanged": true,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "startupVelaEntryPresent": false,
+    "recordedAt": "2026-10-20T00:46:54.421788-07:00"
+  },
+  "workflow": {
+    "path": ".github/workflows/windows.yml",
+    "persistedCheckoutCredentials": false,
+    "actionlintVersion": "1.7.12",
+    "sha256": "b34a0bfbf32aaa6ef9e109f35fc182177b75c69648d58149596734e4fd0894b9",
+    "hostedRunPerformed": false,
+    "tokenPermissions": "contents: read",
+    "actionlintExitCode": 0,
+    "officialArchiveSha256": "6e7241b51e6817ea6a047693d8e6fed13b31819c9a0dd6c5a726e1592d22f6e9",
+    "releaseCreated": false
+  },
+  "failuresRetained": [
+    "Core busy-file regression initially omitted UnauthorizedAccessException; corrected test passes.",
+    "Exact-reference fixture initially exposed missing published SVG; fixed.",
+    "Older resident caused tray identity collision; original failure was masked by incomplete cleanup; cleanup fixed and resident exited normally.",
+    "Snapshot 2c63e792 failed Windows PowerShell module discovery; eb1c76e8 fixes explicit built-in utility module loading.",
+    "Stale key-guard regression fails on eb1c76e8 exact DLL; final 5e98bff5 clears transient state and all suites pass.",
+    "One local export helper invocation used an incorrectly assembled --prefix argument; corrected helper then exported and passed the full sequence. No product or Git-index mutation resulted."
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/github-readiness-2026-10-19/input-reset-repro.log",
+      "sha256": "a6a5e775f28cf8e7c448709edd7fe4b14c4a6e58739eef8b28540b96cc6c9e67",
+      "bytes": 859,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/input-reset-repro-build.log",
+      "sha256": "1174c13f2c74b264062deed185f5b4ccc502aa2b18714cdaf201be18781413e2",
+      "bytes": 409,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/input-reset-repro-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/runtime-lifecycle-input-reset.log",
+      "sha256": "151c12fdbf7b09deb17100fb5d17663ee8a8db937a6a366fe42db4238f1fc295",
+      "bytes": 1001,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/session-tools-input-reset.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/clean-final-runtime-lifecycle.log",
+      "sha256": "ae15519a13d151c6d4d2d6dca2660de3daf7bf7bad352016ff0cd51804822d48",
+      "bytes": 1001,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/clean-final-session-tools.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/clean-final-manifest.log",
+      "sha256": "471282d9b5f667d9b919902f425bd12162abca902d3e0804916fba85de2b49c9",
+      "bytes": 76,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/idle-ui-result.json",
+      "sha256": "f4d6074294073f1e7f0a7f1ff7e576db2cc3a37c5d5fe5a428e76aaf19b5ad11",
+      "bytes": 544,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/preservation-final.json",
+      "sha256": "d9777a56846ea12977e2d412a2e7f6adb7a97dee22e27248a8ad8ee1120f1b64",
+      "bytes": 3273,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/clean-checkout-final.json",
+      "sha256": "454bc97a8b01cbde2afc855d989f03636521aa89600cda42765d6a302cf09092",
+      "bytes": 1957,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/actionlint-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "localIgnoredArtifact": true
+    },
+    {
+      "path": "artifacts/github-readiness-2026-10-19/line-endings.json",
+      "sha256": "5a20ca59a6fdc7ccb11d175dae7081ac8994a965549548ba82a0caf22ec4f152",
+      "bytes": 499,
+      "localIgnoredArtifact": true
+    }
+  ],
+  "evidenceAvailability": "Detailed logs, generated profiles and clean checkouts are local ignored artifacts. This checked-in checkpoint preserves summaries and hashes, not full local logs.",
+  "remainingLimits": [
+    "Hosted GitHub Actions has not run; the workflow is locally linted and its commands pass on this laptop.",
+    "ARM64 is cross-built only in this continuation; no current ARM64 runtime claim.",
+    "Physical Caps Lock/held modifiers, close protection, mouse buttons, wheel/touchpad, exclusions, editors, IME and elevated targets need current-source tests.",
+    "Actual save picker/cancel/overwrite and full mixed image/OCR/video picker-to-result flows remain open; native service and controller cancellation are separately covered.",
+    "Actual session lock/suspend, in-flight global clipboard ownership and broader user-driven resident lifecycle remain open.",
+    "Ordinary physical two-file Explorer copy/removal passed on source 68426e4c. Full Explorer collision cancellation, partial skip, folders/providers and long copies are not all physically revalidated; native Windows folder-handler cases pass separately.",
+    "Narrator, high contrast, mixed DPI/monitors, localization and broader layouts remain open.",
+    "DDC/NVIDIA hardware is unavailable on this Dell; no hardware write or current broad hot-plug/multi-microphone validation was performed.",
+    "Deferred non-native audit residuals remain unimplemented, including audio priority/automation and safe amplification, Bluetooth rules, extra sensor/fan backends, advanced capture/editing, reviewed app leftovers and broader indexing/history."
+  ],
+  "cleanup": {
+    "forceTerminationPerformed": false,
+    "hardwareWritesPerformed": false,
+    "remainingProcesses": [],
+    "startupRegistrationChanged": false,
+    "allValidationResidentsExitedNormally": true,
+    "normalProfileLaunched": false
+  },
+  "installerRun": false,
+  "newReleaseAssembled": false,
+  "binaryZipCreated": false,
+  "gitCommitCreated": false,
+  "originalGitIndexUnchanged": true,
+  "remoteCreated": false,
+  "pushPerformed": false,
+  "published": false
+}

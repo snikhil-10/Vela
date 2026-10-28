@@ -104,8 +104,14 @@ foreach (var check in VideoBudgetChecks.All()) Test(check.Name, check.Check);
 foreach (var check in DeveloperFeedChecks.All()) Test(check.Name, check.Check);
 foreach (var check in AudioBudgetChecks.All()) Test(check.Name, check.Check);
 InputChecks.Run(Test);
+ScrollChecks.Run(Test);
+SuperKeyChecks.Run(Test);
+AtomicOutputChecks.Run(Test);
+SettingsStoreChecks.Run(Test);
+SettingsBackupChecks.Run(Test);
 ClipboardChecks.Run(Test);
 AlertChecks.Run(Test);
+AwakeChecks.Run(Test);
 Console.WriteLine($"\n{passed} passed; {failed} failed.");
 return failed==0?0:1;
 

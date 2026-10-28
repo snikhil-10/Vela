@@ -1,0 +1,286 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T20:58:00.5497452-07:00",
+  "sourceSnapshot": "ad9a5f89-267d-42e5-a728-caf112d868c3",
+  "parentSnapshot": "41a1b63c-43ce-4f60-bee1-79fffb206cfc",
+  "compileInputs": 133,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-png-bmp-budget-checkpoint.md",
+  "tests": {
+    "windowsBackendFailed": 0,
+    "bmp": {
+      "baselineBytes": 524342,
+      "limitBytes": 174780,
+      "height": 148,
+      "width": 295,
+      "retainedBytes": 174694,
+      "opaque": true
+    },
+    "png": {
+      "baselineBytes": 428010,
+      "limitBytes": 142670,
+      "height": 148,
+      "width": 295,
+      "retainedBytes": 142612,
+      "alpha": 128
+    },
+    "coreSearchMaximumAttempts": 12,
+    "minimumLongEdge": 64,
+    "arm64CrossPublish": "passed",
+    "arm64Runtime": "not tested",
+    "windowsBackendPassed": 25,
+    "x64OcrPublish": "passed",
+    "coreFailed": 0,
+    "maximumDimensionOptimalityClaimed": false,
+    "corePassed": 187,
+    "cappedPngWatermark": true,
+    "bothFormats": [
+      "Prior output bytes preserved",
+      "Impossible one-byte cap leaves no output",
+      "Invalid/unfit/valid batch completes 1 of 3 with named failures",
+      "16x8 small image fits 1024 bytes without enlargement",
+      "Cancel before probes leaves no output",
+      "Cancel after destination creation removes unfinished copy",
+      "Cancel at next input retains completed copy",
+      "Original bytes unchanged and exclusive reopen succeeds"
+    ],
+    "compilerWarningsOrErrors": 0,
+    "x64Publish": "passed"
+  },
+  "ui": {
+    "toolCloseAndPanelReactivation": true,
+    "formatSequence": [
+      "PNG",
+      "BMP",
+      "JPEG"
+    ],
+    "scrollToActions": true,
+    "committedLimitKiB": 64,
+    "sourceSnapshot": "ad9a5f89-267d-42e5-a728-caf112d868c3",
+    "limitRetainedAcrossFormats": true,
+    "jpegQualityEnabledOnlyForJpeg": true,
+    "normalSettingsExit": true,
+    "priorSourceLifecycle": {
+      "olderPreviewExitedNormally": true,
+      "normalSettingsExit": true,
+      "isolatedPid": 27152,
+      "evidence": "artifacts/remaining-ui-2026-10-19/observations.json",
+      "sourceSnapshot": "41a1b63c-43ce-4f60-bee1-79fffb206cfc",
+      "olderPreviewPid": 16196,
+      "idleToolClosedByFeatureDisable": true
+    },
+    "transportErrors": [
+      "PickerHost.exe is not an exposed target; native picker click rejected twice",
+      "coordinate input geometry is unavailable; screenshot-backed recovery succeeded"
+    ],
+    "emptyBatchErrorObserved": true,
+    "pickerConversionTested": false,
+    "pngBmpSizeFieldEnabled": true,
+    "activeResidentCancelDisableExitTested": false,
+    "isolatedPid": 18836
+  },
+  "binaries": [
+    {
+      "ocrWorkerMachine": "8664",
+      "xamlPriBytes": 2203192,
+      "output": "artifacts/Vela-png-bmp-x64",
+      "appDllSha256": "282e55a16896e3d47426311e91a1bc418da4a9aa7392db4946cc734927fea8d0",
+      "manifestMatches": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "architecture": "x64",
+      "peMachine": "8664"
+    },
+    {
+      "ocrWorkerMachine": "8664",
+      "xamlPriBytes": 2203192,
+      "output": "artifacts/Vela-png-bmp-arm64",
+      "appDllSha256": "80035452c9f343aceeffc35bae9a8aa340a0ff8c62f685c4d49157ed67c99e4a",
+      "manifestMatches": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "architecture": "arm64",
+      "peMachine": "AA64"
+    }
+  ],
+  "preservation": {
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "featureCatalogMatchesParent": true,
+    "settingsSchemaMatchesParent": true,
+    "clipboardPublicationOrClearTest": false,
+    "featureScopeTriplesUnchanged": true,
+    "featureScopeCount": 77,
+    "acceptedCueAndMica": [
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19"
+      },
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055"
+      },
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f"
+      },
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd"
+      },
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98"
+      },
+      {
+        "matchesOctober18": true,
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1"
+      }
+    ],
+    "hardwareWrites": false,
+    "signInRunValuePresent": false,
+    "supplementalScopesUnchanged": true
+  },
+  "additionalCoreTestInputs": [
+    {
+      "sha256": "4dfe1daa56187b82fbbb79c8ed9242f69f03df1e52fe81a2ac913790ce53a45c",
+      "path": "tests/Vela.Core.Tests/AlertChecks.cs"
+    },
+    {
+      "sha256": "2d36f6ccf57bd8a9da0c061a43f839e332318e31a80567077dba8cf121003cd7",
+      "path": "tests/Vela.Core.Tests/AudioBudgetChecks.cs"
+    },
+    {
+      "sha256": "de5885a4716062e15c4c95570d43a5a9edf0970dd28b262b363f04667ac9d629",
+      "path": "tests/Vela.Core.Tests/ClipboardChecks.cs"
+    },
+    {
+      "sha256": "8f572b991e4fede6e3ffd31ba1a37060960e9c817f42db552b966793219b1bd6",
+      "path": "tests/Vela.Core.Tests/CommandQueryChecks.cs"
+    },
+    {
+      "sha256": "15a6dcff77b424f5184eece387deee56772865cbbe1c37e18ef7989f36458765",
+      "path": "tests/Vela.Core.Tests/DeveloperFeedChecks.cs"
+    },
+    {
+      "sha256": "c0b57e77c1615b6f9d9aa461490d2cb23804440dbe603e03525b518f1aa8e396",
+      "path": "tests/Vela.Core.Tests/ImageBudgetChecks.cs"
+    },
+    {
+      "sha256": "24280cdbc1122943ea400ccc1defd4533c40032b82c32e3ab51f3077a7179571",
+      "path": "tests/Vela.Core.Tests/InputChecks.cs"
+    },
+    {
+      "sha256": "d3c1e6f8902aa5f14efeeca1d5bff7fcba472ec8b3e55d24f8091294f6021fdf",
+      "path": "tests/Vela.Core.Tests/LauncherChecks.cs"
+    },
+    {
+      "sha256": "21971816380a3dac88ba1c140954abbe95f6aea5aafd8c92968a842fb2628b64",
+      "path": "tests/Vela.Core.Tests/NetworkChecks.cs"
+    },
+    {
+      "sha256": "286c7ae80f6d8cd6b0cecf4c372eccec369d6b234a70b8858d7d65be6cc2831c",
+      "path": "tests/Vela.Core.Tests/Program.cs"
+    },
+    {
+      "sha256": "64505027df46e1e8cdb15cdac4091b9795cc43c40b19aec2e0e1967ebe032656",
+      "path": "tests/Vela.Core.Tests/Vela.Core.Tests.csproj"
+    },
+    {
+      "sha256": "61771e28ca3e3525e320b559975d4d31f3c58e97607a203cceacb3dd990ef9db",
+      "path": "tests/Vela.Core.Tests/VideoBudgetChecks.cs"
+    }
+  ],
+  "evidence": [
+    {
+      "bytes": 640,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/check-build-initial.log",
+      "sha256": "c248aaf1fdc69d819bf476b1834f01d53b24ade35f499cc79623be757b63718b"
+    },
+    {
+      "bytes": 12585,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/core-initial.log",
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64"
+    },
+    {
+      "bytes": 699,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-build-arm64.log",
+      "sha256": "b2808360de7bbc98dd609ab8b012754d91cfaf0bd0c679249b519b286a20790a"
+    },
+    {
+      "bytes": 691,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-build-x64.log",
+      "sha256": "4ef1a634276be297a0646b4982a0914ea9e58441db755409804e142f5ec9fc02"
+    },
+    {
+      "bytes": 518,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-check-build.log",
+      "sha256": "391b74b89d48180ecea9c34bf7c7be736d825daa16776244c4a2b4f97bd85555"
+    },
+    {
+      "bytes": 12585,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-core.log",
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64"
+    },
+    {
+      "bytes": 348,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-ocr-worker.log",
+      "sha256": "cc5945360508cc74b89bb23678f80c8b0105bd639ff5ed64a291e961491f426c"
+    },
+    {
+      "bytes": 4916,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/final-windows-checks.log",
+      "sha256": "8ceb2d54b2fe4f86681132d0448e48b153bfb7cc700a93e20423c0a93141b010"
+    },
+    {
+      "bytes": 4916,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/windows-initial.log",
+      "sha256": "da3c31677086c8996bcedac0328704b28d9e751a8a7b6d242bfb3655ef92516d"
+    },
+    {
+      "bytes": 16120,
+      "path": "artifacts/png-bmp-budgets-2026-10-19/form-trees.json",
+      "sha256": "1df8c6e4174c07d25b9fe307dea724765aa1942a16da078299228add4c4bece4"
+    },
+    {
+      "bytes": 931,
+      "path": "artifacts/remaining-ui-2026-10-19/before.json",
+      "sha256": "58e7d9904482b8b048e3d003e1659207c6757dc8c2ee0e1099923dddebaa0704"
+    },
+    {
+      "bytes": 295,
+      "path": "artifacts/remaining-ui-2026-10-19/after.json",
+      "sha256": "fc28075ef04c9fe566c0c06edfd34f4c935599c7db3a2e288149f0cef5cad1bf"
+    },
+    {
+      "bytes": 1595,
+      "path": "artifacts/remaining-ui-2026-10-19/observations.json",
+      "sha256": "d92b7cba7fce5bc5c83abfd1f7151271938ccfb2f46c13b48493de7f4723d9ed"
+    }
+  ],
+  "runtime": {
+    "residentProcessesRemaining": 0,
+    "forcedResidentTermination": false,
+    "ocrWorkersRemaining": 0
+  },
+  "limits": [
+    "Full picker-to-conversion/OCR result remains untested",
+    "Native idle Exit and idle media disable only; active work and loaded pin/shelf lifecycle remain open",
+    "Physical outgoing/duplicate-dialog/partial shelf drag regressions remain open",
+    "Dimension search is bounded and not globally optimal for irregular compression",
+    "Write-denied/full-disk/cleanup failures, very large/oriented images and broader codecs/quality untested",
+    "ARM64 cross-build only; bundled OCR worker remains x64",
+    "Broader physical input, accessibility, mixed DPI, hardware and audit residuals remain"
+  ],
+  "release": {
+    "preview": true,
+    "published": false,
+    "packaged": false,
+    "installed": false,
+    "fullPortComplete": false
+  }
+}

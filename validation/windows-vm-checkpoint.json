@@ -30,5 +30,35 @@
   "latestNativeFullLogsIncluded": false,
   "evidenceDetails": "../docs/verification.md",
   "originalVmCheckpoint": "original preferences restored byte-for-byte; installed0.2.1 reopened",
-  "newReleaseAssembled": false
+  "newReleaseAssembled": false,
+  "collectionFollowUp": {
+    "report": "../docs/windows-mac-evidence-checkpoint.md",
+    "currentDellSnapshot": "83b3ad32-15f9-4f78-84ef-17f4f30474c6",
+    "originalFieldsDescribeOctober18TransferState": true,
+    "originalTransferExternalSha256SidecarReceived": false,
+    "noHistoricalBinaryExecuted": true,
+    "checkpoint": "windows-mac-evidence-checkpoint.json",
+    "collectedOn": "2026-10-19",
+    "nativeZipCrcPeAndManifestChecksPassed": true,
+    "historicalCollectionCheckClosed": true,
+    "historicalBuildAndDesktopLogsCollected": true
+  },
+  "latestDellContinuation": {
+    "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+    "report": "../docs/windows-awake-lifecycle-checkpoint.md",
+    "checkpoint": "windows-awake-lifecycle-checkpoint.json",
+    "originalVmFieldsDescribeOctober18": true,
+    "compileInputs": 193,
+    "corePassed": 236,
+    "windowsBackendPassed": 28,
+    "nativeDesktopComponentSuites": 2,
+    "cleanSourceBuildAndTests": "passed on same configured Dell",
+    "physicalShelfSource": "68426e4c-a155-4e76-b78a-e8582e9aff3f",
+    "broaderOriginalOpenChecksPartlyUnresolved": true,
+    "finishedPort": false,
+    "published": false,
+    "supplementalUiReport": "../docs/windows-settings-transfer-ui-checkpoint.md",
+    "supplementalUiCheckpoint": "windows-settings-transfer-ui-checkpoint.json",
+    "remainingValidationResidents": 0
+  }
 }

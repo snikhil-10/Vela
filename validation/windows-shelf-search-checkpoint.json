@@ -1,0 +1,239 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T18:43:41.8742666-07:00",
+  "sourceSnapshot": "83b3ad32-15f9-4f78-84ef-17f4f30474c6",
+  "parentSnapshot": "7e03f407-7a46-41f7-b331-486f737383b4",
+  "compileInputs": 130,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-shelf-search-checkpoint.md",
+  "changes": [
+    "Session shelf search over explicitly added names/paths/text/links using literal AND and quoted phrases",
+    "Stable row order/object identity; retain visible selection, drop hidden selection; refresh add/remove/reset and unsubscribe on close",
+    "Pin registration and activation now share failure cleanup"
+  ],
+  "tests": {
+    "windowsBackendFailed": 0,
+    "arm64CrossPublish": "passed; reuses exact x64 OCR worker",
+    "pinMinimumNative": {
+      "actualPhysical": [
+        "480x420",
+        "500x420",
+        "480x500"
+      ],
+      "requestedPhysical": [
+        "200x40",
+        "500x40",
+        "40x500"
+      ],
+      "scale": 1.5,
+      "passed": true
+    },
+    "x64OcrPublish": "passed",
+    "coreFailed": 0,
+    "arm64Runtime": "not tested",
+    "x64Publish": "passed",
+    "sessionNativeComponents": "passed with exact candidate DLL/PRI",
+    "physicalDragOrPickerTestAdded": false,
+    "windowsBackendPassed": 23,
+    "corePassed": 181,
+    "sessionNativeComponentGroups": [
+      "Shelf live filtering and selection/empty/reset/close lifecycle",
+      "Six-pin limit, rejected seventh, close/reopen/source release, disabled/canceled admission",
+      "Injected failed window registration cleanup"
+    ]
+  },
+  "binaries": [
+    {
+      "architecture": "x64",
+      "output": "artifacts/Vela-shelf-search-x64",
+      "peMachine": "8664",
+      "manifestMatches": true,
+      "appDllSha256": "c5d62ef14409fdcdeb29b6c074ac29ca09b9f4b59ffccceeac804ff7c8fb6467",
+      "resourceBytes": 2203192
+    },
+    {
+      "architecture": "arm64",
+      "output": "artifacts/Vela-shelf-search-arm64",
+      "peMachine": "AA64",
+      "manifestMatches": true,
+      "appDllSha256": "5ec2db81bcc0148e9f5c8f03d28153422936d4b711afa6d6c7a3a1cc2725a24a",
+      "resourceBytes": 2203192
+    }
+  ],
+  "fixtureProvenance": [
+    {
+      "fixtureOutput": "artifacts/SessionTools-x64",
+      "exactCandidateProductDll": true,
+      "exactCandidateCoreDll": true,
+      "exactCandidatePri": true
+    },
+    {
+      "fixtureOutput": "artifacts/PinSmoke-shelf-search-x64",
+      "exactCandidateProductDll": true,
+      "exactCandidateCoreDll": true,
+      "exactCandidatePri": true
+    }
+  ],
+  "preservation": {
+    "newSettingsFields": false,
+    "acceptedCueAndMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "unchangedFromOctober18": true
+      }
+    ],
+    "catalogUnchanged": true,
+    "allDecisionNativeEquivalentAndPortScopeFieldsUnchanged": true,
+    "signInRunValuePresent": false,
+    "normalSettingsMatch": true,
+    "scopeDecisions": 77,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "globalClipboardReadOrWriteByComponentFixture": false,
+    "catalogBaselineSnapshot": "7e03f407-7a46-41f7-b331-486f737383b4"
+  },
+  "evidence": [
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-core.log",
+      "sha256": "8ed48f7dcaed5f6eba2c1bfb08dd4fa7aee508cff7bbe52151e45e6afd547d44",
+      "bytes": 12100
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-build-x64.log",
+      "sha256": "6801cc4917b6dbda21e0865964bb7d43cb3b1ecb6a612270943967d64cf310f8",
+      "bytes": 618
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-ocr.log",
+      "sha256": "e7180eee566a77813324e3736f7fea4e124902d9d157aefa5d91b27b439cfff9",
+      "bytes": 353
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-check-build.log",
+      "sha256": "de55a6f0650733a78ae76155bd997b48a499f2b8aca8976a2aeb873853f08dc0",
+      "bytes": 523
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-windows-checks.log",
+      "sha256": "e979cc7cdfd98782e98f2ac00ad7998d653fd3d97b929cc38d7d3ceb4e9b98c7",
+      "bytes": 3704
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-build-arm64.log",
+      "sha256": "c85a1c2ec80783779702cd0a9b56efbed2b5b83bb6b2e17a67061b50685f1550",
+      "bytes": 704
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-component-build.log",
+      "sha256": "bc330840cdf40d9afa69a08b185250679236fb096998fa005d813664d91d9881",
+      "bytes": 923
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-component-result.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-pin-minimum-build.log",
+      "sha256": "6d0ab99663964ed9168635f5bac72a01d7c30e110549d5d0fe1cfe3bb09cc598",
+      "bytes": 810
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/final-pin-minimum-result.log",
+      "sha256": "864736c4fec678378038c7a920f384085f846b7e325aded54d1017a989070faa",
+      "bytes": 425
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/component-before-fix.log",
+      "sha256": "9fdf53b13aad3636c98d91924d0ba02edfd1dce106b5435254ecb9078bdee8e7",
+      "bytes": 1080
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/component-after-fix.log",
+      "sha256": "6d56fe173c683b3d4815763d00022ac64cd919cba3b0b93fc5b4f17d4dccf9c2",
+      "bytes": 604
+    },
+    {
+      "path": "artifacts/shelf-search-2026-10-19/component-instrumented.log",
+      "sha256": "28f9403f2ac4533a9f5a2a1509413347a3037ba2c5b31e66e1acd37bec37ae69",
+      "bytes": 1386
+    },
+    {
+      "path": "validation/fixtures/session-tools/Program.cs",
+      "sha256": "006129b1a2185f5681d3c479be879994809151381d06590b73364c672575ed35",
+      "bytes": 12456
+    },
+    {
+      "path": "validation/fixtures/session-tools/SessionTools.csproj",
+      "sha256": "12bc017f07b7dfe30bf0e7e5585b45adad813665de0a1e3d5642e6a8525c660f",
+      "bytes": 839
+    },
+    {
+      "path": "validation/fixtures/session-tools/README.md",
+      "sha256": "04db6d507ac858362ec0488b7140777dba44f38ab876422012f1bc08f775cff5",
+      "bytes": 2083
+    },
+    {
+      "path": "validation/fixtures/pin-minimum/Program.cs",
+      "sha256": "2fdb35f1db4db28f43a8bd1dd877d5a45954707408476f179e0052a77387560d",
+      "bytes": 5477
+    },
+    {
+      "path": "validation/fixtures/pin-minimum/PinSmoke.csproj",
+      "sha256": "12bc017f07b7dfe30bf0e7e5585b45adad813665de0a1e3d5642e6a8525c660f",
+      "bytes": 839
+    }
+  ],
+  "runtime": {
+    "forcedTermination": false,
+    "componentProcessesRemaining": [],
+    "residentCandidateLaunched": false,
+    "olderIsolatedPreview": [
+      {
+        "Id": 16196,
+        "Path": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\Vela-x64\\Vela.Windows.exe"
+      }
+    ]
+  },
+  "limits": [
+    "Native component control properties/lifetime checks are separate from physical input and screen-pixel observations",
+    "Filtered real outgoing drag and Explorer duplicate-dialog cancellation/successful removal/partial copies need new-build end-to-end retests",
+    "No new real Settings-toggle teardown or full resident app shutdown test",
+    "Mixed-monitor DPI, high contrast/Narrator and broader input/editor/hardware cases remain open",
+    "ARM64 cross-build only on this Dell",
+    "Disk/script/menu indexing, clipboard history, vendor fan/audio and other audit residuals remain deferred"
+  ],
+  "release": {
+    "fullPortComplete": false,
+    "published": false,
+    "packageCreated": false,
+    "installerRun": false,
+    "preview": true
+  }
+}

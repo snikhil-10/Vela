@@ -161,7 +161,7 @@
       "decision": "retain",
       "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
       "portScope": "Port the enhancement, with per-app exclusions for hooks.",
-      "status": "Implemented; Windows input compatibility check pending.",
+      "status": "Implemented notched-wheel interpolation with per-gesture destination ownership, fractional multiplier conservation and signed Windows message bounds. Seven core regressions and exact-candidate native message delivery to owned windows pass. Option changes and suspend clear queued motion. Physical wheels/touchpads, app exclusions and wider input compatibility remain open.",
       "sources": [
         "upstream",
         "mouse",
@@ -262,7 +262,7 @@
       "decision": "retain",
       "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
       "portScope": "Port the enhancement, with per-app exclusions for hooks.",
-      "status": "Implemented; Windows input compatibility check pending.",
+      "status": "Implemented Caps Lock tap/chord pairing. Seven core regressions cover repeat, unmatched release and cancellation; pause clears transient key/mouse guards and native component reset checks pass. Physical keyboard, held-modifier and wider Windows input compatibility remain open.",
       "sources": [
         "upstream",
         "mouse",
@@ -327,7 +327,7 @@
       "decision": "retain",
       "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
       "portScope": "Port to native compact windows.",
-      "status": "Implemented taskbar/tray targets, multi-file selection and remove-after-success. The accepted five-file taskbar receiver is unchanged. Physical x64 backend checks now cover canceled providers and late drag identity; outgoing drag and rendered lifecycle checks remain open.",
+      "status": "Taskbar/tray targets, multi-file selection and session shelf search are implemented. Normal physical two-file drag, exact copying and automatic removal pass on 2a27b7d2. Current 68426e4c corrects read-only storage access and passes 27 Windows checks plus exact-DLL Windows folder-handler success, Cancel and partial skip. The final physical Explorer retest passes normal drag, automatic removal and verified writable copies; arbitrary targets, folders/providers and broader lifecycle are unverified. The accepted five-file receiver is unchanged.",
       "sources": [
         "upstream"
       ]
@@ -409,7 +409,7 @@
       "decision": "split",
       "nativeEquivalent": "Power settings/powercfg set normal sleep and lid behavior.",
       "portScope": "Retain timed and app-conditioned transient wake requests; no power plan editor or lid override.",
-      "status": "Implemented timer, app, AC-only and external-display rules. Physical x64 Start/Stop passed; a one-minute timer was still active at 54.219 seconds and Off by 80.764 seconds. Exact expiry instant, rule transitions and suspend/device behavior remain open. See the October 19 functionality audit.",
+      "status": "Implemented monotonic timed requests, application/external-display rules and AC-only pauses. Fourteen new core checks cover exact logical expiry, calendar changes, invalid/replaced durations, inactive actions and power/rule transitions. Native components verify service restart/stop, unavailable probes, request refusal/recovery, a cancelable battery-paused panel timer, actual fixture-thread execution flags and default dispatcher expiry. Stop timer preserves independent rules. Historical physical Start/Stop passed; actual AC/hot-plug, Sleep/lid/critical battery and broader power behavior remain open. Native expiry is subject to the five-second dispatcher interval and scheduling.",
       "sources": [
         "powercfg",
         "awake"
@@ -504,7 +504,7 @@
       "decision": "split",
       "nativeEquivalent": "Paint and Photos handle individual image edits; Clipchamp covers common video editing.",
       "portScope": "Retain offline batch image/video conversion, resizing, text watermarks and image-file OCR. Do not recreate individual Paint/Photos edits or basic Snipping Tool recording.",
-      "status": "Implemented PNG/JPEG/BMP batches, resizing, JPEG quality/byte limits, text watermarks and offline English OCR; MP4/M4A and trimmed animated GIF batches. Image conversion now isolates unreadable or unfit files, reports partial failures, preserves PNG alpha and earlier copies, and removes canceled partial outputs. MP4/M4A enforce actual byte caps with supported AAC rates and bounded re-encoding. 181 core and 20 x64 backend checks pass; ARM64 cross-build passes without a runtime claim. Focused form checks pass; picker-based conversion and rendered mixed-batch styling remain unverified. PNG/BMP size budgets, OCR partial-failure isolation and advanced editing remain deferred.",
+      "status": "Implemented PNG/JPEG/BMP batches, resizing, per-file byte caps, text watermarks and offline English OCR; MP4/M4A and trimmed GIF batches. JPEG selects quality; PNG/BMP use at most twelve measured dimension candidates with a 64-pixel minimum long edge or smaller starting size, preserve aspect ratio and check actual final bytes. Image/OCR failures continue to later files; originals and earlier outputs survive. Native PNG alpha/BMP opacity, capped watermark, mixed failures and cancellation checks pass. The PNG/BMP checkpoint passed 187 core / 25 Windows checks; readiness checks now pass 208 core / 28 Windows checks and native lifecycle components. Size controls, format switching, empty-batch error and idle resident Exit pass native UI checks. Mixed conversion/OCR picker flows, active resident cancellation, broader codecs/OCR quality/languages and advanced editing remain open.",
       "sources": [
         "capture",
         "upstream"
@@ -557,7 +557,7 @@
       "decision": "split",
       "nativeEquivalent": "Snipping Tool captures areas/windows/screens, annotates, crops, redacts, saves and shares. Edge supports full-page web captures.",
       "portScope": "Exclude ordinary screenshot tools. Scrolling desktop captures, pinning, watermarking and expiring links are residuals.",
-      "status": "Implemented imagePins for copied screenshots and selected local images. Installed ARM64 file/clipboard selection, rendering, topmost toggle, resizing, Esc, close-all and feature-disable cleanup passed. Ordinary capture stays with Snipping Tool; scrolling capture and expiring links remain deferred.",
+      "status": "Implemented imagePins for copied screenshots and selected local images, with a DPI-aware visible minimum. User passed file selection/topmost on the physical Dell. Exact-candidate native components pass minimum resize at 150%, six-pin limit, close/reopen/source release, disabled/canceled admission and registration-failure cleanup. Production controller feature-disable/re-enable and shutdown cleanup pass native component checks with loaded pins/shelf. Physical picker, full user-driven lifecycle, mixed DPI and wider accessibility remain open. Ordinary capture stays with Snipping Tool; scrolling capture and expiring links remain deferred.",
       "sources": [
         "capture"
       ]
@@ -872,7 +872,7 @@
       "id": "resourceAlerts",
       "origin": "Monitor alerts sub-capability",
       "decision": "retain",
-      "status": "Implemented sustained CPU/memory and low disk alerts. Separate NVIDIA thermal alerts are implemented subject to driver capability."
+      "status": "Implemented sustained CPU/memory and low disk alerts. Native service lifecycle checks verify idempotent Start, timer teardown and no sampling/notification from queued callbacks after Stop. Threshold/cooldown policy has core coverage; actual notification quiet-time behavior and broader live transitions remain open. Separate NVIDIA thermal alerts are capability-dependent."
     },
     {
       "id": "pasteImage",
@@ -896,13 +896,13 @@
       "id": "settingsBackup",
       "origin": "General settings",
       "decision": "retain",
-      "status": "Implemented schema-checked JSON import/export, ordering and preserved disabled-feature settings."
+      "status": "Implemented bounded, cancellable JSON backup import/export with a 4 MB byte limit, strict BOM-aware decoding and atomic output. Imports persist an independent normalized copy before replacing live settings and preserve local onboarding/startup separation. Settings recovery retains distinct complete originals, retries refused backups and never overwrites an unrelated legacy temporary file. Fourteen additional core checks pass; native controller/window checks cover failed persistence, successful replacement, pending confirmation cancellation and duplicate/late admission. Full system-picker and confirmation-button/overwrite UI validation remains open."
     },
     {
       "id": "onboarding",
       "origin": "Welcome, purpose/presets, selected access, done",
       "decision": "retain",
-      "status": "Implemented four native WinUI steps; selections persist between launches."
+      "status": "Implemented four native WinUI steps. Native component instrumentation verifies all 31 selected tools remain inactive before completion through Save/reapply and attempted admission: no feature hooks, clipboard/shortcut listeners, wake timer/request, shelf receiver, sensor services or dim overlays. Selections persist, validation startup stays disabled and completing an empty selection starts no residents. Shared tray/session-message infrastructure is intentional; broader physical accessibility and user-driven onboarding remain open."
     },
     {
       "id": "languages",
@@ -914,7 +914,7 @@
       "id": "thermalAlerts",
       "origin": "GPU sensor alert sub-capability",
       "decision": "retain",
-      "status": "Implemented NVIDIA temperature threshold, sustained duration, cooldown and no-hardware behavior. Real RTX 3080 readings remain unverified."
+      "status": "Implemented NVIDIA temperature threshold, sustained duration, cooldown and no-hardware behavior. Native lifecycle checks verify one timer, stop/stale-callback admission and draining read-only sampling without late notifications. No supported GPU is present on this Dell; real RTX 3080 readings, thresholds and hot-plug remain unverified."
     },
     {
       "id": "savedLayouts",
@@ -932,7 +932,7 @@
       "id": "imagePins",
       "origin": "Screenshot pinning residual",
       "decision": "retain",
-      "status": "Implemented clipboard/file image pins, six-preview limit, native Mica windows, topmost toggle and close-all. Nine backend integration checks pass per architecture. Installed ARM64 file/clipboard rendering, topmost/unpin, resizing, Esc, close-all and feature-disable cleanup passed; the six-pin UI limit and exit cleanup remain unchecked."
+      "status": "Clipboard/file image pins, six-preview limit, Mica windows, DPI-aware minimum, topmost and close-all are implemented. Native pin layout/capacity/failure cleanup plus production controller feature-disable/re-enable and shutdown cleanup pass. Physical picker, user-driven lifecycle, mixed-monitor DPI and broader accessibility remain open."
     }
   ]
 }

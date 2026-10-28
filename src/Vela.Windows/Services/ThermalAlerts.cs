@@ -10,7 +10,7 @@ internal sealed class ThermalAlerts(Func<AppSettings> settings,DispatcherQueue q
     private bool busy,running;
     private int generation;
     public string Id=>"thermalAlerts";
-    public void Start() { running=true; timer=queue.CreateTimer(); timer.Interval=TimeSpan.FromSeconds(5); timer.Tick+=Tick; timer.Start(); }
+    public void Start() { if(running) return; running=true; timer=queue.CreateTimer(); timer.Interval=TimeSpan.FromSeconds(5); timer.Tick+=Tick; timer.Start(); }
     private async void Tick(DispatcherQueueTimer sender,object args)
     {
         if(busy || !running) return; busy=true; int sampledGeneration=generation;

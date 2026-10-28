@@ -1,6 +1,7 @@
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Storage;
+using Vela.Core;
 
 namespace Vela.Windows.Services;
 
@@ -17,6 +18,12 @@ internal sealed class ShelfService
     internal const int Capacity=256;
     private CancellationTokenSource additions=new();
     public ObservableCollection<ShelfItem> Items { get; }=[];
+    internal CancellationToken PendingToken=>additions.Token;
+    public IReadOnlyList<ShelfItem> Find(string? query)
+    {
+        var search=new CommandQuery(query);
+        return Items.Where(item=>search.Rank(item.Name,item.Detail) is not null).ToArray();
+    }
     public static bool Accepts(DataPackageView data) => data.Contains(StandardDataFormats.StorageItems)
         || data.Contains(StandardDataFormats.Text) || data.Contains(StandardDataFormats.WebLink);
     public async Task<int> Add(DataPackageView data,CancellationToken cancellationToken=default)
@@ -25,7 +32,18 @@ internal sealed class ShelfService
         var token=pending.Token; token.ThrowIfCancellationRequested();
         var incoming=new List<ShelfItem>();
         if(data.Contains(StandardDataFormats.StorageItems))
-            foreach(var item in await data.GetStorageItemsAsync().AsTask(token)) incoming.Add(new(item.Name,null,item));
+            foreach(var item in await data.GetStorageItemsAsync().AsTask(token))
+            {
+                // External packages can expose read-only storage proxies for
+                // writable originals. Reopen existing disk files so a later
+                // export reflects the original, not that transfer's access.
+                // Provider-only or inaccessible items retain their handles.
+                IStorageItem original=item;
+                if(item is IStorageFile && !string.IsNullOrEmpty(item.Path) && System.IO.File.Exists(item.Path))
+                    try { original=await StorageFile.GetFileFromPathAsync(item.Path).AsTask(token); }
+                    catch(Exception error) when(error is IOException or UnauthorizedAccessException) { }
+                incoming.Add(new(original.Name,null,original));
+            }
         else
         {
             string text=data.Contains(StandardDataFormats.WebLink) ? (await data.GetWebLinkAsync().AsTask(token)).AbsoluteUri
@@ -55,10 +73,17 @@ internal sealed class ShelfService
         if(items.Count==0) throw new InvalidOperationException("Select at least one shelf item.");
         if(items.Any(item=>!Available(item))) throw new InvalidOperationException("An original file has moved or is unavailable. Remove its shelf entry or restore the original first.");
         package.RequestedOperation=DataPackageOperation.Copy;
-        if(items.All(i=>i.File is not null)) package.SetStorageItems(items.Select(i=>i.File!).ToArray());
+        // The one-argument overload grants read-only storage access. WinUI can
+        // reserialize that access into read-only copies even after native
+        // descriptor correction. Preserve the originals' actual attributes.
+        if(items.All(i=>i.File is not null)) package.SetStorageItems(items.Select(i=>i.File!).ToArray(),readOnly:false);
         else if(items.All(i=>i.File is null)) package.SetText(string.Join(Environment.NewLine,items.Select(i=>i.Text)));
         else throw new InvalidOperationException("Drag files together or text together. Mixed file and text selections need separate transfers.");
     }
-    public void CompleteDrag(IEnumerable<ShelfItem> dragged,DataPackageOperation result,bool remove)
-    { if(remove && result==DataPackageOperation.Copy) foreach(var item in dragged.ToArray()) Items.Remove(item); }
+    public void CompleteDrag(IEnumerable<ShelfItem> dragged,DataPackageOperation result,bool remove,bool copyConfirmed=false)
+    {
+        var items=dragged.ToArray();
+        if(!remove || result!=DataPackageOperation.Copy || !copyConfirmed && items.Any(item=>item.File is not null)) return;
+        foreach(var item in items) Items.Remove(item);
+    }
 }

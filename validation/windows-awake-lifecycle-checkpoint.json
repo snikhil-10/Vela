@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-22",
+  "recordedAt": "2026-10-22T09:10:27.7601278-07:00",
+  "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+  "parentSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+  "compileInputs": 193,
+  "manifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+  "manifestMismatches": 0,
+  "report": "../docs/windows-awake-lifecycle-checkpoint.md",
+  "previewVersion": "0.2.2",
+  "implementedToolCount": 31,
+  "finishedPort": false,
+  "allFeaturesFullyVerified": false,
+  "corePassed": 236,
+  "windowsBackendPassed": 28,
+  "additionalCoreChecks": 14,
+  "testRepetitionsAreNotAdditionalCoverage": true,
+  "tests": [
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/build-x64.log",
+      "passed": 236,
+      "sha256": "bea3886f4488cc7162900340004a25983c0d4c08f7b02cfeb30787cfba81ccfb",
+      "failed": 0,
+      "name": "Windows core checks"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/backend.log",
+      "passed": 28,
+      "sha256": "c5d913e9ddcd2c78fb744f97b7f90810faf4280514b16058cefc98d79b98a4e0",
+      "failed": 0,
+      "name": "x64 Windows backend"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/desktop.log",
+      "sha256": "3fdd910c1ac89a6e684269ddf9a16de74bb3ec6865aab49428d743c304909310",
+      "suites": [
+        "SessionTools",
+        "RuntimeLifecycle"
+      ],
+      "exitCode": 0,
+      "name": "Exact-DLL desktop components"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/build-arm64.log",
+      "arm64Executed": false,
+      "sha256": "e270a179061d33be5f8927d4968e4fc60248250510412b2e2940dc85786f2408",
+      "exitCode": 0,
+      "name": "ARM64 cross-build, core executed on x64 host"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/clean-final-build-x64.log",
+      "sha256": "e5c4be0659541f9bb92af5c9d46e530c455eb07a066d86192a31a14f8aa3a7f4",
+      "exitCode": 0,
+      "name": "Clean source x64 build"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/clean-final-backend.log",
+      "passed": 28,
+      "sha256": "9bfb76bf809103adab72c1d5544091decf6bbf93d0623d2ebe929d3cdac86540",
+      "failed": 0,
+      "name": "Clean source x64 Windows backend"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/clean-final-desktop.log",
+      "sha256": "7093c371dedd3d5a81b7065101ce30f294563fb884bd90dbc2eb264f1046f0d1",
+      "exitCode": 0,
+      "name": "Clean source exact-DLL desktop suites"
+    },
+    {
+      "log": "artifacts/awake-lifecycle-2026-10-22/clean-final-build-arm64.log",
+      "arm64Executed": false,
+      "sha256": "fdcdec137113b15033ca7badf8df28ec21c5e349930d601540df2ed94194e907",
+      "exitCode": 0,
+      "name": "Clean source ARM64 cross-build"
+    }
+  ],
+  "corrections": [
+    "Monotonic elapsed Keep awake deadlines, exact logical expiry and battery pauses without timer extension",
+    "Stopped service refuses stale holds/callbacks, idempotent active timer and clean restart",
+    "Stop timer enabled during battery pause and preserves independent application/display rules",
+    "Unavailable power/process/display probes use safe fallbacks and report failure; native request refusal/retry reports actual applied state",
+    "Resource/thermal services own one timer; stopped callbacks do no work and in-flight read-only thermal sampling cannot notify late"
+  ],
+  "failures": {
+    "finalResult": "All final suites pass, including probe failure and native refusal/retry",
+    "preliminaryProbe": "FAIL: generated unavailable process probe escaped Evaluate",
+    "stoppedHoldLog": "inactive-repro.log",
+    "originalDllSha256": "8c763970be8330962364bccb744e7b4d7b688fe63b574eca4a292108dbb53ae0",
+    "stoppedHold": "FAIL: stopped Keep awake accepted a stale hold",
+    "preliminaryProbeLog": "probe-repro.log",
+    "stoppedResourceCallback": "FAIL: callback after Stop sampled or notified (CPU baseline changed)",
+    "wallClockEvidence": "Source inspection plus new model regression; OS clock was not changed and old calendar behavior was not directly exercised",
+    "originalSourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1",
+    "stoppedResourceLog": "alert-repro.log",
+    "preliminaryDllSha256": "25a77988daf753cd39c0d849d4b878ed88636bcfb541eb3e1f8a01bbc2cbae5a"
+  },
+  "nativeComponents": {
+    "globalClipboardPublished": false,
+    "nativeReleaseGranularity": "Five-second DispatcherQueueTimer interval plus scheduling; not hard real-time",
+    "oldOnboardingSettingsWheelShelfPinOcrRegressions": "passed",
+    "productionAwakeServiceWithInjectedAdapters": "clock, power, process names, display presence and request adapter are explicit",
+    "resourceAndThermalLifecycle": true,
+    "realDefaultDispatcherExpiry": true,
+    "ocrShutdownRecognizer": "injected blocked recognizer; backend separately tests actual worker cancellation",
+    "batteryPausedPanelStop": "Actual control state and handler invoked; not physical click",
+    "exactCleanX64DllSha256": "1c78b08b1727bb1e23e041e16668b77c87efb625e3ea89bfd66d8ff05a9718d5",
+    "unavailableProbesAndRefusedRequests": true,
+    "confirmationButtonsOperated": false,
+    "realFixtureThreadExecutionFlagsChecked": true,
+    "exactWorkspaceX64DllSha256": "ffe8b61e30afbb36c52c06e326a94a715972f5ebd795b8a3404dd8ccefd460de",
+    "notifications": "Captured; not displayed",
+    "keyboardMouseInputInjected": false,
+    "thermalSampling": "Read only, no supported NVIDIA sensors on this Dell",
+    "transientSystemWakeRequestPerformed": true,
+    "systemPickerOperated": false,
+    "previousFixtureThreadExecutionFlagsRestored": true,
+    "globalHooksInstalled": false
+  },
+  "cleanCheckout": {
+    "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+    "checkoutPath": "C:\\Users\\Admin\\AppData\\Local\\Temp\\Vela-GitHub-Check-5d0e9a7936de47faa582ed2bc1dece29",
+    "temporaryIndex": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\awake-lifecycle-2026-10-22\\index-final-f64e32dbed1b4565b584376e5798539c",
+    "treeBeforeFinalEvidenceDocs": "24579b2242ef5ac5742987a06ef9189c0819defb",
+    "originalIndexUnchanged": true,
+    "originalIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc",
+    "checkoutAutocrlf": true,
+    "remoteNames": [],
+    "recordedAt": "2026-10-22T09:06:34.5274929-07:00",
+    "steps": [
+      {
+        "command": "source-manifest",
+        "arguments": [
+          "Verify"
+        ],
+        "exitCode": 0,
+        "log": "clean-final-manifest.log",
+        "endedAt": "2026-10-22T09:06:37.1540773-07:00",
+        "startedAt": "2026-10-22T09:06:34.5492699-07:00"
+      },
+      {
+        "command": "build",
+        "arguments": [
+          "x64"
+        ],
+        "exitCode": 0,
+        "log": "clean-final-build-x64.log",
+        "endedAt": "2026-10-22T09:06:58.2897938-07:00",
+        "startedAt": "2026-10-22T09:06:37.1572986-07:00"
+      },
+      {
+        "command": "check-windows",
+        "arguments": [
+          "x64"
+        ],
+        "exitCode": 0,
+        "log": "clean-final-backend.log",
+        "endedAt": "2026-10-22T09:07:20.2692185-07:00",
+        "startedAt": "2026-10-22T09:06:58.2915829-07:00"
+      },
+      {
+        "command": "check-desktop",
+        "arguments": [],
+        "exitCode": 0,
+        "log": "clean-final-desktop.log",
+        "endedAt": "2026-10-22T09:07:51.1502223-07:00",
+        "startedAt": "2026-10-22T09:07:20.2705391-07:00"
+      },
+      {
+        "command": "build",
+        "arguments": [
+          "arm64"
+        ],
+        "exitCode": 0,
+        "log": "clean-final-build-arm64.log",
+        "endedAt": "2026-10-22T09:08:09.8427457-07:00",
+        "startedAt": "2026-10-22T09:07:51.1513541-07:00"
+      }
+    ]
+  },
+  "cleanCheckoutLimit": "Separate source export on the same configured Dell using existing SDK/runtime and NuGet cache. All 193 input hashes match with Git line-ending attributes; no .git/bin/obj/artifacts copied in. Each build context has exact-DLL evidence. Hosted CI and fresh-machine install are not claimed.",
+  "outputs": [
+    {
+      "provenance": {
+        "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+        "sourceInputs": 193,
+        "sdk": "10.0.402",
+        "architecture": "x64",
+        "builtAt": "2026-10-22T09:00:54.2736674-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+        "appDllSha256": "ffe8b61e30afbb36c52c06e326a94a715972f5ebd795b8a3404dd8ccefd460de",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "4a208e597ee5169887f1904440b2068b86625a9cf1bc05e33841fea7e2667e73",
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0x8664",
+      "architecture": "x64",
+      "context": "workspace",
+      "path": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\Vela-x64"
+    },
+    {
+      "provenance": {
+        "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+        "sourceInputs": 193,
+        "sdk": "10.0.402",
+        "architecture": "arm64",
+        "builtAt": "2026-10-22T09:02:00.6390308-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+        "appDllSha256": "b1eeb1f6374476d056c3b38ff370dd8b3b6a6c34bce22319ae5fa8b6189f702c",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+      },
+      "provenanceSha256": "5cdb9dcf96cf5484af621939afac7e857afabc7e00d225f324266076c3b6abdc",
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0xaa64",
+      "architecture": "arm64",
+      "context": "workspace",
+      "path": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\Vela-arm64"
+    },
+    {
+      "provenance": {
+        "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+        "sourceInputs": 193,
+        "sdk": "10.0.402",
+        "architecture": "x64",
+        "builtAt": "2026-10-22T09:06:58.0711269-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+        "appDllSha256": "1c78b08b1727bb1e23e041e16668b77c87efb625e3ea89bfd66d8ff05a9718d5",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "4bb63ffa5c35f9b7151d8f4922e75d8a27202776b59f799dbcb488d80d2e00fe"
+      },
+      "provenanceSha256": "fee8a95852c747c97fef4ca380a009d3671fb1dfcbb54caf23d37863456f1b76",
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0x8664",
+      "architecture": "x64",
+      "context": "clean-export",
+      "path": "C:\\Users\\Admin\\AppData\\Local\\Temp\\Vela-GitHub-Check-5d0e9a7936de47faa582ed2bc1dece29\\artifacts\\Vela-x64"
+    },
+    {
+      "provenance": {
+        "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+        "sourceInputs": 193,
+        "sdk": "10.0.402",
+        "architecture": "arm64",
+        "builtAt": "2026-10-22T09:08:09.4630082-07:00",
+        "unreleasedPreview": true,
+        "coreChecks": "passed",
+        "runtimeChecks": "Run check-windows and desktop checks separately; a build does not establish runtime support.",
+        "compiledManifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+        "appDllSha256": "95db31b8734bbfbb46d3c669121b98447c380c3f497b8c497bff8113394a29d0",
+        "ocrWorkerArchitecture": "x64",
+        "ocrWorkerExeSha256": "4bb63ffa5c35f9b7151d8f4922e75d8a27202776b59f799dbcb488d80d2e00fe"
+      },
+      "provenanceSha256": "7f38ec16e0ce298d3649ec8d6604cf23389b3891ec0007339e0dd54bf3491577",
+      "workerHostPeMachine": "0x8664",
+      "appHostPeMachine": "0xaa64",
+      "architecture": "arm64",
+      "context": "clean-export",
+      "path": "C:\\Users\\Admin\\AppData\\Local\\Temp\\Vela-GitHub-Check-5d0e9a7936de47faa582ed2bc1dece29\\artifacts\\Vela-arm64"
+    }
+  ],
+  "preservation": {
+    "featureScopeRecords": 77,
+    "settingsSchemaVersion": 1,
+    "featureScopeUnchanged": true,
+    "originalGitIndexUnchanged": true,
+    "systemClockChanged": false,
+    "settingsCatalogAndShelfByteIdenticalToParent": [
+      "src/Vela.Core/FeatureCatalog.cs",
+      "src/Vela.Core/Settings.cs",
+      "src/Vela.Windows/Services/ShelfService.cs",
+      "src/Vela.Windows/Services/ShellDropFeedback.cs",
+      "src/Vela.Windows/UI/ShelfTools.cs"
+    ],
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "transientOwnThreadWakeRequest": "Exercised and prior flags restored",
+    "originalGitIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc",
+    "startupRegistrationChanged": false,
+    "protectedCueMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ],
+    "powerPlanChanged": false,
+    "hardwareConfigurationWritesPerformed": false,
+    "normalProfileLaunched": false
+  },
+  "evidence": [
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/alert-repro-build.log",
+      "sha256": "ce394b6d24a789baf1020462ab194e74ac63a43d09537e83730684d9478959e1",
+      "bytes": 396
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/alert-repro-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/alert-repro.log",
+      "sha256": "92942cc48b81228b2d86697afe9ea56a499e48ad60b595696ffb602bcd29f71b",
+      "bytes": 876
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/backend.log",
+      "sha256": "c5d913e9ddcd2c78fb744f97b7f90810faf4280514b16058cefc98d79b98a4e0",
+      "bytes": 7403
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/build-arm64.log",
+      "sha256": "e270a179061d33be5f8927d4968e4fc60248250510412b2e2940dc85786f2408",
+      "bytes": 17479
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/build-x64.log",
+      "sha256": "bea3886f4488cc7162900340004a25983c0d4c08f7b02cfeb30787cfba81ccfb",
+      "bytes": 17389
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/candidate-build.log",
+      "sha256": "c99e15ba8e925a84297eaa841edbac9e9652e2393e5736a10450d9c2ec755144",
+      "bytes": 699
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/candidate-final-build.log",
+      "sha256": "8baa5fef04a0720fac3bca0e63c0db082558710222632a6878ffae79d1835fbb",
+      "bytes": 499
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-backend.log",
+      "sha256": "9bfb76bf809103adab72c1d5544091decf6bbf93d0623d2ebe929d3cdac86540",
+      "bytes": 7634
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-build-arm64.log",
+      "sha256": "fdcdec137113b15033ca7badf8df28ec21c5e349930d601540df2ed94194e907",
+      "bytes": 17655
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-build-x64.log",
+      "sha256": "e5c4be0659541f9bb92af5c9d46e530c455eb07a066d86192a31a14f8aa3a7f4",
+      "bytes": 17750
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-desktop.log",
+      "sha256": "7093c371dedd3d5a81b7065101ce30f294563fb884bd90dbc2eb264f1046f0d1",
+      "bytes": 1716
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-manifest.log",
+      "sha256": "a70ffd0be8c75ed9fd9e5171fec53555c94e6d88d4f82ae036330855f2f4d190",
+      "bytes": 76
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-runtime-lifecycle.log",
+      "sha256": "ed4206324a6773096fa3e4f72ec87ce6dd3c39505b0832916674b676e7fb2a80",
+      "bytes": 3403
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-final-session-tools.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component-build.log",
+      "sha256": "c3f84009b9635ffde82035683aa8c89e1ec6800e6126c6cfc7c1f3b7cbfe8539",
+      "bytes": 413
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component-final-build.log",
+      "sha256": "c3f84009b9635ffde82035683aa8c89e1ec6800e6126c6cfc7c1f3b7cbfe8539",
+      "bytes": 413
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component-final-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component-final.log",
+      "sha256": "5fbc666461e9f375036281034ffe7e618feb36247e352cdca7f840785e45ab22",
+      "bytes": 3403
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/component.log",
+      "sha256": "2ee71a57e9f281a258d9ab256cd786617c7918fea5bff3082e924e903012f283",
+      "bytes": 3034
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/core-policy.log",
+      "sha256": "e8a885f5935c16bb7bc19536db7b531befe0ae92efa56ea366023c791a32e275",
+      "bytes": 16262
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/desktop.log",
+      "sha256": "3fdd910c1ac89a6e684269ddf9a16de74bb3ec6865aab49428d743c304909310",
+      "bytes": 1289
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/inactive-repro-build.log",
+      "sha256": "10d59d5c17b1f91eaf73de11b2f63c657054cae5480e1e7eca76a99203a079ed",
+      "bytes": 400
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/inactive-repro-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/inactive-repro.log",
+      "sha256": "8fc5210cf026cdf94dcb9804a0f4c515fc0fbc561b6d7113fc384a6b610def26",
+      "bytes": 859
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/probe-repro-build.log",
+      "sha256": "c3f84009b9635ffde82035683aa8c89e1ec6800e6126c6cfc7c1f3b7cbfe8539",
+      "bytes": 413
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/probe-repro-console.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/probe-repro.log",
+      "sha256": "b53db71815b3199463dc95813aa9780396e314ce9de88ec913407023e0d8d64b",
+      "bytes": 1975
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/runtime-lifecycle.log",
+      "sha256": "5fbc666461e9f375036281034ffe7e618feb36247e352cdca7f840785e45ab22",
+      "bytes": 3403
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/session-tools.log",
+      "sha256": "befedb05bbfb54c3fae5b158f9f881082378d6bdd77880787332d96b86bc02db",
+      "bytes": 584
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/source-index-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/whitespace-preflight.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/baseline-source-manifest.json",
+      "sha256": "839545d2dade097a5d99cd0d4cfd863df3cb6a4679f9f4ad479bdde9d860f594",
+      "bytes": 24834
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/normal-settings-before.json",
+      "sha256": "6190b73875583f3452bffaa4593aeef2188a10157623bed0076cae8ce2ba212d",
+      "bytes": 178
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/clean-checkout-final.json",
+      "sha256": "564828ab3ba80a654475dbb52cfb71df216ce9c35b423ad95115f314afccc938",
+      "bytes": 1956
+    },
+    {
+      "path": "artifacts/awake-lifecycle-2026-10-22/record-evidence.ps1",
+      "sha256": "310710b204715f6807794bae45c9020adcf1283a0c5983d266b278578d870935",
+      "bytes": 16618
+    }
+  ],
+  "evidenceAvailability": "Detailed logs and generated fixtures are local ignored artifacts; checkpoint summaries and hashes travel with source.",
+  "limits": [
+    "Actual AC changes, external-display hot-plug, manual Sleep/lid/critical-battery behavior and real power-policy interactions remain open.",
+    "Native timer release follows the five-second dispatcher interval plus scheduling; exact model expiry does not imply hard real-time release.",
+    "Physical keyboard/mouse/editor/IME/elevated-target behavior, full picker/save/overwrite/confirmation-button flows, broader Explorer collisions/skip/folders/providers/long copies and actual lock/suspend remain open.",
+    "Ordinary physical two-file shelf copying/removal is historical source 68426e4c evidence; no physical drag performed this turn.",
+    "Quiet-time and live threshold delivery, unavailable DDC/NVIDIA hardware, multi-device microphones, mixed DPI/multi-monitor/accessibility, ARM64 execution and hosted CI remain open.",
+    "Deferred non-native residuals remain: audio/Bluetooth automation, amplification, additional sensors/fans, advanced capture/editing, reviewed app leftovers, broader indexing/history and localization.",
+    "Five existing sharing/read-only core checks run only on Windows; portable-host counts differ. Repeated runs are not extra features verified."
+  ],
+  "cleanup": {
+    "forceTerminationPerformed": false,
+    "residentsExitedNormally": true,
+    "remainingValidationProcesses": 0,
+    "generatedFailureDiagnostic": "Existing fixture deliberately records an owned IOException to verify genuine-fault reporting; not product startup failure."
+  },
+  "primaryReference": "https://learn.microsoft.com/en-us/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate",
+  "installerRun": false,
+  "newReleaseAssembled": false,
+  "binaryZipCreated": false,
+  "gitCommitCreated": false,
+  "remoteCreated": false,
+  "pushPerformed": false,
+  "published": false
+}

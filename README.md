@@ -1,85 +1,128 @@
 # Vela for Windows
 
-A native **WinUI 3 / XAML / C#** Windows 11 tray app inspired by Vorssaint. Vela is the independent working name required by [upstream's branding policy](NOTICE.md).
+Native Windows 11 utilities for files, focus and everyday workflows, together in a WinUI 3 and Mica tray app.
 
-Version **0.2.2 is in development**. Source `f77132b9` passes **181 core and 21 Windows backend checks** on the physical x64 Dell, plus native x64 XAML/OCR publishing and ARM64 cross-publishing. The [functionality audit](docs/windows-functionality-audit-2026-10-19.md) accounts for all 31 implemented tools: fresh native UI observations for 24 on-demand tools, shared settings/core review for seven physical-input tools, and explicit hardware, picker, clipboard and lifecycle gaps. A guarded microphone round trip and download mutation/path safeguards pass. Normal settings, clipboard and accepted taskbar cue are preserved. The full feature matrix remains incomplete; ARM64 runtime is untested on this host. The last packaged release remains 0.2.1. This preview has not been published.
+**Vela 0.2.2 is an unreleased development preview.** The source implements 31 optional tools, with further features and validation still in progress. There is no finished-port or 100% functionality claim. Build the current source for the latest fixes; the optional historical 0.2.1 binary is older.
 
-- [Windows feature audit and exclusions](docs/windows-feature-audit.md)
-- [Machine-readable inventory](docs/feature-audit.json)
-- [Windows verification and remaining work](docs/verification.md)
-- [Hardware support and the target desktop](docs/hardware-support.md)
-- [Design and architecture](docs/architecture.md)
-- [Portable build quick start](docs/portable-readme.md)
-- [Move development to a Windows PC](docs/windows-handoff.md)
+Vela is an independent, unofficial project inspired by [Vorssaint](https://github.com/vorssaint/vorssaint-utils). See [attribution and identity](NOTICE.md).
 
-Windows-native capabilities are excluded from the runtime catalog. **PowerToys is not treated as built in.** Partial overlaps are split so features such as timed keep-awake and extra dimming remain useful without recreating Windows power or brightness settings. There is no Dynamic Island or Liquid Glass.
+## Features
 
-The app has one system tray icon, a compact Mica flyout, native Settings navigation, and four-step onboarding: welcome, tool selection, selected access explanations, and completion. Disabled resident features tear down their listeners; their settings remain available when re-enabled. Settings can be reordered, themed, exported and imported.
+| Area | Implemented tools |
+| --- | --- |
+| Files and clipboard | Session file/text/link shelf with search and multi-file dragging; tracking-link cleanup; text snippets; clipboard auto-clear; plain-text paste with clipboard restoration; save copied images as PNG. |
+| Launching and workspace | Quick panel, command search, launcher profiles and nested radial menus; open-window search, window pinning, saved window positions and undo. |
+| Focus | Timed keep-awake with application, external-display and AC-only rules; cleaning mode with a deadline and recovery controls. |
+| Input | Smooth notched-wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, mouse-button shortcuts, duplicate-click filtering, Caps Lock Super key and selected-app close protection. |
+| Images and media | Session image pins with a visible minimum size and topmost toggle; batch image conversion, resizing, watermarks and size/quality controls; offline English OCR; MP4 conversion, M4A extraction and animated GIF batches. |
+| Display and system | Per-display software dimming, supported DDC/CI brightness, resource alerts, supported NVIDIA sensor readings/thermal alerts and all-microphone mute. |
+| On-demand tools | Developer RSS/Atom feeds, internet speed measurements and review of older files in a selected messaging-download folder. |
 
-## Implemented tools
+Tools can be enabled or disabled individually. Input features support application exclusions. Hardware and codec capabilities are discovered at runtime; a brand name alone does not establish support. More detail is in the [feature audit](docs/windows-feature-audit.md) and [hardware guide](docs/hardware-support.md).
 
-- Timed keep-awake, application rules, external-display rules and AC-only requests.
-- Link tracking cleanup, optionally for plain-text copied links.
-- Session file/text/link shelf with multi-file drag in/out and configurable taskbar, taskbar-icon or tray-icon drop targets.
-- Snippet library with arbitrary triggers, immediate or Space/Tab/Return activation, and date/time/clipboard variables.
-- Clipboard auto-clear on delay, lock or suspend, copied-image PNG saving, and shortcut-driven plain-text paste with clipboard restoration.
-- Cleaning mode with optional mouse lock, a 60-second deadline and hold-Escape recovery.
-- Quick panel, ranked multi-word/quoted-phrase command search and named launcher profiles; radial submenus with keyboard navigation, centre-drag selection and a small-window list layout. Focused laptop mouse cases pass; the broader gesture/accessibility matrix remains open.
-- Open-window search with display filtering and pin/unpin; named custom window workspaces with restore and undo.
-- Session-only image pins from the clipboard or selected files, with resizable Mica windows and a topmost toggle.
-- Smooth wheel scrolling, Alt+wheel horizontal scrolling, horizontal inversion, button shortcuts, duplicate click filtering, Caps Lock Super key, and per-app double-press close protection.
-- Per-display software dimming, on-demand external-monitor DDC/CI brightness, sustained resource alerts and supported NVIDIA temperature/power readings with thermal alerts.
-- All-microphone mute/unmute.
-- Batch image conversion, proportional resizing, JPEG quality and per-image size limits, configurable text watermarks and offline English OCR; MP4 conversion and M4A audio extraction with optional per-file size limits and trimmed animated GIF batches through Windows codecs.
-- On-demand developer RSS/Atom release headlines with saved sources and local title search.
-- On-demand HTTP latency, download and upload measurements with cancellation and bounded data use.
-- Review older files in a selected messaging-download folder before explicitly sending chosen files to the Recycle Bin.
+### Scope
 
-These 31 tools describe the source implementation. Device support is discovered at runtime; monitor brand alone does not establish DDC/CI support. CPU/case/GPU fan control and additional CPU/AMD/Intel thermal backends are unfinished. Input compatibility, clipboard ownership, Core Audio, accessibility and rendered layouts remain subject to the Windows checklist. Remaining non-native work is listed in the audit; the app exposes no placeholder toggles for it.
+Vela focuses on extras beyond Windows' built-in tools. Snap, Alt+Tab, basic clipboard history, ordinary screenshots/recording, volume routing, standard uninstall and other native capabilities stay with Windows. Partial overlaps retain only the extra functionality. PowerToys is treated as an optional third-party utility.
 
-## Build on Windows
+The [77-feature inventory](docs/feature-audit.json) records the decisions and remaining non-native work. Deferred items include audio/Bluetooth automation, amplification, additional sensor/fan backends, advanced capture/editing, broader indexing/history, reviewed application leftovers and localization. These are not exposed as placeholder tools.
 
-Use Windows 11 and the **.NET 10 SDK**. The NuGet packages pin Windows App SDK 2.5.1, the SDK build tools and Tesseract 5.2.0; the project is unpackaged and self-contained. Windows 11 ARM64 is supported for a Fusion VM on this Apple Silicon Mac, with a separate x64 target for conventional PCs.
+## Build and run
 
-From PowerShell in a Windows checkout:
+Requirements:
 
-Exit any Vela instance running from the output folder before rebuilding. The scripts refuse to overwrite a running preview.
+- Windows 11 build 22621 or later and the **.NET 10 SDK**.
+- The Microsoft Visual C++ **x64** runtime for the offline OCR worker.
+- Network access for the initial restore of the pinned NuGet dependencies.
+
+The project pins Windows App SDK 2.5.1, Windows SDK build tools and Tesseract 5.2.0. Application outputs are self-contained and unsigned. The OCR worker is x64 in both application builds.
+
+Exit a running Vela instance normally before rebuilding its output. From the repository root:
 
 ```powershell
-# ARM64 / VMware Fusion on Apple Silicon
-./tools/build.ps1 -Architecture arm64 -Run
-
-# x64
-./tools/build.ps1 -Architecture x64 -Run
+.\tools\source-manifest.cmd Verify
+.\tools\build.cmd x64
+.\artifacts\Vela-x64\Vela.Windows.exe
 ```
 
-After building, `tools\package.cmd arm64` (or `x64`) creates a portable ZIP and prints its SHA-256. The ZIP includes `Install.cmd` and `Uninstall.cmd` for per-user installation and removal. Installation preserves saved preferences and adds Desktop/Start shortcuts plus a Windows Installed apps entry. No administrator access is required.
+Choose your tools during first-run onboarding. Settings remain available from the tray. Keep the complete output directory together, including its assets, OCR worker, resources and licenses.
 
-To install a published build into `%LOCALAPPDATA%\Programs\Vela`, exit Vela and run `artifacts\Vela-arm64\Install.cmd` (or the x64 folder's Install.cmd). This adds Desktop/Start menu shortcuts and Windows Installed apps registration, and preserves an existing sign-in startup choice.
+To cross-build the ARM64 application:
 
-The build also publishes an isolated x64 OCR worker and its pinned English model. OCR requires the Microsoft Visual C++ x64 runtime; ARM64 uses Windows x64 emulation for that worker. The executable and its required files are written to `artifacts/Vela-arm64` or `artifacts/Vela-x64`. Keep the whole publish folder together. Builds are unsigned. A successful publish is not a runtime test. GitHub Actions contains both architectures, but no workflow has been dispatched or verified from this workspace.
+```powershell
+.\tools\build.cmd arm64
+```
 
-For local UI validation, exit Vela and launch the executable with `--data-directory "C:\absolute\local\fixture-folder"`. This creates separate settings and startup diagnostics and prevents sign-in registration changes. Do not point it at `%LOCALAPPDATA%\Vela`. `--settings` opens General settings directly after completed onboarding. The app retains one active instance; exit a validation instance before launching normally. See the laptop checkpoint for evidence and limits.
+Cross-building succeeds on the x64 development laptop; execution of this source on ARM64 hardware remains unverified. See the [build and GitHub guide](docs/github-readiness.md) and [portable quick start](docs/portable-readme.md).
 
-If PowerShell's script policy blocks `.ps1` files, run `tools\build.cmd arm64` (or `tools\build.cmd x64`) from Command Prompt. It runs the same tests and publish commands without changing the machine's script policy.
+## Verification
 
-To use Visual Studio, open `Vela.sln` with a WinUI-capable Visual Studio installation supporting .NET 10 and select x64 or ARM64. The PowerShell script is the reference build command.
+The last full recorded validation, **October 22, 2026**, covers:
 
-## Checks available on macOS
+| Check | Recorded result |
+| --- | --- |
+| Core regression suite on Windows x64 | 236 passed, 0 failed |
+| Windows backend checks on x64 | 28 passed, 0 failed |
+| Native desktop components | SessionTools and RuntimeLifecycle passed |
+| Application publishing | x64 and ARM64 cross-build passed |
+| Separate clean source export | Manifest, builds, backend and desktop checks passed on the configured Dell |
+
+Additional [backup-integrity stress checks](docs/windows-headless-stress-checkpoint.md) and [human-assisted settings transfer UI checks](docs/windows-settings-transfer-ui-checkpoint.md) passed. Picker steps performed by the owner are identified explicitly. Detailed source identities, results and limits are in the [awake/alert checkpoint](docs/windows-awake-lifecycle-checkpoint.md) and [verification checklist](docs/verification.md). Check [GitHub Actions](https://github.com/snikhil-10/Vela/actions/workflows/windows.yml) for the status and logs of hosted runs; the table above records the local validation.
+
+After building x64, exit Vela and run the Windows checks sequentially:
+
+```powershell
+.\tools\check-windows.cmd x64
+.\tools\check-desktop.cmd
+```
+
+Desktop checks need an interactive Windows session. They use generated profiles, owned windows and test media. The wake fixture briefly owns a system execution-state request on its own thread and restores its prior flags; it does not change power plans or the system clock.
+
+Portable core checks can run on Windows, Linux or macOS:
 
 ```sh
 dotnet run --project tests/Vela.Core.Tests -c Release
-dotnet restore src/Vela.Windows/Vela.Windows.csproj -p:Platform=ARM64 -r win-arm64
-python3 tools/check-windows-types.py
-dotnet run --project tools/XamlMetadata -c Release -- .
 ```
 
-The API check compiles C# against the actual WinUI/Windows SDK reference assemblies and supplies **temporary XAML field stubs only for that check**. They are never included in the app. The metadata check validates XAML types and property names without creating Windows objects. Neither check compiles XAML, renders the UI, or proves the app runs. Microsoft's XAML compiler cannot execute on macOS.
+Five file-sharing/read-only cases run only on Windows, so counts differ by host. Native WinUI/XAML compilation and Windows runtime checks require Windows. A passing build does not establish physical-device compatibility.
 
-## Local data and lifecycle
+Remaining validation includes broader keyboard/mouse/editor/IME/elevated-app compatibility, picker cancel/overwrite/error paths, Explorer/provider transfers, actual lock/suspend and power transitions, accessibility/mixed DPI, hardware/hot-plug and ARM64 execution. The preview is not ready to be described as fully verified.
 
-Settings, snippets, launcher paths and saved window titles/positions live in `%LOCALAPPDATA%\Vela\settings.json`. The shelf exists only for the current session and stores references to explicitly dropped files. Vela does not index the disk, collect clipboard history or record audio. The optional Internet speed test contacts Cloudflare only when started, uses up to 80 MB plus overhead, and uploads generated zero bytes. Cloudflare receives the public IP and test traffic; Vela sends no user content or results report. Developer feeds contact only your chosen feed URLs on Refresh; URLs are saved/exported, while headlines stay in memory. Exported settings include snippet contents, file paths and feed URLs.
+## Local data and network use
 
-Start-at-sign-in is opt-in and uses the current user's Run entry. It can also be disabled through Windows Startup apps. Closing the panel hides it; **Exit Vela** removes the tray icon and releases resident services, wake requests, input hooks, window pins and dimming overlays. Microphone mute state is a user-selected Windows device setting and remains as chosen.
+- Normal preferences, snippets, launcher paths and saved workspace titles/positions are stored in `%LOCALAPPDATA%\Vela\settings.json`.
+- The shelf and image pins are session-only. Shelf entries reference explicitly added originals; ordinary copying keeps those originals.
+- Settings export/import uses JSON backups up to 4 MB. Backups can contain snippet text, file paths and feed URLs. Sign-in startup is separate from the backup.
+- Vela has no account, analytics or cloud sync. It does not index the disk, collect clipboard history or record microphone audio.
+- Network tools run on demand: developer feeds contact the saved URLs on Refresh; the speed test contacts Cloudflare and uses up to 80 MB plus overhead, including generated upload traffic. Those servers receive the public IP and requests; Vela sends no user files or results report.
 
-GPL-3.0-or-later. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md).
+Start-at-sign-in is opt-in. Closing the panel hides it; **Settings → General → Exit** stops the resident app and releases its hooks, wake requests, pins and dimming overlays. A microphone mute setting remains as chosen.
+
+For isolated development validation, launch with `--data-directory "C:\absolute\local\fixture-folder"`. This separates settings and diagnostics and prevents sign-in registration changes. Vela permits one active instance, so exit before switching profiles. `--settings` opens General after completed onboarding.
+
+## Development
+
+Build scripts verify `build-source-manifest.json` before compilation. After intentional source/test/tool/fixture changes, review the changes, refresh the manifest, then rebuild and rerun affected checks:
+
+```powershell
+.\tools\source-manifest.cmd Refresh
+.\tools\source-manifest.cmd Verify
+```
+
+Refreshing records an identity; it does not constitute a test pass. Generated outputs, local fixtures, editor state, environment secrets and signing containers are covered by the repository's [.gitignore](.gitignore).
+
+For a first GitHub upload, create an empty destination repository and use the README, ignore file and license already present here. See [first-push preparation](docs/github-readiness.md). The workflow runs checks and stores preview build artifacts; it does not create a GitHub Release.
+
+## Documentation
+
+- [Verification and remaining work](docs/verification.md)
+- [Feature scope and Windows-native exclusions](docs/windows-feature-audit.md)
+- [Build and GitHub preparation](docs/github-readiness.md)
+- [Hardware support](docs/hardware-support.md)
+- [Architecture](docs/architecture.md)
+- [Windows development handoff](docs/windows-handoff.md)
+
+## License and attribution
+
+Vela is distributed under **GPL-3.0-or-later**. See [LICENSE](LICENSE) and [NOTICE.md](NOTICE.md) for licensing, attribution and the project's independent identity.
+
+OCR dependencies retain their Apache-2.0, BSD and MIT notices in [src/Vela.OcrWorker/Licenses](src/Vela.OcrWorker/Licenses). Other dependencies retain their respective license terms. Keep these notices with source and build distributions.

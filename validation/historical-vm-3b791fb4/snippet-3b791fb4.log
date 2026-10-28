@@ -1,0 +1,3 @@
+PASS Original text and HTML clipboard formats are preserved.
+ACTUAL_UTF8_BASE64 SU1NRURJQVRFDQpTUEFDRSB4DQpUQUIJeA0KUkVUVVJODQp4DQpGaXJzdCBsaW5lDQpTZWNvbmQgbGluZSB4DQpNaXhlZCBDQVNFIOKckw0K44GT44KT44Gr44Gh44GvIHgNClZlbGEgcGxhaW4gcGFzdGUgdGVzdCB4
+PASS Desktop snippet exact output: immediate, space, tab, return, longest suffix, Unicode, multiline and clipboard placeholder.

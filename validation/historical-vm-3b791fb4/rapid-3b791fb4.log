@@ -1,0 +1,3 @@
+PASS Original text and HTML clipboard formats are preserved.
+ACTUAL_UTF8_BASE64 U1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0KU1BBQ0UgeA0K
+PASS Eight consecutive expansions retain every following x and Return.

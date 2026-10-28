@@ -6,4 +6,8 @@ artifacts/
 *.suo
 .DS_Store
 TestResults/
+.env
+.env.*
+*.pfx
+*.p12
 

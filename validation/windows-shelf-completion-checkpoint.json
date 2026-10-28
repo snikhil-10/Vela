@@ -1,0 +1,361 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T21:29:11.996274-07:00",
+  "sourceSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+  "parentSnapshot": "ad9a5f89-267d-42e5-a728-caf112d868c3",
+  "compileInputs": 134,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-shelf-completion-checkpoint.md",
+  "manualRegression": {
+    "partialSkip": "not tested",
+    "removeAfterSuccess": true,
+    "newCandidateCollisionCancellation": "PASS user-reported entry retention after closing duplicate dialog; original and destination hashes unchanged",
+    "isolatedProfile": "artifacts/manual-shelf-recheck-2026-10-19/profile",
+    "sourceAndOldDestinationHashesUnchanged": true,
+    "sourceSnapshot": "ad9a5f89-267d-42e5-a728-caf112d868c3",
+    "evidence": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-failed.json",
+    "newCandidateSuccessfulRemoval": "FAIL: copy hashes pass, agent observed two retained shelf entries, no EndOperation callback in trace",
+    "userReport": "both entries disappeared",
+    "cancelUsingDialogCloseRequested": true,
+    "reportedBy": "user",
+    "newCandidatePid": 24348,
+    "result": "FAIL",
+    "copiedFilesVerified": true,
+    "successfulCopyAgentShelfCount": 2,
+    "childCandidate": "bfaf9de5-0eaa-4d20-a0e8-053470bc7b15"
+  },
+  "implementation": {
+    "independentPackageAdapter": true,
+    "requiredCompletion": "One async StartOperation followed by EndOperation S_OK with exactly Copy",
+    "reportedLogicalEffectIsNotProof": true,
+    "diagnosticsOnlyInValidationProfile": true,
+    "missingFeedbackRetainsAfterSeconds": 30,
+    "targetCanRetainAdapterPastTimeout": true,
+    "originalFilesNeverDeleted": true
+  },
+  "tests": {
+    "lateIdentityAndDisabledRemoval": true,
+    "ocrWorker": "Unchanged validated x64 worker copied, not republished",
+    "windowsBackendFailed": 0,
+    "arm64Runtime": "not tested",
+    "earlyLogicalCopyIgnored": true,
+    "arm64Publish": "passed",
+    "nativeAbi": {
+      "nativeBoolAndActiveState": true,
+      "candidateAppDllSha256": "4c8b4e5e16b84ec580175d36e34bd89dc7a4fd9c4085a27d11474d737a518dc1",
+      "separateFixtureNotResidentUi": true,
+      "hresultCases": [
+        "800704C7 rejected",
+        "80004005 rejected",
+        "00000001 rejected",
+        "00000000 Copy accepted"
+      ],
+      "fixtureCopyMatchesCandidate": true,
+      "nativeQueryInterfaceAndVtable": true
+    },
+    "x64Publish": "passed",
+    "exif": {
+      "orientationTags": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "cornerOrderAndAspect": true,
+      "realRecognitionForRotatedDocuments": false,
+      "normalFormats": [
+        "PNG",
+        "JPEG",
+        "BMP"
+      ],
+      "capBytes": 10000,
+      "ocrNativePreparation": true,
+      "cappedFormats": [
+        "PNG",
+        "BMP"
+      ],
+      "pinDecode": true,
+      "originalsAndSourceHandles": true
+    },
+    "coreFailed": 0,
+    "windowsBackendPassed": 26,
+    "finalCompilerDiagnostics": 0,
+    "twoFilePayloadAndOrder": true,
+    "preliminaryFailures": [
+      "Orientation fixture 8000-byte BMP cap was below minimum; corrected test to 10000",
+      "ABI fixture lacked pinned SDK runtime and complete reference assets; staged exact DLL and resources for harness",
+      "ABI fixture ref/in warning corrected"
+    ],
+    "failedCanceledPartialAndInvalidCallbacksRetain": true,
+    "corePassed": 187
+  },
+  "binaries": [
+    {
+      "appDllSha256": "4c8b4e5e16b84ec580175d36e34bd89dc7a4fd9c4085a27d11474d737a518dc1",
+      "manifestMatches": true,
+      "xamlPriBytes": 2203192,
+      "ocrMatchesPrevious": true,
+      "ocrWorkerMachine": "8664",
+      "architecture": "x64",
+      "peMachine": "8664",
+      "output": "artifacts/Vela-shelf-completion-x64",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+    },
+    {
+      "appDllSha256": "77e26513f1600a7a54a61c6933f2132172167b449b68114adae12dc7942bc3e6",
+      "manifestMatches": true,
+      "xamlPriBytes": 2203192,
+      "ocrMatchesPrevious": true,
+      "ocrWorkerMachine": "8664",
+      "architecture": "arm64",
+      "peMachine": "AA64",
+      "output": "artifacts/Vela-shelf-completion-arm64",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+    }
+  ],
+  "preservation": {
+    "hardwareWrites": false,
+    "settingsSchemaMatchesParent": true,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "signInRunValuePresent": false,
+    "featureCatalogMatchesParent": true,
+    "acceptedCueAndMica": [
+      {
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "matchesOctober18": true
+      },
+      {
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "matchesOctober18": true
+      },
+      {
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "matchesOctober18": true
+      },
+      {
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "matchesOctober18": true
+      },
+      {
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "matchesOctober18": true
+      },
+      {
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "matchesOctober18": true
+      }
+    ],
+    "scopeTriplesUnchanged": true,
+    "clipboardPublicationOrClearTest": false,
+    "normalProfileWrite": false,
+    "scopeCount": 77
+  },
+  "additionalCoreTestInputs": [
+    {
+      "path": "tests/Vela.Core.Tests/AlertChecks.cs",
+      "sha256": "4dfe1daa56187b82fbbb79c8ed9242f69f03df1e52fe81a2ac913790ce53a45c"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/AudioBudgetChecks.cs",
+      "sha256": "2d36f6ccf57bd8a9da0c061a43f839e332318e31a80567077dba8cf121003cd7"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/ClipboardChecks.cs",
+      "sha256": "de5885a4716062e15c4c95570d43a5a9edf0970dd28b262b363f04667ac9d629"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/CommandQueryChecks.cs",
+      "sha256": "8f572b991e4fede6e3ffd31ba1a37060960e9c817f42db552b966793219b1bd6"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/DeveloperFeedChecks.cs",
+      "sha256": "15a6dcff77b424f5184eece387deee56772865cbbe1c37e18ef7989f36458765"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/ImageBudgetChecks.cs",
+      "sha256": "c0b57e77c1615b6f9d9aa461490d2cb23804440dbe603e03525b518f1aa8e396"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/InputChecks.cs",
+      "sha256": "24280cdbc1122943ea400ccc1defd4533c40032b82c32e3ab51f3077a7179571"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/LauncherChecks.cs",
+      "sha256": "d3c1e6f8902aa5f14efeeca1d5bff7fcba472ec8b3e55d24f8091294f6021fdf"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/NetworkChecks.cs",
+      "sha256": "21971816380a3dac88ba1c140954abbe95f6aea5aafd8c92968a842fb2628b64"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/Program.cs",
+      "sha256": "286c7ae80f6d8cd6b0cecf4c372eccec369d6b234a70b8858d7d65be6cc2831c"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/Vela.Core.Tests.csproj",
+      "sha256": "64505027df46e1e8cdb15cdac4091b9795cc43c40b19aec2e0e1967ebe032656"
+    },
+    {
+      "path": "tests/Vela.Core.Tests/VideoBudgetChecks.cs",
+      "sha256": "61771e28ca3e3525e320b559975d4d31f3c58e97607a203cceacb3dd990ef9db"
+    }
+  ],
+  "evidence": [
+    {
+      "sha256": "116f51733e4076560cae9986cdbd7c4359147bd24ab8f46d72ab628f34974af2",
+      "path": "artifacts/shelf-completion-2026-10-19/build-arm64.log",
+      "bytes": 708
+    },
+    {
+      "sha256": "9a157cc154ab10064629a79babd1a30ec96021103d1fbfd5077394735b655ad1",
+      "path": "artifacts/shelf-completion-2026-10-19/build-x64.log",
+      "bytes": 628
+    },
+    {
+      "sha256": "20357c07dd9af0b78a0765a1f806629b4db0015ba23a5b6277472497052d7066",
+      "path": "artifacts/shelf-completion-2026-10-19/check-build-initial.log",
+      "bytes": 527
+    },
+    {
+      "sha256": "da45789b58183cad6c66ec2608317a612cfc44bb7cf8db9c922719e52a77199d",
+      "path": "artifacts/shelf-completion-2026-10-19/final-check-build.log",
+      "bytes": 649
+    },
+    {
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64",
+      "path": "artifacts/shelf-completion-2026-10-19/final-core.log",
+      "bytes": 12585
+    },
+    {
+      "sha256": "a272d6939031c5e1858e3d936170c4f7e54928d18a83d2ea6a72983269cc54fc",
+      "path": "artifacts/shelf-completion-2026-10-19/final-windows-checks.log",
+      "bytes": 6225
+    },
+    {
+      "sha256": "ab1ec4c18cf02406c02742bea75529fa506a0483bdda672c27567d95bbeff395",
+      "path": "artifacts/shelf-completion-2026-10-19/native-abi-build-initial.log",
+      "bytes": 865
+    },
+    {
+      "sha256": "46b751845ffe6bebabc957d561505009326651cac9c8be7ef49ffc18427ea76e",
+      "path": "artifacts/shelf-completion-2026-10-19/native-abi-build-missing-svg.log",
+      "bytes": 956
+    },
+    {
+      "sha256": "629c8376f469e24561678645632f3f2fc0527549292fb43cd40886072af900bd",
+      "path": "artifacts/shelf-completion-2026-10-19/native-abi-build.log",
+      "bytes": 384
+    },
+    {
+      "sha256": "b16cf400d4f010e93c28925147c973d90e3056e28fe0dcff33d337c21f18dc40",
+      "path": "artifacts/shelf-completion-2026-10-19/native-abi-initial.log",
+      "bytes": 2284
+    },
+    {
+      "sha256": "c19e4f1e271b9633a860fc98ba0c104a229b80361d85f92f2bb2363114380370",
+      "path": "artifacts/shelf-completion-2026-10-19/native-abi.log",
+      "bytes": 540
+    },
+    {
+      "sha256": "8e46c1afbd7660d8d50784e48038704d85c4f1f8f63b89b1217e1c7baf002bfb",
+      "path": "artifacts/shelf-completion-2026-10-19/windows-initial.log",
+      "bytes": 6225
+    },
+    {
+      "sha256": "23c3585600ce18b878d5068ec00962d507857c3075d8c4da3f3a100efc6c6f48",
+      "path": "artifacts/image-orientation-2026-10-19/check-build-initial.log",
+      "bytes": 644
+    },
+    {
+      "sha256": "69959615b19a6e9949128b1d1fd6ea7efb791236049216204b25d8c34351d020",
+      "path": "artifacts/image-orientation-2026-10-19/windows-checks-initial.log",
+      "bytes": 5233
+    },
+    {
+      "sha256": "cbe387b2fee3738987118134642b801ee8124ffeb455cbc1af2340b9c68ee74c",
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/before.json",
+      "bytes": 1505
+    },
+    {
+      "sha256": "67ad3225dfccf715d4f28f7f96319dbbe9b56d9364f053593f8f2c4b4484d75f",
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-failed.json",
+      "bytes": 1704
+    },
+    {
+      "sha256": "742b05b571f151b1180876e95528cb8b09bf10fa19b77f9834a0913b43b5025f",
+      "path": "validation/fixtures/shelf-native-abi/Program.cs",
+      "bytes": 4564
+    },
+    {
+      "sha256": "75fbd98cc92d2290858ed9e974fe56fb67689114708f5fa61edb1012b0631281",
+      "path": "validation/fixtures/shelf-native-abi/ShelfNativeAbi.csproj",
+      "bytes": 976
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-retained.json",
+      "bytes": 1589,
+      "sha256": "b90997dacd1d9a533c00a6d39d0672b450d470318c38a7ee2384a19219f94f4f"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/cancellation-trace.log",
+      "bytes": 879,
+      "sha256": "fdfa25ad48f879a9402216e727a6a723f6c9fce9af8b1411c28e46c80551a3c9"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy.json",
+      "bytes": 1115,
+      "sha256": "2cb1e7e9afdbd5a8f6f3eebcb827b7d924fce99d336728227796f3d5a6d2c79c"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy-trace.log",
+      "bytes": 1172,
+      "sha256": "b68cff95225c5dde5a95536066217379d95f942147d64917e61b1fbc8df1b848"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/success-shelf-tree.txt",
+      "bytes": 2877,
+      "sha256": "50e97e2d771a12038ee9bdbf6893ebaffb0a4023008f4a20bbb5d571172e7b17"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/successful-copy-inspection.json",
+      "bytes": 595,
+      "sha256": "c22be32cddf1aea1b4ea6e35456dc181025f609d235920a5534d2f6aebb824c1"
+    }
+  ],
+  "runtime": {
+    "residentProcesses": [],
+    "forcedResidentTermination": false,
+    "ocrWorkersRemaining": 0,
+    "previousManualPreviewExitedNormally": true,
+    "candidateLeftForPendingManualTest": false,
+    "thisCandidateExitedNormally": true
+  },
+  "limits": [
+    "New physical collision cancellation and successful removal still pending",
+    "Explicit callback protocol may not be implemented by every receiver; unknown retains entries",
+    "Partial/skip Explorer HRESULT behavior not established",
+    "EXIF OCR test inspects preparation through recognition seam, not rotated document recognition quality",
+    "SVG reference asset absence affected separate ABI harness; broader impact not established",
+    "Full picker, active lifecycle, loaded pin/shelf, input/accessibility/mixed DPI and hardware work remains",
+    "ARM64 cross-publish only"
+  ],
+  "release": {
+    "published": false,
+    "installed": false,
+    "preview": true,
+    "fullPortComplete": false,
+    "packaged": false
+  },
+  "updatedAt": "2026-10-19T21:47:52.6943350-07:00"
+}

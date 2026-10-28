@@ -1,0 +1,187 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-19",
+  "recordedAt": "2026-10-19T20:37:38.8909432-07:00",
+  "sourceSnapshot": "41a1b63c-43ce-4f60-bee1-79fffb206cfc",
+  "parentSnapshot": "83b3ad32-15f9-4f78-84ef-17f4f30474c6",
+  "compileInputs": 131,
+  "manifestMismatches": 0,
+  "report": "../docs/windows-ocr-batch-checkpoint.md",
+  "tests": {
+    "actualWorkerFailure": {
+      "input": "Test corrupted only the prepared private PNG",
+      "capturedTemporaryDirectoriesRemoved": 2,
+      "subsequentImageRecognized": true,
+      "noOwnedWorkerRemained": true
+    },
+    "selectedOriginalsByteIdentical": true,
+    "allInvalid": {
+      "total": 10,
+      "outputs": 0,
+      "detailsShown": 8,
+      "additionalFailureCount": 2,
+      "failures": 10
+    },
+    "windowsBackendPassed": 24,
+    "pickerUiFlowObserved": false,
+    "arm64Runtime": "not tested",
+    "arm64CrossPublish": "passed",
+    "afterOutputCreationCancellation": "current unfinished text removed",
+    "secondImageCancellation": "one earlier recognized text retained",
+    "preCanceled": "no outputs",
+    "mixedBatch": {
+      "total": 4,
+      "priorBytesUnchanged": true,
+      "namedFailures": 2,
+      "completed": 2,
+      "validRecognizedUniqueFilesIncludingPrior": 3
+    },
+    "windowsBackendFailed": 0,
+    "corePassed": 181,
+    "activeCancellation": {
+      "destinationCopies": 0,
+      "timingClaim": "After process start; not a recognition-phase timing claim",
+      "observedOwnedPid": 4964,
+      "noOwnedWorkerRemained": true
+    },
+    "selectedSourceHandlesReleased": true,
+    "residentExitObserved": false,
+    "coreFailed": 0,
+    "x64WorkerPublish": "passed",
+    "empty": "0/0 without failures",
+    "x64Publish": "passed"
+  },
+  "binaries": [
+    {
+      "architecture": "x64",
+      "output": "artifacts/Vela-ocr-x64",
+      "peMachine": "8664",
+      "manifestMatches": true,
+      "appDllSha256": "6f194da73bd0152295270f703b518d1ac4508b5210becb236f60c6289d96e4f1",
+      "xamlPriBytes": 2203192,
+      "ocrWorkerMachine": "8664",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+    },
+    {
+      "architecture": "arm64",
+      "output": "artifacts/Vela-ocr-arm64",
+      "peMachine": "AA64",
+      "manifestMatches": true,
+      "appDllSha256": "0ed7aeb87a7b6e3e307e16badba2502e988b2a03bd6310927e2dc8606e3d1a26",
+      "xamlPriBytes": 2203192,
+      "ocrWorkerMachine": "8664",
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8"
+    }
+  ],
+  "preservation": {
+    "featureScopeTriplesUnchanged": true,
+    "signInRunValuePresent": false,
+    "featureCatalogMatchesParent": true,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "hardwareWrites": false,
+    "settingsSchemaMatchesParent": true,
+    "globalClipboardReadOrWrite": false,
+    "scopeDecisions": 77,
+    "acceptedCueAndMica": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "matchesOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "matchesOctober18": true
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/check-build-initial.log",
+      "sha256": "d908204d932f52d70c3d855b43ab2e96fa2ca97fd7580622deea13f01a0f54b3",
+      "bytes": 514
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/windows-checks-initial.log",
+      "sha256": "c7fcd7a25b43b2d7abf6350b206772d7fd721439841982e2215602366ba39737",
+      "bytes": 4429
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-core.log",
+      "sha256": "8ed48f7dcaed5f6eba2c1bfb08dd4fa7aee508cff7bbe52151e45e6afd547d44",
+      "bytes": 12100
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-build-x64.log",
+      "sha256": "7c53d3be6e6eb961b488bbb19e616f2bf8bae0d56b47dc37c08695e2008419a8",
+      "bytes": 609
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-ocr-worker.log",
+      "sha256": "84099ee3fe6757bdab2595b3b80a02a9a361d4219877cc1ec6fc9fdfb0a4e914",
+      "bytes": 344
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-check-build.log",
+      "sha256": "d908204d932f52d70c3d855b43ab2e96fa2ca97fd7580622deea13f01a0f54b3",
+      "bytes": 514
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-windows-checks.log",
+      "sha256": "481ed4b8520422bbceb3e0059db549faa7e7b3f499a92f65f477648b40e00d74",
+      "bytes": 4428
+    },
+    {
+      "path": "artifacts/ocr-batch-2026-10-19/final-build-arm64.log",
+      "sha256": "925f4cbad1a9814d3f55062e2c5365aa9f78da839baf1f0d518c8b29bb2f29cc",
+      "bytes": 695
+    }
+  ],
+  "runtime": {
+    "olderResidentPreview": [
+      {
+        "Id": 16196,
+        "Path": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\Vela-x64\\Vela.Windows.exe"
+      }
+    ],
+    "latestResidentCandidateLaunched": false,
+    "residentForcedTermination": false,
+    "ocrWorkerProcessesRemaining": 0
+  },
+  "limits": [
+    "Mixed OCR picker/form flow and rendered partial-failure severity not exercised",
+    "No new full resident Cancel/feature-disable/Exit UI run",
+    "ARM64 cross-publish only; English worker uses x64 emulation on ARM64",
+    "Recognition quality across arbitrary documents/other languages unverified",
+    "Unusually large active native preparation cancellation, permission/cleanup failures and hanging workers untested; no new automatic timeout",
+    "Only the two injected-worker temporary directories were directly measured for cleanup",
+    "Physical shelf/duplicate-dialog regression tests and wider input/accessibility/hardware work remain open"
+  ],
+  "release": {
+    "packaged": false,
+    "fullPortComplete": false,
+    "preview": true,
+    "installed": false,
+    "published": false
+  }
+}

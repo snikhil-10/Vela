@@ -2,9 +2,62 @@ using Vela.Core;
 
 internal static class ImageBudgetChecks
 {
-    private static void Require(bool value) { if(!value) throw new Exception("JPEG budget assertion failed."); }
+    private static void Require(bool value) { if(!value) throw new Exception("Image budget assertion failed."); }
     public static IEnumerable<(string Name,Action Check)> All()
     {
+        yield return ("PNG/BMP budgets keep fitting dimensions and never enlarge small sources",()=>
+        {
+            foreach(uint edge in new uint[]{16,64,1024})
+            {
+                var calls=new List<uint>();
+                var choice=ImageSizeBudget.Choose(1000,edge,(candidate,_)=> { calls.Add(candidate); return Task.FromResult(1000L); },default).GetAwaiter().GetResult();
+                Require(choice is not null && choice.Value.LongestEdge==edge && choice.Value.Attempts==1 && calls.SequenceEqual([edge]));
+            }
+        });
+        yield return ("PNG/BMP dimension search returns an actually measured fitting size within twelve attempts",()=>
+        {
+            var calls=new Dictionary<uint,long>();
+            var choice=ImageSizeBudget.Choose(160_000,1024,(edge,_)=> { calls.Add(edge,edge*edge); return Task.FromResult(calls[edge]); },default).GetAwaiter().GetResult();
+            Require(choice is { LongestEdge:400,Bytes:160_000 } && choice.Value.Attempts==calls.Count && calls.Count<=ImageSizeBudget.MaximumAttempts);
+            var huge=ImageSizeBudget.Choose(10_000,uint.MaxValue,(edge,_)=>Task.FromResult((long)edge),default).GetAwaiter().GetResult();
+            Require(huge is not null && huge.Value.Bytes<=10_000 && huge.Value.Attempts==ImageSizeBudget.MaximumAttempts);
+        });
+        yield return ("PNG/BMP budgets reject an unfit minimum without degrading below it",()=>
+        {
+            foreach(uint edge in new uint[]{16,64,1000})
+            {
+                var calls=new List<uint>();
+                var choice=ImageSizeBudget.Choose(1,edge,(candidate,_)=> { calls.Add(candidate); return Task.FromResult(2L); },default).GetAwaiter().GetResult();
+                Require(choice is null && calls.Count==(edge<=64?1:2) && calls.All(e=>e>=Math.Min(edge,64)));
+            }
+        });
+        yield return ("PNG/BMP nonmonotonic measurements retain a tested fit without a maximality claim",()=>
+        {
+            var calls=new Dictionary<uint,long>();
+            var choice=ImageSizeBudget.Choose(1000,1000,(edge,_)=> { calls.Add(edge,edge==64?100:edge%3==0?900:2000); return Task.FromResult(calls[edge]); },default).GetAwaiter().GetResult();
+            Require(choice is not null && choice.Value.Bytes<=1000 && calls[choice.Value.LongestEdge]==choice.Value.Bytes && calls.Count<=12);
+        });
+        yield return ("PNG/BMP dimension selection cancels before or during measurement",()=>
+        {
+            foreach(bool preCanceled in new[]{true,false})
+            {
+                using var stop=new CancellationTokenSource(); if(preCanceled) stop.Cancel(); int calls=0;
+                try { ImageSizeBudget.Choose(1000,512,(_,_)=> { calls++; stop.Cancel(); return Task.FromResult(100L); },stop.Token).GetAwaiter().GetResult(); throw new Exception("Expected cancellation"); }
+                catch(OperationCanceledException) { Require(calls==(preCanceled?0:1)); }
+            }
+        });
+        yield return ("PNG/BMP dimension selection rejects invalid bounds and empty encoded data",()=>
+        {
+            foreach(var (limit,edge) in new[]{(0L,100u),(1000L,0u)})
+            {
+                bool rejected=false;
+                try { ImageSizeBudget.Choose(limit,edge,(_,_)=>Task.FromResult(100L),default).GetAwaiter().GetResult(); } catch(ArgumentOutOfRangeException) { rejected=true; }
+                Require(rejected);
+            }
+            bool empty=false;
+            try { ImageSizeBudget.Choose(1000,512,(_,_)=>Task.FromResult(0L),default).GetAwaiter().GetResult(); } catch(InvalidDataException) { empty=true; }
+            Require(empty);
+        });
         yield return ("JPEG size selection retains a fitting preferred quality without extra encoding",()=>
         {
             var calls=new List<int>();

@@ -21,7 +21,7 @@
                 <StackPanel Spacing="12">
                     <Grid><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
                         <StackPanel Orientation="Horizontal" Spacing="10"><FontIcon Glyph="&#xE708;" FontSize="18"/><StackPanel><TextBlock FontFamily="Segoe UI Variable" Text="Keep awake" Style="{StaticResource BodyStrongTextBlockStyle}"/><TextBlock FontFamily="Segoe UI Variable" x:Name="AwakeStatus" Text="Off" Style="{StaticResource VelaCaption}"/></StackPanel></StackPanel>
-                        <Button x:Name="StopAwake" Grid.Column="1" Content="Stop" Click="StopAwakeClick" VerticalAlignment="Center"/>
+                        <Button x:Name="StopAwake" Grid.Column="1" Content="Stop timer" Click="StopAwakeClick" VerticalAlignment="Center"/>
                     </Grid>
                     <Grid ColumnSpacing="8"><Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
                         <Button Content="15 min" Tag="15" HorizontalAlignment="Stretch" Click="StartAwakeClick"/>

@@ -1,0 +1,158 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-22",
+  "recordedAt": "2026-10-22T10:04:09.2301483-07:00",
+  "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+  "compileInputs": 193,
+  "manifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+  "report": "../docs/windows-headless-stress-checkpoint.md",
+  "productAndIntegratedTestSourceChanged": false,
+  "standardCoreSuiteCountUnchanged": 236,
+  "standardWindowsSuiteCountUnchanged": 28,
+  "stressResults": {
+    "completedAt": "2026-10-22T10:02:50.9867992-07:00",
+    "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+    "coreDllSha256": "949d07055a8cc86a3d99ab12279274cce8376ee309dc76e21ac88eca5aff9959",
+    "scenariosPassed": 4,
+    "scenariosFailed": 0,
+    "cases": [
+      {
+        "name": "Concurrent backup exports and readers",
+        "passed": true,
+        "rounds": 6,
+        "writersPerRound": 32,
+        "attemptedWrites": 192,
+        "completeWrites": 51,
+        "reportedWriteRefusals": 141,
+        "reportedReadRefusals": 0,
+        "refusalTypes": {
+          "UnauthorizedAccessException": 141
+        },
+        "completeSnapshotsObserved": 17,
+        "partialMixedOrMissingReads": 0
+      },
+      {
+        "name": "Concurrent pre-commit cancellation",
+        "passed": true,
+        "canceledWriters": 32,
+        "backupBeforeSha256": "9b56d60d88e54f3501e8a3248344575b0ade51a189e8233c0b543f10441ad65e",
+        "backupAfterSha256": "9b56d60d88e54f3501e8a3248344575b0ade51a189e8233c0b543f10441ad65e",
+        "stagingFiles": 0
+      },
+      {
+        "name": "Concurrent failed writers",
+        "passed": true,
+        "failedWriters": 32,
+        "backupBeforeSha256": "9b56d60d88e54f3501e8a3248344575b0ade51a189e8233c0b543f10441ad65e",
+        "backupAfterSha256": "9b56d60d88e54f3501e8a3248344575b0ade51a189e8233c0b543f10441ad65e",
+        "stagingFiles": 0
+      },
+      {
+        "name": "Concurrent destination sharing refusal and recovery",
+        "passed": true,
+        "refusedExports": 32,
+        "blockedBackupSha256": "9b56d60d88e54f3501e8a3248344575b0ade51a189e8233c0b543f10441ad65e",
+        "readAfterLockRelease": true,
+        "stagingFiles": 0
+      }
+    ],
+    "disposableDirectory": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\picker-ui-2026-10-22\\disposable-backup-stress-24fd555658d942cdae4b4c4c32b32acd",
+    "standardCoreSuiteCountUnchanged": 236,
+    "limits": "Ad hoc filesystem stress against the compiled core DLL. Competing filesystem replacements may report IOException or UnauthorizedAccessException; all concurrent writes succeeding is not promised. Initial all-success harness assumption failed and is retained in backup-stress-concurrent-refusal.log. Does not exercise pickers, confirmation buttons, physical input, hardware, OS lock/suspend service transitions, cross-process merging or power-loss durability.",
+    "normalProfileAccessed": false,
+    "globalClipboardPublished": false,
+    "sourceChanged": false,
+    "published": false
+  },
+  "interactive": {
+    "passwordFreeSignInExplicitlyAuthorized": true,
+    "signInWindowTargetable": false,
+    "latestCapture": "Windows lock-screen clock/date/Spotlight content",
+    "signInClickPerformed": false,
+    "credentialsEntered": false,
+    "pickerTestsCompleted": 0,
+    "physicalInputCompatibilityEstablished": false,
+    "isolatedResidentPid": 26884,
+    "isolatedResidentStillOpen": true,
+    "enabledTools": 0,
+    "normalExitOperated": false,
+    "forceTerminationPerformed": false
+  },
+  "preservation": {
+    "normalSettingsUnchanged": true,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "normalProfileLaunched": false,
+    "originalGitIndexUnchanged": true,
+    "originalGitIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc",
+    "protectedCueMicaUnchanged": true,
+    "settingsCatalogAndShelfSourcesUnchanged": true,
+    "globalClipboardPublished": false,
+    "hardwareWritesPerformed": false
+  },
+  "evidence": [
+    {
+      "path": "artifacts/picker-ui-2026-10-22/attempt.json",
+      "sha256": "8b29ef8b69e23625f9d9ad48156b9a1a2a42f2393f41074a080dbb4bb480000f",
+      "bytes": 1590
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/launch.json",
+      "sha256": "d882a6fc2e85fdcdd7e739eff2351f476b8ebb1a160496f5551e08e111a7e90e",
+      "bytes": 239
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/normal-settings-before.json",
+      "sha256": "6190b73875583f3452bffaa4593aeef2188a10157623bed0076cae8ce2ba212d",
+      "bytes": 178
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/source-manifest.log",
+      "sha256": "a70ffd0be8c75ed9fd9e5171fec53555c94e6d88d4f82ae036330855f2f4d190",
+      "bytes": 76
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/backup-stress.log",
+      "sha256": "8eac420b7d963512b5c3e5e512ce9e66817dba90a9ce3d44da24480b6c68ac49",
+      "bytes": 533
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/backup-stress-results.json",
+      "sha256": "11229ecc41744697196489255a94da61a8bd037958d6d4aa7f262bb274f35bcb",
+      "bytes": 2503
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/backup-stress-initial-harness-build.log",
+      "sha256": "330ec4742c88be741a73bd9feb0f84a107d2ac78e679fdb403cfa2d4608e7ddf",
+      "bytes": 874
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/backup-stress-concurrent-refusal.log",
+      "sha256": "46b1f69a37d2ad2375866030d9054d2c6a55c8c9ca475dab219ec3e37a69d0da",
+      "bytes": 1017
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/BackupStress/Program.cs",
+      "sha256": "2362fd4518fe4f4027b4e3698a5e94ad9d935e0ccf56fab02bd445cfee4fa406",
+      "bytes": 8660
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/BackupStress/BackupStress.csproj",
+      "sha256": "86f3a05debce51d722595640294c80daa4ff60bac3635ccc369de21a7805c1db",
+      "bytes": 376
+    }
+  ],
+  "evidenceAvailability": "Detailed logs, generated backups and ad hoc harness remain in local ignored artifacts; summaries and hashes travel with source.",
+  "limits": [
+    "Locked Windows desktop and no targetable sign-in surface prevent interactive tests through this tool.",
+    "Competing exports can report file access refusals; concurrent success is not guaranteed. Original all-success harness assumption failed and is recorded.",
+    "Ad hoc scenarios do not change the 236/28 standard suite counts or establish picker/confirmation/physical/hardware support.",
+    "No cross-process settings merge, power-loss durability or network-filesystem guarantee is tested.",
+    "Isolated resident remains open with zero enabled features; exit it normally before rebuilding its output or running desktop fixtures."
+  ],
+  "installerRun": false,
+  "binaryZipCreated": false,
+  "gitCommitCreated": false,
+  "remoteCreated": false,
+  "pushPerformed": false,
+  "published": false
+}

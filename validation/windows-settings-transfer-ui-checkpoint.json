@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-22",
+  "recordedAt": "2026-10-22T20:34:08.7906842-07:00",
+  "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+  "compileInputs": 193,
+  "manifestSha256": "3b1f147f2ea9cb85096df37905fd083b102c70c9f18dc52213eef2aecf2307f6",
+  "report": "../docs/windows-settings-transfer-ui-checkpoint.md",
+  "previewVersion": "0.2.2",
+  "finishedPort": false,
+  "allFeaturesFullyVerified": false,
+  "productAndIntegratedTestSourceChanged": false,
+  "precedingFullValidation": {
+    "repeatedThisUiRound": false,
+    "builds": [
+      "x64",
+      "arm64 cross-build"
+    ],
+    "corePassed": 236,
+    "windowsBackendPassed": 28,
+    "cleanSourceExport": "passed on same configured Dell",
+    "nativeDesktopSuites": [
+      "SessionTools",
+      "RuntimeLifecycle"
+    ]
+  },
+  "desktopUnlockedBy": "User",
+  "humanAssisted": true,
+  "humanPickerInteractions": [
+    "Entered disposable export path and clicked Save; reported Saved",
+    "Selected import-fixture.json and clicked Open for Cancel test; reported Opened",
+    "Selected same import fixture and clicked Open for Import test; reported Opened"
+  ],
+  "computerUseInteractions": [
+    "Settings Access and data and Export/Import buttons",
+    "Native ContentDialog Cancel and Import buttons",
+    "General navigation and visual Light appearance/startup-disabled verification",
+    "General Exit and settled window inventory"
+  ],
+  "uiCases": {
+    "normalExit": true,
+    "validationStartupControlDisabled": true,
+    "localOnboardingRetained": true,
+    "exportModelMatches": true,
+    "cancelConfirmationBytePreserving": true,
+    "expectedLightAppearancePersistedAndRendered": true,
+    "settingsExportSuccessNotice": true,
+    "importConfirmationSuccessNotice": true,
+    "settingsAndDataRespond": true
+  },
+  "exportVerification": {
+    "checkedAt": "2026-10-22T20:28:36.9405904-07:00",
+    "mode": "Verify a UI-saved settings export against the isolated on-disk profile",
+    "profile": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\picker-ui-2026-10-22\\profile\\settings.json",
+    "export": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\picker-ui-2026-10-22\\export-ui.json",
+    "exportBytes": 1193,
+    "exportSha256": "fa8555e1ad8c365d80a314364c69cd65a49e9d19c11869f7916b14a9b2c54149",
+    "normalizedModelMatches": true,
+    "enabledTools": 0,
+    "onboardingComplete": true,
+    "startupFieldAbsent": true,
+    "theme": "System",
+    "shelfTarget": "manual",
+    "coreDllSha256": "949d07055a8cc86a3d99ab12279274cce8376ee309dc76e21ac88eca5aff9959",
+    "systemPickerOperatedBy": "Record separately from observed human or Computer Use input; filesystem comparison alone does not establish who clicked Save."
+  },
+  "cancelVerification": {
+    "checkedAt": "2026-10-22T20:29:38.4643394-07:00",
+    "confirmationCancelOperatedBy": "Computer Use",
+    "profileSha256Before": "9cda69a59cb3b231f99bfcab5b06da8a374a034f7272de97911a7a64ffac4e48",
+    "profileSha256After": "9cda69a59cb3b231f99bfcab5b06da8a374a034f7272de97911a7a64ffac4e48",
+    "byteIdentical": true,
+    "normalSettingsUnchanged": true
+  },
+  "importVerification": {
+    "checkedAt": "2026-10-22T20:30:42.5379317-07:00",
+    "confirmationImportOperatedBy": "Computer Use",
+    "filePickerSelectionOperatedBy": "User",
+    "persistedTheme": "Light",
+    "enabledTools": 0,
+    "localOnboardingPreserved": true,
+    "localStepPreserved": 3,
+    "fixtureOnboardingWasFalse": true,
+    "fixtureSha256": "292d74beab2566a3f8397c1812f04ad560c4e057216ab37d35a063d5354c9431",
+    "profileSha256": "fbd6250b87381013650ddfaf3c6ca45857c39cb2b26a296193357dc9318198ca",
+    "normalSettingsUnchanged": true
+  },
+  "exitVerification": {
+    "checkedAt": "2026-10-22T20:31:20.0827408-07:00",
+    "exitOperatedBy": "Computer Use via Settings General Exit",
+    "remainingVelaProcesses": 0,
+    "remainingOcrWorkers": 0,
+    "forceTerminationPerformed": false,
+    "normalSettingsUnchanged": true
+  },
+  "exactAppDllSha256": "ffe8b61e30afbb36c52c06e326a94a715972f5ebd795b8a3404dd8ccefd460de",
+  "exactCoreDllSha256": "949d07055a8cc86a3d99ab12279274cce8376ee309dc76e21ac88eca5aff9959",
+  "toolLimit": "PickerHost Save As is captured as related UI but absent from targetable windows/apps. Filename click and refreshed-owner retry were rejected as over PickerHost.exe rather than Vela.Windows.exe. User operated picker Save/Open; no automated picker pass claimed.",
+  "preservation": {
+    "realGitIndexUnchanged": true,
+    "settingsCatalogAndShelfSourcesUnchanged": true,
+    "featureScopeRecords": 77,
+    "featureScopeUnchanged": true,
+    "normalSettingsUnchanged": true,
+    "normalProfileLaunched": false,
+    "startupControlChanged": false,
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "fixtureInputUnchanged": true,
+    "hardwareWritesPerformed": false,
+    "automatedClipboardPublication": false,
+    "protectedCueMicaUnchanged": true,
+    "realGitIndexSha256": "cffa041fc840276734c8d639e6c5acc7da31f525f7fbd5f232d80da548e3d0cc"
+  },
+  "cleanup": {
+    "remainingVelaWindows": 0,
+    "immediateWindowList": "Closing window entries briefly present; settled inventory and process check are zero.",
+    "forceTerminationPerformed": false,
+    "remainingOcrWorkers": 0,
+    "isolatedResidentClosed": true,
+    "remainingVelaProcesses": 0
+  },
+  "evidence": [
+    {
+      "path": "artifacts/picker-ui-2026-10-22/unlocked-ui-observations.json",
+      "sha256": "eaf3cdc6ba2947067bc8653a5ff54fbabec575011eb22a979cf1eb9ac0d158ed",
+      "bytes": 84793
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/export-ui.json",
+      "sha256": "fa8555e1ad8c365d80a314364c69cd65a49e9d19c11869f7916b14a9b2c54149",
+      "bytes": 1193
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/export-ui-verification.json",
+      "sha256": "ffe2dfcd0040a4611b34724bcadf6a842c8a14301e5ebb4621b6fa29d1ef1ee2",
+      "bytes": 943
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/export-ui-verification.log",
+      "sha256": "e0764e501e2255e9c44e4e1397158bd76730bb1ce8b063d004970bc3d8f33087",
+      "bytes": 116
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/profile-before-import.json",
+      "sha256": "6539e7ba72c268908be12358973f7b15e2fd6496eee2968006ffd316cdcc522f",
+      "bytes": 249
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/import-fixture.json",
+      "sha256": "292d74beab2566a3f8397c1812f04ad560c4e057216ab37d35a063d5354c9431",
+      "bytes": 177
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/import-cancel-verification.json",
+      "sha256": "bcd46504891c83bddb85e3d3dae49619ced87f086caa65b7180437cf820e7b08",
+      "bytes": 357
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/import-success-verification.json",
+      "sha256": "5b1e7755243f2b4e9635f2356718f3e6d579801aeda32133e96ba52b50d466a9",
+      "bytes": 519
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/unlocked-exit-verification.json",
+      "sha256": "b80c4501fac19b72e91d5c12f725e29092c865db7be744a24480008578229fbb",
+      "bytes": 256
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/transfer-verifier-build.log",
+      "sha256": "93bf93aa1695bc5f470f4ac86e8cd9bdaa7c333b3258ee1b51fcdf5517967aac",
+      "bytes": 444
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/TransferVerify/Program.cs",
+      "sha256": "70518e121b5e2df14c2e8630be0564b186e1ed609cedae1fcd4a9fff7a237636",
+      "bytes": 2189
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/TransferVerify/TransferVerify.csproj",
+      "sha256": "1e1b08dd8ea6e2f64519b6cfd2a61cd0c464c971af0e23afbd9c5cfdec7f77d9",
+      "bytes": 356
+    },
+    {
+      "path": "artifacts/picker-ui-2026-10-22/record-unlocked-ui.ps1",
+      "sha256": "79d88c1b40319932ed6715ade52a0c44c71d8a9654419019fa0d4b73682f03f8",
+      "bytes": 10441
+    }
+  ],
+  "evidenceAvailability": "Detailed UI text observations, verifier and generated fixtures are local ignored artifacts; summaries/hashes travel with source.",
+  "limits": [
+    "Human-assisted picker cases; unattended PickerHost control is not established.",
+    "Save As cancel/overwrite, import-picker cancel, actual-picker malformed/future/oversize and other file/folder/provider dialogs remain open.",
+    "Physical hooks/editor/IME/elevated behavior, actual lock/suspend services, accessibility/mixed DPI and broader Explorer/provider transfers remain open.",
+    "Absent hardware, ARM64 execution, hosted CI and deferred non-native features remain open.",
+    "No product/test code changed and standard suite counts remain 236/28; these UI observations are separate."
+  ],
+  "installerRun": false,
+  "binaryPackageCreated": false,
+  "gitCommitCreated": false,
+  "branchRenamed": false,
+  "remoteCreated": false,
+  "pushPerformed": false,
+  "published": false
+}

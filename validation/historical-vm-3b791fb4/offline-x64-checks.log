@@ -1,0 +1,21 @@
+  Determining projects to restore...
+  Restored C:\Users\u\source\Vela\tests\Vela.Windows.Tests\Vela.Windows.Tests.csproj (in 220 ms).
+  1 of 2 projects are up-to-date for restore.
+  Vela.Core -> C:\Users\u\source\Vela\src\Vela.Core\bin\Release\net10.0\Vela.Core.dll
+  Vela.Windows.Tests -> C:\Users\u\source\Vela\tests\Vela.Windows.Tests\bin\Release\net10.0-windows10.0.26100.0\win-x64\Vela.Windows.Tests.dll
+  Vela.Windows.Tests -> C:\Users\u\source\Vela\artifacts\WindowsChecks-x64\
+
+PASS Clipboard snapshots preserve formats and transfer intent and reject failed providers before editing
+PASS Shelf transfers every selected file, preserves originals and retains canceled drags
+PASS Shelf retains Unicode text and links and rejects oversized additions atomically
+PASS Image conversion resizes, preserves originals and uses unique names
+PASS JPEG quality conversion is decodable
+PASS Image pin previews are bounded, preserve alpha and honor cancellation
+PASS Text watermarks respect placement, resize and PNG transparency
+PASS OCR worker extracts English text offline
+PASS Review scan keeps recent copies and scans only the selected tree
+INFO Read-only capability probe: 0 GPU sensors, 0 DDC displays. Hardware writes were not tested.
+PASS Missing GPU and DDC capabilities return cleanly without writes
+PASS Batch video conversion and audio extraction decode through Windows codecs
+PASS Animated GIFs preserve changing frames, timing, loops and safe cancellation
+12 Windows integration checks passed; 0 failed.

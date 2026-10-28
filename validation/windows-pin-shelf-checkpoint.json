@@ -1,0 +1,233 @@
+{
+  "sourceSnapshot": "7e03f407-7a46-41f7-b331-486f737383b4",
+  "compileInputs": 130,
+  "manifestMismatches": 0,
+  "recordedAt": "2026-10-19T18:27:20.1177817-07:00",
+  "binaries": [
+    {
+      "architecture": "x64",
+      "path": "artifacts/Vela-followup-x64",
+      "peMachine": "8664",
+      "expectedPeMatches": true,
+      "snapshot": "7e03f407-7a46-41f7-b331-486f737383b4",
+      "manifestMatches": true,
+      "resourceBytes": 2203192,
+      "appDllSha256": "213d6bf904942d44367777995870c49e020e5eed60cc783dfc572d74fc8462e7"
+    },
+    {
+      "architecture": "arm64",
+      "path": "artifacts/Vela-arm64",
+      "peMachine": "AA64",
+      "expectedPeMatches": true,
+      "snapshot": "7e03f407-7a46-41f7-b331-486f737383b4",
+      "manifestMatches": true,
+      "resourceBytes": 2203192,
+      "appDllSha256": "602240df9bdea765e56948487a9f30f1fe67ec9e201fabb4665ec901d57ae6c3"
+    }
+  ],
+  "preservation": {
+    "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+    "expectedNormalSettingsMatch": true,
+    "signInRunValuePresent": false,
+    "protectedFiles": [
+      {
+        "path": "src/Vela.Windows/Services/ShelfDropService.cs",
+        "sha256": "3d981d38916e837d70be9339d1995f8d4f46347f6eecacf8b9fb52fc6289eb19",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropWindow.cs",
+        "sha256": "abe265eb58a05365f709edfb7e36cf39ba65dd48824beddb3ea68ac07077c055",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml",
+        "sha256": "a6aab4991a191e3d76fdefe9eb62e5a153d8372533cf9da03d5b0061b064998f",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfDropSurface.xaml.cs",
+        "sha256": "4963203d67912d2284342df41f0bb09fc2a848d36b621d5b4de94b80c56dd1fd",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/ShelfTargetBackdrop.cs",
+        "sha256": "a7002f85b2f9d1a15c1232412bf89a66651b4e7029d3813b428dffbc740eff98",
+        "unchangedFromOctober18": true
+      },
+      {
+        "path": "src/Vela.Windows/UI/WindowStyle.cs",
+        "sha256": "2de75886cdf3e03338af16fb2e576296e7f5aaf6e8d54d168eb9815e6d9fcff1",
+        "unchangedFromOctober18": true
+      }
+    ],
+    "scopeDecisions": 77,
+    "featureAuditSha256": "a1e67bf9c7d3ffdbfc122b3080638fbb1486636e0776b0f32d679c7f82416537",
+    "featureCatalogMatchesPreviousSnapshot": true
+  },
+  "jpeg": {
+    "path": "C:/Users/Admin/Downloads/Vela-quick-tests/output/Vela-test-image.jpg",
+    "bytes": 14314,
+    "width": 1000,
+    "height": 160,
+    "rawFormat": "b96b3cae-0728-11d3-9d7b-0000f81ef32e",
+    "sha256": "5f44dbbe010588c5edbe3effe2b77a791bd1b6959013aa83debcb283f414dff4",
+    "sourcePngSha256": "8b3834dbe783db867d8597ba5fac4c97a16300562ce2d134c446cc9506cef488"
+  },
+  "evidence": [
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-core-x64.log",
+      "bytes": 12100,
+      "sha256": "8ed48f7dcaed5f6eba2c1bfb08dd4fa7aee508cff7bbe52151e45e6afd547d44"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-build-x64.log",
+      "bytes": 692,
+      "sha256": "3ed10877763b39a14013ec12defa3c2b657b55ae87176039b3742fa7f18dd981"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-ocr-x64.log",
+      "bytes": 349,
+      "sha256": "d0bb326874a60ab43fa7e5411d8dc1653808f8e69ab69015aa53b116c198ae38"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-check-build-x64.log",
+      "bytes": 519,
+      "sha256": "f032a3da2ee7df541d84f74dc3d86cd83065f1c581c7268c3912f98b8bc30b08"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-windows-x64.log",
+      "bytes": 3467,
+      "sha256": "f7c7187239a29827eeaacb475762a43e0687acd998218625d1b281d2badc6f57"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-build-arm64.log",
+      "bytes": 13240,
+      "sha256": "24905147c95af5d0463f54457ab7004512571efc2a1d81b800cceb6b48ea9995"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-pin-smoke-build.log",
+      "bytes": 1030,
+      "sha256": "5cd2a66aefab87d13b136f27dea27479c0bab33f1f8f120d529a84e7bddad78e"
+    },
+    {
+      "path": "artifacts/pin-shelf-followup-2026-10-19/final-pin-smoke-result.log",
+      "bytes": 425,
+      "sha256": "864736c4fec678378038c7a920f384085f846b7e325aded54d1017a989070faa"
+    },
+    {
+      "path": "validation/fixtures/pin-minimum/Program.cs",
+      "bytes": 5477,
+      "sha256": "2fdb35f1db4db28f43a8bd1dd877d5a45954707408476f179e0052a77387560d"
+    },
+    {
+      "path": "validation/fixtures/pin-minimum/PinSmoke.csproj",
+      "bytes": 839,
+      "sha256": "12bc017f07b7dfe30bf0e7e5585b45adad813665de0a1e3d5642e6a8525c660f"
+    }
+  ],
+  "pinProductionDllIdentical": true,
+  "runningVela": [
+    {
+      "Id": 16196,
+      "Path": "C:\\Users\\Admin\\Downloads\\Vela-Windows-transfer-2026-10-18\\Vela\\artifacts\\Vela-x64\\Vela.Windows.exe"
+    }
+  ],
+  "schemaVersion": 1,
+  "parentSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+  "tests": {
+    "nativePinComponent": {
+      "imageLogical": [
+        "179.3x112.0",
+        "179.3x112.0",
+        "262.7x164.0"
+      ],
+      "actualPhysical": [
+        "480x420",
+        "500x420",
+        "480x500"
+      ],
+      "exactFinalProductDll": true,
+      "topmostAndResizableRetained": true,
+      "scale": 1.5,
+      "passed": true,
+      "physicalBorderDragObserved": false,
+      "requestedPhysical": [
+        "200x40",
+        "500x40",
+        "40x500"
+      ]
+    },
+    "windowsBackendFailed": 0,
+    "arm64Execution": "not tested on this Dell",
+    "windowsBackendPassed": 22,
+    "arm64CrossPublish": "passed",
+    "x64Publish": "passed",
+    "corePassed": 181,
+    "coreFailed": 0
+  },
+  "manualFollowUps": [
+    {
+      "result": "user-reported pass",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "userReport": "Both files stayed in the shelf",
+      "agentObservedPhysicalInteraction": false,
+      "case": "mid-drag Escape with automatic removal On"
+    },
+    {
+      "result": "user-reported bug; new receipt guard backend passes; end-to-end retest pending",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "userReport": "File leaves the shelf despite cancellation",
+      "agentObservedPhysicalInteraction": false,
+      "case": "Explorer duplicate-file dialog Escape"
+    },
+    {
+      "result": "user-reported pass; independent 14314-byte 1000x160 JPEG decode and unchanged generated PNG",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "agentObservedPhysicalInteraction": false,
+      "case": "Batch image picker JPEG"
+    },
+    {
+      "result": "user-reported pass",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "agentObservedPhysicalInteraction": false,
+      "case": "Image pin selection and topmost"
+    },
+    {
+      "result": "user-reported screenshot bug; new native minimum component checks pass",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "agentObservedPhysicalInteraction": false,
+      "case": "Image pin collapse to title bar"
+    }
+  ],
+  "limits": [
+    "Explorer duplicate dialog Escape and successful automatic removal require a new-build physical retest",
+    "Mixed skip/replace or partial transfers need per-item end-to-end validation; native receipt is operation-level",
+    "Targets omitting feedback or taking longer than 30 seconds retain entries even after a successful copy",
+    "Final resident candidate not toured; older isolated preview remains running after Computer Use exit failed",
+    "Mixed-monitor DPI, six-pin lifecycle, accessibility, hardware and broader input/clipboard lifecycle cases remain open",
+    "ARM64 runtime untested here; cross-build only",
+    "Mac/VM historical evidence collection remains open"
+  ],
+  "runtimeState": {
+    "olderProcessId": 16196,
+    "candidate": "artifacts/Vela-followup-x64",
+    "olderOutput": "artifacts/Vela-x64",
+    "olderIsolatedPreviewLeftRunning": true,
+    "pinComponentFixtureExited": true,
+    "candidateFullResidentLaunchObserved": false,
+    "forcedTermination": false,
+    "computerUseErrors": [
+      "coordinate input geometry is unavailable",
+      "window is not a usable app window"
+    ]
+  },
+  "release": {
+    "packageCreated": false,
+    "installerRun": false,
+    "preview": true,
+    "fullPortComplete": false,
+    "published": false
+  },
+  "report": "../docs/windows-pin-shelf-checkpoint.md"
+}

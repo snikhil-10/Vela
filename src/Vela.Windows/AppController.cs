@@ -37,6 +37,7 @@ internal sealed class AppController : IDisposable
     private ToolWindow? tools;
     private RadialWindow? radial;
     public bool Quitting { get; private set; }
+    private bool disposed;
     public event Action? Changed;
     public AppController() { Settings=store.Load(); }
     public void Initialize(bool startup)
@@ -60,6 +61,7 @@ internal sealed class AppController : IDisposable
         shortcuts=new(hwnd,messages,()=>Settings,TogglePanel,()=>OpenTool("commandBar"),ShowRadial,()=> { _=RunOperation(clipboard.PastePlain); },()=>OpenTool("windowSearch"));
         shortcuts.Error+=Report; Input.Notice+=text=>tray.Notify("Vela",text);
         Awake.Changed+=()=>Panel.RefreshAwake();
+        Awake.Error+=Report;
         runtime.Register("shelf",()=>shelfDrops=new(this,queue,()=>tray.Bounds));
         runtime.Register("windowSearch",()=>new DelegateFeature("windowSearch",()=>{},Workspaces.UnpinAll));
         runtime.Register("imagePins",()=>new DelegateFeature("imagePins",()=>{},Pins.CloseAll));
@@ -89,6 +91,10 @@ internal sealed class AppController : IDisposable
     {
         try { store.Save(Settings); }
         catch(Exception ex) when(ex is IOException or UnauthorizedAccessException) { Report("Settings could not be saved: "+ex.Message); }
+        SettingsChanged(apply);
+    }
+    private void SettingsChanged(bool apply)
+    {
         clipboard?.OptionsChanged(); Input?.OptionsChanged();
         if(apply) Apply();
         shelfDrops?.OptionsChanged();
@@ -197,7 +203,14 @@ internal sealed class AppController : IDisposable
     public void CompleteOnboarding()
     { Settings.OnboardingComplete=true; Settings.OnboardingStep=3; Save(); ShowPanel(); }
     public void Import(AppSettings imported)
-    { imported.OnboardingComplete=Settings.OnboardingComplete; imported.OnboardingStep=Settings.OnboardingStep; Settings=imported; Save(); }
+    {
+        // Keep the current session intact if persistence fails. Work on an
+        // independent normalized copy rather than altering the reviewed backup.
+        var replacement=SettingsStore.Deserialize(SettingsStore.Serialize(imported));
+        replacement.OnboardingComplete=Settings.OnboardingComplete; replacement.OnboardingStep=Settings.OnboardingStep;
+        store.Save(replacement);
+        Settings=replacement; SettingsChanged(true);
+    }
     public void Track(Window window)
     { auxiliary.Add(window); window.Closed+=(_,_)=>auxiliary.Remove(window); WindowStyle.ApplyTheme(window,Settings.Theme); }
     public void Report(string message) { LastError=message; Panel.ShowError(message); }
@@ -210,24 +223,28 @@ internal sealed class AppController : IDisposable
     internal async Task FinishOperations()
     {
         ShelfData.CancelPendingAdds();
-        Quitting=true; clipboard.CancelPaste(); Input.SuspendInput();
+        Quitting=true; clipboard?.CancelPaste(); Input?.SuspendInput();
         foreach(var window in auxiliary.ToArray())
         {
             if(window is ToolWindow tool) tool.CancelWork();
+            if(window is SettingsWindow settings) settings.CancelWork();
             window.AppWindow.Hide();
         }
-        Panel.AppWindow.Hide();
+        Panel?.AppWindow.Hide();
         // Keep the dispatcher alive until cancellation has removed incomplete output files.
         // Closed tool windows may still have work finishing, so track operations independently of windows.
         try { await Task.WhenAll(operations.ToArray()); }
+        catch(OperationCanceledException) { /* Expected when canceled picker/review work is drained on Exit. */ }
         catch(Exception error) { StartupDiagnostics.Record("Finishing canceled work",error); }
     }
     public IEnumerable<FeatureDefinition> OrderedFeatures => FeatureCatalog.All.OrderBy(f=>
     { int i=Settings.FeatureOrder.IndexOf(f.Id); return i<0?1000+FeatureCatalog.All.ToList().IndexOf(f):i; });
     public void Dispose()
     {
+        if(disposed) return;
+        disposed=true;
         ShelfData.CancelPendingAdds();
-        Quitting=true; runtime.Dispose(); Workspaces.Dispose(); Input.Dispose(); clipboard.Dispose(); Dimmer.Dispose(); shortcuts.Dispose(); tray.Dispose(); messages.Dispose();
-        foreach(var window in auxiliary.ToArray()) window.Close(); Panel.Close();
+        Quitting=true; runtime.Dispose(); Workspaces.Dispose(); Input?.Dispose(); clipboard?.Dispose(); Dimmer?.Dispose(); shortcuts?.Dispose(); tray?.Dispose(); messages?.Dispose();
+        foreach(var window in auxiliary.ToArray()) window.Close(); Panel?.Close();
     }
 }

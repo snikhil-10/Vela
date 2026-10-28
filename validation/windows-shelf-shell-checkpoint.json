@@ -1,0 +1,485 @@
+{
+  "schemaVersion": 1,
+  "recordedAt": "2026-10-19T22:58:10.6380479-07:00",
+  "sourceSnapshot": "2a27b7d2-1d9e-4a77-9b7d-d98d68ce68f5",
+  "parentSnapshot": "28775fed-70f7-4f21-9e50-90a33910c8e9",
+  "compileInputs": 135,
+  "report": "../docs/windows-shelf-shell-checkpoint.md",
+  "tests": {
+    "windowsBackendPassed": 27,
+    "windowsBackendFailed": 0,
+    "corePassed": 187,
+    "coreFailed": 0,
+    "coreRerun": false,
+    "coreEvidenceSourceSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+    "actualShell": {
+      "success": {
+        "hresult": "00000000",
+        "effect": 1,
+        "confirmed": true,
+        "identicalWritableCopies": true
+      },
+      "cancel": {
+        "hresult": "800704C7",
+        "effect": 0,
+        "confirmed": false,
+        "oldDestinationBytesPreserved": true
+      },
+      "partialSkip": {
+        "hresult": "00000000",
+        "effect": 0,
+        "confirmed": false,
+        "oldSkippedAndNewCopiedBytesVerified": true
+      },
+      "actualWindowsFolderHandler": true,
+      "nativeDialogsOperatedByComputerUse": true,
+      "fullExplorerPointerGesture": false
+    },
+    "exactDllSha256": "de68868ff58a16f0ed900b1232bdc21027d2a74c08ec5823171bb64b0f4dfc65"
+  },
+  "physical": {
+    "userReport": "Normal drag; both copied; shelf emptied",
+    "normalDrag": true,
+    "identicalCopies": true,
+    "renderedShelfEmpty": true,
+    "finalCopyCallback": true,
+    "copyAttributes": "FAIL writable originals copied as ReadOnly, Archive",
+    "evidence": "artifacts/manual-shelf-recheck-2026-10-19/streamed-success.json"
+  },
+  "binaries": [
+    {
+      "architecture": "x64",
+      "output": "artifacts/Vela-shelf-shell-x64",
+      "appDllSha256": "de68868ff58a16f0ed900b1232bdc21027d2a74c08ec5823171bb64b0f4dfc65",
+      "peMachine": "8664",
+      "xamlPriBytes": 2203192,
+      "compiledManifestMatchesFrozenSource": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "ocrWorkerMachine": "8664",
+      "ocrWorkerCopiedUnchanged": true
+    },
+    {
+      "architecture": "arm64",
+      "output": "artifacts/Vela-shelf-shell-arm64",
+      "appDllSha256": "19e101ffdd5356dca683cd072262271ea1693b545eed0177cbeca3bfb5639231",
+      "peMachine": "AA64",
+      "xamlPriBytes": 2203192,
+      "compiledManifestMatchesFrozenSource": true,
+      "ocrWorkerExeSha256": "e59087a6e8f9d71cd3253349e91d3c6475150ae7adba9c8a2172023a57c851c8",
+      "ocrWorkerMachine": "8664",
+      "ocrWorkerCopiedUnchanged": true
+    }
+  ],
+  "runtime": {
+    "exitedNormally": true,
+    "forcedTermination": false
+  },
+  "nextSource": "68426e4c-a155-4e76-b78a-e8582e9aff3f",
+  "limits": [
+    "Full Explorer collision/partial-skip, filtered transfers, touch/pen and arbitrary destination applications are not established by the ordinary two-file success case",
+    "Folder/mixed-folder/pathless-provider transfers retain their existing payload and may not report completion",
+    "The 30-second confirmation wait can retain entries after a longer or unconfirmed copy; originals are kept",
+    "ARM64 cross-published only; no ARM64 execution on this Dell",
+    "Picker/media active lifecycle, broader clipboard/input, accessibility, mixed DPI and hardware checks remain",
+    "Unfinished non-native residuals remain in the feature audit; this is not a finished port"
+  ],
+  "evidence": [
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/attributes-success-trace.log",
+      "bytes": 2122,
+      "sha256": "53b311bc278181543a1564ef779c48e82f60c88d59e3e11142e571913dc888a6"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/attributes-success.json",
+      "bytes": 1416,
+      "sha256": "c1eb4427c56ec1edc3483df80d868ccaeb03ceecee1d5894a193134c15ac1645"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/originals-success-trace.log",
+      "bytes": 2045,
+      "sha256": "a612b2d46da80cbddbda6a6446a100a3f1bdf52c0e03103f4901ab94da659012"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/originals-success.json",
+      "bytes": 1411,
+      "sha256": "b2bc8b8607a99bed5c28120ba3034e20c02ff54c336f9f6bc48db46e8858e930"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/streamed-success-trace.log",
+      "bytes": 2122,
+      "sha256": "9ba1108a95d66ca0c89765b4f58ebb42d863e79e0a3e2d2adacf671cac3d4135"
+    },
+    {
+      "path": "artifacts/manual-shelf-recheck-2026-10-19/streamed-success.json",
+      "bytes": 1543,
+      "sha256": "e4e4dd007980fab8edc14d78e24c177d56687dffb2e787b5545511d317bba306"
+    },
+    {
+      "path": "artifacts/shelf-completion-2026-10-19/final-core.log",
+      "bytes": 12585,
+      "sha256": "5f354e86cc8b5f6600fbf4075ac2b2a2e0c62f293991c5d911291fc3d1396a64"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/attributes-integrity.json",
+      "bytes": 1607,
+      "sha256": "03500fcdcb21fad9385fc8319135fedc7b10c9351bac3d330337428b24c50326"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/attributes-manual-candidate.json",
+      "bytes": 441,
+      "sha256": "e09c12f9e2bfbd2d7fa815006fae6dce6ef7f8534305e50cb489d259f04b76c0"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-attributes-candidate-arm64.log",
+      "bytes": 708,
+      "sha256": "7cfa7cc884cdf91fee07beb371c3a412412bec1ba7d657a4356316dd6ed935d7"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-attributes-candidate-x64.log",
+      "bytes": 628,
+      "sha256": "3d02ce95e23ab1e3151cf676ad953cb11248203d1bc7f62fae620b86ceb85a7d"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-attributes-final-x64.log",
+      "bytes": 495,
+      "sha256": "2bb3399846f4ccd19b45218132ea06aa1cf50d95656b0ef7d33b0139ab350a54"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-attributes-x64.log",
+      "bytes": 2402,
+      "sha256": "3ef59981d496913f30d4f8f652d98a4a37a4ce4a5cad435b496885d391b89c61"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-final-arm64.log",
+      "bytes": 703,
+      "sha256": "5c73cfd22cf142adda7ec84d62dc2938fb8beb3b95efe66d185ecb5c09fa6acb"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-final-x64.log",
+      "bytes": 495,
+      "sha256": "2bb3399846f4ccd19b45218132ea06aa1cf50d95656b0ef7d33b0139ab350a54"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-initial-x64.log",
+      "bytes": 695,
+      "sha256": "ceca11bc4c971c6519298d5705a3761f837c5aa07fd36e522df96f69639cf752"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-original-access-arm64.log",
+      "bytes": 707,
+      "sha256": "a18a2cd71fce7c8427be5d201c05e0b16ff32a8f359e0d28055b30e515829d1b"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/build-original-access-x64.log",
+      "bytes": 627,
+      "sha256": "fad9eb90edc24ed69ecbe7ee45e3ba472d18accf338d00b232541293abdd59b3"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-attributes-build.log",
+      "bytes": 527,
+      "sha256": "bf8929a5b45760a5106cc8416ed0219a10ece654ddef1ee6e6b4564995a728e8"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-attributes-repro-build.log",
+      "bytes": 649,
+      "sha256": "dd5ff21f92bf089f6fb14691769fb1e00c980bb58e566ece4e2df384bd02e9b7"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-build-initial.log",
+      "bytes": 522,
+      "sha256": "bd21cbf8cfb6f1c06a2faa3a3fa288672275c8e767dc8978dc859f886b0cb9ed"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-build-streamed.log",
+      "bytes": 522,
+      "sha256": "bd21cbf8cfb6f1c06a2faa3a3fa288672275c8e767dc8978dc859f886b0cb9ed"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-import-attributes-repro-build.log",
+      "bytes": 649,
+      "sha256": "0cdc0da3bb229943a0c7f1ef9116135c642a2fe07cb60abab3cd81ef7a41fde0"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/check-original-access-build.log",
+      "bytes": 527,
+      "sha256": "bf8929a5b45760a5106cc8416ed0219a10ece654ddef1ee6e6b4564995a728e8"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/checkpoint-integrity.json",
+      "bytes": 1703,
+      "sha256": "105231b812254aaf0725c244824ba9b36d1b332e9d9fe1e4712194ee289a772b"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/manual-candidate.json",
+      "bytes": 540,
+      "sha256": "ee3e9c3d93f20c1f752493eb5d133046425449d69570cd8c33ab4100132be194"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/originals-manual-candidate.json",
+      "bytes": 441,
+      "sha256": "eaad4a93affdf8adb42f4c955d246b5e81a8e9d3274c831c48a156607df5c1dd"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/preserved-feature-scope.json",
+      "bytes": 21381,
+      "sha256": "eca36eaf58f38c291b144702c4488bb6168e755fe3936dbe02354a56e1476eef"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-build.log",
+      "bytes": 404,
+      "sha256": "cc3547110df7fd503ef27156cccfa4ac9ed7d8c7733c80e314d8c751889c12ba"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-candidate-build.log",
+      "bytes": 409,
+      "sha256": "c57c7322c51caa0403e530d9a8348fd5b81fee4e8a3036949e6e5928170d9542"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-collision-trace.log",
+      "bytes": 1137,
+      "sha256": "7c150e6bab78232c8fc8b0dd87a85b78d60ff33d5aa720a69b1ecf2714258dcf"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-collision.log",
+      "bytes": 600,
+      "sha256": "739cea0022ddddba3e47aa7e2b2b9ca9fc31b81c2dbb89e5bed7919f0badf3be"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-positive-trace.log",
+      "bytes": 1445,
+      "sha256": "bb2e7093f8ac2a6ceab22196586cdaf9deddcf3785457db81c205641c311a371"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-positive.log",
+      "bytes": 724,
+      "sha256": "cf7d1d318f885283132a2a0a7bcdd6dfeab1ce0e08fa04d1b6ef763ce0b13d8e"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-skip-trace.log",
+      "bytes": 1446,
+      "sha256": "c252309f887e4fe7582cb90d11d0a21a8dcffba3fff9148a1086fc4a2b5b6985"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes-skip.log",
+      "bytes": 591,
+      "sha256": "b56b14cc43bbad06e885dbae43c64bfadc40352fbc31da755b8a15dd9053c597"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-attributes.log",
+      "bytes": 724,
+      "sha256": "155d475993bc72b5c2074a8a7d8d50d1c8ec65126664dbc9d4b3b2c5fb6cdfd9"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-candidate-build.log",
+      "bytes": 462,
+      "sha256": "6fb8a1ea0a5ebecf8e503accb7d803255fb95c0f71464263fc927031a07c10f0"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-candidate-final-build.log",
+      "bytes": 404,
+      "sha256": "cc3547110df7fd503ef27156cccfa4ac9ed7d8c7733c80e314d8c751889c12ba"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-candidate.log",
+      "bytes": 766,
+      "sha256": "13ebc77029150ad2c3a796cad4a9e5e197cdbc9627d35393d02308983c58a1c6"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-collision-final-build.log",
+      "bytes": 404,
+      "sha256": "cc3547110df7fd503ef27156cccfa4ac9ed7d8c7733c80e314d8c751889c12ba"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-collision-final-trace.log",
+      "bytes": 1137,
+      "sha256": "aa804865bc4a616ea2fb2a251ee41348e140cd5ccab2796a4cae548d929b7240"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-collision-final.log",
+      "bytes": 600,
+      "sha256": "b3cc3e9716b4c498a69eb9e5254119631be2fd2efb985f8cc5cded6b80d5f0ba"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-collision-trace.log",
+      "bytes": 1045,
+      "sha256": "87e64be99648b933358788838c9d62aba811ba785ee67165aedec55bf07e748d"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-collision.log",
+      "bytes": 600,
+      "sha256": "b3cc3e9716b4c498a69eb9e5254119631be2fd2efb985f8cc5cded6b80d5f0ba"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-build.log",
+      "bytes": 400,
+      "sha256": "d625e590d6133adb400832e1a4bce8cb07938680ac8e428d4cf2a32da924298f"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-collision-trace.log",
+      "bytes": 1137,
+      "sha256": "10f2f523d0464cd012c30f0f26b863b42222129e5dbde98aeeba97ccec61813e"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-collision.log",
+      "bytes": 600,
+      "sha256": "dceec262d654a4af03d056ea7df50d619f4fd1219f68e1fc809df96147abf3e0"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-positive-trace.log",
+      "bytes": 1445,
+      "sha256": "171f4b918f5983cfe1ad16c65d7628a3f7a4097061eaa992c83f1a38648d5597"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-positive.log",
+      "bytes": 724,
+      "sha256": "4eb72fe33e9eddd5eda7ff87680ea362fc742c3718e7d1f7b983c01fd2ec22e1"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-skip-trace.log",
+      "bytes": 1446,
+      "sha256": "a12a82ad81cd6246d0f879211ed85c903ed31e1fe148811c9720199afcc0aece"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-final-skip.log",
+      "bytes": 591,
+      "sha256": "61cc36fe806660a3d3774a39dc7cf84bbe84c69e96cecf0ac84afac9dbcceffa"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-flat-build.log",
+      "bytes": 399,
+      "sha256": "910f3a0f6d6e54c0038577fb9eba96fa5919675ec9dc770648ba255db7d03946"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-flat.log",
+      "bytes": 669,
+      "sha256": "63f5fcac62a5f42037d64db4a83ae8200d9aaa2fc1e4c0441d14e5ae746f1307"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-build.log",
+      "bytes": 414,
+      "sha256": "308eccbb1e7aea5da35b9eb251ddca70d091e8c5eac2c3a3a0367d09603b1ef6"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-collision-trace.log",
+      "bytes": 1137,
+      "sha256": "d396d42b4196f79b6da368f225aec300ecb513c22896640dbab39dfd0ead673e"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-collision.log",
+      "bytes": 600,
+      "sha256": "609dba5f880d908caacd56e14378893422511afb2bae8be73628404643cde2a1"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-positive-trace.log",
+      "bytes": 1445,
+      "sha256": "d0dcc00458b2a67c48e3e0a87a04832c1c03b4c280485a4c78a51028d14908c2"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-positive.log",
+      "bytes": 724,
+      "sha256": "479d980f60d6c43d66e02fce7408a5ede0193cd54894acac86f238487ef0b2ea"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-skip-trace.log",
+      "bytes": 1446,
+      "sha256": "af4b0761a5ef3eab666eab79ec28c6b059c585caf6b52c0eff817478d60455e3"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-access-skip.log",
+      "bytes": 591,
+      "sha256": "c0acb9e66720418a8b39a8ec942658da8f0af290a716c72b00db929a87f3ce20"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original-build.log",
+      "bytes": 510,
+      "sha256": "ba6dfeae42ff4da71f427a873f8edcf9247fdcb3ed5ab677fa45f24bcffad165"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-original.log",
+      "bytes": 591,
+      "sha256": "81e9181ee7dca7dda1facf81c788f5e20724cdd158decff8d95fe472924c480c"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-skip-trace.log",
+      "bytes": 1523,
+      "sha256": "40ba127075d7540f8c80af3524044ace9eec103b77019693fc9504c2cc12bcd6"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-skip.log",
+      "bytes": 591,
+      "sha256": "164477e7fd4245cc9c63a5925e6623e45fac6c5c33f14c56905a3d790deef3cf"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-virtual-build.log",
+      "bytes": 402,
+      "sha256": "c7dff5b50ac3f7a4309709c034b51c07a8270e56860d58dbbcc53734ed2d371b"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/shell-virtual.log",
+      "bytes": 1189,
+      "sha256": "9087f7488e02f72027bffb8ece7b2dbb0774f200b49f1eebe2adc827fbb0e88d"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-attributes-repro.log",
+      "bytes": 6423,
+      "sha256": "08b58305d71a148055afa571dc825de022571956287a15503621c8b787ab267b"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-attributes.log",
+      "bytes": 6535,
+      "sha256": "cee05e72be0b88d0f5d3b99ac466506d1178c2bdd0118a5ed90a4ab7c78d522f"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-import-attributes-repro.log",
+      "bytes": 6429,
+      "sha256": "76388777068e514227c07f85a047ce31dd0f36422b7698f2c08ce2247f4a7948"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-initial.log",
+      "bytes": 6224,
+      "sha256": "caa338c77addc8338ba4091a78ecaeffd71f61a61d08af362e84d2bf50d66a40"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-original-access.log",
+      "bytes": 6535,
+      "sha256": "fe42215ddfcc518fd46884b0c15e230a2bf5d1024abe30137fe60df77c6a3dd9"
+    },
+    {
+      "path": "artifacts/shelf-shell-completion-2026-10-19/windows-streamed.log",
+      "bytes": 6534,
+      "sha256": "49b2a613d3c352d7d333196293b2533e9259942d904395cef914666a5f742336"
+    },
+    {
+      "path": "validation/fixtures/shelf-shell-target/Program.cs",
+      "bytes": 13034,
+      "sha256": "277255169b18b4ffb70a0934db05dc30c0f9a70c900b9be07a304fd74e729bfb"
+    },
+    {
+      "path": "validation/fixtures/shelf-shell-target/ShelfShellTarget.csproj",
+      "bytes": 1028,
+      "sha256": "78bb066718547bd1d106895b88f06696b157edadeae50bc30f1a67b61b9e97e1"
+    },
+    {
+      "path": "validation/windows-shelf-attributes-source-manifest.json",
+      "bytes": 15858,
+      "sha256": "05809eddfb10de99e766943e30d25daae2188fd3b435c3729ab1ca11f53a0253"
+    },
+    {
+      "path": "validation/windows-shelf-original-access-source-manifest.json",
+      "bytes": 15891,
+      "sha256": "244157fc4977a713b392f5124f356d2206e01f0a16d0a07f7f1b2c98517290f6"
+    },
+    {
+      "path": "validation/windows-shelf-shell-source-manifest.json",
+      "bytes": 15899,
+      "sha256": "c7249816a5b68d2a4c7e497491f8bb315febb95cff708c715a77335cad7ad0e5"
+    }
+  ],
+  "release": {
+    "preview": true,
+    "finishedPort": false,
+    "installed": false,
+    "packaged": false,
+    "published": false
+  }
+}

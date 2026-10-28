@@ -42,10 +42,6 @@ internal static class JpegBudgetChecks
         }
         var impossible=await MediaService.Convert([source],outputs,".jpg",_=>{},default,maximumBytes:1);
         Require(impossible.Completed==0 && impossible.HasFailures && (await outputs.GetFilesAsync()).Count==2,"An impossible budget left an output.");
-        bool rejected=false;
-        try { await MediaService.Convert([source],outputs,".png",_=>{},default,maximumBytes:limit); }
-        catch(InvalidOperationException) { rejected=true; }
-        Require(rejected && (await outputs.GetFilesAsync()).Count==2,"A PNG budget was silently accepted.");
         var small=await root.CreateFileAsync("small.png");
         using(var bitmap=new SoftwareBitmap(BitmapPixelFormat.Bgra8,16,16,BitmapAlphaMode.Ignore))
         using(var stream=await small.OpenAsync(FileAccessMode.ReadWrite))

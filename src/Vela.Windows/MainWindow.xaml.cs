@@ -24,11 +24,13 @@ public sealed partial class MainWindow : Window
         RefreshAwake();
     }
     internal void RefreshAwake()
-    { if(controller.Awake is null) return; AwakeStatus.Text=controller.Awake.Status; StopAwake.IsEnabled=controller.Awake.IsAwake; }
+    { if(controller.Awake is null) return; AwakeStatus.Text=controller.Awake.Status; StopAwake.IsEnabled=controller.Awake.HasTimer; }
     internal void ShowError(string text) { ErrorBar.Message=text; ErrorBar.IsOpen=true; }
     private void ToolClick(object sender,RoutedEventArgs e) { if(((Button)sender).Tag is string id) controller.OpenTool(id); }
     private void SettingsClick(object sender,RoutedEventArgs e)=>controller.ShowSettings();
     private void PinClick(object sender,RoutedEventArgs e) { controller.Settings.PinFlyout=PinButton.IsChecked==true; controller.Save(false); }
-    private void StartAwakeClick(object sender,RoutedEventArgs e)=>controller.Awake.Hold(TimeSpan.FromMinutes(int.Parse((string)((Button)sender).Tag)));
-    private void StopAwakeClick(object sender,RoutedEventArgs e)=>controller.Awake.Release();
+    private void StartAwakeClick(object sender,RoutedEventArgs e)
+    { if(controller.Quitting) return; try { controller.Awake.Hold(TimeSpan.FromMinutes(int.Parse((string)((Button)sender).Tag))); } catch(Exception error) { controller.Report(error.Message); } }
+    private void StopAwakeClick(object sender,RoutedEventArgs e)
+    { if(controller.Quitting) return; try { controller.Awake.Release(); } catch(Exception error) { controller.Report(error.Message); } }
 }

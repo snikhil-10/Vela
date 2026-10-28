@@ -15,6 +15,7 @@
     <Compile Include="../../src/Vela.Windows/Services/ClipboardSnapshot.cs" Link="ClipboardSnapshot.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/TextClipboardPublisher.cs" Link="TextClipboardPublisher.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/ShelfService.cs" Link="ShelfService.cs"/>
+    <Compile Include="../../src/Vela.Windows/Services/ShellDropFeedback.cs" Link="ShellDropFeedback.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/MediaService.cs" Link="MediaService.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/ImageWatermark.cs" Link="ImageWatermark.cs"/>
     <Compile Include="../../src/Vela.Windows/Services/PinImageSource.cs" Link="PinImageSource.cs"/>

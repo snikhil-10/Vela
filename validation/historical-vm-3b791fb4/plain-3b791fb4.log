@@ -1,0 +1,3 @@
+PASS Original text and HTML clipboard formats are preserved.
+ACTUAL_UTF8_BASE64 VmVsYSBwbGFpbiBwYXN0ZSB0ZXN0
+PASS Plain paste exact output

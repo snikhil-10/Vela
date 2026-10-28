@@ -1,0 +1,156 @@
+Verified build snapshot 3b791fb4-ff70-4ab1-a947-0a94388639dd
+PASS Tracking is removed while application query, order, and fragment survive
+PASS Removing the only tracking key leaves no question mark
+PASS Signed AWS links are byte-for-byte unchanged
+PASS Signed Azure links are byte-for-byte unchanged
+PASS Non-HTTP payloads are never rewritten
+PASS Text paragraphs are not treated as URLs
+PASS Encoded tracker names are recognized
+PASS Query-like fragment is never altered
+PASS A benign ref parameter is retained
+PASS Duplicate application parameters keep their order
+PASS Unchanged links retain surrounding whitespace
+PASS Snippet dates are deterministic and locale-independent
+PASS Clipboard snippet content is not recursively expanded
+PASS Unicode snippet text survives
+PASS Unknown snippet variables survive
+PASS Global shortcut modifiers and key parse
+PASS Shortcut parsing is insensitive to spaces and case
+PASS A bare key cannot steal ordinary typing
+PASS Duplicate modifiers are rejected
+PASS Unknown modifiers are rejected
+PASS Unsupported function keys are rejected
+PASS The first close press is blocked
+PASS A held close key cannot confirm
+PASS A distinct second close press is allowed
+PASS Close confirmation expires
+PASS Close actions are isolated
+PASS Close confirmation does not permit a third press
+PASS An imported native feature cannot become enabled
+PASS Imported null collections do not break startup
+PASS Null and duplicate process exclusions cannot break input hooks
+PASS Imported bounds and appearance are normalized
+PASS Invalid imported shortcuts return to defaults
+PASS Invalid and duplicate snippet triggers are removed
+PASS Unsafe launcher schemes are rejected
+PASS A future settings schema is not silently downgraded
+PASS Settings round trip preserves a disabled feature's snippets
+PASS Settings save is readable and leaves no temporary file
+PASS Malformed settings preserve the original and a recovery copy
+PASS Disabled resident features are not instantiated
+PASS Applying unchanged availability does not restart a service
+PASS Disabling a feature tears down its resident service
+PASS A failed start is reported and cleaned up
+PASS One failed stop does not keep another feature running
+PASS Unknown feature factories cannot be started by import
+PASS Every preset references only actual implemented tools
+PASS Feature IDs are unique
+PASS Feature audit covers the 77 pinned upstream features
+PASS The runtime catalog cannot contain an excluded feature
+PASS Workspace positions adapt to a smaller display without leaving its work area
+PASS Workspace minimum size fits even a tiny work area
+PASS Invalid workspace coordinates cannot enter settings
+PASS Launcher profiles preserve the legacy default and expose the chosen profile
+PASS Invalid active profiles fall back without deleting saved launchers
+PASS Imported launcher profiles reject unsafe targets
+PASS New shortcut settings normalize malformed imports
+PASS Image resize preserves landscape aspect ratio
+PASS Image resize preserves portrait aspect ratio
+PASS Image resize never upscales or rounds a narrow edge to zero
+PASS A zero image edge preserves original dimensions
+PASS Zero source dimensions are rejected
+PASS Imported thermal alert thresholds are bounded
+PASS Reserved launcher profile names cannot shadow Default
+PASS Duplicate workspace names and null titles normalize safely
+PASS Speed tests respect transfer budgets and upload only generated data
+PASS A failed speed endpoint stops before any transfer
+PASS A canceled speed test never starts a request
+PASS Canceling during download prevents the upload phase
+PASS An empty speed response cannot produce a successful zero result
+PASS Canceling upload does not publish a completed speed result
+PASS Legacy flat launchers remain runnable after a settings round trip
+PASS Nested and empty submenus survive export without executable folder targets
+PASS Imported submenus reject unsafe and missing leaf targets at every level
+PASS Menu sibling and depth limits retain valid leaves in order
+PASS Total imported menu size is bounded independently for each profile
+PASS Normalization does not mutate source menu names or child collections
+PASS Navigation restores the parent selection through nested and empty menus
+PASS Keyboard selection wraps and ignores invalid direct choices
+PASS Search discovers nested leaves with group context and skips empty groups
+PASS Menu normalization bounds cyclic in-memory groups without modifying them
+PASS Explorer's observed hyphen-separated running-window label identifies Vela
+PASS Shelf highlights a drag before taskbar hover while ordinary clicks remain quiet
+PASS Taskbar button rearranging and window movement do not expose shelf targets
+PASS Escape hides the shelf target until mouse release and cleanup resets the next drag
+PASS Shelf icon preparation probes the button band rather than taskbar edge padding
+PASS Shelf taskbar targeting recognizes executable labels and grouped running-window counts
+PASS Shelf taskbar targeting rejects other apps and similarly named document titles
+PASS Canceling partially replayed typing releases delivered keys and discards unplayed shortcuts
+PASS A replayed snippet delimiter cannot swallow the next physical delimiter
+PASS Paced snippet replay retains FIFO order when a second trigger pauses the reader
+PASS Asynchronous snippet preparation retains new modifier pairs and releases overflowed keys
+PASS Arbitrary snippet triggers and activation modes survive settings migration
+PASS Immediate snippets swallow only the completing key and erase the typed prefix
+PASS Space Tab and Enter each trigger delayed expansion and are preserved once
+PASS The longest delayed suffix wins independently of snippet list order
+PASS Matching is exact and whitespace prevents triggers spanning separate words
+PASS Backspace and context reset cannot combine unrelated trigger fragments
+PASS Unicode triggers count visible typed characters rather than surrogate units
+PASS A single-character empty replacement can consume its completing key
+PASS Keyboard-only and mouse-lock cleaning sessions keep a 60-second bound
+PASS Escape must be continuously held for two seconds including repeated keydowns
+PASS Cleaning restart cannot inherit a previous Escape hold
+PASS Shelf targeting and mouse-lock preferences persist independently
+PASS A newer clipboard copy prevents restoration without attempting a write
+PASS Transient clipboard refusal retries the original content before reporting success
+PASS A new copy during a clipboard retry wins over the saved original
+PASS A persistently busy clipboard reports failure after a bounded number of writes
+PASS Clipboard preparation retries a temporary open failure against fresh views
+PASS A persistently locked clipboard stops preparation after six reads
+PASS A newer copy cancels clipboard preparation before reading
+PASS A copy made during a snapshot discards that snapshot
+PASS A new copy during contention prevents another clipboard read
+PASS Clipboard provider errors other than open contention are never retried
+PASS Canceling preparation interrupts the clipboard retry delay
+PASS Canceling a completed clipboard read disposes its snapshot
+PASS Publishing retries a refused clipboard write before editing
+PASS A new copy during publication prevents any further replacement write
+PASS A locked publication reports failure after six refusals
+PASS Publishing retries only clipboard-open exceptions
+PASS Canceling a refused publication prevents retrying the write
+PASS A newer copy prevents publication without calling the writer
+PASS Six five-second samples do not prove thirty seconds of high usage
+PASS Repeated reads of one sample cannot age into an alert
+PASS A low reading restarts the sustained observation
+PASS An unavailable reading restarts the sustained observation
+PASS A long sampling gap cannot turn a single burst into a sustained alert
+PASS Changing a threshold requires a fresh sustained interval
+PASS Resetting observations preserves the fifteen-minute notification cooldown
+PASS Identically named GPU devices maintain separate alert intervals
+PASS Non-finite readings cannot sustain an alert
+PASS Low disk warnings use a strict threshold and bounded cooldown
+
+130 passed; 0 failed.
+  Determining projects to restore...
+  Restored C:\Users\u\source\Vela\src\Vela.Core\Vela.Core.csproj (in 156 ms).
+  Restored C:\Users\u\source\Vela\src\Vela.Windows\Vela.Windows.csproj (in 494 ms).
+  Vela.Core -> C:\Users\u\source\Vela\src\Vela.Core\bin\x64\Release\net10.0\Vela.Core.dll
+  Vela.Windows -> C:\Users\u\source\Vela\src\Vela.Windows\bin\x64\Release\net10.0-windows10.0.26100.0\win-x64\Vela.Windows.dll
+  Vela.Windows -> C:\Users\u\source\Vela\artifacts\Vela-x64\
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  Vela.OcrWorker -> C:\Users\u\source\Vela\src\Vela.OcrWorker\bin\Release\net10.0\win-x64\Vela.OcrWorker.dll
+  Vela.OcrWorker -> C:\Users\u\source\Vela\artifacts\Vela-x64\Ocr\
+Built artifacts\Vela-x64\Vela.Windows.exe
+Publication probe before read: capturedSequence=2265; afterPublish=2265; ownerMatches=True; unicodeAvailable=True.
+Publication probe: textMatches=True; textLength=19; capturedSequence=2265; afterPublish=2265; afterRead=2265; ownerMatches=True.
+PASS Fresh consumer reads restored text and HTML.
+PASS Immediate Unicode clipboard publication, history/roaming exclusion, stable sequence, stale-write rejection and rich-format restoration.
+
+
+Algorithm : SHA256
+Hash      : E56D706E528B794DAE5E1F9599C0FE6B9D6AAF4D3A74DF94B011487FB4617CCD
+Path      : C:\Users\u\source\Vela\artifacts\Vela-x64.zip
+
+
+

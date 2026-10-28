@@ -30,7 +30,7 @@
       },
       {
         "id": "commandBar",
-        "time": "2026-10-19T21:46:02.410Z",
+        "time": "2026-10-19T21:46:02.41Z",
         "observed": "Global Ctrl+Alt+Space opens command bar; 33 scoped commands. No-match search displays empty message; Enter retains command bar with no action."
       },
       {
@@ -61,7 +61,7 @@
       },
       {
         "id": "developerFeeds",
-        "time": "2026-10-19T21:56:59.910Z",
+        "time": "2026-10-19T21:56:59.91Z",
         "observed": "Refresh returned 2 headlines from 2/3 sources, newest Atom first; named HTTP 503 retained good results. Filter stable left one RSS result. Only /rss,/atom,/broken requested; no article opened. Article row was below visible bounds, selection not claimed."
       },
       {
@@ -76,12 +76,12 @@
       },
       {
         "id": "monitorBrightness",
-        "time": "2026-10-19T21:59:08.750Z",
+        "time": "2026-10-19T21:59:08.75Z",
         "observed": "Discovery renders No monitor exposes DDC/CI brightness on this connection. No write controls or simulated values; native probe found 0. Brightness writes unavailable on this laptop."
       },
       {
         "id": "thermalAlerts",
-        "time": "2026-10-19T21:59:41.090Z",
+        "time": "2026-10-19T21:59:41.09Z",
         "observed": "Read available sensors returns No supported NVIDIA driver sensors were found and no supported hardware readings. Threshold 85 C renders. Native read-only probe 0. Real temperature and thermal alert delivery unavailable."
       },
       {
@@ -264,10 +264,11 @@
       "freshUi": "Empty session renders; empty clipboard import rejected without additions; closed normally.",
       "functionalVerdict": "Observed/tested paths pass; whole-feature certification is not claimed.",
       "limits": [
-        "Actual outgoing multi-file drag/cancel/remove-after-drop and cross-window lifecycle; transport rejects outside-window endpoints. Accepted cue unchanged."
+        "Actual canceled drag with remove-after-success enabled; successful remove-after-success; missing-original and feature/session/shutdown lifecycle cases. The accepted cue is unchanged."
       ],
       "coverageCategory": "bounded-paths-covered",
-      "freshUiObservationCount": 1
+      "freshUiObservationCount": 1,
+      "manualFollowUp": "User reports completing the instructed two-file source -> shelf -> destination transfer. Agent filesystem verification confirms both 33-byte destination copies match the generated originals, which remain unchanged. Remove-after-drop was Off."
     },
     {
       "id": "textSnippets",
@@ -844,10 +845,177 @@
     {
       "path": "artifacts/functionality-audit-2026-10-19/cleanup.json",
       "sha256": "2261d3825a1500cf04d9f3bf0235e4e1838f942cf6012d14d6797b0481bed513"
+    },
+    {
+      "path": "artifacts/manual-tests/shelf-copy-result.json",
+      "sha256": "3ca4738b8c868ea8410593abbe8934f0aceb6e0bd87f21e42a2abe8fb12de5bd"
     }
   ],
   "newReleaseAssembled": false,
   "installerRun": false,
   "remoteCreated": false,
-  "published": false
+  "published": false,
+  "manualFollowUps": [
+    {
+      "caseId": "shelf-manual-two-file-copy",
+      "recordedAt": "2026-10-19T18:01:36.3569683-07:00",
+      "sourceSnapshot": "f77132b9-f84e-429c-8d19-ae1494b8e5c6",
+      "reportedBy": "user",
+      "userReport": "Done, both files copied into the destination folder.",
+      "flowInstructed": "Generated source folder -> Vela shelf -> generated destination folder",
+      "physicalDragObservedByAgent": false,
+      "filesystemVerifiedByAgent": true,
+      "shelfRemoveAfterDrop": false,
+      "shelfDropTarget": "manual",
+      "files": [
+        {
+          "name": "Vela-test-one.txt",
+          "bytes": 33,
+          "originalPresent": true,
+          "copyPresent": true,
+          "originalSha256": "cacda4f04ac81996535d2b0fe8080133509d1903d018d2d3afb0a4a508c570b7",
+          "copySha256": "cacda4f04ac81996535d2b0fe8080133509d1903d018d2d3afb0a4a508c570b7",
+          "matchesGeneratedFixture": true
+        },
+        {
+          "name": "Vela-test-two.txt",
+          "bytes": 33,
+          "originalPresent": true,
+          "copyPresent": true,
+          "originalSha256": "d84768a26a5a23809a9f68b82fc31ba9680f21ce73846ea88b9f975cd4be45fe",
+          "copySha256": "d84768a26a5a23809a9f68b82fc31ba9680f21ce73846ea88b9f975cd4be45fe",
+          "matchesGeneratedFixture": true
+        }
+      ],
+      "normalSettingsSha256": "b2f9288aded3fc573c1d6f9633ddf944650b8ee6fe35ee27cd53fddef7f804b2",
+      "result": "PASS user-reported two-file transfer with byte-identical copies and unchanged generated originals",
+      "remainingCases": [
+        "Cancellation with remove-after-success enabled",
+        "Successful drag with remove-after-success enabled",
+        "Missing original and lifecycle transitions"
+      ]
+    },
+    {
+      "sourceSnapshot": "7e03f407-7a46-41f7-b331-486f737383b4",
+      "evidenceSha256": "a1c5becdd0b9f261b6efd3f1f1f362e379b62541ac031b8959e4940e1355c4e6",
+      "evidence": "validation/windows-pin-shelf-checkpoint.json",
+      "kind": "pin-and-shelf-follow-up",
+      "report": "docs/windows-pin-shelf-checkpoint.md",
+      "summary": "User passes: mid-drag Escape, JPEG picker, image-pin/topmost. User bugs: duplicate-dialog cancellation removes entry, titlebar-only pin. New native minimum passes; receipt guard backend passes; Explorer new-build end-to-end retest pending.",
+      "precedingManualSource": "f77132b9-f84e-429c-8d19-ae1494b8e5c6"
+    },
+    {
+      "report": "docs/windows-shelf-search-checkpoint.md",
+      "evidence": "validation/windows-shelf-search-checkpoint.json",
+      "sourceSnapshot": "83b3ad32-15f9-4f78-84ef-17f4f30474c6",
+      "summary": "181 core / 23 backend checks; separate exact-candidate native shelf search and six-pin/failure cleanup pass; no new physical drag or full resident exit observation.",
+      "evidenceSha256": "2f67374b81e458e61e68d8e051aeccc3d0023cb24f365005615c5ed1ff31e1b1",
+      "kind": "session-shelf-search-and-pin-lifecycle"
+    },
+    {
+      "evidence": "validation/windows-ocr-batch-checkpoint.json",
+      "summary": "181 core / 24 backend checks; mixed OCR and native worker failure recovery, cancellation and output retention pass. Native picker/form and resident Exit remain open.",
+      "sourceSnapshot": "41a1b63c-43ce-4f60-bee1-79fffb206cfc",
+      "evidenceSha256": "67c464560ffe405afcf352698ad62dc6108268a83a72230a492691dea87d3e85",
+      "kind": "offline-ocr-batch-continuation",
+      "report": "docs/windows-ocr-batch-checkpoint.md"
+    },
+    {
+      "report": "docs/windows-png-bmp-budget-checkpoint.md",
+      "evidenceSha256": "a4fd75e32596bfc6f764f5b40d80a03405ec126a961ab7cf3443088cc49de99a",
+      "summary": "187 core / 25 x64 Windows checks and both publishes. PNG/BMP actual caps, transparency/opacity, watermark, mixed failures and cancellation pass. Native format/size/error controls and idle Settings Exit pass; preceding OCR idle feature-disable/Exit pass. Full picker, active lifecycle and physical drag remain open; all residents/workers exited normally.",
+      "evidence": "validation/windows-png-bmp-budget-checkpoint.json",
+      "kind": "png-bmp-budgets-and-idle-resident-lifecycle",
+      "sourceSnapshot": "ad9a5f89-267d-42e5-a728-caf112d868c3"
+    },
+    {
+      "report": "docs/windows-shelf-completion-checkpoint.md",
+      "evidence": "validation/windows-shelf-completion-checkpoint.json",
+      "kind": "native-completion-bridge-and-exif",
+      "sourceSnapshot": "85d33a4a-4004-4fe8-943f-bd45854c97d8",
+      "summary": "187 core / 26 Windows checks; all eight EXIF orientations and native transfer ABI pass. User collision-cancellation retention and two-file copying pass; agent inspection finds both entries retained after success, so automatic removal fails. Candidate exited normally.",
+      "evidenceSha256": "d2720aff6b36ea15c8f7ec77e0796acdf548d152e782500740f838ee7e1ec577"
+    },
+    {
+      "report": "docs/windows-shelf-native-drag-checkpoint.md",
+      "evidence": "validation/windows-shelf-native-drag-checkpoint.json",
+      "kind": "direct-native-shelf-drag-candidate",
+      "sourceSnapshot": "bfaf9de5-0eaa-4d20-a0e8-053470bc7b15",
+      "summary": "26 Windows checks, both publishes, native ABI and cross-apartment/process payload checks pass. User physical test FAIL: outgoing files blocked, three effect-None returns, zero copies. Resident exited normally; child mouse gesture candidate has separate pending results.",
+      "evidenceSha256": "375c0ce2fa95da17949bc87af364314d7311e2952197c5bc319ac51684a34a07"
+    },
+    {
+      "kind": "shelf-mouse-gesture-startup",
+      "sourceSnapshot": "28775fed-70f7-4f21-9e50-90a33910c8e9",
+      "report": "docs/windows-shelf-pointer-drag-checkpoint.md",
+      "evidence": "validation/windows-shelf-pointer-drag-checkpoint.json",
+      "summary": "26 backend checks and exact-DLL component transfers pass; physical mouse path and automatic removal FAIL. WinUI fallback copied both files, but entries stayed with an unconfirmed message. Repeated native attempts returned None and one lingering loop needed automated Escape. Resident exited normally. Streamed completion has separate subsequent results.",
+      "evidenceSha256": "3de0c30390aafce8344edd44768df97c9b76fcc262769201e590a697c49e031b"
+    },
+    {
+      "kind": "streamed-shelf-completion",
+      "sourceSnapshot": "2a27b7d2-1d9e-4a77-9b7d-d98d68ce68f5",
+      "report": "docs/windows-shelf-shell-checkpoint.md",
+      "evidence": "validation/windows-shelf-shell-checkpoint.json",
+      "evidenceSha256": "12cbb4d41b9ecfe48a8442d25834625ad6a6ff01ae00a918b922f9151cc6fc54",
+      "summary": "27 backend checks, both builds, actual Windows folder success/Cancel/partial skip pass. Physical normal two-file copy and automatic removal pass; copies incorrectly ReadOnly. Child attribute correction has separate results."
+    },
+    {
+      "kind": "shelf-original-access-and-attributes",
+      "sourceSnapshot": "68426e4c-a155-4e76-b78a-e8582e9aff3f",
+      "report": "docs/windows-shelf-attributes-checkpoint.md",
+      "evidence": "validation/windows-shelf-attributes-checkpoint.json",
+      "evidenceSha256": "9ef38a79cddef7f6b8b0b9c19cbccd8187a4807c58c8e2e33b9fbda0e22e29fc",
+      "summary": "27 backend checks, both builds and exact-DLL Windows folder success/Cancel/partial skip pass. Two access regressions fail before their respective fixes, pass after. Final physical normal two-file drag, exact writable copies, real S_OK Copy callback and rendered empty shelf pass. Existing settings/cue preserved. Full Explorer cancel/skip and broader audit limits remain."
+    },
+    {
+      "sourceSnapshot": "5e98bff5-958f-4210-a278-b0fa96fc7e71",
+      "kind": "github-source-readiness",
+      "report": "docs/windows-github-readiness-checkpoint.md",
+      "evidenceSha256": "c6f36237ff73543c55bb04134bbba3cf652c39b8f31ef7b5c89312a40436affd",
+      "summary": "208 core / 28 x64 Windows checks, both builds and exact-DLL desktop components pass, including a separate clean source export. Idle main/settings/normal Exit pass in an isolated profile. Input/atomic-output/lifecycle/build corrections and failures retained. Original 31-tool audit categories remain historical; broad physical/hardware/accessibility/deferred gaps remain.",
+      "evidence": "validation/windows-github-readiness-checkpoint.json"
+    },
+    {
+      "sourceSnapshot": "a1fb2d26-c977-4a41-8e4c-39cc902e52b8",
+      "evidenceSha256": "6b86739fa3140492707459836bf05a264932f992e2f3aff14aac02512445b304",
+      "evidence": "validation/windows-github-readiness-checkpoint.json",
+      "summary": "208 core / 28 x64 Windows checks, both builds and exact-DLL desktop components pass, including a separate clean source export. Idle main/settings/normal Exit pass in an isolated profile. Input/atomic-output/lifecycle/build corrections and failures retained. Original 31-tool audit categories remain historical; broad physical/hardware/accessibility/deferred gaps remain.",
+      "kind": "github-source-readiness",
+      "report": "docs/windows-github-readiness-checkpoint.md"
+    },
+    {
+      "evidenceSha256": "3c2de25168d7dfb4d5ca50895a35d85ab47e20046a0c3ea97aabce893756d243",
+      "evidence": "validation/windows-settings-lifecycle-checkpoint.json",
+      "summary": "222 core / 28 x64 Windows checks, both builds and native suites pass, repeated from a clean source export. Six prior settings-store failures and an exact-DLL import failure reproduced. Native onboarding gates, atomic import, pending confirmation cancellation and diagnostic separation pass. System pickers and broader physical/hardware/accessibility/ARM64/deferred cases remain open.",
+      "report": "docs/windows-settings-lifecycle-checkpoint.md",
+      "kind": "settings-backup-recovery-and-onboarding-gates",
+      "sourceSnapshot": "8bd1d1aa-acaf-4bac-9b99-6b28d4ba35e1"
+    },
+    {
+      "summary": "236 core / 28 x64 Windows checks, both builds and both native desktop suites pass, repeated from a clean source export. Stopped hold/resource callback failures reproduced on previous DLL; unavailable-probe failure reproduced on preliminary candidate. Monotonic model, injected rule/power transitions, real fixture-thread execution flags/default dispatcher expiry, paused panel Stop and stopped alert callbacks pass. Actual AC/Sleep/lid/hardware, broader physical/picker/accessibility/ARM64 and deferred cases remain open.",
+      "evidenceSha256": "b614d1485e1bb3b88fa544b9a6a0570acc3d27798c61d8333bd1c2c9f6fea5bd",
+      "kind": "awake-alert-lifecycle",
+      "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+      "evidence": "validation/windows-awake-lifecycle-checkpoint.json",
+      "report": "docs/windows-awake-lifecycle-checkpoint.md"
+    },
+    {
+      "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+      "evidenceSha256": "3e60f3389ed31e4b7c23bdca4fa0ad0d31fce8a76ef460b8f9265439674f937a",
+      "evidence": "validation/windows-headless-stress-checkpoint.json",
+      "report": "docs/windows-headless-stress-checkpoint.md",
+      "kind": "locked-desktop-backup-stress",
+      "summary": "Four separate backup integrity stress scenarios pass, with concurrent access refusals explicitly recorded; standard 236/28 suite counts unchanged. Product source unchanged. UI access is still blocked by lock screen and no targetable sign-in surface; isolated zero-tool test resident remains open. No picker or physical-input pass claimed."
+    },
+    {
+      "kind": "human-assisted-settings-transfer-ui",
+      "summary": "After owner unlock, basic export and native import Cancel/Import pass with owner-operated file pickers and automated Vela controls. Export matches isolated model; Cancel preserves bytes; import preserves local onboarding and renders Light. Resident exits normally; zero app/windows/workers remain. Normal settings/cue/source/index preserved. Broader picker, physical/hardware/accessibility/ARM64/deferred cases remain open.",
+      "evidence": "validation/windows-settings-transfer-ui-checkpoint.json",
+      "report": "docs/windows-settings-transfer-ui-checkpoint.md",
+      "sourceSnapshot": "399f2871-d115-4db0-b516-f92e785f02d6",
+      "evidenceSha256": "d7e424dbc180f3189f5417a6ef858792737de19e877fffad09ea231e2a3df4da"
+    }
+  ],
+  "postAuditRuntimeState": "October 22 owner-unlocked, human-assisted settings transfer cases on 399f2871 pass. The previously open isolated zero-tool resident exited normally through General Exit; settled window/process checks report zero Vela/OCR instances. Normal settings and cue preserved. No force termination, installation, package, commit, branch rename, remote, push or publication. Earlier locked-desktop/open-resident statements describe their earlier observations."
 }

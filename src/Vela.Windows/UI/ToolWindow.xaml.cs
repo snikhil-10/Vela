@@ -67,7 +67,7 @@ public sealed partial class ToolWindow : Window
     {
         var duration=Ui.Number(60,1,1440,_=>{}); duration.Header="Minutes"; Body.Children.Add(duration);
         Body.Children.Add(Ui.Button("Start keep awake",()=> { controller.Awake.Hold(TimeSpan.FromMinutes(duration.Value)); Message(controller.Awake.Status); },true));
-        Body.Children.Add(Ui.Button("Stop",()=> { controller.Awake.Release(); Message("Keep-awake timer stopped."); }));
+        Body.Children.Add(Ui.Button("Stop timer",()=> { controller.Awake.Release(); Message("Timer stopped. Saved app and display rules still apply."); }));
         Add("Keep the display on","Otherwise the screen can turn off while your work continues.",Ui.Toggle(controller.Settings.KeepDisplayAwake,on=> { controller.Settings.KeepDisplayAwake=on; controller.Save(false); controller.Awake.Evaluate(); }));
         Add("Only while plugged in","Pause requests on battery power.",Ui.Toggle(controller.Settings.AwakeOnlyOnAc,on=> { controller.Settings.AwakeOnlyOnAc=on; controller.Save(false); controller.Awake.Evaluate(); }));
         Add("While an external display is connected","Request wakefulness while another display is available. AC-only still applies.",Ui.Toggle(controller.Settings.AwakeWithExternalDisplay,on=> { controller.Settings.AwakeWithExternalDisplay=on; controller.Save(false); controller.Awake.Evaluate(); }));
@@ -98,7 +98,12 @@ public sealed partial class ToolWindow : Window
     private void PasteImage()
     {
         Body.Children.Add(Ui.Text("Copy an image, choose Save as PNG, then pick its destination. The clipboard and original image stay intact."));
-        Body.Children.Add(AsyncButton("Save as PNG",async ()=>Message(await MediaService.SaveClipboardImage(WindowStyle.Handle(this)))));
+        Body.Children.Add(AsyncButton("Save as PNG",async ()=>
+        {
+            conversion=new();
+            try { Message(await MediaService.SaveClipboardImage(WindowStyle.Handle(this),conversion.Token)); }
+            finally { conversion.Dispose(); conversion=null; }
+        },waitOnExit:true));
     }
     private void Snippets()
     {
@@ -245,12 +250,12 @@ public sealed partial class ToolWindow : Window
         Body.Children.Add(AsyncButton("Choose output folder",async ()=> { destination=await MediaService.PickFolder(WindowStyle.Handle(this)); folder.Text=destination?.Path??"Choose an output folder."; }));
         Body.Children.Add(folder);
         var format=new ComboBox { Header="Output format",ItemsSource=new[]{".png",".jpg",".bmp"},SelectedIndex=0,HorizontalAlignment=HorizontalAlignment.Stretch }; Body.Children.Add(format);
-        var edge=new NumberBox { Header="Maximum long edge in pixels (0 keeps original size)",Minimum=0,Maximum=16384,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact }; Body.Children.Add(edge);
+        var edge=new NumberBox { Header="Maximum long edge in pixels (0 uses source size before the file-size limit)",Minimum=0,Maximum=16384,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact }; Body.Children.Add(edge);
         var quality=new Slider { Header="JPEG quality (maximum with a size limit)",Minimum=10,Maximum=100,Value=90,StepFrequency=1 }; Body.Children.Add(quality);
-        var sizeLimit=new NumberBox { Header="JPEG size limit in KiB (0 = no limit)",Minimum=0,Maximum=102400,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact,IsEnabled=false };
+        var sizeLimit=new NumberBox { Header="File-size limit in KiB (0 = no limit)",Minimum=0,Maximum=102400,Value=0,SpinButtonPlacementMode=NumberBoxSpinButtonPlacementMode.Compact };
         Body.Children.Add(sizeLimit);
-        Body.Children.Add(Ui.Text("The limit applies to each JPEG and can lower its quality. If an image cannot fit, reduce its maximum edge or increase the limit. Originals stay unchanged.","VelaCaption"));
-        format.SelectionChanged+=(_,_)=> { bool jpeg=(string)format.SelectedItem==".jpg"; quality.IsEnabled=jpeg; sizeLimit.IsEnabled=jpeg; };
+        Body.Children.Add(Ui.Text("The limit applies to each image. JPEG can lower quality; PNG and BMP can reduce dimensions, down to a 64-pixel long edge. Smaller sources are not enlarged. Increase the limit to keep more detail. Originals stay unchanged.","VelaCaption"));
+        format.SelectionChanged+=(_,_)=>quality.IsEnabled=(string)format.SelectedItem==".jpg";
         quality.IsEnabled=false;
         var watermarkToggle=new CheckBox { Content="Add a text watermark" }; Body.Children.Add(watermarkToggle);
         var watermarkFields=Ui.Stack(8); watermarkFields.Visibility=Visibility.Collapsed; Body.Children.Add(watermarkFields);
@@ -266,10 +271,9 @@ public sealed partial class ToolWindow : Window
         {
             if(conversion is not null) { Message("Wait for the current batch or cancel it first.",true); return; }
             if(selected.Count==0 || destination is null) { Message("Choose images and an output folder first.",true); return; }
-            bool jpeg=(string)format.SelectedItem==".jpg";
-            if(jpeg && (!double.IsFinite(sizeLimit.Value) || sizeLimit.Value<0 || sizeLimit.Value>102400 || sizeLimit.Value!=Math.Truncate(sizeLimit.Value)))
-            { Message("Use a whole-number JPEG size limit from 0 to 102400 KiB.",true); return; }
-            long maximumBytes=jpeg?checked((long)sizeLimit.Value*1024):0;
+            if(!double.IsFinite(sizeLimit.Value) || sizeLimit.Value<0 || sizeLimit.Value>102400 || sizeLimit.Value!=Math.Truncate(sizeLimit.Value))
+            { Message("Use a whole-number file-size limit from 0 to 102400 KiB.",true); return; }
+            long maximumBytes=checked((long)sizeLimit.Value*1024);
             ImageWatermark? watermark=null;
             if(watermarkToggle.IsChecked==true)
             {
@@ -285,7 +289,7 @@ public sealed partial class ToolWindow : Window
             if(conversion is not null) { Message("Wait for the current batch or cancel it first.",true); return; }
             if(selected.Count==0 || destination is null) { Message("Choose images and an output folder first.",true); return; }
             conversion=new(); progress.IsActive=true;
-            try { int count=await MediaService.Ocr(selected,destination,t=>files.Text=t,conversion.Token); Message($"Saved text from {count} images. English text extraction runs offline."); }
+            try { var result=await MediaService.Ocr(selected,destination,t=>files.Text=t,conversion.Token); Message(result.Message,result.HasFailures); }
             finally { progress.IsActive=false; conversion.Dispose(); conversion=null; }
         },waitOnExit:true));
         Body.Children.Add(Ui.Button("Cancel",()=>conversion?.Cancel()));

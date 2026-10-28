@@ -19,7 +19,8 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     private readonly SnippetKeyGuard snippetKeys = new();
     private readonly HashSet<uint> cleaningKeys = [];
     private nint lastFocus;
-    private bool capsHeld, superHeld, suspended;
+    private readonly SuperKeyState superKey=new();
+    private bool suspended;
     private readonly Dictionary<uint,long> lastClicks=[];
     private readonly HashSet<uint> suppressedUps=[];
     private readonly HashSet<uint> mappedButtons=[];
@@ -27,10 +28,9 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     private readonly HashSet<uint> closeKeys=[];
     
     private DispatcherQueueTimer? cleaningTimer, scrollTimer;
-    private double remainingScroll;
+    private readonly SmoothScrollBuffer scroll=new();
     private int lastCleaningSeconds;
     private Native.Point scrollPoint;
-    private nint scrollTarget;
     public bool Cleaning => cleaning.Active;
     public bool CleaningMouse => cleaning.Active && cleaning.LockMouse;
     public int CleaningSeconds => cleaning.SecondsRemaining(Environment.TickCount64);
@@ -47,7 +47,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
             keyboardCallback=SafeKeyboard; keyboardHook=Native.SetWindowsHookEx(13, keyboardCallback, Native.GetModuleHandle(null), 0);
             if(keyboardHook==0) throw new Win32Exception(Marshal.GetLastWin32Error());
         }
-        if(!keyboard && keyboardHook!=0) { ReleaseSuper(); Native.UnhookWindowsHookEx(keyboardHook); keyboardHook=0; snippets.Clear(); }
+        if(!keyboard && keyboardHook!=0) { ReleaseSuper(); Native.UnhookWindowsHookEx(keyboardHook); keyboardHook=0; snippets.Clear(); cleaningKeys.Clear(); closeKeys.Clear(); closeGuard.Clear(); }
         if(mouse && mouseHook==0)
         {
             mouseCallback=SafeMouse; mouseHook=Native.SetWindowsHookEx(14, mouseCallback, Native.GetModuleHandle(null), 0);
@@ -58,7 +58,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
         if(!active.Contains("smoothScroll")) StopScroll();
         if(!active.Contains("cleaningMode") && Cleaning) EndCleaning();
     }
-    public void OptionsChanged() { snippets.Clear(); snippetGeneration++; snippetPreparation?.Cancel(); Reconcile(); }
+    public void OptionsChanged() { snippets.Clear(); snippetGeneration++; snippetPreparation?.Cancel(); StopScroll(); Reconcile(); }
     public void BeginCleaning()
     {
         if(!active.Contains("cleaningMode")) return;
@@ -82,13 +82,22 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
         if(wasActive) { Reconcile(); CleaningChanged?.Invoke(); }
     }
     public void SuspendInput()
-    { suspended=true; snippets.Clear(); snippetGeneration++; snippetPreparation?.Cancel(); EndCleaning(); ReleaseSuper(); StopScroll(); DropPendingSnippetInput(); }
+    {
+        suspended=true; snippets.Clear(); snippetGeneration++; snippetPreparation?.Cancel();
+        EndCleaning(); ReleaseSuper(); StopScroll(); DropPendingSnippetInput();
+        // Releases pass through while suspended, so guards from an earlier
+        // swallowed press must not consume the next press after resuming.
+        cleaningKeys.Clear(); closeKeys.Clear(); closeGuard.Clear();
+        suppressedUps.Clear(); mappedButtons.Clear(); lastClicks.Clear();
+        lastWindow=0; lastFocus=0;
+    }
     public void ResumeInput() { suspended=false; snippets.Clear(); }
     private void DropPendingSnippetInput()
     {
         AbortPendingSnippetInput();
         snippetKeys.Clear();
-        SendKeys([0x10,0x11,0x12,0x5B,0x5C],true);
+        // Abort releases only paste/replay keys owned by Vela. Unconditionally
+        // releasing every modifier would also release the user's held keys.
     }
     private bool Excluded(nint hwnd) => settings().InputExcludedApps.Any(n=>Path.GetFileNameWithoutExtension(n).Equals(ProcessName(hwnd),StringComparison.OrdinalIgnoreCase));
     private static string ProcessName(nint hwnd)
@@ -121,6 +130,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     private nint Keyboard(int code, nuint wp, nint lp)
     {
         if(code<0) return Native.CallNextHookEx(keyboardHook,code,wp,lp);
+        if(suspended) return Native.CallNextHookEx(keyboardHook,code,wp,lp);
         var data=Marshal.PtrToStructure<Native.KeyboardData>(lp);
         bool down=wp is 0x100 or 0x104;
         if(Cleaning)
@@ -153,11 +163,17 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
         {
             if(data.Key==0x14)
             {
-                if(down) capsHeld=true;
-                else { bool tap=!superHeld; ReleaseSuper(); if(tap) SendKey(0x1B); }
+                if(down) superKey.PressCaps();
+                else
+                {
+                    if(!superKey.CapsHeld) return Native.CallNextHookEx(keyboardHook,code,wp,lp);
+                    var release=superKey.ReleaseCaps();
+                    if(release.ReleaseModifiers) SendKeys([0x5B,0x10,0x12,0x11],true);
+                    if(release.Escape) SendKey(0x1B);
+                }
                 return 1;
             }
-            if(capsHeld && down && !superHeld) { superHeld=true; SendKeys([0x11,0x12,0x10,0x5B],false); }
+            if(down && superKey.BeginChord()) SendKeys([0x11,0x12,0x10,0x5B],false);
         }
         if(!down) { closeKeys.Remove(data.Key); return Native.CallNextHookEx(keyboardHook,code,wp,lp); }
         bool ctrl=Down(0x11),alt=Down(0x12),win=Down(0x5B)||Down(0x5C);
@@ -169,7 +185,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
             if(!closeGuard.Allow(key,Environment.TickCount64,repeat))
             { if(!repeat) queue.TryEnqueue(()=>Notice?.Invoke("Press the close shortcut again within one second to confirm.")); return 1; }
         }
-        if(active.Contains("textSnippets") && !suspended && !ctrl && !alt && !win && !superHeld && !OwnWindow(window) && !StandardPasswordField())
+        if(active.Contains("textSnippets") && !suspended && !ctrl && !alt && !win && !superKey.ChordHeld && !OwnWindow(window) && !StandardPasswordField())
         {
             if(data.Key==8) snippets.Backspace();
             else if(data.Key is 0x1B or >=0x21 and <=0x28 or 0xE5 or 0x2E) snippets.Clear();
@@ -201,6 +217,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     private nint Mouse(int code, nuint wp, nint lp)
     {
         if(code<0) return Native.CallNextHookEx(mouseHook,code,wp,lp);
+        if(suspended) return Native.CallNextHookEx(mouseHook,code,wp,lp);
         var data=Marshal.PtrToStructure<Native.MouseData>(lp);
         if(CleaningMouse) return 1;
         if((data.Flags&1)!=0) return Native.CallNextHookEx(mouseHook,code,wp,lp);
@@ -216,7 +233,7 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
         if(suppressedUps.Remove(message)) return 1;
         if(message==0x20C && mappedButtons.Remove(data.MouseDataValue>>16)) return 1;
         nint target=Native.WindowFromPoint(data.Point);
-        if(Excluded(target)) return Native.CallNextHookEx(mouseHook,code,wp,lp);
+        if(target==0 || Excluded(target)) { StopScroll(); return Native.CallNextHookEx(mouseHook,code,wp,lp); }
         if(active.Contains("mouseClickDebounce") && message is 0x201 or 0x204 or 0x207)
         {
             long now=Environment.TickCount64;
@@ -234,13 +251,15 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
         {
             int delta=(short)(data.MouseDataValue>>16);
             if(active.Contains("scrollHorizontal") && Down(0x12))
-            { PostWheel(target,Native.WM_MOUSEHWHEEL,-delta,data.Point); return 1; }
+            { StopScroll(); PostWheel(target,Native.WM_MOUSEHWHEEL,-delta,data.Point); return 1; }
             if(active.Contains("smoothScroll") && delta%120==0)
             {
-                scrollTarget=target; scrollPoint=data.Point; remainingScroll+=delta*settings().ScrollMultiplier;
+                scrollPoint=data.Point; scroll.Add(target,delta,settings().ScrollMultiplier);
                 if(scrollTimer is null) { scrollTimer=queue.CreateTimer(); scrollTimer.Interval=TimeSpan.FromMilliseconds(10); scrollTimer.Tick+=ScrollTick; }
                 scrollTimer.Start(); return 1;
             }
+            // Precision deltas pass through unchanged and end a preceding glide.
+            StopScroll();
         }
         if(message==Native.WM_MOUSEHWHEEL && active.Contains("scrollInverter"))
         { PostWheel(target,Native.WM_MOUSEHWHEEL,-(short)(data.MouseDataValue>>16),data.Point); return 1; }
@@ -248,22 +267,21 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     }
     private void ScrollTick(DispatcherQueueTimer sender, object args)
     {
-        int step=(int)Math.Round(remainingScroll*.32);
-        if(step==0) step=Math.Sign(remainingScroll);
-        PostWheel(scrollTarget,Native.WM_MOUSEWHEEL,step,scrollPoint); remainingScroll-=step;
-        if(Math.Abs(remainingScroll)<1) StopScroll();
+        if(suspended || !active.Contains("smoothScroll") || !Native.IsWindow(scroll.Target) || Excluded(scroll.Target)) { StopScroll(); return; }
+        int step=scroll.TakeStep();
+        if(step!=0) PostWheel(scroll.Target,Native.WM_MOUSEWHEEL,step,scrollPoint);
+        if(!scroll.Pending) scrollTimer?.Stop();
     }
     private static void PostWheel(nint hwnd,uint msg,int delta,Native.Point point)
     {
         uint modifiers=(Down(0x11)?8u:0)|(Down(0x10)?4u:0);
         Native.PostMessage(hwnd,msg,(nuint)(((uint)(ushort)(short)delta<<16)|modifiers),(nint)((point.X&0xFFFF)|((point.Y&0xFFFF)<<16)));
     }
-    private void StopScroll() { scrollTimer?.Stop(); remainingScroll=0; }
+    private void StopScroll() { scrollTimer?.Stop(); scroll.Clear(); }
     private static bool Down(int key)=>(Native.GetAsyncKeyState(key)&0x8000)!=0;
     private void ReleaseSuper()
     {
-        if(superHeld) SendKeys([0x5B,0x10,0x12,0x11],true);
-        capsHeld=false; superHeld=false;
+        if(superKey.Reset()) SendKeys([0x5B,0x10,0x12,0x11],true);
     }
     public static bool SendShortcut(Shortcut shortcut)
     {
@@ -292,6 +310,6 @@ internal sealed partial class InputService(Func<AppSettings> settings, Dispatche
     private static void Send(Native.Input[] inputs) { if(inputs.Length>0) Native.SendInput((uint)inputs.Length,inputs,Marshal.SizeOf<Native.Input>()); }
     public void Dispose()
     {
-        snippetGeneration++; snippetPreparation?.Cancel(); active.Clear(); Reconcile(); EndCleaning(); StopScroll(); keyboardCallback=null; mouseCallback=null;
+        SuspendInput(); active.Clear(); Reconcile(); keyboardCallback=null; mouseCallback=null;
     }
 }
