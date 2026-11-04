@@ -26,13 +26,7 @@ try {
     if ($LASTEXITCODE -ne 0) { throw 'The OCR worker build failed.' }
     Copy-Item tools/install-portable.cmd (Join-Path $output 'Install.cmd')
     Copy-Item tools/uninstall-portable.cmd (Join-Path $output 'Uninstall.cmd')
-    Copy-Item LICENSE, NOTICE.md $output
-    Copy-Item docs/windows-feature-audit.md $output
-    Copy-Item docs/feature-audit.json, docs/verification.md, docs/hardware-support.md $output
-    Copy-Item docs/portable-readme.md (Join-Path $output 'README.md')
-    New-Item -ItemType Directory -Path (Join-Path $output 'docs'),(Join-Path $output 'validation') -Force | Out-Null
-    Get-ChildItem -LiteralPath docs -File | Copy-Item -Destination (Join-Path $output 'docs') -Force
-    Get-ChildItem -LiteralPath validation -File -Filter '*.json' | Copy-Item -Destination (Join-Path $output 'validation') -Force
+    Copy-Item LICENSE, NOTICE.md, README.md $output
     if (Test-Path $sourceManifest) { Copy-Item $sourceManifest $publishedManifest }
     $taskSnapshot=Get-Content -LiteralPath $sourceManifest -Raw | ConvertFrom-Json
     $taskSdk=(& dotnet --version).Trim()

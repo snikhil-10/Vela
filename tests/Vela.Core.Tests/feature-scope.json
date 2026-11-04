@@ -1,0 +1,467 @@
+{
+  "upstreamCommit": "794608a58d8a88608d3c3cb2e4f22373cf52bfdc",
+  "features": [
+    {
+      "id": "switcher",
+      "decision": "split",
+      "nativeEquivalent": "Alt+Tab, Task View, thumbnails and closing windows.",
+      "portScope": "Exclude the switcher. Search and per-display filtering are residual enhancements, not native parity."
+    },
+    {
+      "id": "dockPreview",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior."
+    },
+    {
+      "id": "dockClick",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior."
+    },
+    {
+      "id": "windowMaximizer",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior."
+    },
+    {
+      "id": "windowLayout",
+      "decision": "split",
+      "nativeEquivalent": "Snap layouts/groups, edge snapping, Win+arrow, and moving windows between displays.",
+      "portScope": "Exclude the snapping engine. Custom gestures, arbitrary layouts and position history are residual enhancements."
+    },
+    {
+      "id": "autoQuit",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "Most conventional Windows apps exit with their last window; tray apps intentionally own their lifetime.",
+      "portScope": "Do not kill background processes based on a macOS app/window lifetime assumption."
+    },
+    {
+      "id": "spacesOrder",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Taskbar previews, click-to-minimize/restore, grouped-window cycling, maximize, and user-ordered virtual desktops.",
+      "portScope": "No replacement Dock/taskbar or maximize behavior."
+    },
+    {
+      "id": "scrollInverter",
+      "decision": "split",
+      "nativeEquivalent": "Windows Mouse settings has vertical direction; touchpad direction is separate.",
+      "portScope": "Retain horizontal-only mouse wheel inversion."
+    },
+    {
+      "id": "scrollHorizontal",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "focusFollowsMouse",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows active-window tracking supports hover activation and delay through SystemParametersInfo.",
+      "portScope": "No second hover-focus implementation."
+    },
+    {
+      "id": "smoothScroll",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "linearScroll",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls."
+    },
+    {
+      "id": "mouseAcceleration",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls."
+    },
+    {
+      "id": "mouseNavigation",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Wheel line count, Enhance pointer precision toggle, and native Back/Forward mouse buttons.",
+      "portScope": "Do not reproduce these controls."
+    },
+    {
+      "id": "mouseButtonShortcuts",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "middleClick",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Precision touchpad gesture customization includes tap actions; availability depends on device/driver.",
+      "portScope": "No parallel touchpad gesture engine."
+    },
+    {
+      "id": "mouseClickDebounce",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "keyboardDebounce",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Accessibility Filter Keys includes repeated-key filtering / BounceKeys.",
+      "portScope": "Use Windows keyboard accessibility settings."
+    },
+    {
+      "id": "textSnippets",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "superKey",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "quitWindowProtection",
+      "decision": "retain",
+      "nativeEquivalent": "No system-wide built-in equivalent of the complete enhancement. App/vendor-specific support does not replace it.",
+      "portScope": "Port the enhancement, with per-app exclusions for hooks."
+    },
+    {
+      "id": "clipboardHistory",
+      "decision": "split",
+      "nativeEquivalent": "Win+V provides history, pins, text and images.",
+      "portScope": "Exclude history collection. Search and file-history differences are recorded separately."
+    },
+    {
+      "id": "pastePlain",
+      "decision": "split",
+      "nativeEquivalent": "Ctrl+Shift+V is supported by many apps; Microsoft notes it is not universal. Windows clipboard UX varies by build.",
+      "portScope": "Do not claim universal native parity. A global clipboard-preserving plain-paste helper remains useful."
+    },
+    {
+      "id": "finderCutPaste",
+      "decision": "split",
+      "nativeEquivalent": "File Explorer supports Ctrl+X / Ctrl+V.",
+      "portScope": "Exclude cut/paste interception. Retain Save clipboard image as a separate on-demand tool."
+    },
+    {
+      "id": "finderRename",
+      "decision": "exclude-native",
+      "nativeEquivalent": "File Explorer uses F2 to rename.",
+      "portScope": "No keyboard interceptor for F2."
+    },
+    {
+      "id": "shelf",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows."
+    },
+    {
+      "id": "urlCleaner",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows."
+    },
+    {
+      "id": "diskImageInstaller",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics."
+    },
+    {
+      "id": "mixer",
+      "decision": "split",
+      "nativeEquivalent": "Windows Volume Mixer provides per-app levels and output routing.",
+      "portScope": "Exclude mixing and app routing controls. Driverless boost above 100% needs a separate DSP/audio architecture."
+    },
+    {
+      "id": "soundOutputSwitcher",
+      "decision": "split",
+      "nativeEquivalent": "Windows Quick Settings and Sound settings switch outputs.",
+      "portScope": "Exclude basic switching; shortcut cycling and disconnect-volume reduction are separate residuals."
+    },
+    {
+      "id": "audioPriority",
+      "decision": "retain",
+      "nativeEquivalent": "Windows remembers defaults but does not provide the same configurable preferred-device automation.",
+      "portScope": "A supported Windows device-policy implementation is needed."
+    },
+    {
+      "id": "micMute",
+      "decision": "split",
+      "nativeEquivalent": "Windows provides recording-device selection/levels and call-app-specific mic mute shortcuts.",
+      "portScope": "Retain mute/unmute for all active capture endpoints together; omit duplicate level/device settings."
+    },
+    {
+      "id": "musicBlock",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics."
+    },
+    {
+      "id": "keepAwake",
+      "decision": "split",
+      "nativeEquivalent": "Power settings/powercfg set normal sleep and lid behavior.",
+      "portScope": "Retain timed and app-conditioned transient wake requests; no power plan editor or lid override."
+    },
+    {
+      "id": "brightness",
+      "decision": "split",
+      "nativeEquivalent": "Windows has built-in display brightness and HDR settings; external monitor control varies.",
+      "portScope": "Retain below-minimum per-display software dimming. DDC/CI hardware control needs separate support."
+    },
+    {
+      "id": "extraBrightness",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "DMG drag-install, unwanted Apple Music launch, and Apple XDR boost are tied to macOS hardware or behavior.",
+      "portScope": "No Windows feature with these macOS semantics."
+    },
+    {
+      "id": "bluetoothSleep",
+      "decision": "retain",
+      "nativeEquivalent": "Windows device power management is not a user-configurable radio disconnect/restore rule.",
+      "portScope": "Port only with a supported device/radio lifecycle and recovery design."
+    },
+    {
+      "id": "quickLauncher",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows."
+    },
+    {
+      "id": "quickToggles",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows personalization, desktop context menu, Safely Remove Hardware, Recycle Bin, and Win+L cover these actions.",
+      "portScope": "No duplicate Windows settings/toggles panel."
+    },
+    {
+      "id": "colorPicker",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Updated Snipping Tool includes a screen color picker. Microsoft's July 2025 release announcement describes it for all Windows 11 PCs; the support page currently lists a Copilot+ caveat.",
+      "portScope": "Do not ship a duplicate color picker. Availability can vary with the in-box app version; a capability-specific fallback would need separate evidence."
+    },
+    {
+      "id": "screenOCR",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Snipping Tool Text actions extracts text locally and detects QR codes in snips.",
+      "portScope": "Exclude ordinary screen OCR and QR scanning. Batch extraction from selected image files is a separate workflow in Batch image tools."
+    },
+    {
+      "id": "cleaningMode",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows."
+    },
+    {
+      "id": "mediaTools",
+      "decision": "split",
+      "nativeEquivalent": "Paint and Photos handle individual image edits; Clipchamp covers common video editing.",
+      "portScope": "Retain offline batch image/video conversion, resizing, text watermarks and image-file OCR. Do not recreate individual Paint/Photos edits or basic Snipping Tool recording."
+    },
+    {
+      "id": "cleaner",
+      "decision": "split",
+      "nativeEquivalent": "Storage Sense/Temporary files clean storage; Installed apps and winget uninstall applications.",
+      "portScope": "Exclude ordinary cleanup/uninstall. Per-app leftover review is an extra, not a native equivalent."
+    },
+    {
+      "id": "uninstaller",
+      "decision": "split",
+      "nativeEquivalent": "Storage Sense/Temporary files clean storage; Installed apps and winget uninstall applications.",
+      "portScope": "Exclude ordinary cleanup/uninstall. Per-app leftover review is an extra, not a native equivalent."
+    },
+    {
+      "id": "homebrew",
+      "decision": "exclude-platform",
+      "nativeEquivalent": "Homebrew formulae/casks are macOS tooling. Windows App Installer/winget provides native package management.",
+      "portScope": "No Homebrew translation or duplicate winget frontend."
+    },
+    {
+      "id": "appUpdates",
+      "decision": "split",
+      "nativeEquivalent": "Microsoft Store updates its apps; winget upgrade handles catalog-matched packages.",
+      "portScope": "Exclude native package updates. Aggregating unsupported developer feeds is residual functionality."
+    },
+    {
+      "id": "screenshot",
+      "decision": "split",
+      "nativeEquivalent": "Snipping Tool captures areas/windows/screens, annotates, crops, redacts, saves and shares. Edge supports full-page web captures.",
+      "portScope": "Exclude ordinary screenshot tools. Scrolling desktop captures, pinning, watermarking and expiring links are residuals."
+    },
+    {
+      "id": "cameraPreview",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows Camera supplies a live camera preview; mirror handling varies by app/device.",
+      "portScope": "No duplicate camera-preview window."
+    },
+    {
+      "id": "radialMenu",
+      "decision": "retain",
+      "nativeEquivalent": "No complete built-in file shelf, tracking cleaner, keyboard cleaning lock, modular tool panel or radial launcher.",
+      "portScope": "Port to native compact windows."
+    },
+    {
+      "id": "scratchpad",
+      "decision": "split",
+      "nativeEquivalent": "Current Notepad has tabs, session restore and Markdown formatting; Sticky Notes supports quick notes.",
+      "portScope": "Exclude a second basic note editor. Retain keeping an existing Notepad or other window above work."
+    },
+    {
+      "id": "commandBar",
+      "decision": "split",
+      "nativeEquivalent": "Start/Search, Run, Calculator and Win+. already cover apps/files, commands, calculations and emoji separately.",
+      "portScope": "Retain a scoped search over enabled Vela tools, snippets and explicit launchers."
+    },
+    {
+      "id": "screenRecorder",
+      "decision": "split",
+      "nativeEquivalent": "Snipping Tool records an area with supported audio and opens clips in Clipchamp for editing.",
+      "portScope": "Exclude basic recording. Separate audio tracks, auto-zoom and advanced redaction are residuals."
+    },
+    {
+      "id": "wallpaper",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Windows Personalization manages static wallpaper, slideshows and themes.",
+      "portScope": "No duplicate wallpaper management."
+    },
+    {
+      "id": "killProcess",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Task Manager ends processes; Resource Monitor and netstat expose port ownership.",
+      "portScope": "No duplicate process or listening-port manager."
+    },
+    {
+      "id": "portManager",
+      "decision": "exclude-native",
+      "nativeEquivalent": "Task Manager ends processes; Resource Monitor and netstat expose port ownership.",
+      "portScope": "No duplicate process or listening-port manager."
+    },
+    {
+      "id": "notch",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchCalendar",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchNotifications",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchGestures",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchTimer",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchAccessories",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchLyrics",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchQueue",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchLiveEqualizer",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchDownloads",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchAgents",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchWatch",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "notchMascot",
+      "decision": "exclude-user",
+      "nativeEquivalent": "Dynamic Island and its extensions are explicitly outside requested scope.",
+      "portScope": "No notch, simulated island, or island extension runtime."
+    },
+    {
+      "id": "monitorCPU",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately."
+    },
+    {
+      "id": "monitorGPU",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately."
+    },
+    {
+      "id": "monitorMemory",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately."
+    },
+    {
+      "id": "monitorNetwork",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager, Resource Monitor, Settings, ipconfig and Performance Monitor expose traffic and addresses.",
+      "portScope": "Exclude duplicate Windows network totals, process traffic and connection settings. Retain the on-demand internet speed test."
+    },
+    {
+      "id": "monitorDisk",
+      "decision": "split",
+      "nativeEquivalent": "Task Manager/Resource Monitor/Performance Monitor show resource totals, process usage and graphs.",
+      "portScope": "Exclude a second monitor. Retain sustained CPU/memory and low-disk alerts separately."
+    },
+    {
+      "id": "monitorPower",
+      "decision": "split",
+      "nativeEquivalent": "Windows battery UI, Task Manager and powercfg /batteryreport expose power usage and battery health.",
+      "portScope": "Exclude basic battery/power displays. Vendor sensor readings are additional hardware-specific capabilities."
+    },
+    {
+      "id": "connectedDevices",
+      "decision": "split",
+      "nativeEquivalent": "Bluetooth & devices, Device Manager and supported Bluetooth battery readings already exist.",
+      "portScope": "Exclude a duplicate device inventory. Unsupported device telemetry is hardware-specific."
+    },
+    {
+      "id": "fanControl",
+      "decision": "retain",
+      "nativeEquivalent": "No general built-in fan-curve editor. Windows has no universal safe fan-control API.",
+      "portScope": "Requires a vendor-supported backend with recovery to firmware control."
+    }
+  ]
+}

@@ -67,10 +67,10 @@ Test("One failed stop does not keep another feature running",()=> { using var ru
 Test("Unknown feature factories cannot be started by import",()=> { using var runtime=new FeatureRuntime(); int count=0; runtime.Register("mixer",()=> { count++; return new FakeFeature(); }); runtime.Apply(["mixer"]); Equal(0,count); });
 Test("Every preset references only actual implemented tools",()=> { foreach(string preset in new[]{"Everyday","Focused work","Minimal"}) True(FeatureCatalog.Preset(preset).All(FeatureCatalog.Contains)); });
 Test("Feature IDs are unique",()=>Equal(FeatureCatalog.All.Count,FeatureCatalog.All.Select(f=>f.Id).Distinct().Count()));
-Test("Feature audit covers the 77 pinned upstream features",()=> { using var doc=JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"feature-audit.json"))); var entries=doc.RootElement.GetProperty("features").EnumerateArray().ToArray(); Equal(77,entries.Length); Equal(77,entries.Select(e=>e.GetProperty("id").GetString()).Distinct().Count()); });
+Test("Feature scope covers the 77 pinned upstream features",()=> { using var doc=JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"feature-scope.json"))); var entries=doc.RootElement.GetProperty("features").EnumerateArray().ToArray(); Equal(77,entries.Length); Equal(77,entries.Select(e=>e.GetProperty("id").GetString()).Distinct().Count()); });
 Test("The runtime catalog cannot contain an excluded feature",()=>
 {
-    using var doc=JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"feature-audit.json")));
+    using var doc=JsonDocument.Parse(File.ReadAllText(Path.Combine(AppContext.BaseDirectory,"feature-scope.json")));
     var excluded=doc.RootElement.GetProperty("features").EnumerateArray().Where(e=>e.GetProperty("decision").GetString()!.StartsWith("exclude")).Select(e=>e.GetProperty("id").GetString()).ToHashSet();
     True(FeatureCatalog.All.All(f=>!excluded.Contains(f.Id)));
 });

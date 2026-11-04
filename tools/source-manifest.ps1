@@ -29,7 +29,7 @@ foreach($taskName in @('validation/fixtures','.github/workflows')) {
     $taskDirectory=Join-Path $taskRoot $taskName
     if(Test-Path -LiteralPath $taskDirectory -PathType Container) { Find-Inputs $taskDirectory }
 }
-foreach($taskName in @('.gitattributes','.gitignore','.editorconfig','Directory.Build.props','Directory.Build.targets','Directory.Packages.props','global.json','NuGet.Config','Vela.sln','LICENSE','NOTICE.md','docs/feature-audit.json')) {
+foreach($taskName in @('.gitattributes','.gitignore','.editorconfig','Directory.Build.props','Directory.Build.targets','Directory.Packages.props','global.json','NuGet.Config','Vela.sln','LICENSE','NOTICE.md')) {
     if(Test-Path -LiteralPath (Join-Path $taskRoot $taskName) -PathType Leaf) { $taskInputs.Add($taskName) }
 }
 $taskNames=$taskInputs.ToArray()
