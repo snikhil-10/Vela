@@ -51,9 +51,24 @@ jobs:
         if: matrix.architecture == 'x64'
         shell: cmd
         run: tools\check-windows.cmd x64
+      - name: Build the setup executable
+        shell: pwsh
+        run: |
+          ./tools/setup-inno.ps1
+          ./tools/build-installer.ps1 -Architecture ${{ matrix.architecture }}
+      - name: Check installer lifecycle
+        if: matrix.architecture == 'x64'
+        shell: pwsh
+        run: ./tests/test-installer.ps1 -Installer ./artifacts/installers/Vela-Setup-0.2.2-x64.exe
       - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: Vela-preview-${{ matrix.architecture }}
           path: artifacts/Vela-${{ matrix.architecture }}
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: Vela-setup-${{ matrix.architecture }}
+          path: artifacts/installers/Vela-Setup-*.exe
           if-no-files-found: error
           retention-days: 14
